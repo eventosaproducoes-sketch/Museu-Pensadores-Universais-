@@ -4123,7 +4123,584 @@ document.addEventListener("click",function(event){
 });
 
 
+/* =====================================================
+   MUSEU 3.0
+   SISTEMA UNIVERSAL DE RECURSOS DAS SALAS
+   ===================================================== */
 
+const recursosMuseu30 = {
+
+    "Sócrates": {
+
+        imagem: "",
+        audio: "",
+        video: "",
+
+        timeline: [],
+
+        documentos: [],
+
+        fontes: [],
+
+        navegacao: {
+            anterior: "",
+            proximo: "Platão"
+        }
+
+    },
+
+    "Platão": {
+
+        imagem: "",
+        audio: "",
+        video: "",
+
+        timeline: [],
+
+        documentos: [],
+
+        fontes: [],
+
+        navegacao: {
+            anterior: "Sócrates",
+            proximo: "Aristóteles"
+        }
+
+    },
+
+    "Aristóteles": {
+
+        imagem: "",
+        audio: "",
+        video: "",
+
+        timeline: [],
+
+        documentos: [],
+
+        fontes: [],
+
+        navegacao: {
+            anterior: "Platão",
+            proximo: "Confúcio"
+        }
+
+    }
+
+};
+
+
+/* =====================================================
+   GARANTIR RECURSOS PARA QUALQUER PENSADOR
+   ===================================================== */
+
+function garantirRecursosMuseu(nome){
+
+    if(!recursosMuseu30[nome]){
+
+        recursosMuseu30[nome] = {
+
+            imagem: "",
+            audio: "",
+            video: "",
+
+            timeline: [],
+
+            documentos: [],
+
+            fontes: [],
+
+            navegacao: {
+                anterior: "",
+                proximo: ""
+            }
+
+        };
+
+    }
+
+    return recursosMuseu30[nome];
+
+}
+
+
+/* =====================================================
+   ADICIONAR IMAGEM
+   ===================================================== */
+
+function adicionarImagemMuseu(nome,url){
+
+    const dados =
+    garantirRecursosMuseu(nome);
+
+    dados.imagem = url;
+
+}
+
+
+/* =====================================================
+   ADICIONAR ÁUDIO
+   ===================================================== */
+
+function adicionarAudioMuseu(nome,url){
+
+    const dados =
+    garantirRecursosMuseu(nome);
+
+    dados.audio = url;
+
+}
+
+
+/* =====================================================
+   ADICIONAR VÍDEO
+   ===================================================== */
+
+function adicionarVideoMuseu(nome,url){
+
+    const dados =
+    garantirRecursosMuseu(nome);
+
+    dados.video = url;
+
+}
+
+
+/* =====================================================
+   ADICIONAR EVENTO À LINHA DO TEMPO
+   ===================================================== */
+
+function adicionarEventoTimeline(
+    nome,
+    ano,
+    titulo,
+    descricao
+){
+
+    const dados =
+    garantirRecursosMuseu(nome);
+
+    dados.timeline.push({
+
+        ano: ano,
+
+        titulo: titulo,
+
+        descricao: descricao
+
+    });
+
+}
+
+
+/* =====================================================
+   ADICIONAR DOCUMENTO
+   ===================================================== */
+
+function adicionarDocumentoMuseu(
+    nome,
+    titulo,
+    descricao,
+    url
+){
+
+    const dados =
+    garantirRecursosMuseu(nome);
+
+    dados.documentos.push({
+
+        titulo: titulo,
+
+        descricao: descricao,
+
+        url: url
+
+    });
+
+}
+
+
+/* =====================================================
+   ADICIONAR FONTE
+   ===================================================== */
+
+function adicionarFonteMuseu(
+    nome,
+    titulo,
+    url
+){
+
+    const dados =
+    garantirRecursosMuseu(nome);
+
+    dados.fontes.push({
+
+        titulo: titulo,
+
+        url: url
+
+    });
+
+}
+
+
+/* =====================================================
+   RENDERIZAR RECURSOS
+   ===================================================== */
+
+function renderizarRecursosMuseu(nome){
+
+    const dados =
+    garantirRecursosMuseu(nome);
+
+    let html = "";
+
+
+
+    /* IMAGEM */
+
+    if(dados.imagem){
+
+        html += `
+
+            <div class="recurso-museu">
+
+                <h3>🖼️ Imagem</h3>
+
+                <img
+                src="${dados.imagem}"
+                alt="${esc(nome)}"
+                style="
+                width:100%;
+                border-radius:18px;
+                display:block;
+                "
+                >
+
+            </div>
+
+        `;
+
+    }
+
+
+
+    /* ÁUDIO */
+
+    if(dados.audio){
+
+        html += `
+
+            <div class="recurso-museu">
+
+                <h3>🎧 Áudio</h3>
+
+                <audio
+                controls
+                style="width:100%;">
+
+                    <source
+                    src="${dados.audio}">
+
+                </audio>
+
+            </div>
+
+        `;
+
+    }
+
+
+
+    /* VÍDEO */
+
+    if(dados.video){
+
+        html += `
+
+            <div class="recurso-museu">
+
+                <h3>🎬 Vídeo</h3>
+
+                <video
+                controls
+                style="
+                width:100%;
+                border-radius:18px;
+                ">
+
+                    <source
+                    src="${dados.video}">
+
+                </video>
+
+            </div>
+
+        `;
+
+    }
+
+
+
+    /* LINHA DO TEMPO */
+
+    if(dados.timeline.length){
+
+        html += `
+
+            <div class="recurso-museu">
+
+                <h3>📜 Linha do tempo</h3>
+
+        `;
+
+
+        dados.timeline.forEach(function(evento){
+
+            html += `
+
+                <div
+                style="
+                border-left:3px solid #d8b36a;
+                padding:12px 18px;
+                margin:14px 0;
+                ">
+
+                    <strong>
+                    ${esc(evento.ano)}
+                    </strong>
+
+                    <h4>
+                    ${esc(evento.titulo)}
+                    </h4>
+
+                    <p>
+                    ${esc(evento.descricao)}
+                    </p>
+
+                </div>
+
+            `;
+
+        });
+
+
+        html += `
+
+            </div>
+
+        `;
+
+    }
+
+
+
+    /* DOCUMENTOS */
+
+    if(dados.documentos.length){
+
+        html += `
+
+            <div class="recurso-museu">
+
+                <h3>📚 Documentos e textos</h3>
+
+        `;
+
+
+        dados.documentos.forEach(function(doc){
+
+            html += `
+
+                <div
+                style="
+                padding:15px;
+                border:1px solid rgba(216,179,106,.25);
+                border-radius:15px;
+                margin:12px 0;
+                ">
+
+                    <h4>
+                    ${esc(doc.titulo)}
+                    </h4>
+
+                    <p>
+                    ${esc(doc.descricao)}
+                    </p>
+
+                    ${
+                        doc.url
+                        ?
+                        `
+                        <a
+                        href="${doc.url}"
+                        target="_blank"
+                        class="goldbtn">
+
+                        Abrir documento
+
+                        </a>
+                        `
+                        :
+                        ""
+                    }
+
+                </div>
+
+            `;
+
+        });
+
+
+        html += `
+
+            </div>
+
+        `;
+
+    }
+
+
+
+    /* FONTES */
+
+    if(dados.fontes.length){
+
+        html += `
+
+            <div class="recurso-museu">
+
+                <h3>🔗 Fontes e referências</h3>
+
+        `;
+
+
+        dados.fontes.forEach(function(fonte){
+
+            html += `
+
+                <p>
+
+                    <a
+                    href="${fonte.url}"
+                    target="_blank"
+                    style="
+                    color:#d8b36a;
+                    ">
+
+                    ${esc(fonte.titulo)}
+
+                    </a>
+
+                </p>
+
+            `;
+
+        });
+
+
+        html += `
+
+            </div>
+
+        `;
+
+    }
+
+
+
+    return html;
+
+}
+
+
+/* =====================================================
+   ABRIR PAINEL DE RECURSOS
+   ===================================================== */
+
+function abrirRecursosMuseu(nome){
+
+    const dados =
+    garantirRecursosMuseu(nome);
+
+    const recursos =
+    renderizarRecursosMuseu(nome);
+
+
+    openModal(`
+
+        <button
+        class="close"
+        onclick="closeModal()">
+
+        ×
+
+        </button>
+
+
+        <div class="kicker">
+
+        RECURSOS DA SALA
+
+        </div>
+
+
+        <h2>
+
+        ${esc(nome)}
+
+        </h2>
+
+
+        <p>
+
+        Explore os conteúdos complementares
+        desta sala do Museu Virtual.
+
+        </p>
+
+
+        <div
+        style="
+        margin-top:25px;
+        ">
+
+        ${
+            recursos
+            ||
+            `
+            <div
+            style="
+            padding:25px;
+            border:1px solid rgba(216,179,106,.2);
+            border-radius:18px;
+            ">
+
+                <h3>
+                Sala em expansão
+                </h3>
+
+                <p>
+                Novos conteúdos serão adicionados
+                a esta sala progressivamente.
+                </p>
+
+            </div>
+            `
+        }
+
+        </div>
+
+    `);
+
+}
+
+
+    
+/* =====================================================
+   MUSEU 3.0 — FIM DO SISTEMA BASE
+   ===================================================== 
+   */
 </script>
 
 </body>
