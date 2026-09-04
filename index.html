@@ -3214,6 +3214,916 @@ function iniciarVisita(){
 
   }
 
+<script>
+
+/* =========================================================
+   MUSEU VIRTUAL DOS PENSADORES UNIVERSAIS
+   MOTOR UNIVERSAL DE SALAS 2.0
+   ========================================================= */
+
+/*
+   Este sistema NÃO apaga o conteúdo existente.
+   Ele cria uma estrutura universal para as salas.
+*/
+
+const salasMuseu20 = {
+
+"Sócrates":{
+contexto:"Atenas, século V a.C. — período de intensa transformação política, cultural e filosófica.",
+vida:"Sócrates foi um filósofo ateniense conhecido por transformar o diálogo em instrumento de investigação. Não deixou obras escritas; grande parte do que sabemos sobre ele vem de autores posteriores, especialmente Platão, Xenofonte e Aristófanes.",
+infancia:"As informações sobre sua infância são escassas. Viveu em Atenas e participou da vida pública de sua cidade.",
+ideias:[
+"Conhecer os próprios limites é o início da sabedoria.",
+"O diálogo pode revelar contradições e estimular o pensamento.",
+"A vida deve ser examinada criticamente.",
+"A ética deve orientar as escolhas humanas."
+],
+obras:"Sócrates não deixou obras escritas conhecidas. Seus ensinamentos foram preservados principalmente por discípulos e escritores posteriores.",
+legado:"Seu método de questionamento tornou-se uma das bases da tradição filosófica ocidental.",
+influencias:"Platão, Xenofonte e diversas gerações posteriores de filósofos foram profundamente influenciados por sua maneira de investigar questões humanas.",
+quiz:{
+pergunta:"Qual prática está mais associada a Sócrates?",
+opcoes:["O diálogo e o questionamento","A pintura renascentista","A física experimental","A poesia épica"],
+correta:0
+}
+},
+
+"Platão":{
+contexto:"Atenas, século IV a.C., em um período de reconstrução intelectual após as crises políticas da Grécia clássica.",
+vida:"Platão foi discípulo de Sócrates e posteriormente fundou a Academia. Seus diálogos discutem temas como justiça, conhecimento, política, educação e natureza da realidade.",
+infancia:"Pertenceu a uma família aristocrática ateniense e recebeu educação compatível com sua posição social.",
+ideias:[
+"Distinção entre aparência e realidade.",
+"Importância da educação para a formação humana.",
+"Investigação racional da justiça e do conhecimento.",
+"Reflexão sobre a organização ideal da sociedade."
+],
+obras:"Entre os diálogos associados a Platão estão A República, O Banquete, Fédon, Fedro e Apologia de Sócrates.",
+legado:"Sua filosofia influenciou profundamente a metafísica, a ética, a política e a educação.",
+influencias:"Sua obra influenciou Aristóteles, tradições cristãs, islâmicas e inúmeros filósofos modernos.",
+quiz:{
+pergunta:"Qual obra é tradicionalmente associada a Platão?",
+opcoes:["A República","O Príncipe","O Capital","A Origem das Espécies"],
+correta:0
+}
+},
+
+"Aristóteles":{
+contexto:"Grécia antiga, século IV a.C.",
+vida:"Aristóteles nasceu em Estagira e estudou na Academia de Platão. Tornou-se um dos mais abrangentes pensadores da Antiguidade.",
+infancia:"Nasceu em uma família ligada à medicina e à corte macedônica.",
+ideias:[
+"Observação sistemática da natureza.",
+"Lógica como instrumento do pensamento.",
+"Ética baseada na formação do caráter.",
+"Busca do equilíbrio e da virtude."
+],
+obras:"Entre suas obras estão Ética a Nicômaco, Política, Metafísica, Poética e obras sobre lógica e natureza.",
+legado:"Sua influência atravessou filosofia, ciência, política, ética e educação.",
+influencias:"Influenciou profundamente a filosofia medieval e moderna, incluindo tradições cristãs e islâmicas.",
+quiz:{
+pergunta:"Aristóteles ficou conhecido também por seus estudos de:",
+opcoes:["Lógica e natureza","Cinema","Fotografia","Computação"],
+correta:0
+}
+},
+
+"Confúcio":{
+contexto:"China antiga, período marcado por conflitos políticos e busca por estabilidade social.",
+vida:"Confúcio foi um pensador chinês associado à educação, à ética e à organização da sociedade.",
+infancia:"Nasceu no Estado de Lu e viveu em um contexto de transformação política.",
+ideias:[
+"Importância da educação.",
+"Respeito às relações sociais.",
+"Responsabilidade moral dos governantes.",
+"Autodisciplina e cultivo pessoal."
+],
+obras:"Seus ensinamentos foram preservados principalmente por discípulos e tradições posteriores.",
+legado:"O pensamento confuciano influenciou profundamente a cultura, a educação e a administração de sociedades do Leste Asiático.",
+influencias:"Sua tradição influenciou China, Coreia, Japão e Vietnã.",
+quiz:{
+pergunta:"Qual tema é central no pensamento de Confúcio?",
+opcoes:["Educação e ética","Astronomia moderna","Capitalismo industrial","Psicanálise"],
+correta:0
+}
+},
+
+"Agostinho":{
+contexto:"Norte da África e mundo romano, entre os séculos IV e V.",
+vida:"Agostinho de Hipona foi filósofo, teólogo e bispo. Sua obra dialogou com a tradição clássica e o cristianismo.",
+infancia:"Nasceu em Tagaste e recebeu formação intelectual em ambiente romano.",
+ideias:[
+"Interioridade e reflexão sobre a própria consciência.",
+"Relação entre fé e razão.",
+"Reflexão sobre tempo e memória.",
+"Importância da busca interior."
+],
+obras:"Confissões e A Cidade de Deus estão entre suas obras mais conhecidas.",
+legado:"Sua influência foi enorme na filosofia e teologia ocidentais.",
+influencias:"Influenciou pensadores medievais e modernos.",
+quiz:{
+pergunta:"Qual obra é associada a Agostinho?",
+opcoes:["Confissões","O Contrato Social","Assim Falou Zaratustra","O Capital"],
+correta:0
+}
+},
+
+"Tomás de Aquino":{
+contexto:"Europa medieval, século XIII.",
+vida:"Tomás de Aquino procurou articular filosofia aristotélica e teologia cristã.",
+infancia:"Nasceu em uma família nobre italiana.",
+ideias:[
+"Diálogo entre fé e razão.",
+"Importância da investigação racional.",
+"Lei natural e ética.",
+"Conhecimento como busca da verdade."
+],
+obras:"Suma Teológica e Suma contra os Gentios são suas obras mais conhecidas.",
+legado:"É uma das figuras centrais da escolástica medieval.",
+influencias:"Aristóteles foi uma influência decisiva em seu pensamento.",
+quiz:{
+pergunta:"Tomás de Aquino buscou aproximar:",
+opcoes:["Fé e razão","Pintura e fotografia","Cinema e teatro","Música e matemática"],
+correta:0
+}
+},
+
+"Averróis":{
+contexto:"Al-Andalus, século XII.",
+vida:"Averróis foi filósofo, médico e jurista. Seus comentários sobre Aristóteles tiveram enorme importância.",
+infancia:"Nasceu em Córdoba, em uma família ligada ao direito e à vida intelectual.",
+ideias:[
+"Valorização da razão.",
+"Estudo da filosofia aristotélica.",
+"Investigação racional da natureza.",
+"Relação entre filosofia e religião."
+],
+obras:"Seus comentários sobre Aristóteles estão entre seus trabalhos mais importantes.",
+legado:"Foi uma ponte fundamental para a transmissão do pensamento aristotélico.",
+influencias:"Influenciou pensadores islâmicos, judeus e cristãos.",
+quiz:{
+pergunta:"Averróis ficou especialmente conhecido por seus comentários sobre:",
+opcoes:["Aristóteles","Darwin","Freud","Einstein"],
+correta:0
+}
+},
+
+"Nicolau Maquiavel":{
+contexto:"Itália renascentista, período de disputas entre cidades e Estados.",
+vida:"Maquiavel foi diplomata, escritor e pensador político.",
+infancia:"Nasceu em Florença em uma família de recursos modestos.",
+ideias:[
+"Análise realista da política.",
+"Relação entre poder e instituições.",
+"Importância da capacidade política.",
+"Reflexão sobre liderança e Estado."
+],
+obras:"O Príncipe e Discursos sobre a Primeira Década de Tito Lívio estão entre seus textos mais conhecidos.",
+legado:"É uma das figuras fundamentais do pensamento político moderno.",
+influencias:"Influenciou estudos posteriores sobre Estado, poder e liderança.",
+quiz:{
+pergunta:"Qual obra é associada a Maquiavel?",
+opcoes:["O Príncipe","A República","Confissões","O Banquete"],
+correta:0
+}
+},
+
+"Leonardo da Vinci":{
+contexto:"Renascimento italiano, entre os séculos XV e XVI.",
+vida:"Leonardo foi artista, inventor, observador da natureza e investigador de múltiplas áreas.",
+infancia:"Nasceu em Vinci, na Itália, e desenvolveu desde cedo interesse por desenho e observação.",
+ideias:[
+"Curiosidade interdisciplinar.",
+"Observação direta da natureza.",
+"Relação entre arte e ciência.",
+"Experimentação e representação visual."
+],
+obras:"Mona Lisa e A Última Ceia estão entre suas obras artísticas mais conhecidas.",
+legado:"Tornou-se símbolo do ideal renascentista de conhecimento amplo.",
+influencias:"Influenciou arte, anatomia, engenharia e cultura visual.",
+quiz:{
+pergunta:"Leonardo da Vinci é frequentemente associado a:",
+opcoes:["Arte e ciência","Psicanálise","Economia moderna","Sociologia"],
+correta:0
+}
+},
+
+"Erasmo de Roterdã":{
+contexto:"Europa do Renascimento, século XVI.",
+vida:"Erasmo foi humanista, escritor e estudioso.",
+infancia:"Nasceu em Roterdã e recebeu formação religiosa e humanística.",
+ideias:[
+"Humanismo.",
+"Educação.",
+"Crítica aos excessos institucionais.",
+"Valorização da cultura clássica."
+],
+obras:"Elogio da Loucura é uma de suas obras mais conhecidas.",
+legado:"Foi uma figura central do humanismo europeu.",
+influencias:"Influenciou debates religiosos, educacionais e culturais.",
+quiz:{
+pergunta:"Erasmo esteve ligado principalmente ao:",
+opcoes:["Humanismo renascentista","Existencialismo","Darwinismo","Positivismo"],
+correta:0
+}
+},
+
+"John Locke":{
+contexto:"Inglaterra, século XVII.",
+vida:"Locke foi filósofo e médico, considerado uma das figuras fundamentais do empirismo.",
+infancia:"Nasceu em Wrington e estudou em Oxford.",
+ideias:[
+"Experiência como fonte do conhecimento.",
+"Direitos naturais.",
+"Liberdade individual.",
+"Governo baseado no consentimento."
+],
+obras:"Ensaio sobre o Entendimento Humano e Dois Tratados sobre o Governo.",
+legado:"Influenciou o liberalismo político e a filosofia moderna.",
+influencias:"Sua obra influenciou ideias políticas posteriores.",
+quiz:{
+pergunta:"Locke é associado ao:",
+opcoes:["Empirismo","Surrealismo","Romantismo","Estruturalismo"],
+correta:0
+}
+},
+
+"Jean-Jacques Rousseau":{
+contexto:"Europa do século XVIII.",
+vida:"Rousseau foi filósofo e escritor associado ao Iluminismo.",
+infancia:"Nasceu em Genebra e teve uma infância marcada por mudanças familiares.",
+ideias:[
+"Contrato social.",
+"Liberdade política.",
+"Educação.",
+"Crítica às desigualdades sociais."
+],
+obras:"Do Contrato Social e Emílio são obras fundamentais.",
+legado:"Influenciou a política moderna e debates sobre educação.",
+influencias:"Suas ideias foram importantes para debates políticos do século XVIII.",
+quiz:{
+pergunta:"Qual obra está associada a Rousseau?",
+opcoes:["Do Contrato Social","O Príncipe","O Capital","A República"],
+correta:0
+}
+},
+
+"Voltaire":{
+contexto:"França, século XVIII.",
+vida:"Voltaire foi escritor, filósofo e crítico social.",
+infancia:"Nasceu em Paris e recebeu educação jesuíta.",
+ideias:[
+"Liberdade de pensamento.",
+"Crítica ao fanatismo.",
+"Tolerância.",
+"Defesa da razão."
+],
+obras:"Cândido é uma de suas obras literárias mais conhecidas.",
+legado:"Tornou-se um dos símbolos do Iluminismo francês.",
+influencias:"Influenciou debates sobre liberdade, religião e política.",
+quiz:{
+pergunta:"Voltaire defendia fortemente:",
+opcoes:["Tolerância e liberdade de pensamento","Absolutismo","Feudalismo","Censura"],
+correta:0
+}
+},
+
+"Immanuel Kant":{
+contexto:"Prússia, século XVIII.",
+vida:"Kant foi um dos principais filósofos da modernidade.",
+infancia:"Nasceu em Königsberg e teve educação rigorosa.",
+ideias:[
+"Autonomia moral.",
+"Imperativo categórico.",
+"Limites e possibilidades da razão.",
+"Iluminismo e esclarecimento."
+],
+obras:"Crítica da Razão Pura e Fundamentação da Metafísica dos Costumes.",
+legado:"Sua filosofia transformou a epistemologia e a ética.",
+influencias:"Influenciou grande parte da filosofia posterior.",
+quiz:{
+pergunta:"Kant é especialmente importante para:",
+opcoes:["Ética e teoria do conhecimento","Cinema","Biologia molecular","Fotografia"],
+correta:0
+}
+},
+
+"Karl Marx":{
+contexto:"Europa industrial do século XIX.",
+vida:"Marx foi filósofo, economista, jornalista e crítico da sociedade industrial.",
+infancia:"Nasceu em Trier, em uma família de formação intelectual.",
+ideias:[
+"Crítica do capitalismo.",
+"Luta de classes.",
+"Trabalho e produção.",
+"Transformação social."
+],
+obras:"O Capital e Manifesto Comunista estão entre seus textos mais conhecidos.",
+legado:"Influenciou profundamente política, economia, sociologia e movimentos sociais.",
+influencias:"Seu pensamento gerou diversas escolas e interpretações.",
+quiz:{
+pergunta:"Um conceito central no pensamento de Marx é:",
+opcoes:["Luta de classes","Imperativo categórico","Contrato social","Seleção natural"],
+correta:0
+}
+},
+
+"Charles Darwin":{
+contexto:"Reino Unido, século XIX.",
+vida:"Darwin foi naturalista e formulou uma explicação científica para a evolução por seleção natural.",
+infancia:"Nasceu em Shrewsbury e demonstrou interesse pela natureza desde cedo.",
+ideias:[
+"Evolução das espécies.",
+"Seleção natural.",
+"Adaptação.",
+"Descendência com modificação."
+],
+obras:"A Origem das Espécies é sua obra mais famosa.",
+legado:"Sua teoria transformou a biologia e nossa compreensão da vida.",
+influencias:"Influenciou biologia, antropologia e diversas áreas científicas.",
+quiz:{
+pergunta:"Darwin ficou famoso por desenvolver a teoria da:",
+opcoes:["Seleção natural","Relatividade","Psicanálise","Mais-valia"],
+correta:0
+}
+},
+
+"Friedrich Nietzsche":{
+contexto:"Europa do século XIX.",
+vida:"Nietzsche foi filósofo, escritor e crítico da moral e da cultura europeias.",
+infancia:"Nasceu na Prússia e teve formação clássica.",
+ideias:[
+"Crítica dos valores tradicionais.",
+"Superação de valores estabelecidos.",
+"Perspectivismo.",
+"Reflexão sobre niilismo."
+],
+obras:"Assim Falou Zaratustra e Além do Bem e do Mal são obras conhecidas.",
+legado:"Influenciou filosofia, literatura, psicologia e cultura.",
+influencias:"Sua obra foi reinterpretada por inúmeros pensadores do século XX.",
+quiz:{
+pergunta:"Nietzsche realizou forte crítica:",
+opcoes:["A valores tradicionais","À matemática","À astronomia","À engenharia"],
+correta:0
+}
+},
+
+"Sigmund Freud":{
+contexto:"Europa entre o final do século XIX e início do XX.",
+vida:"Freud foi médico e fundador da psicanálise.",
+infancia:"Nasceu em Freiberg, no então Império Austríaco.",
+ideias:[
+"Inconsciente.",
+"Sonhos.",
+"Conflitos psíquicos.",
+"Formação da personalidade."
+],
+obras:"A Interpretação dos Sonhos é uma de suas obras fundamentais.",
+legado:"Sua influência ultrapassou a medicina e chegou à cultura, literatura e filosofia.",
+influencias:"Influenciou diversas correntes da psicologia e das humanidades.",
+quiz:{
+pergunta:"Freud é associado à:",
+opcoes:["Psicanálise","Seleção natural","Liberalismo clássico","Física quântica"],
+correta:0
+}
+},
+
+"Albert Einstein":{
+contexto:"Europa e Estados Unidos, século XX.",
+vida:"Einstein foi físico conhecido por contribuições fundamentais à física moderna.",
+infancia:"Nasceu em Ulm, no Império Alemão, e demonstrou interesse por ciência desde jovem.",
+ideias:[
+"Relatividade.",
+"Relação entre espaço e tempo.",
+"Natureza da luz.",
+"Equivalência entre massa e energia."
+],
+obras:"Seus artigos científicos sobre relatividade e física quântica estão entre suas principais contribuições.",
+legado:"É uma das figuras científicas mais conhecidas da história.",
+influencias:"Transformou a física moderna.",
+quiz:{
+pergunta:"Einstein é especialmente associado à teoria da:",
+opcoes:["Relatividade","Evolução","Psicanálise","Dialética"],
+correta:0
+}
+},
+
+"Machado de Assis":{
+contexto:"Brasil do século XIX e início do XX.",
+vida:"Machado de Assis foi escritor, cronista, poeta e fundador da Academia Brasileira de Letras.",
+infancia:"Nasceu no Rio de Janeiro e teve origem humilde.",
+ideias:[
+"Análise da sociedade.",
+"Ironia.",
+"Complexidade psicológica.",
+"Crítica dos costumes."
+],
+obras:"Memórias Póstumas de Brás Cubas, Dom Casmurro e Quincas Borba.",
+legado:"É considerado um dos maiores escritores da literatura brasileira.",
+influencias:"Sua obra continua influenciando escritores e estudiosos.",
+quiz:{
+pergunta:"Qual obra é de Machado de Assis?",
+opcoes:["Dom Casmurro","O Capital","A República","O Príncipe"],
+correta:0
+}
+},
+
+"Paulo Freire":{
+contexto:"Brasil, século XX.",
+vida:"Paulo Freire foi educador e filósofo da educação.",
+infancia:"Nasceu em Recife e conheceu de perto desigualdades sociais e educacionais.",
+ideias:[
+"Educação como diálogo.",
+"Consciência crítica.",
+"Autonomia.",
+"Educação como prática transformadora."
+],
+obras:"Pedagogia do Oprimido é sua obra mais conhecida.",
+legado:"Influenciou profundamente a educação brasileira e internacional.",
+influencias:"Seu pensamento é estudado em diversos países.",
+quiz:{
+pergunta:"Paulo Freire valorizava especialmente:",
+opcoes:["Diálogo e consciência crítica","Memorização mecânica","Censura","Isolamento"],
+correta:0
+}
+},
+
+"Milton Santos":{
+contexto:"Brasil e mundo, século XX.",
+vida:"Milton Santos foi geógrafo brasileiro e importante pensador do espaço geográfico.",
+infancia:"Nasceu na Bahia e desenvolveu interesse por educação e conhecimento.",
+ideias:[
+"Espaço geográfico.",
+"Globalização.",
+"Desigualdade territorial.",
+"Uso social do território."
+],
+obras:"Por uma Outra Globalização está entre suas obras mais conhecidas.",
+legado:"Sua obra transformou debates sobre geografia, território e globalização.",
+influencias:"É referência internacional na geografia crítica.",
+quiz:{
+pergunta:"Milton Santos destacou-se principalmente na:",
+opcoes:["Geografia","Psicanálise","Física","Literatura"],
+correta:0
+}
+},
+
+"Darcy Ribeiro":{
+contexto:"Brasil do século XX.",
+vida:"Darcy Ribeiro foi antropólogo, educador, escritor e político.",
+infancia:"Nasceu em Montes Claros, Minas Gerais.",
+ideias:[
+"Formação do povo brasileiro.",
+"Educação pública.",
+"Diversidade cultural.",
+"Desenvolvimento social."
+],
+obras:"O Povo Brasileiro é uma de suas obras mais conhecidas.",
+legado:"Contribuiu para antropologia, educação e pensamento social brasileiro.",
+influencias:"Sua obra permanece importante para compreender a formação brasileira.",
+quiz:{
+pergunta:"Darcy Ribeiro estudou profundamente:",
+opcoes:["A formação do povo brasileiro","A relatividade","A psicanálise","A física nuclear"],
+correta:0
+}
+},
+
+"Hannah Arendt":{
+contexto:"Europa e Estados Unidos, século XX.",
+vida:"Arendt foi filósofa e teórica política.",
+infancia:"Nasceu na Alemanha e posteriormente viveu em diferentes países.",
+ideias:[
+"Totalitarismo.",
+"Ação política.",
+"Espaço público.",
+"Responsabilidade individual."
+],
+obras:"Origens do Totalitarismo e A Condição Humana.",
+legado:"Sua obra tornou-se fundamental para compreender política e totalitarismo.",
+influencias:"Influenciou filosofia política, história e ciências sociais.",
+quiz:{
+pergunta:"Arendt estudou profundamente:",
+opcoes:["Totalitarismo e política","Seleção natural","Física","Gramática"],
+correta:0
+}
+},
+
+"Simone de Beauvoir":{
+contexto:"França, século XX.",
+vida:"Simone de Beauvoir foi escritora, filósofa e uma das principais referências do pensamento feminista moderno.",
+infancia:"Nasceu em Paris e recebeu educação em ambiente intelectual.",
+ideias:[
+"Liberdade.",
+"Existência.",
+"Condição das mulheres.",
+"Construção social dos papéis."
+],
+obras:"O Segundo Sexo é sua obra mais conhecida.",
+legado:"Influenciou profundamente o feminismo e o pensamento existencialista.",
+influencias:"Sua obra permanece central nos estudos sobre gênero e sociedade.",
+quiz:{
+pergunta:"Qual obra está associada a Beauvoir?",
+opcoes:["O Segundo Sexo","O Capital","A República","A Origem das Espécies"],
+correta:0
+}
+},
+
+"Martin Luther King Jr.":{
+contexto:"Estados Unidos, século XX.",
+vida:"Martin Luther King Jr. foi pastor e líder do movimento pelos direitos civis.",
+infancia:"Nasceu em Atlanta e cresceu em uma família ligada à tradição religiosa e comunitária.",
+ideias:[
+"Direitos civis.",
+"Não violência.",
+"Justiça social.",
+"Igualdade."
+],
+obras:"Discursos, sermões e textos políticos formam parte importante de seu legado.",
+legado:"Tornou-se um dos principais símbolos mundiais da luta pelos direitos civis.",
+influencias:"Seu pensamento influenciou movimentos sociais em vários países.",
+quiz:{
+"King ficou conhecido por defender:",
+opcoes:["Não violência e direitos civis","Segregação","Censura","Colonialismo"],
+correta:0
+}
+},
+
+"Nelson Mandela":{
+contexto:"África do Sul, século XX.",
+vida:"Mandela foi líder político e símbolo da luta contra o apartheid.",
+infancia:"Nasceu em Mvezo e cresceu em uma comunidade tradicional.",
+ideias:[
+"Liberdade.",
+"Reconciliação.",
+"Justiça.",
+"Democracia."
+],
+obras:"Sua autobiografia Long Walk to Freedom tornou-se uma referência mundial.",
+legado:"É lembrado como símbolo da resistência ao apartheid e da reconciliação.",
+influencias:"Inspirou movimentos pela liberdade e igualdade.",
+quiz:{
+pergunta:"Mandela lutou contra:",
+opcoes:["Apartheid","Iluminismo","Feudalismo","Industrialização"],
+correta:0
+}
+},
+
+"Carl Sagan":{
+contexto:"Estados Unidos, século XX.",
+vida:"Sagan foi astrônomo, cientista, escritor e divulgador científico.",
+infancia:"Nasceu em Nova York e desenvolveu fascínio pelo universo desde cedo.",
+ideias:[
+"Pensamento científico.",
+"Exploração espacial.",
+"Ceticismo.",
+"Educação científica."
+],
+obras:"Cosmos tornou-se uma das obras de divulgação científica mais conhecidas.",
+legado:"Popularizou a ciência para milhões de pessoas.",
+influencias:"Influenciou a divulgação científica e a cultura científica contemporânea.",
+quiz:{
+pergunta:"Carl Sagan ficou conhecido também por:",
+opcoes:["Divulgação científica","Teologia medieval","Economia","Direito romano"],
+correta:0
+}
+},
+
+"Stephen Hawking":{
+contexto:"Reino Unido, século XX e início do XXI.",
+vida:"Hawking foi físico teórico e um dos principais divulgadores científicos de seu tempo.",
+infancia:"Nasceu em Oxford e estudou física na Universidade de Oxford.",
+ideias:[
+"Buracos negros.",
+"Cosmologia.",
+"Origem e evolução do universo.",
+"Relação entre física e tempo."
+],
+obras:"Uma Breve História do Tempo tornou-se um grande sucesso de divulgação científica.",
+legado:"Contribuiu para a compreensão teórica dos buracos negros e aproximou ciência e público.",
+influencias:"Sua obra influenciou a divulgação científica mundial.",
+quiz:{
+pergunta:"Hawking ficou especialmente conhecido por estudos sobre:",
+opcoes:["Buracos negros","Renascimento","Psicanálise","Linguística"],
+correta:0
+}
+},
+
+"Ailton Krenak":{
+contexto:"Brasil contemporâneo e pensamento indígena.",
+vida:"Ailton Krenak é escritor, pensador e liderança indígena brasileira.",
+infancia:"Nasceu em Minas Gerais e cresceu em contato com a cultura e os territórios do povo Krenak.",
+ideias:[
+"Relação entre humanidade e natureza.",
+"Crítica ao modelo de desenvolvimento.",
+"Saberes indígenas.",
+"Defesa dos povos originários."
+],
+obras:"Ideias para Adiar o Fim do Mundo e A Vida Não é Útil estão entre seus livros mais conhecidos.",
+legado:"Ampliou a presença do pensamento indígena no debate cultural brasileiro.",
+influencias:"Seu trabalho influencia debates ambientais, culturais e sociais.",
+quiz:{
+pergunta:"Um tema central no pensamento de Krenak é:",
+opcoes:["Relação entre humanidade e natureza","Física quântica","Capitalismo financeiro","Geometria"],
+correta:0
+}
+}
+
+};
+
+
+/* =========================================================
+   MOTOR UNIVERSAL DE SALAS
+   ========================================================= */
+
+function criarSalaUniversal(nome){
+
+    const sala = salasMuseu20[nome];
+
+    if(!sala){
+        return;
+    }
+
+    openModal(`
+
+        <button
+        class="close"
+        onclick="closeModal()">
+        ×
+        </button>
+
+        <div class="kicker">
+        SALA DO PENSADOR
+        </div>
+
+        <h2>${nome}</h2>
+
+        <p>${sala.contexto}</p>
+
+        <div style="
+        display:flex;
+        flex-wrap:wrap;
+        gap:10px;
+        margin:25px 0;
+        ">
+
+            <button
+            class="goldbtn"
+            onclick="mostrarSalaAba('${nome}','vida')">
+            Vida
+            </button>
+
+            <button
+            class="ghostbtn"
+            onclick="mostrarSalaAba('${nome}','ideias')">
+            Ideias
+            </button>
+
+            <button
+            class="ghostbtn"
+            onclick="mostrarSalaAba('${nome}','obras')">
+            Obras
+            </button>
+
+            <button
+            class="ghostbtn"
+            onclick="mostrarSalaAba('${nome}','legado')">
+            Legado
+            </button>
+
+            <button
+            class="ghostbtn"
+            onclick="mostrarSalaAba('${nome}','influencias')">
+            Influências
+            </button>
+
+            <button
+            class="ghostbtn"
+            onclick="mostrarSalaAba('${nome}','quiz')">
+            Quiz
+            </button>
+
+        </div>
+
+        <div id="salaUniversalConteudo">
+
+            <h3>Contexto histórico</h3>
+
+            <p>${sala.contexto}</p>
+
+            <h3>A vida de ${nome}</h3>
+
+            <p>${sala.vida}</p>
+
+        </div>
+
+    `);
+}
+
+
+/* =========================================================
+   ABAS DA SALA
+   ========================================================= */
+
+function mostrarSalaAba(nome,aba){
+
+    const sala = salasMuseu20[nome];
+
+    const area =
+    document.getElementById("salaUniversalConteudo");
+
+    if(!area || !sala){
+        return;
+    }
+
+    if(aba === "vida"){
+
+        area.innerHTML = `
+
+        <h3>Contexto histórico</h3>
+        <p>${sala.contexto}</p>
+
+        <h3>Vida</h3>
+        <p>${sala.vida}</p>
+
+        <h3>Infância e formação</h3>
+        <p>${sala.infancia}</p>
+
+        `;
+
+    }
+
+    if(aba === "ideias"){
+
+        area.innerHTML = `
+
+        <h3>Principais ideias</h3>
+
+        <ul>
+        ${sala.ideias.map(function(item){
+            return "<li style='margin-bottom:12px'>"+item+"</li>";
+        }).join("")}
+        </ul>
+
+        `;
+
+    }
+
+    if(aba === "obras"){
+
+        area.innerHTML = `
+
+        <h3>Obras e contribuições</h3>
+        <p>${sala.obras}</p>
+
+        `;
+
+    }
+
+    if(aba === "legado"){
+
+        area.innerHTML = `
+
+        <h3>Legado</h3>
+        <p>${sala.legado}</p>
+
+        `;
+
+    }
+
+    if(aba === "influencias"){
+
+        area.innerHTML = `
+
+        <h3>Influências</h3>
+        <p>${sala.influencias}</p>
+
+        `;
+
+    }
+
+    if(aba === "quiz"){
+
+        area.innerHTML = `
+
+        <h3>🧠 Teste seus conhecimentos</h3>
+
+        <p>
+        <strong>${sala.quiz.pergunta}</strong>
+        </p>
+
+        <div style="
+        display:flex;
+        flex-direction:column;
+        gap:10px;
+        margin-top:20px;
+        ">
+
+        ${sala.quiz.opcoes.map(function(opcao,index){
+
+            return `
+
+            <button
+            class="ghostbtn"
+            onclick="responderSalaQuiz('${nome}',${index})">
+
+            ${opcao}
+
+            </button>
+
+            `;
+
+        }).join("")}
+
+        </div>
+
+        <div
+        id="resultadoSalaQuiz"
+        style="margin-top:20px;font-weight:bold;">
+        </div>
+
+        `;
+
+    }
+
+}
+
+
+/* =========================================================
+   QUIZ UNIVERSAL
+   ========================================================= */
+
+function responderSalaQuiz(nome,resposta){
+
+    const sala = salasMuseu20[nome];
+
+    const resultado =
+    document.getElementById("resultadoSalaQuiz");
+
+    if(!resultado || !sala){
+        return;
+    }
+
+    if(resposta === sala.quiz.correta){
+
+        resultado.innerHTML =
+        "✓ Resposta correta. Excelente!";
+
+    }else{
+
+        resultado.innerHTML =
+        "✕ Ainda não. Tente novamente.";
+
+    }
+
+}
+
+
+/* =========================================================
+   LIGAÇÃO COM OS CARTÕES
+   ========================================================= */
+
+document.addEventListener("click",function(event){
+
+    const botao =
+    event.target.closest("button");
+
+    if(!botao){
+        return;
+    }
+
+    if(botao.textContent.trim() !== "Visitar sala"){
+        return;
+    }
+
+    setTimeout(function(){
+
+        const cartao =
+        botao.closest(".thinker-card");
+
+        if(!cartao){
+            return;
+        }
+
+        const titulo =
+        cartao.querySelector("h3,h2");
+
+        if(!titulo){
+            return;
+        }
+
+        const nome =
+        titulo.textContent.trim();
+
+        if(salasMuseu20[nome]){
+            criarSalaUniversal(nome);
+        }
+
+    },20);
+
+});
+
+
+
 </script>
 
 </body>
