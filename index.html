@@ -12,7 +12,78 @@ content="Museu Virtual dos Pensadores Universais — uma viagem pelas grandes id
 <title>Museu Virtual dos Pensadores Universais</title>
 
 <style>
+/* ===== MAPA PREMIUM DO MUSEU ===== */
 
+.mapa-museu{
+    margin-top:35px;
+    padding:25px;
+    border:1px solid var(--line);
+    border-radius:25px;
+    background:
+    radial-gradient(circle at center,
+    rgba(216,179,106,.10),
+    transparent 60%),
+    #0b0b0b;
+}
+
+.mapa-titulo{
+    text-align:center;
+    color:var(--gold2);
+    font-size:28px;
+    margin-bottom:25px;
+}
+
+.mapa-corredor{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:14px;
+}
+
+.mapa-sala{
+    min-height:150px;
+    border:1px solid var(--line);
+    border-radius:18px;
+    background:linear-gradient(145deg,#181818,#090909);
+    color:var(--text);
+    padding:20px;
+    text-align:left;
+    transition:.3s;
+}
+
+.mapa-sala:hover{
+    transform:translateY(-5px);
+    border-color:var(--gold);
+    box-shadow:0 15px 40px rgba(216,179,106,.12);
+}
+
+.mapa-sala span{
+    display:block;
+    color:var(--gold);
+    font-size:12px;
+    letter-spacing:.15em;
+    text-transform:uppercase;
+    margin-bottom:12px;
+}
+
+.mapa-sala strong{
+    display:block;
+    font-size:21px;
+    margin-bottom:8px;
+}
+
+.mapa-sala small{
+    color:var(--muted);
+    font-family:Arial,sans-serif;
+    line-height:1.5;
+}
+
+@media(max-width:700px){
+
+    .mapa-corredor{
+        grid-template-columns:1fr;
+    }
+
+}
 :root{
 --bg:#070707;
 --panel:#101010;
@@ -1446,7 +1517,132 @@ cultura e desafios do presente.
 <div class="section-head">
 
 <div>
+<!-- MAPA INTERATIVO DO MUSEU -->
 
+<div class="mapa-museu">
+
+    <div class="mapa-titulo">
+        🏛️ Mapa do Museu
+    </div>
+
+    <div class="mapa-corredor">
+
+        <button
+        class="mapa-sala"
+        onclick="filterEra('Antiguidade')">
+
+            <span>Galeria I</span>
+
+            <strong>
+                Antiguidade
+            </strong>
+
+            <small>
+                Sócrates, Platão,
+                Aristóteles, Confúcio
+                e outras grandes mentes.
+            </small>
+
+        </button>
+
+
+        <button
+        class="mapa-sala"
+        onclick="filterEra('Idade Média')">
+
+            <span>Galeria II</span>
+
+            <strong>
+                Idade Média
+            </strong>
+
+            <small>
+                Agostinho, Tomás de Aquino,
+                Averróis e o encontro
+                entre fé e razão.
+            </small>
+
+        </button>
+
+
+        <button
+        class="mapa-sala"
+        onclick="filterEra('Renascimento')">
+
+            <span>Galeria III</span>
+
+            <strong>
+                Renascimento
+            </strong>
+
+            <small>
+                Leonardo, Maquiavel,
+                Erasmo e o nascimento
+                do humanismo moderno.
+            </small>
+
+        </button>
+
+
+        <button
+        class="mapa-sala"
+        onclick="filterEra('Iluminismo')">
+
+            <span>Galeria IV</span>
+
+            <strong>
+                Iluminismo
+            </strong>
+
+            <small>
+                Locke, Rousseau,
+                Voltaire, Kant
+                e a razão moderna.
+            </small>
+
+        </button>
+
+
+        <button
+        class="mapa-sala"
+        onclick="filterEra('Moderna')">
+
+            <span>Galeria V</span>
+
+            <strong>
+                Séculos XIX–XX
+            </strong>
+
+            <small>
+                Marx, Darwin, Nietzsche,
+                Freud, Einstein
+                e a modernidade.
+            </small>
+
+        </button>
+
+
+        <button
+        class="mapa-sala"
+        onclick="filterEra('Brasil')">
+
+            <span>Galeria VI</span>
+
+            <strong>
+                Brasil & América Latina
+            </strong>
+
+            <small>
+                Machado de Assis,
+                Paulo Freire,
+                Milton Santos e Darcy Ribeiro.
+            </small>
+
+        </button>
+
+    </div>
+
+</div>
 <div class="kicker">
 Mapa do Museu
 </div>
@@ -2925,7 +3121,98 @@ closeModal();
 );
 
 
-renderThinkers();
+renderThinkers();/* =====================================================
+   MUSEU 2.0 — SISTEMA DE VISITA
+   ===================================================== */
+
+function abrirGaleria(nome){
+
+    const campo = document.getElementById("thinkerSearch");
+
+    if(!campo){
+        return;
+    }
+
+    campo.value = nome;
+
+    renderThinkers();
+
+    const area = document.getElementById("pensadores");
+
+    if(area){
+        area.scrollIntoView({
+            behavior:"smooth",
+            block:"start"
+        });
+    }
+}
+
+
+/* Marca visualmente a galeria escolhida */
+
+function destacarGaleria(botao){
+
+    document
+    .querySelectorAll(".mapa-sala")
+    .forEach(function(item){
+
+        item.style.borderColor =
+        "rgba(216,179,106,.22)";
+
+    });
+
+    if(botao){
+
+        botao.style.borderColor =
+        "#d8b36a";
+
+        botao.style.boxShadow =
+        "0 0 30px rgba(216,179,106,.15)";
+    }
+}
+
+
+/* Abre uma mensagem de boas-vindas */
+
+function iniciarVisita(){
+
+    openModal(`
+
+        <button
+        class="close"
+        onclick="closeModal()">
+        ×
+        </button>
+
+        <div class="kicker">
+        Museu Virtual
+        </div>
+
+        <h2>
+        Bem-vindo ao Museu
+        </h2>
+
+        <p>
+        Você está entrando em uma experiência
+        dedicada às grandes ideias da humanidade.
+        </p>
+
+        <p>
+        Escolha uma galeria, encontre um pensador
+        e visite sua sala.
+        </p>
+
+        <button
+        class="goldbtn"
+        onclick="closeModal();document.getElementById('galerias').scrollIntoView({behavior:'smooth'})">
+
+        Explorar o Museu
+
+        </button>
+
+    `);
+
+  }
 
 </script>
 
