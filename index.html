@@ -1,95 +1,2934 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="description"
+content="Museu Virtual dos Pensadores Universais — uma viagem pelas grandes ideias da humanidade.">
+
+<meta name="theme-color" content="#070707">
+
 <title>Museu Virtual dos Pensadores Universais</title>
-<meta name="description" content="Uma experiência virtual pela história das ideias e das grandes mentes da humanidade.">
+
 <style>
-:root{--bg:#050504;--panel:#0e0d0a;--panel2:#16130c;--gold:#d6a83c;--gold2:#f5d47a;--text:#f5efdf;--muted:#aaa294;--line:#3a2e1b}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font-family:Georgia,serif}
-button,a{font:inherit}a{color:inherit;text-decoration:none}.hide{display:none!important}
-.header{position:fixed;z-index:30;inset:0 0 auto;display:flex;justify-content:space-between;align-items:center;padding:14px 5%;background:#050504dd;backdrop-filter:blur(14px);border-bottom:1px solid #2a2113}
-.logo{display:flex;gap:10px;align-items:center;color:var(--gold2);font-weight:bold;letter-spacing:1px}.logo i{font-size:30px;font-style:normal}.logo small{display:block;font:8px Arial;letter-spacing:2px;color:#ddd;margin-top:3px}
-.nav{display:flex;gap:20px;align-items:center;font:13px Arial}.nav a:hover{color:var(--gold2)}.pill{border:1px solid var(--gold);border-radius:30px;padding:9px 16px}
-.hero{min-height:100vh;display:grid;place-items:center;text-align:center;padding:120px 5% 80px;background:radial-gradient(circle at 50% 30%,#362912 0,#080806 48%,#030303 100%);position:relative;overflow:hidden}
-.hero:before{content:"";position:absolute;width:650px;height:650px;border:1px solid #5a421c;border-radius:50%;box-shadow:0 0 120px #4a3414;opacity:.35}.hero:after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 70%,var(--bg));pointer-events:none}
-.heroIn{position:relative;z-index:2;max-width:900px}.eyebrow{font:11px Arial;letter-spacing:5px;color:var(--gold2)}h1{font-size:clamp(48px,8vw,92px);line-height:.92;color:var(--gold2);margin:18px 0;text-shadow:0 5px 35px #000}h2{font-size:clamp(28px,4vw,45px);color:var(--gold2);margin:0 0 15px}.hero h3{font-size:clamp(19px,3vw,29px);font-weight:normal;margin:0 0 20px}.hero p,.lead{font:16px/1.7 Arial;color:#cfc8b8;max-width:720px;margin:0 auto 30px}
-.btn{border:1px solid var(--gold);border-radius:40px;padding:14px 26px;background:linear-gradient(135deg,#bd8d26,#f3d37c);color:#161006;font:bold 13px Arial;cursor:pointer;display:inline-block;box-shadow:0 12px 35px #000}.btn.alt{background:transparent;color:var(--text)}
-section{padding:85px 5%;max-width:1200px;margin:auto}.wide{max-width:none;background:#090908;border-block:1px solid #211b10}.center{text-align:center}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:35px}
-.card{background:linear-gradient(145deg,#17130c,#0a0a08);border:1px solid var(--line);border-radius:18px;overflow:hidden;cursor:pointer;transition:.2s}.card:hover{transform:translateY(-5px);border-color:#806226}.visual{height:180px;display:flex;align-items:end;padding:22px;font-size:25px;color:var(--gold2);background:radial-gradient(circle at 70% 30%,#4b3618,#100e09 65%)}.body{padding:19px}.body h3{color:var(--gold2);font-size:22px;margin:0 0 7px}.body p{font:13px/1.5 Arial;color:#999;margin:0}
-.timeline{display:grid;grid-template-columns:repeat(6,1fr);gap:9px;margin-top:32px}.era{padding:17px 8px;text-align:center;border:1px solid var(--line);border-radius:11px;background:#0c0b09}.era b{color:var(--gold2);font-size:13px}.era span{display:block;font:10px Arial;color:#777;margin-top:6px}
-.offer{display:grid;grid-template-columns:1fr 1.3fr;gap:45px;align-items:center}.price{font-size:70px;color:var(--gold2);margin:7px 0}.per{font:13px Arial;color:#888}.features{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.feature{padding:19px;border:1px solid var(--line);border-radius:14px;background:#12110d}.feature b{display:block;color:var(--gold2);margin-bottom:6px}.feature span{font:13px/1.5 Arial;color:#aaa}
-.searchbox{max-width:700px;margin:30px auto;display:flex;gap:10px}.searchbox input{flex:1;padding:15px 18px;border-radius:30px;border:1px solid var(--line);background:#0c0c0a;color:white;font:15px Arial}.searchbox button{border:1px solid var(--gold);border-radius:30px;background:#d5a43a;padding:0 22px}
-.results{max-width:800px;margin:auto}.result{padding:16px;border-bottom:1px solid #2b2417;font-family:Arial}.result b{color:var(--gold2)}.empty{text-align:center;color:#777;font:13px Arial}
-.page{min-height:100vh;padding-top:85px;background:#060605}.pageHero{padding:65px 6%;min-height:500px;background:linear-gradient(90deg,#060605 5%,#060605cc 45%,#06060533),radial-gradient(circle at 70% 30%,#62451d,#0a0907 55%);display:flex;align-items:end}.pageHeroIn{max-width:750px}.pageHero h1{font-size:76px}.contentGrid{max-width:1100px;margin:auto;padding:50px 5%;display:grid;grid-template-columns:1.25fr .75fr;gap:20px}.panel{background:#0d0d0b;border:1px solid var(--line);border-radius:16px;padding:27px}.panel h3{color:var(--gold2)}.panel p,.panel li{font:15px/1.75 Arial;color:#aaa}.quote{border-left:2px solid var(--gold);padding:18px;color:#ddd;font-size:18px}
-.modal{position:fixed;z-index:100;inset:0;background:#000b;backdrop-filter:blur(10px);display:none;align-items:center;justify-content:center;padding:20px}.modal.on{display:flex}.modalBox{width:min(600px,100%);padding:30px;border-radius:20px;border:1px solid #6b5225;background:linear-gradient(145deg,#18140c,#080807);position:relative}.close{position:absolute;right:15px;top:10px;background:none;border:0;color:#aaa;font-size:28px;cursor:pointer}.field{display:block;width:100%;padding:14px;margin:9px 0;border:1px solid #3a3020;border-radius:9px;background:#070706;color:white;font:14px Arial}.note{font:11px/1.5 Arial;color:#777;margin-top:10px}
-.member{padding:120px 5% 80px;min-height:100vh}.memberTop{padding:35px;border:1px solid var(--line);border-radius:20px;background:linear-gradient(120deg,#18130b,#0b0b09);margin-bottom:25px}.memberTop h1{font-size:48px;margin:8px 0}.memberGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-footer{padding:40px 5%;text-align:center;background:#030303;border-top:1px solid #211b11;color:#777;font:12px Arial}
-@media(max-width:850px){.nav a:not(.pill){display:none}.grid,.memberGrid{grid-template-columns:1fr 1fr}.offer,.contentGrid{grid-template-columns:1fr}.timeline{grid-template-columns:repeat(3,1fr)}}
-@media(max-width:550px){.grid,.memberGrid,.features{grid-template-columns:1fr}.timeline{grid-template-columns:repeat(2,1fr)}.hero h1{font-size:50px}.pageHero h1{font-size:55px}.searchbox{flex-direction:column}.searchbox button{padding:14px}}
+
+:root{
+--bg:#070707;
+--panel:#101010;
+--panel2:#151515;
+--gold:#d8b36a;
+--gold2:#f1d79b;
+--text:#f6f0e5;
+--muted:#a9a197;
+--line:rgba(216,179,106,.22);
+--shadow:0 25px 80px rgba(0,0,0,.55);
+--radius:22px;
+}
+
+*{
+box-sizing:border-box;
+}
+
+html{
+scroll-behavior:smooth;
+}
+
+body{
+margin:0;
+background:
+radial-gradient(
+circle at 50% -10%,
+#292117 0,
+#0b0b0b 32%,
+#050505 70%
+);
+color:var(--text);
+font-family:Georgia,"Times New Roman",serif;
+}
+
+button,
+input{
+font:inherit;
+}
+
+button{
+cursor:pointer;
+}
+
+a{
+color:inherit;
+text-decoration:none;
+}
+
+.container{
+width:min(1180px,92%);
+margin:auto;
+}
+
+/* MENU */
+
+.topbar{
+position:fixed;
+top:0;
+left:0;
+right:0;
+z-index:50;
+
+background:rgba(5,5,5,.78);
+backdrop-filter:blur(16px);
+
+border-bottom:1px solid var(--line);
+}
+
+.nav{
+height:72px;
+
+display:flex;
+align-items:center;
+justify-content:space-between;
+
+gap:20px;
+}
+
+.brand{
+display:flex;
+align-items:center;
+gap:12px;
+
+font-size:15px;
+letter-spacing:.12em;
+text-transform:uppercase;
+}
+
+.brand-mark{
+width:38px;
+height:38px;
+
+border:1px solid var(--gold);
+border-radius:50%;
+
+display:grid;
+place-items:center;
+
+color:var(--gold);
+
+font-size:18px;
+
+box-shadow:
+0 0 25px rgba(216,179,106,.12);
+}
+
+.navlinks{
+display:flex;
+gap:20px;
+
+color:#d7d0c6;
+font-size:13px;
+}
+
+.navlinks a:hover{
+color:var(--gold2);
+}
+
+.nav-actions{
+display:flex;
+gap:8px;
+}
+
+.iconbtn,
+.goldbtn,
+.ghostbtn{
+
+border-radius:999px;
+
+padding:11px 16px;
+
+border:1px solid var(--line);
+
+background:transparent;
+
+color:var(--text);
+}
+
+.iconbtn{
+padding:10px 13px;
+}
+
+.goldbtn{
+background:
+linear-gradient(
+135deg,
+#c89c4f,
+#efd38f
+);
+
+color:#17110a;
+
+border:0;
+
+font-weight:bold;
+
+box-shadow:
+0 8px 30px rgba(216,179,106,.18);
+}
+
+.ghostbtn:hover,
+.iconbtn:hover{
+
+border-color:var(--gold);
+color:var(--gold2);
+
+}
+
+/* HERO */
+
+.hero{
+
+min-height:100vh;
+
+display:grid;
+place-items:center;
+
+padding:120px 0 70px;
+
+position:relative;
+
+overflow:hidden;
+}
+
+.hero:before{
+
+content:"";
+
+position:absolute;
+inset:0;
+
+background:
+
+linear-gradient(
+rgba(0,0,0,.15),
+rgba(0,0,0,.65)
+),
+
+radial-gradient(
+ellipse at 50% 20%,
+rgba(216,179,106,.16),
+transparent 45%
+);
+
+}
+
+.columns{
+
+position:relative;
+z-index:1;
+
+display:grid;
+
+grid-template-columns:
+1.25fr .75fr;
+
+gap:55px;
+
+align-items:center;
+}
+
+.kicker{
+
+color:var(--gold);
+
+letter-spacing:.28em;
+
+text-transform:uppercase;
+
+font-size:12px;
+}
+
+.hero h1{
+
+font-size:
+clamp(46px,7vw,88px);
+
+line-height:.95;
+
+margin:18px 0 22px;
+
+font-weight:500;
+}
+
+.hero h1 em{
+
+color:var(--gold2);
+
+font-style:normal;
+
+}
+
+.lead{
+
+font-family:Arial,sans-serif;
+
+color:#c4bdb3;
+
+line-height:1.7;
+
+max-width:650px;
+
+font-size:17px;
+}
+
+.hero-actions{
+
+display:flex;
+
+gap:12px;
+
+flex-wrap:wrap;
+
+margin-top:30px;
+}
+
+.hero-card{
+
+min-height:440px;
+
+border:1px solid var(--line);
+
+border-radius:28px;
+
+background:
+linear-gradient(
+145deg,
+rgba(255,255,255,.06),
+rgba(255,255,255,.015)
+);
+
+box-shadow:var(--shadow);
+
+padding:30px;
+
+position:relative;
+
+overflow:hidden;
+}
+
+.hero-card:before{
+
+content:"";
+
+position:absolute;
+
+width:280px;
+height:280px;
+
+border-radius:50%;
+
+border:
+1px solid rgba(216,179,106,.25);
+
+left:50%;
+top:38%;
+
+transform:
+translate(-50%,-50%);
+
+box-shadow:
+0 0 80px rgba(216,179,106,.08);
+}
+
+.hero-card .bust{
+
+position:absolute;
+
+left:50%;
+top:38%;
+
+transform:
+translate(-50%,-50%);
+
+font-size:150px;
+
+filter:grayscale(1);
+
+opacity:.85;
+}
+
+.hero-card h3{
+
+position:absolute;
+
+bottom:48px;
+
+left:30px;
+
+margin:0;
+
+font-size:25px;
+}
+
+.hero-card p{
+
+position:absolute;
+
+bottom:22px;
+
+left:30px;
+
+margin:0;
+
+color:var(--muted);
+
+font-family:Arial,sans-serif;
+
+font-size:12px;
+}
+
+/* SEÇÕES */
+
+.section{
+
+padding:100px 0;
+
+}
+
+.section-head{
+
+display:flex;
+
+justify-content:space-between;
+
+gap:30px;
+
+align-items:end;
+
+margin-bottom:34px;
+}
+
+.section h2{
+
+font-size:42px;
+
+font-weight:500;
+
+margin:8px 0;
+}
+
+.section-intro{
+
+font-family:Arial,sans-serif;
+
+color:var(--muted);
+
+max-width:620px;
+
+line-height:1.6;
+}
+
+/* CARDS */
+
+.grid{
+
+display:grid;
+
+grid-template-columns:
+repeat(3,1fr);
+
+gap:18px;
+}
+
+.card{
+
+background:
+linear-gradient(
+145deg,
+#141414,
+#0c0c0c
+);
+
+border:
+1px solid rgba(255,255,255,.07);
+
+border-radius:var(--radius);
+
+padding:25px;
+
+transition:.25s;
+
+position:relative;
+
+overflow:hidden;
+}
+
+.card:hover{
+
+transform:
+translateY(-5px);
+
+border-color:var(--line);
+
+box-shadow:
+0 18px 50px rgba(0,0,0,.35);
+}
+
+/* GALERIAS */
+
+.era-card{
+
+min-height:205px;
+
+display:flex;
+
+flex-direction:column;
+
+justify-content:end;
+}
+
+.era-num{
+
+font-size:55px;
+
+color:
+rgba(216,179,106,.18);
+
+position:absolute;
+
+top:12px;
+
+right:20px;
+}
+
+.era-card h3{
+
+font-size:25px;
+
+margin:0 0 8px;
+}
+
+.era-card p{
+
+font-family:Arial,sans-serif;
+
+color:var(--muted);
+
+line-height:1.5;
+
+font-size:14px;
+
+margin:0;
+}
+
+/* BUSCA */
+
+.searchbar{
+
+display:flex;
+
+gap:10px;
+
+margin:25px 0 35px;
+}
+
+.searchbar input{
+
+flex:1;
+
+background:#101010;
+
+border:1px solid var(--line);
+
+border-radius:999px;
+
+padding:15px 20px;
+
+color:white;
+
+outline:none;
+}
+
+.searchbar input:focus{
+
+border-color:var(--gold);
+
+}
+
+/* PENSADORES */
+
+.thinker-card{
+
+min-height:245px;
+
+display:flex;
+
+flex-direction:column;
+}
+
+.portrait{
+
+height:105px;
+
+border-radius:17px;
+
+background:
+
+radial-gradient(
+circle at 50% 30%,
+#8d7754 0,
+#3b3125 22%,
+#16120e 58%,
+#0a0a0a 100%
+);
+
+display:grid;
+
+place-items:center;
+
+font-size:48px;
+
+color:#ead3a0;
+
+margin-bottom:18px;
+
+border:1px solid var(--line);
+}
+
+.thinker-card h3{
+
+margin:0 0 4px;
+
+font-size:22px;
+}
+
+.thinker-card .period{
+
+color:var(--gold);
+
+font-size:12px;
+
+letter-spacing:.08em;
+
+text-transform:uppercase;
+}
+
+.thinker-card p{
+
+font-family:Arial,sans-serif;
+
+color:var(--muted);
+
+font-size:13px;
+
+line-height:1.5;
+
+margin:10px 0 16px;
+}
+
+.card-actions{
+
+margin-top:auto;
+
+display:flex;
+
+gap:8px;
+}
+
+.small{
+
+font-size:12px;
+
+padding:9px 12px;
+}
+
+.empty{
+
+padding:35px;
+
+text-align:center;
+
+color:var(--muted);
+
+grid-column:1/-1;
+}
+
+/* EXPOSIÇÃO */
+
+.exhibition{
+
+background:
+linear-gradient(
+180deg,
+#0c0c0c,
+#080808
+);
+
+border-top:1px solid var(--line);
+
+border-bottom:1px solid var(--line);
+}
+
+.exhibit{
+
+display:grid;
+
+grid-template-columns:
+.7fr 1.3fr;
+
+gap:45px;
+
+align-items:center;
+}
+
+.statue{
+
+height:510px;
+
+border-radius:30px;
+
+border:1px solid var(--line);
+
+display:grid;
+
+place-items:center;
+
+background:
+
+radial-gradient(
+circle,
+#3a3023 0,
+#17130f 32%,
+#080808 68%
+);
+
+font-size:190px;
+
+box-shadow:
+inset 0 0 100px rgba(0,0,0,.55);
+}
+
+.exhibit h2{
+
+font-size:60px;
+
+margin:10px 0;
+}
+
+.quote{
+
+font-size:24px;
+
+line-height:1.45;
+
+color:#e5d3ad;
+
+border-left:
+2px solid var(--gold);
+
+padding-left:20px;
+
+margin:25px 0;
+}
+
+.exhibit p{
+
+font-family:Arial,sans-serif;
+
+color:#bcb5ac;
+
+line-height:1.7;
+}
+
+.facts{
+
+display:grid;
+
+grid-template-columns:
+repeat(3,1fr);
+
+gap:10px;
+
+margin-top:25px;
+}
+
+.fact{
+
+border:1px solid var(--line);
+
+padding:14px;
+
+border-radius:14px;
+}
+
+.fact b{
+
+display:block;
+
+color:var(--gold2);
+
+font-size:18px;
+}
+
+.fact span{
+
+font-family:Arial,sans-serif;
+
+color:var(--muted);
+
+font-size:11px;
+}
+
+/* LINHA DO TEMPO */
+
+.timeline{
+
+position:relative;
+
+margin:40px 0;
+}
+
+.timeline:before{
+
+content:"";
+
+position:absolute;
+
+left:14px;
+
+top:0;
+
+bottom:0;
+
+width:1px;
+
+background:var(--line);
+}
+
+.event{
+
+position:relative;
+
+padding:
+0 0 30px 45px;
+}
+
+.dot{
+
+position:absolute;
+
+left:8px;
+
+top:3px;
+
+width:13px;
+
+height:13px;
+
+border:1px solid var(--gold);
+
+border-radius:50%;
+
+background:#080808;
+}
+
+.event strong{
+
+color:var(--gold);
+}
+
+.event p{
+
+font-family:Arial,sans-serif;
+
+color:var(--muted);
+
+margin:5px 0;
+
+line-height:1.5;
+}
+
+/* RODAPÉ */
+
+.footer{
+
+padding:55px 0;
+
+border-top:1px solid var(--line);
+
+color:#8f8982;
+
+font-family:Arial,sans-serif;
+
+font-size:13px;
+}
+
+.footer-grid{
+
+display:grid;
+
+grid-template-columns:
+2fr 1fr 1fr;
+
+gap:30px;
+}
+
+.footer h4{
+
+color:#eee;
+
+font-family:Georgia,serif;
+
+font-size:16px;
+}
+
+.footer a{
+
+display:block;
+
+margin:9px 0;
+}
+
+/* MODAL */
+
+.modal{
+
+position:fixed;
+
+inset:0;
+
+background:
+rgba(0,0,0,.78);
+
+backdrop-filter:blur(10px);
+
+z-index:100;
+
+display:none;
+
+align-items:center;
+
+justify-content:center;
+
+padding:20px;
+}
+
+.modal.show{
+
+display:flex;
+}
+
+.modal-box{
+
+width:min(780px,100%);
+
+max-height:90vh;
+
+overflow:auto;
+
+background:#101010;
+
+border:1px solid var(--line);
+
+border-radius:25px;
+
+padding:30px;
+
+box-shadow:var(--shadow);
+
+position:relative;
+}
+
+.close{
+
+position:absolute;
+
+right:18px;
+
+top:15px;
+
+border:0;
+
+background:none;
+
+color:#aaa;
+
+font-size:25px;
+}
+
+.modal-box h2{
+
+font-size:38px;
+
+margin:
+0 35px 15px 0;
+}
+
+.modal-box p,
+.modal-box li{
+
+font-family:Arial,sans-serif;
+
+color:#bbb;
+
+line-height:1.65;
+}
+
+.detail-head{
+
+display:grid;
+
+grid-template-columns:
+180px 1fr;
+
+gap:25px;
+
+align-items:center;
+}
+
+.detail-portrait{
+
+height:180px;
+
+border-radius:20px;
+
+background:
+
+radial-gradient(
+circle at 50% 30%,
+#907955,
+#31291f 35%,
+#0a0a0a 70%
+);
+
+display:grid;
+
+place-items:center;
+
+font-size:80px;
+
+color:#f0d9a6;
+
+border:1px solid var(--line);
+}
+
+.tabs{
+
+display:flex;
+
+gap:8px;
+
+flex-wrap:wrap;
+
+margin:25px 0;
+}
+
+.tab{
+
+padding:9px 13px;
+
+border-radius:999px;
+
+border:1px solid var(--line);
+
+background:#0b0b0b;
+
+color:#ccc;
+}
+
+.tab.active{
+
+background:#d8b36a;
+
+color:#17110a;
+}
+
+.detail-section{
+
+display:none;
+}
+
+.detail-section.active{
+
+display:block;
+}
+
+.quote-box{
+
+padding:20px;
+
+border:1px solid var(--line);
+
+border-radius:17px;
+
+background:#0b0b0b;
+
+margin:18px 0;
+
+color:#e8d7b5;
+
+font-size:20px;
+}
+
+.toast{
+
+position:fixed;
+
+right:18px;
+
+bottom:18px;
+
+background:#161616;
+
+border:1px solid var(--line);
+
+padding:13px 17px;
+
+border-radius:12px;
+
+z-index:200;
+
+display:none;
+
+font-family:Arial,sans-serif;
+}
+
+.toast.show{
+
+display:block;
+}
+
+/* RESPONSIVO */
+
+@media(max-width:850px){
+
+.navlinks{
+display:none;
+}
+
+.columns,
+.exhibit{
+
+grid-template-columns:1fr;
+}
+
+.hero-card{
+
+min-height:330px;
+}
+
+.grid{
+
+grid-template-columns:
+1fr 1fr;
+}
+
+.footer-grid{
+
+grid-template-columns:1fr;
+}
+
+.exhibit h2{
+
+font-size:43px;
+}
+
+.statue{
+
+height:350px;
+
+font-size:130px;
+}
+
+.facts{
+
+grid-template-columns:1fr;
+}
+
+.section{
+
+padding:75px 0;
+}
+
+}
+
+@media(max-width:560px){
+
+.grid{
+
+grid-template-columns:1fr;
+}
+
+.hero{
+
+padding-top:110px;
+}
+
+.hero h1{
+
+font-size:49px;
+}
+
+.hero-card{
+
+min-height:290px;
+}
+
+.hero-card .bust{
+
+font-size:110px;
+}
+
+.detail-head{
+
+grid-template-columns:1fr;
+}
+
+.detail-portrait{
+
+height:150px;
+}
+
+.brand span{
+
+display:none;
+}
+
+.section-head{
+
+display:block;
+}
+
+}
+
 </style>
 </head>
+
 <body>
-<header class="header">
-<a class="logo" href="#home" onclick="home()"><i>♜</i><span>MUSEU VIRTUAL<small>DOS PENSADORES UNIVERSAIS</small></span></a>
-<nav class="nav"><a href="#museu">Museu</a><a href="#galerias">Galerias</a><a href="#busca">Buscar</a><a href="#passe">Passe</a><a class="pill" href="#" onclick="login();return false">Entrar</a></nav>
-</header>
+  <header class="topbar">
 
-<div id="app">
-<main id="homeView">
-<section class="hero" id="home"><div class="heroIn">
-<div class="eyebrow">MUSEU VIRTUAL • HISTÓRIA • IDEIAS • HUMANIDADE</div>
-<h1>Grandes ideias<br>para um mundo melhor</h1>
-<h3>Uma viagem pela história das grandes mentes que transformaram a humanidade.</h3>
-<p>Entre em galerias digitais, descubra vidas extraordinárias e percorra a evolução das ideias que moldaram nossa sociedade.</p>
-<a class="btn" href="#passe">ENTRAR NO MUSEU</a> <a class="btn alt" href="#galerias">EXPLORAR GALERIAS</a>
-</div></section>
+<div class="container nav">
 
-<section id="museu" class="center"><div class="eyebrow">A EXPERIÊNCIA</div><h2>Um museu para a vida</h2><p class="lead">O conhecimento é apresentado como uma jornada: cada época é uma ala, cada pensador é uma sala e cada ideia é uma porta para uma nova forma de enxergar o mundo.</p>
-<div class="timeline"><div class="era"><b>Antiguidade</b><span>Origens</span></div><div class="era"><b>Idade Média</b><span>Fé e razão</span></div><div class="era"><b>Renascimento</b><span>Humanismo</span></div><div class="era"><b>Iluminismo</b><span>Razão</span></div><div class="era"><b>Séc. XIX–XX</b><span>Revoluções</span></div><div class="era"><b>Contemporâneos</b><span>Futuro</span></div></div></section>
+<a class="brand" href="#inicio">
 
-<section id="galerias" class="wide"><div class="center"><div class="eyebrow">COLEÇÃO PERMANENTE</div><h2>Galerias do Museu</h2><p class="lead">Comece por uma era histórica.</p></div>
-<div class="grid">
-<div class="card" onclick="socrates()"><div class="visual">🏺 ANTIGUIDADE</div><div class="body"><h3>As origens do pensamento</h3><p>Sócrates • Platão • Aristóteles • Confúcio</p></div></div>
-<div class="card"><div class="visual">🏰 IDADE MÉDIA</div><div class="body"><h3>Fé, razão e conhecimento</h3><p>Agostinho • Tomás de Aquino • Averróis</p></div></div>
-<div class="card"><div class="visual">🎨 RENASCIMENTO</div><div class="body"><h3>O despertar humanista</h3><p>Maquiavel • Erasmo • Leonardo da Vinci</p></div></div>
-<div class="card"><div class="visual">💡 ILUMINISMO</div><div class="body"><h3>A luz da razão</h3><p>Locke • Rousseau • Voltaire • Kant</p></div></div>
-<div class="card"><div class="visual">⚙️ SÉCULOS XIX–XX</div><div class="body"><h3>Ciência e revoluções</h3><p>Marx • Darwin • Nietzsche • Freud • Einstein</p></div></div>
-<div class="card"><div class="visual">🌎 BRASIL E AMÉRICA LATINA</div><div class="body"><h3>Ideias que nasceram por aqui</h3><p>Machado • Paulo Freire • Milton Santos • Darcy Ribeiro</p></div></div>
-</div></section>
+<span class="brand-mark">✦</span>
 
-<section id="busca" class="center"><div class="eyebrow">ARQUIVO DIGITAL</div><h2>Encontre um pensador</h2><p class="lead">Pesquise por nome, época ou tema.</p>
-<div class="searchbox"><input id="q" placeholder="Ex.: Sócrates, ciência, política..." oninput="search()"><button onclick="search()">BUSCAR</button></div><div id="results" class="results"></div></section>
+<span>Museu dos Pensadores</span>
 
-<section id="passe" class="wide"><div class="offer">
-<div><div class="eyebrow">PASSE ANUAL</div><h2>Acesso completo ao Museu</h2><div class="price">R$ 120</div><div class="per">12 meses de acesso • pagamento real será conectado na próxima etapa</div><br><button class="btn" onclick="checkout()">ADQUIRIR PASSE ANUAL</button></div>
-<div class="features"><div class="feature"><b>🏛️ Museu completo</b><span>Acesso às galerias e exposições.</span></div><div class="feature"><b>🧠 Pensadores</b><span>Vidas, ideias, obras e legado.</span></div><div class="feature"><b>📜 Linhas do tempo</b><span>Contexto histórico e evolução das ideias.</span></div><div class="feature"><b>🎧 Audioguias</b><span>Experiências narradas planejadas para as exposições.</span></div><div class="feature"><b>🧩 Quizzes</b><span>Aprenda testando seus conhecimentos.</span></div><div class="feature"><b>✨ Novas exposições</b><span>O acervo crescerá continuamente.</span></div></div>
-</div></section>
+</a>
 
-<section class="center"><div class="eyebrow">MISSÃO</div><h2>Conhecer o passado para imaginar o futuro.</h2><p class="lead">O Museu Virtual dos Pensadores nasce para aproximar a história das ideias de qualquer pessoa, em qualquer lugar.</p></section>
-</main>
+<nav class="navlinks">
 
-<section id="memberView" class="member hide"><div class="memberTop"><div class="eyebrow">ÁREA DO VISITANTE</div><h1>Bem-vindo ao Museu.</h1><p class="lead" style="margin:0">Sua jornada pelo conhecimento começa aqui.</p></div>
-<div class="memberGrid"><div class="card" onclick="socrates()"><div class="visual">🏺</div><div class="body"><h3>Exposição 001</h3><p>Sócrates — A coragem de questionar.</p></div></div><div class="card"><div class="visual">🗺️</div><div class="body"><h3>Mapa do Museu</h3><p>Escolha sua próxima galeria.</p></div></div><div class="card"><div class="visual">⭐</div><div class="body"><h3>Minha jornada</h3><p>Favoritos e progresso.</p></div></div></div></section>
+<a href="#museu">O Museu</a>
 
-<section id="socratesView" class="page hide"><div class="pageHero"><div class="pageHeroIn"><div class="eyebrow">GALERIA DA ANTIGUIDADE • EXPOSIÇÃO 001</div><h1>Sócrates</h1><h2 style="font-size:28px">A coragem de questionar.</h2><p class="lead" style="margin:0">Uma introdução à vida, ao contexto histórico e ao legado do filósofo ateniense.</p></div></div>
-<div class="contentGrid"><div class="panel"><h3>Sobre a exposição</h3><p>Sócrates viveu em Atenas no século V a.C. e tornou o diálogo e o questionamento instrumentos centrais de sua prática filosófica. Esta exposição apresenta o contexto da cidade, sua trajetória, seu método de investigação e a influência exercida sobre gerações posteriores.</p><h3>Roteiro</h3><ol><li>Vida e Atenas clássica</li><li>O diálogo e o questionamento</li><li>Ética e conhecimento</li><li>Discípulos e julgamento</li><li>Legado</li></ol></div><div class="panel"><h3>Linha do tempo</h3><p><b>c. 469 a.C.</b> — nascimento em Atenas.</p><p><b>Séc. V a.C.</b> — atuação pública e filosófica.</p><p><b>399 a.C.</b> — julgamento e morte.</p><div class="quote">A exposição definitiva terá fontes históricas, referências bibliográficas, áudio, imagens e materiais educativos.</div><br><button class="btn alt" onclick="home()">← VOLTAR AO MUSEU</button></div></div></section>
+<a href="#galerias">Galerias</a>
+
+<a href="#pensadores">Pensadores</a>
+
+<a href="#socrates">Exposição</a>
+
+</nav>
+
+<div class="nav-actions">
+
+<button class="iconbtn"
+onclick="openSearch()">
+⌕
+</button>
+
+<button class="goldbtn"
+onclick="showMembership()">
+Passe Anual
+</button>
+
 </div>
 
-<div class="modal" id="modal"><div class="modalBox"><button class="close" onclick="closeModal()">×</button><div id="modalContent"></div></div></div>
-<footer>© 2026 Museu Virtual dos Pensadores Universais • Protótipo completo • Conteúdo histórico em expansão</footer>
+</div>
+
+</header>
+
+<main>
+
+<section class="hero" id="inicio">
+
+<div class="container columns">
+
+<div>
+
+<div class="kicker">
+Museu Virtual dos Pensadores Universais
+</div>
+
+<h1>
+Grandes ideias para um
+<em>mundo melhor.</em>
+</h1>
+
+<p class="lead">
+
+Uma viagem pela história das grandes mentes da humanidade —
+suas vidas, perguntas, obras, conflitos, descobertas e legados.
+
+</p>
+
+<div class="hero-actions">
+
+<a class="goldbtn"
+href="#galerias">
+Entrar no Museu
+</a>
+
+<a class="ghostbtn"
+href="#pensadores">
+Explorar pensadores
+</a>
+
+</div>
+
+</div>
+
+<div class="hero-card">
+
+<div class="bust">
+◖◗
+</div>
+
+<h3>
+Uma sala. Uma vida. Uma ideia.
+</h3>
+
+<p>
+EXPERIÊNCIA DIGITAL • ACERVO EM EXPANSÃO
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+<section class="section" id="museu">
+
+<div class="container">
+
+<div class="section-head">
+
+<div>
+
+<div class="kicker">
+O conceito
+</div>
+
+<h2>
+Um museu feito para visitar
+</h2>
+
+</div>
+
+<p class="section-intro">
+
+Não é apenas uma coleção de biografias.
+Cada pensador será apresentado como uma exposição,
+com contexto histórico, linha do tempo, ideias,
+obras, influências e perguntas para o visitante.
+
+</p>
+
+</div>
+
+
+<div class="grid">
+
+<article class="card era-card">
+
+<span class="era-num">I</span>
+
+<h3>
+Antiguidade
+</h3>
+
+<p>
+Filosofia, ética, política e nascimento
+do pensamento sistemático.
+</p>
+
+</article>
+
+
+<article class="card era-card">
+
+<span class="era-num">II</span>
+
+<h3>
+Idade Média
+</h3>
+
+<p>
+Fé, razão, ciência, tradição e encontros
+entre culturas.
+</p>
+
+</article>
+
+
+<article class="card era-card">
+
+<span class="era-num">III</span>
+
+<h3>
+Renascimento
+</h3>
+
+<p>
+Humanismo, arte, ciência e transformação
+da visão de mundo.
+</p>
+
+</article>
+
+
+<article class="card era-card">
+
+<span class="era-num">IV</span>
+
+<h3>
+Iluminismo
+</h3>
+
+<p>
+Liberdade, razão, direitos, Estado
+e novas ideias políticas.
+</p>
+
+</article>
+
+
+<article class="card era-card">
+
+<span class="era-num">V</span>
+
+<h3>
+Séculos XIX–XX
+</h3>
+
+<p>
+Revoluções, ciência, crítica social,
+psicanálise e modernidade.
+</p>
+
+</article>
+
+
+<article class="card era-card">
+
+<span class="era-num">VI</span>
+
+<h3>
+Contemporâneos
+</h3>
+
+<p>
+Educação, sociedade, tecnologia,
+cultura e desafios do presente.
+</p>
+
+</article>
+
+</div>
+
+</div>
+
+</section>
+
+
+<section class="section" id="galerias">
+
+<div class="container">
+
+<div class="section-head">
+
+<div>
+
+<div class="kicker">
+Mapa do Museu
+</div>
+
+<h2>
+Galerias permanentes
+</h2>
+
+</div>
+
+<p class="section-intro">
+
+Comece por qualquer período.
+O acervo será ampliado continuamente.
+
+</p>
+
+</div>
+
+
+<div class="grid">
+
+
+<button class="card era-card"
+onclick="filterEra('Antiguidade')">
+
+<span class="era-num">01</span>
+
+<h3>
+Galeria da Antiguidade
+</h3>
+
+<p>
+Sócrates, Platão, Aristóteles,
+Confúcio e outros.
+</p>
+
+</button>
+
+
+<button class="card era-card"
+onclick="filterEra('Idade Média')">
+
+<span class="era-num">02</span>
+
+<h3>
+Galeria Medieval
+</h3>
+
+<p>
+Agostinho, Tomás de Aquino,
+Averróis e mais.
+</p>
+
+</button>
+
+
+<button class="card era-card"
+onclick="filterEra('Renascimento')">
+
+<span class="era-num">03</span>
+
+<h3>
+Renascimento
+</h3>
+
+<p>
+Maquiavel, Leonardo, Erasmo
+e a nova humanidade.
+</p>
+
+</button>
+
+
+<button class="card era-card"
+onclick="filterEra('Iluminismo')">
+
+<span class="era-num">04</span>
+
+<h3>
+Iluminismo
+</h3>
+
+<p>
+Locke, Rousseau, Voltaire,
+Kant e os direitos modernos.
+</p>
+
+</button>
+
+
+<button class="card era-card"
+onclick="filterEra('Moderna')">
+
+<span class="era-num">05</span>
+
+<h3>
+Modernidade
+</h3>
+
+<p>
+Marx, Darwin, Nietzsche,
+Freud, Einstein e outros.
+</p>
+
+</button>
+
+
+<button class="card era-card"
+onclick="filterEra('Brasil')">
+
+<span class="era-num">06</span>
+
+<h3>
+Brasil & América Latina
+</h3>
+
+<p>
+Machado, Paulo Freire,
+Milton Santos, Darcy Ribeiro e mais.
+</p>
+
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+<section class="section" id="pensadores">
+
+<div class="container">
+
+<div class="section-head">
+
+<div>
+
+<div class="kicker">
+Acervo
+</div>
+
+<h2>
+Galeria dos Pensadores
+</h2>
+
+</div>
+
+<p class="section-intro">
+
+Pesquise por nome, período ou área.
+Toque em um pensador para abrir sua sala.
+
+</p>
+
+</div>
+
+
+<div class="searchbar">
+
+<input
+id="thinkerSearch"
+placeholder="Pesquisar pensador..."
+oninput="renderThinkers()">
+
+<button
+class="ghostbtn"
+onclick="clearSearch()">
+Limpar
+</button>
+
+</div>
+
+
+<div
+class="grid"
+id="thinkerGrid">
+</div>
+
+</div>
+
+  </section>
+  <section class="section exhibition" id="socrates">
+
+<div class="container exhibit">
+
+<div class="statue">
+◖◗
+</div>
+
+<div>
+
+<div class="kicker">
+Exposição em destaque
+</div>
+
+<h2>
+Sócrates
+</h2>
+
+<p class="quote">
+“A coragem de questionar.”
+</p>
+
+<p>
+
+Uma sala dedicada ao filósofo ateniense
+que se tornou símbolo do diálogo,
+da investigação e da vida examinada.
+
+Nesta versão, a exposição funciona como
+protótipo do formato que será aplicado
+a todo o acervo.
+
+</p>
+
+
+<div class="facts">
+
+<div class="fact">
+
+<b>
+c. 470–399 a.C.
+</b>
+
+<span>
+PERÍODO
+</span>
+
+</div>
+
+
+<div class="fact">
+
+<b>
+Atenas
+</b>
+
+<span>
+CONTEXTO
+</span>
+
+</div>
+
+
+<div class="fact">
+
+<b>
+Diálogo
+</b>
+
+<span>
+MÉTODO
+</span>
+
+</div>
+
+</div>
+
+
+<div class="hero-actions">
+
+<button
+class="goldbtn"
+onclick="openThinker('Sócrates')">
+
+Visitar sala completa
+
+</button>
+
+<button
+class="ghostbtn"
+onclick="showQuiz('Sócrates')">
+
+Fazer quiz
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<section class="section">
+
+<div class="container">
+
+<div class="section-head">
+
+<div>
+
+<div class="kicker">
+Uma vida em movimento
+</div>
+
+<h2>
+Linha do tempo de Sócrates
+</h2>
+
+</div>
+
+</div>
+
+
+<div class="timeline">
+
+
+<div class="event">
+
+<span class="dot"></span>
+
+<strong>
+c. 470 a.C.
+</strong>
+
+<p>
+
+Nascimento em Atenas,
+em um período de intensa transformação
+política e cultural.
+
+</p>
+
+</div>
+
+
+<div class="event">
+
+<span class="dot"></span>
+
+<strong>
+Juventude
+</strong>
+
+<p>
+
+Forma-se no ambiente intelectual ateniense
+e participa da vida pública da cidade.
+
+</p>
+
+</div>
+
+
+<div class="event">
+
+<span class="dot"></span>
+
+<strong>
+Vida adulta
+</strong>
+
+<p>
+
+Desenvolve uma prática filosófica
+centrada no diálogo, na pergunta
+e no exame das crenças.
+
+</p>
+
+</div>
+
+
+<div class="event">
+
+<span class="dot"></span>
+
+<strong>
+399 a.C.
+</strong>
+
+<p>
+
+É julgado e condenado em Atenas.
+Sua morte torna-se um dos episódios
+mais marcantes da história da filosofia.
+
+</p>
+
+</div>
+
+
+<div class="event">
+
+<span class="dot"></span>
+
+<strong>
+Depois dele
+</strong>
+
+<p>
+
+Platão e outros discípulos preservam
+e transformam sua presença no pensamento
+ocidental.
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+</main>
+
+
+<footer class="footer">
+
+<div class="container footer-grid">
+
+<div>
+
+<div class="brand">
+
+<span class="brand-mark">
+✦
+</span>
+
+<span>
+Museu Virtual dos Pensadores Universais
+</span>
+
+</div>
+
+<p>
+
+Projeto cultural e educacional em construção.
+Conteúdo será ampliado e revisado continuamente.
+
+</p>
+
+</div>
+
+
+<div>
+
+<h4>
+Explorar
+</h4>
+
+<a href="#galerias">
+Galerias
+</a>
+
+<a href="#pensadores">
+Pensadores
+</a>
+
+<a href="#socrates">
+Exposição
+</a>
+
+</div>
+
+
+<div>
+
+<h4>
+Projeto
+</h4>
+
+<a
+href="#"
+onclick="showAbout();return false">
+
+Sobre o Museu
+
+</a>
+
+<a
+href="#"
+onclick="showMembership();return false">
+
+Passe Anual
+
+</a>
+
+<a
+href="#"
+onclick="showRoadmap();return false">
+
+Próximos passos
+
+</a>
+
+</div>
+
+</div>
+
+</footer>
+
+
+<div
+class="modal"
+id="modal"
+onclick="backdropClose(event)">
+
+<div
+class="modal-box"
+id="modalContent">
+</div>
+
+</div>
+
+
+<div
+class="toast"
+id="toast">
+</div>
+
 
 <script>
+
 const thinkers=[
-["Sócrates","Antiguidade","Filosofia"],["Platão","Antiguidade","Filosofia"],["Aristóteles","Antiguidade","Filosofia e ciência"],["Confúcio","Antiguidade","Ética e sociedade"],["Santo Agostinho","Idade Média","Filosofia e teologia"],["Tomás de Aquino","Idade Média","Filosofia e teologia"],["Averróis","Idade Média","Filosofia e ciência"],["Nicolau Maquiavel","Renascimento","Política"],["Leonardo da Vinci","Renascimento","Arte e ciência"],["Erasmo de Roterdã","Renascimento","Humanismo"],["John Locke","Iluminismo","Política"],["Jean-Jacques Rousseau","Iluminismo","Política"],["Voltaire","Iluminismo","Filosofia"],["Immanuel Kant","Iluminismo","Filosofia"],["Karl Marx","Séculos XIX–XX","Economia e sociedade"],["Charles Darwin","Séculos XIX–XX","Ciência"],["Friedrich Nietzsche","Séculos XIX–XX","Filosofia"],["Sigmund Freud","Séculos XIX–XX","Psicanálise"],["Albert Einstein","Séculos XIX–XX","Ciência"],["Machado de Assis","Brasil","Literatura"],["Paulo Freire","Brasil","Educação"],["Milton Santos","Brasil","Geografia"],["Darcy Ribeiro","Brasil","Antropologia e educação"]];
-function show(id){["homeView","memberView","socratesView"].forEach(x=>document.getElementById(x).classList.add("hide"));document.getElementById(id).classList.remove("hide");scrollTo(0,0)}
-function home(){show("homeView")}
-function socrates(){show("socratesView")}
-function login(){open(`<div class="eyebrow">ÁREA DO VISITANTE</div><h2>Entrar no Museu</h2><input class="field" type="email" placeholder="Seu e-mail"><input class="field" type="password" placeholder="Sua senha"><button class="btn" style="width:100%;margin-top:8px" onclick="closeModal();show('memberView')">ENTRAR</button><p class="note">Na versão final, o login será conectado ao cadastro e ao pagamento.</p><br><button class="btn alt" onclick="closeModal();checkout()">AINDA NÃO SOU MEMBRO</button>`)}
-function checkout(){open(`<div class="eyebrow">PASSE ANUAL</div><h2>Seu acesso ao Museu</h2><p style="font:14px Arial;color:#aaa">12 meses de acesso completo</p><div class="price">R$ 120</div><input class="field" placeholder="Nome completo"><input class="field" type="email" placeholder="E-mail"><button class="btn" style="width:100%;margin-top:8px" onclick="alert('O checkout real será integrado nesta etapa. Nenhuma cobrança é feita pelo protótipo.')">CONTINUAR PARA PAGAMENTO</button><p class="note">Protótipo: ainda não processa pagamentos.</p>`)}
-function open(c){document.getElementById("modalContent").innerHTML=c;document.getElementById("modal").classList.add("on")}
-function closeModal(){document.getElementById("modal").classList.remove("on")}
-function search(){let q=document.getElementById("q").value.toLowerCase().trim(),r=document.getElementById("results");if(!q){r.innerHTML='<div class="empty">Digite um nome ou tema para pesquisar.</div>';return}let a=thinkers.filter(x=>x.join(" ").toLowerCase().includes(q));r.innerHTML=a.length?a.map(x=>`<div class="result"><b>${x[0]}</b> — ${x[1]} • ${x[2]}</div>`).join(""):'<div class="empty">Nenhum resultado encontrado.</div>'}
-document.getElementById("modal").onclick=e=>{if(e.target.id==="modal")closeModal()};
+
+{
+n:"Sócrates",
+p:"Antiguidade",
+area:"Filosofia • Ética",
+bio:"Filósofo ateniense associado ao diálogo, à investigação e ao exame da própria vida.",
+icon:"◖◗"
+},
+
+{
+n:"Platão",
+p:"Antiguidade",
+area:"Filosofia • Política",
+bio:"Discípulo de Sócrates e fundador da Academia; escreveu diálogos que marcaram a filosofia ocidental.",
+icon:"Π"
+},
+
+{
+n:"Aristóteles",
+p:"Antiguidade",
+area:"Filosofia • Ciência",
+bio:"Pensador abrangente que estudou lógica, ética, política, natureza e conhecimento.",
+icon:"Α"
+},
+
+{
+n:"Confúcio",
+p:"Antiguidade",
+area:"Ética • Sociedade",
+bio:"Mestre chinês associado a uma tradição de educação, virtude, relações sociais e responsabilidade.",
+icon:"孔"
+},
+
+{
+n:"Santo Agostinho",
+p:"Idade Média",
+area:"Filosofia • Teologia",
+bio:"Pensador cristão que refletiu sobre tempo, memória, vontade, fé e interioridade.",
+icon:"✦"
+},
+
+{
+n:"Tomás de Aquino",
+p:"Idade Média",
+area:"Filosofia • Teologia",
+bio:"Integração medieval entre filosofia aristotélica e pensamento cristão.",
+icon:"✥"
+},
+
+{
+n:"Averróis",
+p:"Idade Média",
+area:"Filosofia • Ciência",
+bio:"Filósofo, jurista e médico de Al-Andalus, célebre por seus comentários sobre Aristóteles.",
+icon:"ع"
+},
+
+{
+n:"Nicolau Maquiavel",
+p:"Renascimento",
+area:"Política • História",
+bio:"Autor central do pensamento político moderno, conhecido por analisar poder, Estado e ação política.",
+icon:"M"
+},
+
+{
+n:"Leonardo da Vinci",
+p:"Renascimento",
+area:"Arte • Ciência",
+bio:"Artista e investigador que uniu observação, desenho, engenharia e curiosidade científica.",
+icon:"L"
+},
+
+{
+n:"Erasmo de Roterdã",
+p:"Renascimento",
+area:"Humanismo • Educação",
+bio:"Humanista europeu que defendeu a educação e realizou crítica cultural e religiosa.",
+icon:"E"
+},
+
+{
+n:"John Locke",
+p:"Iluminismo",
+area:"Política • Conhecimento",
+bio:"Pensador do empirismo e dos direitos naturais, influente no liberalismo político.",
+icon:"J"
+},
+
+{
+n:"Jean-Jacques Rousseau",
+p:"Iluminismo",
+area:"Política • Educação",
+bio:"Refletiu sobre liberdade, desigualdade, educação e legitimidade política.",
+icon:"R"
+},
+
+{
+n:"Voltaire",
+p:"Iluminismo",
+area:"Razão • Tolerância",
+bio:"Escritor e crítico francês ligado ao Iluminismo e à defesa da tolerância.",
+icon:"V"
+},
+
+{
+n:"Immanuel Kant",
+p:"Iluminismo",
+area:"Filosofia • Ética",
+bio:"Transformou a reflexão sobre conhecimento, moralidade, razão e autonomia.",
+icon:"K"
+},
+
+{
+n:"Karl Marx",
+p:"Moderna",
+area:"Sociedade • Economia",
+bio:"Crítico do capitalismo e da sociedade de classes, com enorme influência política e intelectual.",
+icon:"X"
+},
+
+{
+n:"Charles Darwin",
+p:"Moderna",
+area:"Biologia • Evolução",
+bio:"Naturalista cuja teoria da evolução por seleção natural transformou as ciências da vida.",
+icon:"D"
+},
+
+{
+n:"Friedrich Nietzsche",
+p:"Moderna",
+area:"Filosofia • Cultura",
+bio:"Crítico radical da moral, da cultura e de certezas filosóficas de seu tempo.",
+icon:"N"
+},
+
+{
+n:"Sigmund Freud",
+p:"Moderna",
+area:"Psicanálise • Cultura",
+bio:"Fundador da psicanálise e autor de uma influente teoria sobre o inconsciente.",
+icon:"F"
+},
+
+{
+n:"Albert Einstein",
+p:"Moderna",
+area:"Física • Ciência",
+bio:"Físico cuja teoria da relatividade transformou a compreensão de espaço, tempo e gravidade.",
+icon:"E=mc²"
+},
+
+{
+n:"Machado de Assis",
+p:"Brasil",
+area:"Literatura • Sociedade",
+bio:"Grande escritor brasileiro, célebre pela ironia, análise psicológica e crítica social.",
+icon:"M"
+},
+
+{
+n:"Paulo Freire",
+p:"Brasil",
+area:"Educação • Sociedade",
+bio:"Educador brasileiro que desenvolveu uma pedagogia centrada no diálogo, consciência e transformação.",
+icon:"PF"
+},
+
+{
+n:"Milton Santos",
+p:"Brasil",
+area:"Geografia • Sociedade",
+bio:"Geógrafo brasileiro que analisou território, globalização, técnica e desigualdades.",
+icon:"MS"
+},
+
+{
+n:"Darcy Ribeiro",
+p:"Brasil",
+area:"Antropologia • Educação",
+bio:"Antropólogo e educador brasileiro dedicado à formação histórica e cultural do país.",
+icon:"DR"
+},
+
+{
+n:"Hannah Arendt",
+p:"Contemporâneos",
+area:"Política • Filosofia",
+bio:"Pensadora política que investigou poder, totalitarismo, ação e vida pública.",
+icon:"HA"
+},
+
+{
+n:"Simone de Beauvoir",
+p:"Contemporâneos",
+area:"Filosofia • Sociedade",
+bio:"Filósofa e escritora central nos debates sobre liberdade, gênero e existência.",
+icon:"SB"
+},
+
+{
+n:"Martin Luther King Jr.",
+p:"Contemporâneos",
+area:"Direitos • Sociedade",
+bio:"Líder dos direitos civis nos Estados Unidos e defensor da ação não violenta.",
+icon:"MLK"
+},
+
+{
+n:"Nelson Mandela",
+p:"Contemporâneos",
+area:"Política • Direitos",
+bio:"Líder sul-africano associado à luta contra o apartheid e à construção democrática.",
+icon:"NM"
+},
+
+{
+n:"Carl Sagan",
+p:"Contemporâneos",
+area:"Ciência • Cosmos",
+bio:"Astrônomo e divulgador científico que aproximou milhões de pessoas da ciência e do cosmos.",
+icon:"CS"
+},
+
+{
+n:"Stephen Hawking",
+p:"Contemporâneos",
+area:"Física • Cosmos",
+bio:"Físico teórico conhecido por trabalhos sobre buracos negros e cosmologia.",
+icon:"SH"
+},
+
+{
+n:"Ailton Krenak",
+p:"Contemporâneos",
+area:"Cultura • Ambiente",
+bio:"Pensador indígena brasileiro que questiona modelos de desenvolvimento e relações com a natureza.",
+icon:"AK"
+}
+
+];
+
+
+let currentThinker=null;
+
+const favKey=
+"museu_favoritos";
+
+
+function renderThinkers(){
+
+const q=
+(document.getElementById("thinkerSearch").value||"")
+.toLowerCase()
+.trim();
+
+const filtered=
+thinkers.filter(t=>
+(t.n+" "+t.p+" "+t.area+" "+t.bio)
+.toLowerCase()
+.includes(q)
+);
+
+const grid=
+document.getElementById("thinkerGrid");
+
+if(!filtered.length){
+
+grid.innerHTML=
+'<div class="empty">Nenhum pensador encontrado. Tente outro nome ou período.</div>';
+
+return;
+
+}
+
+grid.innerHTML=
+filtered.map(t=>{
+
+const fav=isFav(t.n);
+
+return `
+
+<article class="card thinker-card">
+
+<div class="portrait">
+${t.icon}
+</div>
+
+<div class="period">
+${t.p}
+</div>
+
+<h3>
+${t.n}
+</h3>
+
+<p>
+${t.area}
+</p>
+
+<div class="card-actions">
+
+<button
+class="goldbtn small"
+onclick="openThinker('${esc(t.n)}')">
+
+Visitar sala
+
+</button>
+
+<button
+class="ghostbtn small"
+onclick="toggleFav('${esc(t.n)}')">
+
+${fav?"★":"☆"}
+
+</button>
+
+</div>
+
+</article>
+
+`;
+
+}).join("");
+
+}
+
+
+function esc(s){
+
+return s.replace(/'/g,"\\'");
+
+}
+
+
+function isFav(n){
+
+return JSON.parse(
+localStorage.getItem(favKey)||"[]"
+).includes(n);
+
+}
+
+
+function toggleFav(n){
+
+let a=
+JSON.parse(
+localStorage.getItem(favKey)||"[]"
+);
+
+a=
+a.includes(n)
+?a.filter(x=>x!==n)
+:[...a,n];
+
+localStorage.setItem(
+favKey,
+JSON.stringify(a)
+);
+
+renderThinkers();
+
+toast(
+a.includes(n)
+?"Adicionado aos favoritos"
+:"Removido dos favoritos"
+);
+
+}
+
+
+function clearSearch(){
+
+document.getElementById(
+"thinkerSearch"
+).value="";
+
+renderThinkers();
+
+}
+
+
+function filterEra(era){
+
+document.getElementById(
+"thinkerSearch"
+).value=era;
+
+document.getElementById(
+"pensadores"
+).scrollIntoView({
+behavior:"smooth"
+});
+
+renderThinkers();
+
+}
+
+
+function openSearch(){
+
+document.getElementById(
+"pensadores"
+).scrollIntoView({
+behavior:"smooth"
+});
+
+setTimeout(()=>{
+
+document.getElementById(
+"thinkerSearch"
+).focus();
+
+},500);
+
+}
+
+
+function openModal(html){
+
+document.getElementById(
+"modalContent"
+).innerHTML=html;
+
+document.getElementById(
+"modal"
+).classList.add("show");
+
+}
+
+
+function closeModal(){
+
+document.getElementById(
+"modal"
+).classList.remove("show");
+
+}
+
+
+function backdropClose(e){
+
+if(e.target.id==="modal")
+closeModal();
+
+}
+
+
+function openThinker(name){
+
+const t=
+thinkers.find(x=>x.n===name)
+||thinkers[0];
+
+currentThinker=t;
+
+openModal(`
+
+<button
+class="close"
+onclick="closeModal()">
+×
+</button>
+
+<div class="detail-head">
+
+<div class="detail-portrait">
+${t.icon}
+</div>
+
+<div>
+
+<div class="kicker">
+${t.p}
+</div>
+
+<h2>
+${t.n}
+</h2>
+
+<p>
+${t.area}
+</p>
+
+</div>
+
+</div>
+
+
+<div class="tabs">
+
+<button
+class="tab active"
+onclick="tab(this,'bio')">
+Vida
+</button>
+
+<button
+class="tab"
+onclick="tab(this,'ideias')">
+Ideias
+</button>
+
+<button
+class="tab"
+onclick="tab(this,'obras')">
+Obras
+</button>
+
+<button
+class="tab"
+onclick="tab(this,'legado')">
+Legado
+</button>
+
+<button
+class="tab"
+onclick="showQuiz('${esc(t.n)}')">
+Quiz
+</button>
+
+</div>
+
+
+<div
+id="bio"
+class="detail-section active">
+
+<h3>
+A sala de ${t.n}
+</h3>
+
+<p>
+${t.bio}
+</p>
+
+<div class="quote-box">
+
+“Todo grande pensamento precisa ser
+compreendido dentro de seu tempo —
+e também questionado por quem o visita.”
+
+</div>
+
+<p>
+
+<b>Contexto:</b>
+nesta versão do museu, esta área será
+expandida com infância, formação,
+acontecimentos decisivos, relações
+intelectuais e contexto histórico.
+
+</p>
+
+</div>
+
+
+<div
+id="ideias"
+class="detail-section">
+
+<h3>
+Ideias centrais
+</h3>
+
+<ul>
+
+<li>
+Contexto histórico e perguntas de seu tempo.
+</li>
+
+<li>
+Conceitos fundamentais e sua evolução.
+</li>
+
+<li>
+Debates, críticas e interpretações posteriores.
+</li>
+
+<li>
+Influências sobre sociedade, ciência,
+arte ou política.
+</li>
+
+</ul>
+
+</div>
+
+
+<div
+id="obras"
+class="detail-section">
+
+<h3>
+Obras e documentos
+</h3>
+
+<p>
+
+Área reservada para livros, manuscritos,
+documentos, imagens de domínio público
+e referências bibliográficas verificadas.
+
+</p>
+
+</div>
+
+
+<div
+id="legado"
+class="detail-section">
+
+<h3>
+Legado
+</h3>
+
+<p>
+
+Como suas ideias atravessaram gerações,
+onde foram contestadas e quais debates
+continuam vivos.
+
+</p>
+
+</div>
+
+`);
+
+}
+
+
+function tab(btn,id){
+
+document
+.querySelectorAll(".tab")
+.forEach(x=>x.classList.remove("active"));
+
+btn.classList.add("active");
+
+document
+.querySelectorAll(".detail-section")
+.forEach(x=>x.classList.remove("active"));
+
+document
+.getElementById(id)
+.classList.add("active");
+
+}
+
+
+function showQuiz(name){
+
+const qs={
+
+"Sócrates":[
+
+[
+"Qual prática é especialmente associada a Sócrates?",
+
+"O diálogo e a investigação por perguntas",
+
+[
+"A conquista militar",
+"O diálogo e a investigação por perguntas",
+"A astronomia observacional"
+]
+
+]
+
+],
+
+"default":[
+
+[
+"O que uma boa exposição histórica deve fazer?",
+
+"Apresentar contexto e estimular reflexão",
+
+[
+"Apagar controvérsias",
+"Apresentar contexto e estimular reflexão",
+"Evitar fontes"
+]
+
+]
+
+]
+
+};
+
+
+const q=
+(qs[name]||qs.default)[0];
+
+
+openModal(`
+
+<button
+class="close"
+onclick="closeModal()">
+×
+</button>
+
+<div class="kicker">
+Experiência interativa
+</div>
+
+<h2>
+Quiz • ${name}
+</h2>
+
+<p>
+${q[0]}
+</p>
+
+${q[2].map((o,i)=>
+
+`<button
+class="ghostbtn"
+style="display:block;width:100%;text-align:left;margin:9px 0"
+onclick="answerQuiz(${i},${q[2].indexOf(q[1])})">
+
+${o}
+
+</button>`
+
+).join("")}
+
+<p id="quizResult">
+</p>
+
+`);
+
+}
+
+
+function answerQuiz(i,correct){
+
+document.getElementById(
+"quizResult"
+).innerHTML=
+
+i===correct
+
+?
+
+"<b style='color:#d8b36a'>Resposta correta. Excelente visita.</b>"
+
+:
+
+"<span style='color:#d8b36a'>Ainda não. Leia a sala e tente novamente.</span>";
+
+}
+
+
+function showMembership(){
+
+openModal(`
+
+<button
+class="close"
+onclick="closeModal()">
+×
+</button>
+
+<div class="kicker">
+Passe do Museu
+</div>
+
+<h2>
+Passe Anual
+</h2>
+
+<p>
+
+O projeto foi pensado para oferecer
+uma experiência premium por
+<b>R$ 120 por 12 meses</b>.
+
+</p>
+
+<div class="quote-box">
+
+Pagamento real será integrado
+somente na última etapa do projeto.
+
+</div>
+
+<ul>
+
+<li>
+Acesso às galerias completas
+</li>
+
+<li>
+Exposições especiais
+</li>
+
+<li>
+Áudios, vídeos e quizzes
+</li>
+
+<li>
+Favoritos e progresso
+</li>
+
+<li>
+Novas exposições durante o período
+</li>
+
+</ul>
+
+<button
+class="goldbtn"
+onclick="closeModal();toast('Pagamento ficará para a última etapa.')">
+
+Entendi
+
+</button>
+
+`);
+
+}
+
+
+function showAbout(){
+
+openModal(`
+
+<button
+class="close"
+onclick="closeModal()">
+×
+</button>
+
+<div class="kicker">
+Sobre o projeto
+</div>
+
+<h2>
+O Museu
+</h2>
+
+<p>
+
+Um espaço digital dedicado às histórias
+e ideias de pensadores que ajudaram
+a transformar a humanidade.
+
+</p>
+
+<p>
+
+O objetivo é unir cultura, educação,
+pesquisa e uma experiência visual
+inspirada em museus físicos.
+
+</p>
+
+<p>
+
+<b>Nota:</b>
+biografias, citações, datas e imagens
+serão revisadas com fontes confiáveis
+antes da versão definitiva.
+
+</p>
+
+`);
+
+}
+
+
+function showRoadmap(){
+
+openModal(`
+
+<button
+class="close"
+onclick="closeModal()">
+×
+</button>
+
+<div class="kicker">
+Plano de construção
+</div>
+
+<h2>
+Próximas etapas
+</h2>
+
+<ol>
+
+<li>
+Estrutura e identidade visual —
+<b>agora</b>
+</li>
+
+<li>
+Acervo e conteúdo dos pensadores
+</li>
+
+<li>
+Imagens, documentos e referências
+</li>
+
+<li>
+Áudios, vídeos, quizzes e progresso
+</li>
+
+<li>
+Área de usuário e segurança
+</li>
+
+<li>
+Pagamento e Passe Anual —
+<b>por último</b>
+</li>
+
+</ol>
+
+`);
+
+}
+
+
+function toast(msg){
+
+const x=
+document.getElementById("toast");
+
+x.textContent=msg;
+
+x.classList.add("show");
+
+setTimeout(
+()=>x.classList.remove("show"),
+2400
+);
+
+}
+
+
+document.addEventListener(
+"keydown",
+e=>{
+if(e.key==="Escape")
+closeModal();
+}
+);
+
+
+renderThinkers();
+
 </script>
-</body></html>
+
+</body>
+  </html>
+  
