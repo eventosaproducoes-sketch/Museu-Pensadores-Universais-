@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Museu Virtual dos Pensadores Universais</title>
+<meta name="description" content="Uma experiência virtual pela história das ideias e das grandes mentes da humanidade.">
+<style>
+:root{--bg:#050504;--panel:#0e0d0a;--panel2:#16130c;--gold:#d6a83c;--gold2:#f5d47a;--text:#f5efdf;--muted:#aaa294;--line:#3a2e1b}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font-family:Georgia,serif}
+button,a{font:inherit}a{color:inherit;text-decoration:none}.hide{display:none!important}
+.header{position:fixed;z-index:30;inset:0 0 auto;display:flex;justify-content:space-between;align-items:center;padding:14px 5%;background:#050504dd;backdrop-filter:blur(14px);border-bottom:1px solid #2a2113}
+.logo{display:flex;gap:10px;align-items:center;color:var(--gold2);font-weight:bold;letter-spacing:1px}.logo i{font-size:30px;font-style:normal}.logo small{display:block;font:8px Arial;letter-spacing:2px;color:#ddd;margin-top:3px}
+.nav{display:flex;gap:20px;align-items:center;font:13px Arial}.nav a:hover{color:var(--gold2)}.pill{border:1px solid var(--gold);border-radius:30px;padding:9px 16px}
+.hero{min-height:100vh;display:grid;place-items:center;text-align:center;padding:120px 5% 80px;background:radial-gradient(circle at 50% 30%,#362912 0,#080806 48%,#030303 100%);position:relative;overflow:hidden}
+.hero:before{content:"";position:absolute;width:650px;height:650px;border:1px solid #5a421c;border-radius:50%;box-shadow:0 0 120px #4a3414;opacity:.35}.hero:after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 70%,var(--bg));pointer-events:none}
+.heroIn{position:relative;z-index:2;max-width:900px}.eyebrow{font:11px Arial;letter-spacing:5px;color:var(--gold2)}h1{font-size:clamp(48px,8vw,92px);line-height:.92;color:var(--gold2);margin:18px 0;text-shadow:0 5px 35px #000}h2{font-size:clamp(28px,4vw,45px);color:var(--gold2);margin:0 0 15px}.hero h3{font-size:clamp(19px,3vw,29px);font-weight:normal;margin:0 0 20px}.hero p,.lead{font:16px/1.7 Arial;color:#cfc8b8;max-width:720px;margin:0 auto 30px}
+.btn{border:1px solid var(--gold);border-radius:40px;padding:14px 26px;background:linear-gradient(135deg,#bd8d26,#f3d37c);color:#161006;font:bold 13px Arial;cursor:pointer;display:inline-block;box-shadow:0 12px 35px #000}.btn.alt{background:transparent;color:var(--text)}
+section{padding:85px 5%;max-width:1200px;margin:auto}.wide{max-width:none;background:#090908;border-block:1px solid #211b10}.center{text-align:center}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:35px}
+.card{background:linear-gradient(145deg,#17130c,#0a0a08);border:1px solid var(--line);border-radius:18px;overflow:hidden;cursor:pointer;transition:.2s}.card:hover{transform:translateY(-5px);border-color:#806226}.visual{height:180px;display:flex;align-items:end;padding:22px;font-size:25px;color:var(--gold2);background:radial-gradient(circle at 70% 30%,#4b3618,#100e09 65%)}.body{padding:19px}.body h3{color:var(--gold2);font-size:22px;margin:0 0 7px}.body p{font:13px/1.5 Arial;color:#999;margin:0}
+.timeline{display:grid;grid-template-columns:repeat(6,1fr);gap:9px;margin-top:32px}.era{padding:17px 8px;text-align:center;border:1px solid var(--line);border-radius:11px;background:#0c0b09}.era b{color:var(--gold2);font-size:13px}.era span{display:block;font:10px Arial;color:#777;margin-top:6px}
+.offer{display:grid;grid-template-columns:1fr 1.3fr;gap:45px;align-items:center}.price{font-size:70px;color:var(--gold2);margin:7px 0}.per{font:13px Arial;color:#888}.features{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.feature{padding:19px;border:1px solid var(--line);border-radius:14px;background:#12110d}.feature b{display:block;color:var(--gold2);margin-bottom:6px}.feature span{font:13px/1.5 Arial;color:#aaa}
+.searchbox{max-width:700px;margin:30px auto;display:flex;gap:10px}.searchbox input{flex:1;padding:15px 18px;border-radius:30px;border:1px solid var(--line);background:#0c0c0a;color:white;font:15px Arial}.searchbox button{border:1px solid var(--gold);border-radius:30px;background:#d5a43a;padding:0 22px}
+.results{max-width:800px;margin:auto}.result{padding:16px;border-bottom:1px solid #2b2417;font-family:Arial}.result b{color:var(--gold2)}.empty{text-align:center;color:#777;font:13px Arial}
+.page{min-height:100vh;padding-top:85px;background:#060605}.pageHero{padding:65px 6%;min-height:500px;background:linear-gradient(90deg,#060605 5%,#060605cc 45%,#06060533),radial-gradient(circle at 70% 30%,#62451d,#0a0907 55%);display:flex;align-items:end}.pageHeroIn{max-width:750px}.pageHero h1{font-size:76px}.contentGrid{max-width:1100px;margin:auto;padding:50px 5%;display:grid;grid-template-columns:1.25fr .75fr;gap:20px}.panel{background:#0d0d0b;border:1px solid var(--line);border-radius:16px;padding:27px}.panel h3{color:var(--gold2)}.panel p,.panel li{font:15px/1.75 Arial;color:#aaa}.quote{border-left:2px solid var(--gold);padding:18px;color:#ddd;font-size:18px}
+.modal{position:fixed;z-index:100;inset:0;background:#000b;backdrop-filter:blur(10px);display:none;align-items:center;justify-content:center;padding:20px}.modal.on{display:flex}.modalBox{width:min(600px,100%);padding:30px;border-radius:20px;border:1px solid #6b5225;background:linear-gradient(145deg,#18140c,#080807);position:relative}.close{position:absolute;right:15px;top:10px;background:none;border:0;color:#aaa;font-size:28px;cursor:pointer}.field{display:block;width:100%;padding:14px;margin:9px 0;border:1px solid #3a3020;border-radius:9px;background:#070706;color:white;font:14px Arial}.note{font:11px/1.5 Arial;color:#777;margin-top:10px}
+.member{padding:120px 5% 80px;min-height:100vh}.memberTop{padding:35px;border:1px solid var(--line);border-radius:20px;background:linear-gradient(120deg,#18130b,#0b0b09);margin-bottom:25px}.memberTop h1{font-size:48px;margin:8px 0}.memberGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+footer{padding:40px 5%;text-align:center;background:#030303;border-top:1px solid #211b11;color:#777;font:12px Arial}
+@media(max-width:850px){.nav a:not(.pill){display:none}.grid,.memberGrid{grid-template-columns:1fr 1fr}.offer,.contentGrid{grid-template-columns:1fr}.timeline{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:550px){.grid,.memberGrid,.features{grid-template-columns:1fr}.timeline{grid-template-columns:repeat(2,1fr)}.hero h1{font-size:50px}.pageHero h1{font-size:55px}.searchbox{flex-direction:column}.searchbox button{padding:14px}}
+</style>
+</head>
+<body>
+<header class="header">
+<a class="logo" href="#home" onclick="home()"><i>♜</i><span>MUSEU VIRTUAL<small>DOS PENSADORES UNIVERSAIS</small></span></a>
+<nav class="nav"><a href="#museu">Museu</a><a href="#galerias">Galerias</a><a href="#busca">Buscar</a><a href="#passe">Passe</a><a class="pill" href="#" onclick="login();return false">Entrar</a></nav>
+</header>
+
+<div id="app">
+<main id="homeView">
+<section class="hero" id="home"><div class="heroIn">
+<div class="eyebrow">MUSEU VIRTUAL • HISTÓRIA • IDEIAS • HUMANIDADE</div>
+<h1>Grandes ideias<br>para um mundo melhor</h1>
+<h3>Uma viagem pela história das grandes mentes que transformaram a humanidade.</h3>
+<p>Entre em galerias digitais, descubra vidas extraordinárias e percorra a evolução das ideias que moldaram nossa sociedade.</p>
+<a class="btn" href="#passe">ENTRAR NO MUSEU</a> <a class="btn alt" href="#galerias">EXPLORAR GALERIAS</a>
+</div></section>
+
+<section id="museu" class="center"><div class="eyebrow">A EXPERIÊNCIA</div><h2>Um museu para a vida</h2><p class="lead">O conhecimento é apresentado como uma jornada: cada época é uma ala, cada pensador é uma sala e cada ideia é uma porta para uma nova forma de enxergar o mundo.</p>
+<div class="timeline"><div class="era"><b>Antiguidade</b><span>Origens</span></div><div class="era"><b>Idade Média</b><span>Fé e razão</span></div><div class="era"><b>Renascimento</b><span>Humanismo</span></div><div class="era"><b>Iluminismo</b><span>Razão</span></div><div class="era"><b>Séc. XIX–XX</b><span>Revoluções</span></div><div class="era"><b>Contemporâneos</b><span>Futuro</span></div></div></section>
+
+<section id="galerias" class="wide"><div class="center"><div class="eyebrow">COLEÇÃO PERMANENTE</div><h2>Galerias do Museu</h2><p class="lead">Comece por uma era histórica.</p></div>
+<div class="grid">
+<div class="card" onclick="socrates()"><div class="visual">🏺 ANTIGUIDADE</div><div class="body"><h3>As origens do pensamento</h3><p>Sócrates • Platão • Aristóteles • Confúcio</p></div></div>
+<div class="card"><div class="visual">🏰 IDADE MÉDIA</div><div class="body"><h3>Fé, razão e conhecimento</h3><p>Agostinho • Tomás de Aquino • Averróis</p></div></div>
+<div class="card"><div class="visual">🎨 RENASCIMENTO</div><div class="body"><h3>O despertar humanista</h3><p>Maquiavel • Erasmo • Leonardo da Vinci</p></div></div>
+<div class="card"><div class="visual">💡 ILUMINISMO</div><div class="body"><h3>A luz da razão</h3><p>Locke • Rousseau • Voltaire • Kant</p></div></div>
+<div class="card"><div class="visual">⚙️ SÉCULOS XIX–XX</div><div class="body"><h3>Ciência e revoluções</h3><p>Marx • Darwin • Nietzsche • Freud • Einstein</p></div></div>
+<div class="card"><div class="visual">🌎 BRASIL E AMÉRICA LATINA</div><div class="body"><h3>Ideias que nasceram por aqui</h3><p>Machado • Paulo Freire • Milton Santos • Darcy Ribeiro</p></div></div>
+</div></section>
+
+<section id="busca" class="center"><div class="eyebrow">ARQUIVO DIGITAL</div><h2>Encontre um pensador</h2><p class="lead">Pesquise por nome, época ou tema.</p>
+<div class="searchbox"><input id="q" placeholder="Ex.: Sócrates, ciência, política..." oninput="search()"><button onclick="search()">BUSCAR</button></div><div id="results" class="results"></div></section>
+
+<section id="passe" class="wide"><div class="offer">
+<div><div class="eyebrow">PASSE ANUAL</div><h2>Acesso completo ao Museu</h2><div class="price">R$ 120</div><div class="per">12 meses de acesso • pagamento real será conectado na próxima etapa</div><br><button class="btn" onclick="checkout()">ADQUIRIR PASSE ANUAL</button></div>
+<div class="features"><div class="feature"><b>🏛️ Museu completo</b><span>Acesso às galerias e exposições.</span></div><div class="feature"><b>🧠 Pensadores</b><span>Vidas, ideias, obras e legado.</span></div><div class="feature"><b>📜 Linhas do tempo</b><span>Contexto histórico e evolução das ideias.</span></div><div class="feature"><b>🎧 Audioguias</b><span>Experiências narradas planejadas para as exposições.</span></div><div class="feature"><b>🧩 Quizzes</b><span>Aprenda testando seus conhecimentos.</span></div><div class="feature"><b>✨ Novas exposições</b><span>O acervo crescerá continuamente.</span></div></div>
+</div></section>
+
+<section class="center"><div class="eyebrow">MISSÃO</div><h2>Conhecer o passado para imaginar o futuro.</h2><p class="lead">O Museu Virtual dos Pensadores nasce para aproximar a história das ideias de qualquer pessoa, em qualquer lugar.</p></section>
+</main>
+
+<section id="memberView" class="member hide"><div class="memberTop"><div class="eyebrow">ÁREA DO VISITANTE</div><h1>Bem-vindo ao Museu.</h1><p class="lead" style="margin:0">Sua jornada pelo conhecimento começa aqui.</p></div>
+<div class="memberGrid"><div class="card" onclick="socrates()"><div class="visual">🏺</div><div class="body"><h3>Exposição 001</h3><p>Sócrates — A coragem de questionar.</p></div></div><div class="card"><div class="visual">🗺️</div><div class="body"><h3>Mapa do Museu</h3><p>Escolha sua próxima galeria.</p></div></div><div class="card"><div class="visual">⭐</div><div class="body"><h3>Minha jornada</h3><p>Favoritos e progresso.</p></div></div></div></section>
+
+<section id="socratesView" class="page hide"><div class="pageHero"><div class="pageHeroIn"><div class="eyebrow">GALERIA DA ANTIGUIDADE • EXPOSIÇÃO 001</div><h1>Sócrates</h1><h2 style="font-size:28px">A coragem de questionar.</h2><p class="lead" style="margin:0">Uma introdução à vida, ao contexto histórico e ao legado do filósofo ateniense.</p></div></div>
+<div class="contentGrid"><div class="panel"><h3>Sobre a exposição</h3><p>Sócrates viveu em Atenas no século V a.C. e tornou o diálogo e o questionamento instrumentos centrais de sua prática filosófica. Esta exposição apresenta o contexto da cidade, sua trajetória, seu método de investigação e a influência exercida sobre gerações posteriores.</p><h3>Roteiro</h3><ol><li>Vida e Atenas clássica</li><li>O diálogo e o questionamento</li><li>Ética e conhecimento</li><li>Discípulos e julgamento</li><li>Legado</li></ol></div><div class="panel"><h3>Linha do tempo</h3><p><b>c. 469 a.C.</b> — nascimento em Atenas.</p><p><b>Séc. V a.C.</b> — atuação pública e filosófica.</p><p><b>399 a.C.</b> — julgamento e morte.</p><div class="quote">A exposição definitiva terá fontes históricas, referências bibliográficas, áudio, imagens e materiais educativos.</div><br><button class="btn alt" onclick="home()">← VOLTAR AO MUSEU</button></div></div></section>
+</div>
+
+<div class="modal" id="modal"><div class="modalBox"><button class="close" onclick="closeModal()">×</button><div id="modalContent"></div></div></div>
+<footer>© 2026 Museu Virtual dos Pensadores Universais • Protótipo completo • Conteúdo histórico em expansão</footer>
+
+<script>
+const thinkers=[
+["Sócrates","Antiguidade","Filosofia"],["Platão","Antiguidade","Filosofia"],["Aristóteles","Antiguidade","Filosofia e ciência"],["Confúcio","Antiguidade","Ética e sociedade"],["Santo Agostinho","Idade Média","Filosofia e teologia"],["Tomás de Aquino","Idade Média","Filosofia e teologia"],["Averróis","Idade Média","Filosofia e ciência"],["Nicolau Maquiavel","Renascimento","Política"],["Leonardo da Vinci","Renascimento","Arte e ciência"],["Erasmo de Roterdã","Renascimento","Humanismo"],["John Locke","Iluminismo","Política"],["Jean-Jacques Rousseau","Iluminismo","Política"],["Voltaire","Iluminismo","Filosofia"],["Immanuel Kant","Iluminismo","Filosofia"],["Karl Marx","Séculos XIX–XX","Economia e sociedade"],["Charles Darwin","Séculos XIX–XX","Ciência"],["Friedrich Nietzsche","Séculos XIX–XX","Filosofia"],["Sigmund Freud","Séculos XIX–XX","Psicanálise"],["Albert Einstein","Séculos XIX–XX","Ciência"],["Machado de Assis","Brasil","Literatura"],["Paulo Freire","Brasil","Educação"],["Milton Santos","Brasil","Geografia"],["Darcy Ribeiro","Brasil","Antropologia e educação"]];
+function show(id){["homeView","memberView","socratesView"].forEach(x=>document.getElementById(x).classList.add("hide"));document.getElementById(id).classList.remove("hide");scrollTo(0,0)}
+function home(){show("homeView")}
+function socrates(){show("socratesView")}
+function login(){open(`<div class="eyebrow">ÁREA DO VISITANTE</div><h2>Entrar no Museu</h2><input class="field" type="email" placeholder="Seu e-mail"><input class="field" type="password" placeholder="Sua senha"><button class="btn" style="width:100%;margin-top:8px" onclick="closeModal();show('memberView')">ENTRAR</button><p class="note">Na versão final, o login será conectado ao cadastro e ao pagamento.</p><br><button class="btn alt" onclick="closeModal();checkout()">AINDA NÃO SOU MEMBRO</button>`)}
+function checkout(){open(`<div class="eyebrow">PASSE ANUAL</div><h2>Seu acesso ao Museu</h2><p style="font:14px Arial;color:#aaa">12 meses de acesso completo</p><div class="price">R$ 120</div><input class="field" placeholder="Nome completo"><input class="field" type="email" placeholder="E-mail"><button class="btn" style="width:100%;margin-top:8px" onclick="alert('O checkout real será integrado nesta etapa. Nenhuma cobrança é feita pelo protótipo.')">CONTINUAR PARA PAGAMENTO</button><p class="note">Protótipo: ainda não processa pagamentos.</p>`)}
+function open(c){document.getElementById("modalContent").innerHTML=c;document.getElementById("modal").classList.add("on")}
+function closeModal(){document.getElementById("modal").classList.remove("on")}
+function search(){let q=document.getElementById("q").value.toLowerCase().trim(),r=document.getElementById("results");if(!q){r.innerHTML='<div class="empty">Digite um nome ou tema para pesquisar.</div>';return}let a=thinkers.filter(x=>x.join(" ").toLowerCase().includes(q));r.innerHTML=a.length?a.map(x=>`<div class="result"><b>${x[0]}</b> — ${x[1]} • ${x[2]}</div>`).join(""):'<div class="empty">Nenhum resultado encontrado.</div>'}
+document.getElementById("modal").onclick=e=>{if(e.target.id==="modal")closeModal()};
+</script>
+</body></html>
