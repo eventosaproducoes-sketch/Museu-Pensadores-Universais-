@@ -1528,7 +1528,7 @@ cultura e desafios do presente.
 
         <button
         class="mapa-sala"
-        onclick="abrirGaleria('Antiguidade')">
+        onclick="document.getElementById('thinkerSearch').value='Antiguidade';document.getElementById('thinkerSearch').dispatchEvent(new Event('input'));document.getElementById('pensadores').scrollIntoView({behavior:'smooth'})"
 
             <span>Galeria I</span>
 
@@ -1547,8 +1547,7 @@ cultura e desafios do presente.
 
         <button
         class="mapa-sala"
-        onclick="filterEra('Idade Média')">
-
+        onclick="document.getElementById('thinkerSearch').value='Idade Média';document.getElementById('thinkerSearch').dispatchEvent(new Event('input'));document.getElementById('pensadores').scrollIntoView({behavior:'smooth'})"
             <span>Galeria II</span>
 
             <strong>
@@ -1604,7 +1603,7 @@ cultura e desafios do presente.
 
         <button
         class="mapa-sala"
-        onclick="filterEra('Moderna')">
+        onclick="document.getElementById('thinkerSearch').value='Moderna';document.getElementById('thinkerSearch').dispatchEvent(new Event('input'));document.getElementById('pensadores').scrollIntoView({behavior:'smooth'})"
 
             <span>Galeria V</span>
 
@@ -1623,7 +1622,7 @@ cultura e desafios do presente.
 
         <button
         class="mapa-sala"
-        onclick="filterEra('Brasil')">
+        onclick="document.getElementById('thinkerSearch').value='Brasil';document.getElementById('thinkerSearch').dispatchEvent(new Event('input'));document.getElementById('pensadores').scrollIntoView({behavior:'smooth'})"
 
             <span>Galeria VI</span>
 
