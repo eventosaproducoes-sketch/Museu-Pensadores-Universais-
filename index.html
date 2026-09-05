@@ -5506,6 +5506,41 @@ document.addEventListener("click", function(event){
     }
 
 }, true);
+    /* =========================================================
+   CORREÇÃO DEFINITIVA — SALA COMPLETA DE SÓCRATES
+   ========================================================= */
+
+(function(){
+
+    const abrirSalaOriginal = window.openThinker;
+
+    window.openThinker = function(nome){
+
+        if(nome === "Sócrates"){
+
+            if(typeof criarSalaUniversal === "function"){
+
+                criarSalaUniversal("Sócrates");
+
+                if(typeof registrarSalaJornada50 === "function"){
+                    registrarSalaJornada50("Sócrates");
+                }
+
+                return;
+            }
+
+            alert("A sala universal ainda não foi carregada.");
+
+            return;
+        }
+
+        if(typeof abrirSalaOriginal === "function"){
+            abrirSalaOriginal(nome);
+        }
+
+    };
+
+})();
 </script>
 
 </body>
