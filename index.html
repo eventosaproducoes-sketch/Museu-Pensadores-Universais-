@@ -5364,6 +5364,148 @@ function sincronizarFavoritosJornada50(){
    ========================================================= */
 
 sincronizarFavoritosJornada50();
+    /* =========================================================
+   CORREÇÃO DEFINITIVA
+   BOTÃO "VISITAR SALA COMPLETA" — SÓCRATES
+   ========================================================= */
+
+(function(){
+
+    function ativarSalaCompletaSocrates(){
+
+        const botoes = document.querySelectorAll("button");
+
+        botoes.forEach(function(botao){
+
+            const texto =
+                botao.textContent
+                .replace(/\s+/g," ")
+                .trim()
+                .toLowerCase();
+
+            if(
+                texto === "visitar sala completa"
+                ||
+                texto.includes("visitar sala completa")
+            ){
+
+                botao.onclick = function(event){
+
+                    if(event){
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+
+                    try{
+
+                        if(
+                            typeof criarSalaUniversal ===
+                            "function"
+                        ){
+
+                            criarSalaUniversal("Sócrates");
+
+                            if(
+                                typeof registrarSalaJornada50 ===
+                                "function"
+                            ){
+                                registrarSalaJornada50("Sócrates");
+                            }
+
+                            return;
+                        }
+
+                        if(
+                            typeof openThinker ===
+                            "function"
+                        ){
+
+                            openThinker("Sócrates");
+
+                            return;
+                        }
+
+                        alert(
+                            "O sistema da sala ainda não foi carregado."
+                        );
+
+                    }catch(erro){
+
+                        console.error(
+                            "Erro ao abrir sala de Sócrates:",
+                            erro
+                        );
+
+                        alert(
+                            "Ocorreu um erro ao abrir a sala de Sócrates."
+                        );
+
+                    }
+
+                };
+
+            }
+
+        });
+
+    }
+
+    if(document.readyState === "loading"){
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            ativarSalaCompletaSocrates
+        );
+
+    }else{
+
+        ativarSalaCompletaSocrates();
+
+    }
+
+})();
+    /* =========================================================
+   CORREÇÃO EXTRA — CLIQUE DIRETO NA SALA DE SÓCRATES
+   ========================================================= */
+
+document.addEventListener("click", function(event){
+
+    const botao = event.target.closest("button");
+
+    if(!botao){
+        return;
+    }
+
+    const texto = botao.textContent
+        .replace(/\s+/g," ")
+        .trim()
+        .toLowerCase();
+
+    if(texto !== "visitar sala completa"){
+        return;
+    }
+
+    /* Impede o comando antigo do botão */
+    event.preventDefault();
+    event.stopPropagation();
+    event.stopImmediatePropagation();
+
+    /* Abre a nova sala universal */
+    if(typeof criarSalaUniversal === "function"){
+
+        criarSalaUniversal("Sócrates");
+
+        if(typeof registrarSalaJornada50 === "function"){
+            registrarSalaJornada50("Sócrates");
+        }
+
+    }else{
+
+        alert("O sistema da sala de Sócrates não foi carregado.");
+
+    }
+
+}, true);
 </script>
 
 </body>
