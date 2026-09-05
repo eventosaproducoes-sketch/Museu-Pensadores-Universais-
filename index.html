@@ -4920,6 +4920,450 @@ document.addEventListener("click", function(event){
     }
 
 });
+    /* =========================================================
+   MUSEU — SISTEMA DE JORNADA DO VISITANTE
+   PARTE 1
+   ========================================================= */
+
+(function(){
+
+    const JORNADA_KEY = "museu_jornada_visitante";
+
+    function obterJornada(){
+
+        try{
+
+            const dados = JSON.parse(
+                localStorage.getItem(JORNADA_KEY) || "{}"
+            );
+
+            return {
+                salas: Array.isArray(dados.salas)
+                    ? dados.salas
+                    : [],
+
+                favoritos: Array.isArray(dados.favoritos)
+                    ? dados.favoritos
+                    : [],
+
+                quizzes: Number(dados.quizzes || 0),
+
+                ultimaVisita: dados.ultimaVisita || null
+            };
+
+        }catch(e){
+
+            return {
+                salas: [],
+                favoritos: [],
+                quizzes: 0,
+                ultimaVisita: null
+            };
+
+        }
+
+    }
+
+
+    function salvarJornada(dados){
+
+        localStorage.setItem(
+            JORNADA_KEY,
+            JSON.stringify(dados)
+        );
+
+    }
+
+
+    function registrarSalaJornada(nome){
+
+        if(!nome) return;
+
+        const jornada = obterJornada();
+
+        if(!jornada.salas.includes(nome)){
+
+            jornada.salas.push(nome);
+
+        }
+
+        jornada.ultimaVisita = new Date().toISOString();
+
+        salvarJornada(jornada);
+
+        atualizarPainelJornada();
+
+    }
+
+
+    function calcularProgressoJornada(){
+
+        const jornada = obterJornada();
+
+        const totalPensadores = 30;
+
+        return Math.min(
+            100,
+            Math.round(
+                (jornada.salas.length / totalPensadores) * 100
+            )
+        );
+
+    }
+
+
+    function atualizarPainelJornada(){
+
+        const jornada = obterJornada();
+
+        const progresso =
+            calcularProgressoJornada();
+
+        const salas =
+            document.getElementById(
+                "jornadaSalas50"
+            );
+
+        const favoritos =
+            document.getElementById(
+                "jornadaFavoritos50"
+            );
+
+        const percentual =
+            document.getElementById(
+                "jornadaPercentual50"
+            );
+
+        const barra =
+            document.getElementById(
+                "jornadaBarra50"
+            );
+
+        if(salas)
+            salas.textContent =
+            jornada.salas.length;
+
+        if(favoritos)
+            favoritos.textContent =
+            jornada.favoritos.length;
+
+        if(percentual)
+            percentual.textContent =
+            progresso + "%";
+
+        if(barra)
+            barra.style.width =
+            progresso + "%";
+
+    }
+
+
+    function criarPainelJornada(){
+
+        if(
+            document.getElementById(
+                "jornada-visitante-50"
+            )
+        ) return;
+
+
+        const main =
+            document.querySelector("main");
+
+        if(!main) return;
+
+
+        const secao =
+            document.createElement("section");
+
+        secao.id =
+            "jornada-visitante-50";
+
+        secao.className =
+            "m50";
+
+
+        secao.innerHTML = `
+
+        <div class="container">
+
+            <div class="m50-head">
+
+                <div class="m50-kicker">
+                EXPERIÊNCIA DO VISITANTE
+                </div>
+
+                <h2>
+                Minha Jornada pelo Museu
+                </h2>
+
+                <p>
+                Acompanhe tudo o que você já
+                descobriu durante sua viagem
+                pela história do pensamento humano.
+                </p>
+
+            </div>
+
+
+            <div class="m50-card">
+
+                <div style="
+                    display:flex;
+                    justify-content:space-between;
+                    align-items:center;
+                    gap:15px;
+                    flex-wrap:wrap;
+                ">
+
+                    <div>
+
+                        <strong>
+                        Seu progresso
+                        </strong>
+
+                        <p style="
+                            margin:7px 0 0;
+                        ">
+                        Continue explorando
+                        novas salas.
+                        </p>
+
+                    </div>
+
+
+                    <strong
+                    id="jornadaPercentual50"
+                    style="
+                        color:var(--gold2);
+                        font-size:28px;
+                    ">
+                    0%
+                    </strong>
+
+                </div>
+
+
+                <div class="m50-progress">
+
+                    <div
+                    id="jornadaBarra50"
+                    class="m50-progress-bar">
+                    </div>
+
+                </div>
+
+
+                <div class="m50-stats">
+
+
+                    <div class="m50-stat">
+
+                        <strong
+                        id="jornadaSalas50">
+                        0
+                        </strong>
+
+                        <span>
+                        SALAS VISITADAS
+                        </span>
+
+                    </div>
+
+
+                    <div class="m50-stat">
+
+                        <strong
+                        id="jornadaFavoritos50">
+                        0
+                        </strong>
+
+                        <span>
+                        FAVORITOS
+                        </span>
+
+                    </div>
+
+
+                    <div class="m50-stat">
+
+                        <strong>
+                        30
+                        </strong>
+
+                        <span>
+                        PENSADORES
+                        </span>
+
+                    </div>
+
+
+                    <div class="m50-stat">
+
+                        <strong>
+                        🏆
+                        </strong>
+
+                        <span>
+                        CONQUISTAS
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                style="
+                    margin-top:25px;
+                    padding:18px;
+                    border:1px solid var(--line);
+                    border-radius:17px;
+                    background:#0b0b0b;
+                ">
+
+                    <strong>
+                    🏛️ Sua missão
+                    </strong>
+
+                    <p style="
+                        color:var(--muted);
+                        font:14px/1.6 Arial,sans-serif;
+                        margin-bottom:0;
+                    ">
+
+                    Explore as salas dos pensadores,
+                    descubra diferentes épocas,
+                    responda aos desafios e complete
+                    sua jornada pelo conhecimento.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        `;
+
+
+        main.appendChild(secao);
+
+
+        atualizarPainelJornada();
+
+    }
+
+
+    window.obterJornadaVisitante50 =
+        obterJornada;
+
+    window.registrarSalaJornada50 =
+        registrarSalaJornada;
+
+    window.atualizarPainelJornada50 =
+        atualizarPainelJornada;
+
+
+    if(
+        document.readyState === "loading"
+    ){
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            criarPainelJornada
+        );
+
+    }else{
+
+        criarPainelJornada();
+
+    }
+
+})();
+    /* =========================================================
+   MUSEU — JORNADA DO VISITANTE
+   PARTE 2 — REGISTRO AUTOMÁTICO DAS SALAS
+   ========================================================= */
+
+document.addEventListener("click", function(event){
+
+    const botao = event.target.closest("button");
+
+    if(!botao) return;
+
+    if(botao.textContent.trim() !== "Visitar sala"){
+        return;
+    }
+
+    const cartao =
+        botao.closest(".thinker-card");
+
+    if(!cartao) return;
+
+    const titulo =
+        cartao.querySelector("h3,h2");
+
+    if(!titulo) return;
+
+    const nome =
+        titulo.textContent.trim();
+
+    if(
+        typeof registrarSalaJornada50 ===
+        "function"
+    ){
+
+        registrarSalaJornada50(nome);
+
+    }
+
+});
+    /* =========================================================
+   MUSEU — JORNADA DO VISITANTE
+   PARTE 3 — SINCRONIZAÇÃO DOS FAVORITOS
+   ========================================================= */
+
+function sincronizarFavoritosJornada50(){
+
+    const jornada =
+        obterJornadaVisitante50();
+
+    let favoritos = [];
+
+    try{
+
+        favoritos = JSON.parse(
+            localStorage.getItem("museu_favoritos") || "[]"
+        );
+
+    }catch(e){
+
+        favoritos = [];
+
+    }
+
+    jornada.favoritos =
+        Array.isArray(favoritos)
+            ? favoritos
+            : [];
+
+    localStorage.setItem(
+        "museu_jornada_visitante",
+        JSON.stringify(jornada)
+    );
+
+    atualizarPainelJornada50();
+
+}
+
+
+/* =========================================================
+   SINCRONIZAR AO ABRIR
+   ========================================================= */
+
+sincronizarFavoritosJornada50();
 </script>
 
 </body>
