@@ -1906,7 +1906,7 @@ MÉTODO
 
 <button
 class="goldbtn"
-onclick="criarSalaUniversal('Sócrates');registrarSalaJornada50('Sócrates')">
+onclick="openThinker('Sócrates')">
 
 Visitar sala completa
 
@@ -5541,6 +5541,202 @@ document.addEventListener("click", function(event){
     };
 
 })();
+    /* =========================================================
+   SALA SÓCRATES — ABERTURA DIRETA
+   ========================================================= */
+
+function abrirSalaSocratesDireta(){
+
+    const modal = document.getElementById("modal");
+    const conteudo = document.getElementById("modalContent");
+
+    if(!modal || !conteudo){
+        alert("Janela da sala não encontrada.");
+        return;
+    }
+
+    conteudo.innerHTML = `
+        <button
+        class="close"
+        onclick="closeModal()">
+        ×
+        </button>
+
+        <div class="kicker">
+        SALA DO PENSADOR
+        </div>
+
+        <h2>Sócrates</h2>
+
+        <p>
+        Atenas, século V a.C. — período de intensa
+        transformação política, cultural e filosófica.
+        </p>
+
+        <div class="tabs">
+
+            <button
+            class="tab active"
+            onclick="mostrarSalaSocratesDireta('vida')">
+            Vida
+            </button>
+
+            <button
+            class="tab"
+            onclick="mostrarSalaSocratesDireta('ideias')">
+            Ideias
+            </button>
+
+            <button
+            class="tab"
+            onclick="mostrarSalaSocratesDireta('obras')">
+            Obras
+            </button>
+
+            <button
+            class="tab"
+            onclick="mostrarSalaSocratesDireta('legado')">
+            Legado
+            </button>
+
+            <button
+            class="tab"
+            onclick="mostrarSalaSocratesDireta('quiz')">
+            Quiz
+            </button>
+
+        </div>
+
+        <div id="salaSocratesDireta">
+
+            <h3>Contexto histórico</h3>
+
+            <p>
+            Sócrates viveu em Atenas durante o século V a.C.
+            e tornou-se uma das figuras fundamentais da
+            história da filosofia.
+            </p>
+
+            <h3>A vida de Sócrates</h3>
+
+            <p>
+            Foi conhecido por utilizar o diálogo e perguntas
+            para investigar conceitos como justiça, virtude,
+            conhecimento e vida boa.
+            </p>
+
+        </div>
+    `;
+
+    modal.classList.add("show");
+
+    if(typeof registrarSalaJornada50 === "function"){
+        registrarSalaJornada50("Sócrates");
+    }
+
+}
+
+
+function mostrarSalaSocratesDireta(aba){
+
+    const area =
+        document.getElementById("salaSocratesDireta");
+
+    if(!area){
+        return;
+    }
+
+    if(aba === "vida"){
+
+        area.innerHTML = `
+            <h3>Vida</h3>
+            <p>
+            Sócrates nasceu e viveu em Atenas.
+            Dedicou sua vida ao diálogo, à investigação
+            e à reflexão sobre a maneira correta de viver.
+            </p>
+
+            <h3>Infância e formação</h3>
+            <p>
+            As informações sobre sua infância são escassas.
+            O conhecimento sobre sua vida vem principalmente
+            de relatos posteriores.
+            </p>
+        `;
+
+    }
+
+    if(aba === "ideias"){
+
+        area.innerHTML = `
+            <h3>Principais ideias</h3>
+
+            <ul>
+                <li>Conhecimento e autoconhecimento.</li>
+                <li>Investigação por meio do diálogo.</li>
+                <li>Busca pela virtude.</li>
+                <li>Questionamento das certezas.</li>
+            </ul>
+        `;
+
+    }
+
+    if(aba === "obras"){
+
+        area.innerHTML = `
+            <h3>Obras e fontes</h3>
+
+            <p>
+            Sócrates não deixou obras escritas.
+            Seu pensamento é conhecido principalmente
+            através de autores como Platão, Xenofonte
+            e Aristófanes.
+            </p>
+        `;
+
+    }
+
+    if(aba === "legado"){
+
+        area.innerHTML = `
+            <h3>Legado</h3>
+
+            <p>
+            Sua maneira de filosofar influenciou profundamente
+            Platão e, por meio dele, grande parte da tradição
+            filosófica ocidental.
+            </p>
+        `;
+
+    }
+
+    if(aba === "quiz"){
+
+        area.innerHTML = `
+            <h3>🧠 Teste seus conhecimentos</h3>
+
+            <p>
+            Qual prática é especialmente associada a Sócrates?
+            </p>
+
+            <button
+            class="goldbtn"
+            onclick="alert('✓ Resposta correta! O diálogo e a investigação por perguntas.')">
+            O diálogo e a investigação por perguntas
+            </button>
+
+            <br><br>
+
+            <button
+            class="ghostbtn"
+            onclick="alert('Tente novamente.')">
+            A conquista militar
+            </button>
+        `;
+
+    }
+
+    }
 </script>
 
 </body>
