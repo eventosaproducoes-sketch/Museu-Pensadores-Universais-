@@ -4803,6 +4803,56 @@ media.innerHTML = `
 `;
 
 document.querySelector("main").appendChild(media);
+    /* REGISTRO AUTOMÁTICO DAS SALAS */
+
+document.addEventListener("click", function(event){
+
+    const botao = event.target.closest("button");
+
+    if(!botao) return;
+
+    if(botao.textContent.trim() !== "Visitar sala") return;
+
+    const cartao = botao.closest(".thinker-card");
+
+    if(!cartao) return;
+
+    const titulo = cartao.querySelector("h3,h2");
+
+    if(!titulo) return;
+
+    const nome = titulo.textContent.trim();
+
+    let visitas = [];
+
+    try{
+        visitas = JSON.parse(
+            localStorage.getItem("museu_visitas_50") || "[]"
+        );
+    }catch(e){
+        visitas = [];
+    }
+
+    if(!visitas.includes(nome)){
+
+        visitas.push(nome);
+
+        localStorage.setItem(
+            "museu_visitas_50",
+            JSON.stringify(visitas)
+        );
+
+    }
+
+    if(typeof atualizarConquistas50 === "function"){
+        atualizarConquistas50();
+    }
+
+    if(typeof atualizar50 === "function"){
+        atualizar50();
+    }
+
+});
 </script>
 
 </body>
