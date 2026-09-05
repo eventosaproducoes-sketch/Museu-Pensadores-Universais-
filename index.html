@@ -4852,6 +4852,74 @@ document.addEventListener("click", function(event){
     }
 
 });
+    /* =========================================================
+   CORREÇÃO DEFINITIVA — MAPA DO MUSEU
+   ========================================================= */
+
+document.addEventListener("click", function(event){
+
+    const botao = event.target.closest(".mapa-sala");
+
+    if(!botao) return;
+
+    const texto = botao.innerText.toLowerCase();
+
+    let periodo = "";
+
+    if(texto.includes("antiguidade")){
+        periodo = "Antiguidade";
+    }
+
+    else if(texto.includes("idade média")){
+        periodo = "Idade Média";
+    }
+
+    else if(texto.includes("renascimento")){
+        periodo = "Renascimento";
+    }
+
+    else if(texto.includes("iluminismo")){
+        periodo = "Iluminismo";
+    }
+
+    else if(texto.includes("séculos xix")){
+        periodo = "Moderna";
+    }
+
+    else if(texto.includes("brasil")){
+        periodo = "Brasil";
+    }
+
+    if(!periodo) return;
+
+    const campo =
+    document.getElementById("thinkerSearch");
+
+    if(!campo) return;
+
+    campo.value = periodo;
+
+    if(typeof renderThinkers === "function"){
+        renderThinkers();
+    }
+
+    const area =
+    document.getElementById("pensadores");
+
+    if(area){
+
+        setTimeout(function(){
+
+            area.scrollIntoView({
+                behavior:"smooth",
+                block:"start"
+            });
+
+        },100);
+
+    }
+
+});
 </script>
 
 </body>
