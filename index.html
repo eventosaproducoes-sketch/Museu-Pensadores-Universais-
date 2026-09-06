@@ -1402,6 +1402,105 @@ main{
     }
 
     }
+    /* =========================================================
+   MUSEU — UNIVERSO GALÁCTICO
+   ========================================================= */
+
+body{
+    background:
+        #02030a
+        url("galaxia-museu.png")
+        center top / cover
+        fixed
+        no-repeat;
+}
+
+/* Escurece suavemente o espaço */
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    background:
+        linear-gradient(
+            rgba(0,0,0,.12),
+            rgba(0,0,0,.55)
+        ),
+        radial-gradient(
+            ellipse at center,
+            transparent 35%,
+            rgba(0,0,0,.35) 100%
+        );
+    pointer-events:none;
+    z-index:-1;
+}
+
+/* Mantém o conteúdo acima do fundo */
+main{
+    position:relative;
+    z-index:1;
+}
+
+/* Transparência elegante nas seções */
+.section{
+    background:rgba(2,3,8,.20);
+}
+
+/* Cartões com aparência de vidro */
+.card,
+.hero-card,
+.mapa-museu{
+    background:
+        linear-gradient(
+            145deg,
+            rgba(12,14,22,.70),
+            rgba(3,4,9,.58)
+        );
+
+    backdrop-filter:blur(5px);
+}
+
+/* Barra superior */
+.topbar{
+    background:rgba(2,3,8,.70);
+    backdrop-filter:blur(18px);
+}
+
+/* Campo de pesquisa */
+.searchbar input{
+    background:rgba(3,4,9,.72);
+}
+
+/* Exposição */
+.exhibition{
+    background:
+        linear-gradient(
+            180deg,
+            rgba(4,5,12,.48),
+            rgba(2,3,8,.68)
+        );
+}
+
+/* Modal */
+.modal-box{
+    background:
+        linear-gradient(
+            145deg,
+            rgba(12,14,21,.97),
+            rgba(3,4,8,.97)
+        );
+
+    backdrop-filter:blur(18px);
+}
+
+/* Celular */
+@media(max-width:560px){
+
+    body{
+        background-position:center top;
+        background-size:auto 100%;
+    }
+
+    }
 </style>
 </head>
 
