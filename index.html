@@ -2731,7 +2731,1163 @@ atualizarJornada();
 })();
 
 </script>
+<script>
 
+/* =====================================================
+   MUSEU — SISTEMA DE ESTUDO DOS PENSADORES
+   VERSÃO 1
+===================================================== */
+
+(function(){
+
+const estudosPensadores = {
+
+"Sócrates":{
+
+contexto:
+"Atenas do século V a.C., período de intensa transformação política, cultural e intelectual na Grécia.",
+
+formacao:
+"Sócrates não deixou textos próprios. Seu pensamento é conhecido principalmente através de Platão, Xenofonte e outras fontes antigas.",
+
+conceitos:[
+"Maiêutica",
+"Diálogo",
+"Ironia socrática",
+"Conhecimento de si",
+"Exame da vida"
+],
+
+metodo:
+"Sócrates utilizava perguntas e diálogos para examinar as opiniões das pessoas e revelar contradições.",
+
+estudo:
+"O estudante deve investigar como Sócrates transforma uma conversa comum em uma investigação filosófica.",
+
+criticas:
+"As fontes sobre Sócrates foram escritas por outras pessoas e apresentam diferentes retratos do filósofo.",
+
+atualidade:
+"O método de questionar pressupostos continua importante na educação, no pensamento crítico e na análise de argumentos.",
+
+perguntas:[
+"Por que Sócrates fazia tantas perguntas?",
+"Qual é a diferença entre opinião e conhecimento?",
+"É possível viver uma vida boa sem examiná-la?"
+]
+
+},
+
+"Platão":{
+
+contexto:
+"Grécia clássica, após a crise política de Atenas e a morte de Sócrates.",
+
+formacao:
+"Discípulo de Sócrates e fundador da Academia.",
+
+conceitos:[
+"Teoria das Formas",
+"Conhecimento",
+"Justiça",
+"Alma",
+"Política"
+],
+
+metodo:
+"Platão apresenta muitas de suas ideias através de diálogos filosóficos.",
+
+estudo:
+"O estudante deve analisar como Platão relaciona conhecimento, educação, justiça e organização política.",
+
+criticas:
+"Suas propostas políticas e sua concepção de conhecimento foram amplamente debatidas e criticadas ao longo da história.",
+
+atualidade:
+"Questões sobre educação, justiça, política e conhecimento continuam presentes em debates contemporâneos.",
+
+perguntas:[
+"O que Platão entende por conhecimento?",
+"O que seria uma sociedade justa?",
+"Qual deve ser o papel da educação?"
+]
+
+},
+
+"Aristóteles":{
+
+contexto:
+"Grécia do século IV a.C., período de grande desenvolvimento da filosofia e das ciências.",
+
+formacao:
+"Discípulo de Platão e posteriormente professor de Alexandre da Macedônia.",
+
+conceitos:[
+"Lógica",
+"Ética",
+"Virtude",
+"Causa",
+"Política",
+"Observação"
+],
+
+metodo:
+"Aristóteles combinava investigação racional, classificação, observação e análise lógica.",
+
+estudo:
+"O estudante deve perceber como Aristóteles procura organizar diferentes áreas do conhecimento.",
+
+criticas:
+"Algumas explicações científicas de Aristóteles foram posteriormente superadas pelo desenvolvimento da ciência moderna.",
+
+atualidade:
+"Suas contribuições para lógica, ética e filosofia política continuam estudadas.",
+
+perguntas:[
+"O que é uma vida virtuosa?",
+"Como Aristóteles entende a felicidade?",
+"Por que a lógica é importante para o conhecimento?"
+]
+
+},
+
+"Agostinho de Hipona":{
+
+contexto:
+"Antiguidade tardia, período de transformação do mundo romano e expansão do cristianismo.",
+
+formacao:
+"Pensador profundamente influenciado pela filosofia antiga e pela tradição cristã.",
+
+conceitos:[
+"Interioridade",
+"Tempo",
+"Fé",
+"Razão",
+"Vontade"
+],
+
+metodo:
+"Agostinho combina reflexão filosófica, experiência interior e pensamento teológico.",
+
+estudo:
+"Investigar como Agostinho relaciona conhecimento, memória, tempo, vontade e fé.",
+
+criticas:
+"Seu pensamento deve ser estudado também dentro do contexto histórico e religioso em que foi produzido.",
+
+atualidade:
+"Suas reflexões sobre memória, identidade e interioridade continuam relevantes para a filosofia.",
+
+perguntas:[
+"Como percebemos o tempo?",
+"O que significa conhecer a si mesmo?",
+"Qual relação pode existir entre fé e razão?"
+]
+
+},
+
+"Tomás de Aquino":{
+
+contexto:
+"Europa medieval, período de desenvolvimento das universidades e da escolástica.",
+
+formacao:
+"Pensador cristão fortemente influenciado por Aristóteles.",
+
+conceitos:[
+"Razão",
+"Fé",
+"Lei natural",
+"Ética",
+"Causa"
+],
+
+metodo:
+"Procura organizar argumentos filosóficos e teológicos através de questões, objeções e respostas.",
+
+estudo:
+"Observar como Tomás tenta estabelecer uma relação entre investigação racional e teologia.",
+
+criticas:
+"Suas conclusões devem ser analisadas considerando as premissas filosóficas e teológicas de seu período.",
+
+atualidade:
+"Debates sobre ética, lei natural e relação entre religião e filosofia ainda dialogam com sua obra.",
+
+perguntas:[
+"Razão e fé precisam ser opostas?",
+"O que torna uma ação moral?",
+"Existe uma moral universal?"
+]
+
+},
+
+"Averróis":{
+
+contexto:
+"Al-Andalus medieval, ambiente de intenso intercâmbio intelectual entre tradições islâmicas, judaicas e cristãs.",
+
+formacao:
+"Filósofo e médico profundamente ligado ao estudo de Aristóteles.",
+
+conceitos:[
+"Razão",
+"Filosofia",
+"Aristóteles",
+"Conhecimento",
+"Interpretação"
+],
+
+metodo:
+"Utilizou análise filosófica e comentários sistemáticos para interpretar Aristóteles.",
+
+estudo:
+"Investigar a importância de Averróis na transmissão e interpretação da filosofia aristotélica.",
+
+criticas:
+"Seu pensamento gerou debates filosóficos e teológicos tanto no mundo islâmico quanto posteriormente na Europa.",
+
+atualidade:
+"Ajuda a compreender o intercâmbio intelectual entre diferentes civilizações.",
+
+perguntas:[
+"Como ideias atravessam diferentes culturas?",
+"Qual o papel da interpretação na filosofia?",
+"Por que Aristóteles foi tão importante para Averróis?"
+]
+
+},
+
+"Leonardo da Vinci":{
+
+contexto:
+"Renascimento italiano, período marcado por novas relações entre arte, ciência e investigação da natureza.",
+
+formacao:
+"Artista, inventor, observador da natureza e estudioso de diversas áreas.",
+
+conceitos:[
+"Observação",
+"Experiência",
+"Arte",
+"Anatomia",
+"Engenharia"
+],
+
+metodo:
+"Leonardo utilizava observação detalhada, desenhos, experimentação e investigação prática.",
+
+estudo:
+"Analisar como Leonardo aproxima arte e investigação científica.",
+
+criticas:
+"Nem todos os seus projetos chegaram a ser concluídos ou comprovados na prática.",
+
+atualidade:
+"Seu exemplo é importante para estudar criatividade, interdisciplinaridade e observação.",
+
+perguntas:[
+"Arte e ciência podem trabalhar juntas?",
+"Por que observar é importante para conhecer?",
+"O que podemos aprender com sua interdisciplinaridade?"
+]
+
+},
+
+"Nicolau Maquiavel":{
+
+contexto:
+"Itália renascentista, marcada por disputas entre cidades, famílias e poderes políticos.",
+
+formacao:
+"Funcionário público, diplomata e escritor político.",
+
+conceitos:[
+"Poder",
+"Estado",
+"Virtù",
+"Fortuna",
+"Política"
+],
+
+metodo:
+"Analisa a política considerando acontecimentos históricos e comportamentos concretos dos governantes.",
+
+estudo:
+"Separar a análise política de Maquiavel das interpretações simplificadas que associam seu nome apenas à manipulação.",
+
+criticas:
+"Suas ideias sobre poder e governantes provocaram debates sobre ética e política.",
+
+atualidade:
+"Suas análises ajudam a estudar poder, liderança e funcionamento das instituições.",
+
+perguntas:[
+"Política e moral são sempre inseparáveis?",
+"O que leva um governo a manter o poder?",
+"Como devemos interpretar O Príncipe?"
+]
+
+},
+
+"John Locke":{
+
+contexto:
+"Inglaterra dos séculos XVII e XVIII, período de conflitos políticos e transformações intelectuais.",
+
+formacao:
+"Filósofo interessado em conhecimento, política, educação e liberdade.",
+
+conceitos:[
+"Experiência",
+"Liberdade",
+"Direitos",
+"Propriedade",
+"Governo"
+],
+
+metodo:
+"Analisa como adquirimos conhecimento e como instituições políticas podem ser justificadas.",
+
+estudo:
+"Investigar a relação entre experiência, conhecimento e direitos políticos.",
+
+criticas:
+"Suas ideias políticas e concepções sobre propriedade foram objeto de interpretações e críticas posteriores.",
+
+atualidade:
+"Suas ideias influenciaram concepções modernas de direitos e governo.",
+
+perguntas:[
+"De onde vem o conhecimento?",
+"Quais direitos um governo deve proteger?",
+"Qual é o limite do poder político?"
+]
+
+},
+
+"Jean-Jacques Rousseau":{
+
+contexto:
+"Europa do século XVIII, período do Iluminismo e de profundas discussões sobre sociedade e política.",
+
+formacao:
+"Filósofo e escritor envolvido em debates sobre educação, desigualdade e organização política.",
+
+conceitos:[
+"Contrato social",
+"Liberdade",
+"Vontade geral",
+"Educação",
+"Desigualdade"
+],
+
+metodo:
+"Investiga criticamente as relações entre indivíduo, sociedade e instituições políticas.",
+
+estudo:
+"Analisar sua crítica às desigualdades e sua concepção de soberania popular.",
+
+criticas:
+"Algumas ideias de Rousseau foram interpretadas de maneiras muito diferentes por correntes políticas posteriores.",
+
+atualidade:
+"Debates sobre democracia, educação e desigualdade continuam dialogando com Rousseau.",
+
+perguntas:[
+"O que torna uma sociedade legítima?",
+"Liberdade individual pode entrar em conflito com a vontade coletiva?",
+"Qual deve ser o papel da educação?"
+]
+
+},
+
+"Voltaire":{
+
+contexto:
+"Iluminismo europeu do século XVIII.",
+
+formacao:
+"Escritor, filósofo e crítico de instituições políticas e religiosas.",
+
+conceitos:[
+"Liberdade de pensamento",
+"Tolerância",
+"Razão",
+"Crítica",
+"Direitos"
+],
+
+metodo:
+"Utilizava ensaios, cartas, literatura e sátira para criticar ideias e instituições.",
+
+estudo:
+"Investigar como a crítica e a liberdade de pensamento aparecem em sua obra.",
+
+criticas:
+"Seu pensamento possui contradições e limites históricos que devem ser analisados criticamente.",
+
+atualidade:
+"Tolerância, liberdade de expressão e crítica ao autoritarismo continuam temas centrais.",
+
+perguntas:[
+"Existe limite para a liberdade de expressão?",
+"Por que a tolerância é importante?",
+"Como a sátira pode ser uma ferramenta intelectual?"
+]
+
+},
+
+"Immanuel Kant":{
+
+contexto:
+"Iluminismo europeu do século XVIII.",
+
+formacao:
+"Filósofo alemão interessado nos limites da razão, conhecimento e moral.",
+
+conceitos:[
+"Razão",
+"Conhecimento",
+"Autonomia",
+"Dever",
+"Imperativo categórico"
+],
+
+metodo:
+"Procura investigar as condições e os limites através dos quais a razão humana pode conhecer e agir.",
+
+estudo:
+"Estudar a relação entre conhecimento, liberdade e moralidade.",
+
+criticas:
+"Sua filosofia é complexa e recebeu diferentes interpretações e críticas posteriores.",
+
+atualidade:
+"Autonomia, responsabilidade moral e dignidade humana continuam temas fundamentais.",
+
+perguntas:[
+"O que torna uma ação moral?",
+"O ser humano é realmente autônomo?",
+"Quais são os limites do conhecimento?"
+]
+
+},
+
+"Karl Marx":{
+
+contexto:
+"Europa do século XIX, marcada pela industrialização, urbanização e conflitos entre classes sociais.",
+
+formacao:
+"Filósofo, economista e crítico social.",
+
+conceitos:[
+"Classe social",
+"Trabalho",
+"Capital",
+"Alienação",
+"Materialismo histórico"
+],
+
+metodo:
+"Analisa relações sociais e históricas a partir das condições materiais e econômicas.",
+
+estudo:
+"Investigar como Marx relaciona trabalho, produção, propriedade e organização social.",
+
+criticas:
+"Suas teorias foram interpretadas de diferentes maneiras e também receberam fortes críticas econômicas, políticas e filosóficas.",
+
+atualidade:
+"Desigualdade, trabalho, capitalismo e relações de produção continuam sendo temas de debate.",
+
+perguntas:[
+"Como o trabalho influencia a sociedade?",
+"O que produz desigualdade?",
+"Como devemos diferenciar Marx de interpretações políticas posteriores?"
+]
+
+},
+
+"Charles Darwin":{
+
+contexto:
+"Século XIX, período de grande expansão das ciências naturais.",
+
+formacao:
+"Naturalista britânico interessado na diversidade e transformação dos seres vivos.",
+
+conceitos:[
+"Evolução",
+"Seleção natural",
+"Adaptação",
+"Variação",
+"Descendência comum"
+],
+
+metodo:
+"Baseou-se em observações, comparação de espécies, evidências e construção gradual de explicações.",
+
+estudo:
+"Compreender a seleção natural e diferenciar evolução biológica de interpretações sociais equivocadas.",
+
+criticas:
+"A teoria da evolução foi ampliada e modificada pela ciência posterior, especialmente com genética e biologia molecular.",
+
+atualidade:
+"A evolução continua sendo um dos fundamentos das ciências biológicas modernas.",
+
+perguntas:[
+"O que é seleção natural?",
+"Como uma população pode mudar ao longo das gerações?",
+"Qual a diferença entre evolução biológica e evolução cultural?"
+]
+
+},
+
+"Friedrich Nietzsche":{
+
+contexto:
+"Europa do século XIX, período de profundas transformações culturais e filosóficas.",
+
+formacao:
+"Filósofo e escritor alemão.",
+
+conceitos:[
+"Crítica da moral",
+"Niilismo",
+"Vontade de potência",
+"Genealogia",
+"Superação"
+],
+
+metodo:
+"Utiliza crítica cultural, genealogia, aforismos e análise dos valores.",
+
+estudo:
+"Investigar como Nietzsche questiona a origem e o valor dos sistemas morais.",
+
+criticas:
+"Seu pensamento foi posteriormente apropriado e interpretado de diferentes formas, algumas delas controversas.",
+
+atualidade:
+"Suas críticas aos valores e à cultura continuam influenciando filosofia, literatura e psicologia.",
+
+perguntas:[
+"De onde vêm nossos valores?",
+"O que acontece quando antigos valores perdem sua força?",
+"Podemos criar novos valores?"
+]
+
+},
+
+"Sigmund Freud":{
+
+contexto:
+"Europa do final do século XIX e início do século XX.",
+
+formacao:
+"Médico e fundador da psicanálise.",
+
+conceitos:[
+"Inconsciente",
+"Sonhos",
+"Repressão",
+"Desejo",
+"Psicanálise"
+],
+
+metodo:
+"Desenvolveu métodos clínicos e interpretações voltadas para processos psíquicos inconscientes.",
+
+estudo:
+"Estudar a importância histórica da hipótese do inconsciente e distinguir conceitos psicanalíticos de evidências da psicologia contemporânea.",
+
+criticas:
+"Várias hipóteses freudianas foram criticadas ou reformuladas pelas ciências psicológicas posteriores.",
+
+atualidade:
+"Seu impacto cultural permanece enorme, especialmente em literatura, cinema, artes e história das ideias.",
+
+perguntas:[
+"O que significa inconsciente?",
+"Como os sonhos foram interpretados por Freud?",
+"Quais ideias de Freud permanecem controversas?"
+]
+
+},
+
+"Albert Einstein":{
+
+contexto:
+"Física do início do século XX, período de profundas transformações científicas.",
+
+formacao:
+"Físico responsável por contribuições fundamentais para a física moderna.",
+
+conceitos:[
+"Relatividade",
+"Espaço-tempo",
+"Gravidade",
+"Luz",
+"Movimento"
+],
+
+metodo:
+"Utilizou raciocínio teórico, experimentos mentais e formulação matemática.",
+
+estudo:
+"Compreender por que espaço e tempo não são absolutos na relatividade e como suas ideias modificaram a física.",
+
+criticas:
+"Suas teorias foram submetidas a testes experimentais e posteriormente integradas a novos desenvolvimentos científicos.",
+
+atualidade:
+"A relatividade permanece fundamental para diversas áreas da física e tecnologia.",
+
+perguntas:[
+"O espaço e o tempo são absolutos?",
+"O que significa relatividade?",
+"Como uma teoria científica é testada?"
+]
+
+},
+
+"Hannah Arendt":{
+
+contexto:
+"Europa do século XX, marcada por guerras, totalitarismos e grandes transformações políticas.",
+
+formacao:
+"Filósofa e teórica política de origem alemã.",
+
+conceitos:[
+"Totalitarismo",
+"Política",
+"Liberdade",
+"Ação",
+"Responsabilidade"
+],
+
+metodo:
+"Analisa acontecimentos históricos e políticos relacionando-os a conceitos filosóficos.",
+
+estudo:
+"Investigar suas análises sobre totalitarismo, ação política e responsabilidade.",
+
+criticas:
+"Algumas de suas interpretações históricas e políticas são debatidas por pesquisadores.",
+
+atualidade:
+"Suas ideias continuam presentes em estudos sobre democracia, autoritarismo e responsabilidade política.",
+
+perguntas:[
+"O que caracteriza um regime totalitário?",
+"Qual é a importância da ação política?",
+"Como indivíduos podem agir diante de sistemas autoritários?"
+]
+
+},
+
+"Paulo Freire":{
+
+contexto:
+"Brasil do século XX, marcado por desigualdade social, debates educacionais e transformações políticas.",
+
+formacao:
+"Educador e pensador brasileiro com atuação internacional.",
+
+conceitos:[
+"Diálogo",
+"Educação crítica",
+"Consciência",
+"Práxis",
+"Autonomia"
+],
+
+metodo:
+"Defende uma educação baseada no diálogo, reflexão crítica e participação ativa do estudante.",
+
+estudo:
+"Investigar a relação entre educação, consciência crítica e transformação social.",
+
+criticas:
+"Suas propostas também são objeto de debates sobre métodos educacionais, política e aplicação prática.",
+
+atualidade:
+"Seu pensamento continua influente em debates sobre educação e formação cidadã.",
+
+perguntas:[
+"Educação pode transformar a sociedade?",
+"O que significa aprender através do diálogo?",
+"Qual deve ser o papel do estudante?"
+]
+
+},
+
+"Nelson Mandela":{
+
+contexto:
+"África do Sul do século XX, marcada pelo apartheid e pela luta contra a segregação racial.",
+
+formacao:
+"Advogado e líder político envolvido na luta contra o apartheid.",
+
+conceitos:[
+"Apartheid",
+"Liberdade",
+"Reconciliação",
+"Igualdade",
+"Democracia"
+],
+
+metodo:
+"Utilizou organização política, resistência e posteriormente processos de negociação e reconciliação.",
+
+estudo:
+"Compreender a história do apartheid e os diferentes caminhos utilizados na luta contra ele.",
+
+criticas:
+"Suas estratégias políticas devem ser estudadas dentro das circunstâncias históricas específicas da África do Sul.",
+
+atualidade:
+"É referência para estudos sobre transição política, democracia e reconciliação.",
+
+perguntas:[
+"O que foi o apartheid?",
+"Como uma sociedade pode reconstruir-se após um conflito?",
+"Qual o papel da reconciliação na política?"
+]
+
+},
+
+"Martin Luther King Jr.":{
+
+contexto:
+"Estados Unidos do século XX, durante a luta pelos direitos civis.",
+
+formacao:
+"Líder religioso e político do movimento pelos direitos civis.",
+
+conceitos:[
+"Direitos civis",
+"Não violência",
+"Igualdade",
+"Justiça",
+"Desobediência civil"
+],
+
+metodo:
+"Defendeu mobilização social, protestos e resistência não violenta.",
+
+estudo:
+"Investigar a relação entre direitos civis, resistência não violenta e transformação política.",
+
+criticas:
+"Seu pensamento deve ser estudado dentro da diversidade de estratégias existentes no movimento pelos direitos civis.",
+
+atualidade:
+"Seus discursos continuam sendo estudados em debates sobre igualdade e direitos humanos.",
+
+perguntas:[
+"Por que a não violência pode ser uma estratégia política?",
+"O que são direitos civis?",
+"Como movimentos sociais produzem mudanças?"
+]
+
+},
+
+"Carl Sagan":{
+
+contexto:
+"Ciência do século XX, período de expansão da astronomia e da exploração espacial.",
+
+formacao:
+"Astrônomo, cientista e divulgador científico.",
+
+conceitos:[
+"Método científico",
+"Pensamento crítico",
+"Universo",
+"Vida extraterrestre",
+"Divulgação científica"
+],
+
+metodo:
+"Defendia investigação baseada em evidências e pensamento crítico.",
+
+estudo:
+"Investigar como ciência e comunicação podem aproximar conhecimento científico do público.",
+
+criticas:
+"Algumas hipóteses e especulações científicas devem ser diferenciadas das evidências consolidadas.",
+
+atualidade:
+"Seu legado permanece importante na divulgação científica e no pensamento crítico.",
+
+perguntas:[
+"Como diferenciar ciência de pseudociência?",
+"Por que evidências são importantes?",
+"Como comunicar ciência para o público?"
+]
+
+},
+
+"Machado de Assis":{
+
+contexto:
+"Brasil do século XIX e início do século XX.",
+
+formacao:
+"Escritor brasileiro de enorme importância para a literatura nacional.",
+
+conceitos:[
+"Ironia",
+"Sociedade",
+"Psicologia",
+"Crítica social",
+"Narrativa"
+],
+
+metodo:
+"Utilizou ironia, narradores complexos e análise psicológica dos personagens.",
+
+estudo:
+"Investigar como Machado representa sociedade, relações humanas, poder e contradições.",
+
+criticas:
+"Suas obras devem ser analisadas também considerando o contexto social e histórico brasileiro.",
+
+atualidade:
+"Continua fundamental para estudar literatura brasileira, narrativa e comportamento humano.",
+
+perguntas:[
+"Como Machado utiliza a ironia?",
+"O narrador sempre diz a verdade?",
+"Como a literatura pode revelar uma sociedade?"
+]
+
+},
+
+"Milton Santos":{
+
+contexto:
+"Brasil e mundo do século XX, marcado por urbanização, globalização e profundas desigualdades.",
+
+formacao:
+"Geógrafo brasileiro de reconhecimento internacional.",
+
+conceitos:[
+"Espaço geográfico",
+"Globalização",
+"Território",
+"Desigualdade",
+"Cidadania"
+],
+
+metodo:
+"Analisa relações entre espaço, economia, sociedade, técnica e política.",
+
+estudo:
+"Investigar como a organização do território influencia oportunidades e desigualdades.",
+
+criticas:
+"Suas interpretações podem ser comparadas com outras correntes da geografia e das ciências sociais.",
+
+atualidade:
+"Suas ideias ajudam a interpretar globalização, cidades e desigualdades contemporâneas.",
+
+perguntas:[
+"Como o espaço influencia a vida das pessoas?",
+"Globalização beneficia todos da mesma maneira?",
+"Qual a relação entre território e desigualdade?"
+]
+
+},
+
+"Darcy Ribeiro":{
+
+contexto:
+"Brasil do século XX, marcado por debates sobre identidade nacional, educação e desenvolvimento.",
+
+formacao:
+"Antropólogo, educador, escritor e pensador brasileiro.",
+
+conceitos:[
+"Cultura",
+"Identidade",
+"Educação",
+"Povos indígenas",
+"Formação do Brasil"
+],
+
+metodo:
+"Combina antropologia, história, educação e análise social.",
+
+estudo:
+"Investigar como Darcy interpreta a formação cultural e histórica brasileira.",
+
+criticas:
+"Suas interpretações sobre o Brasil também devem ser comparadas com outros estudos históricos e antropológicos.",
+
+atualidade:
+"Questões sobre identidade, educação e formação cultural permanecem centrais.",
+
+perguntas:[
+"Como se forma uma identidade nacional?",
+"Qual o papel da educação?",
+"Como diferentes povos participaram da formação do Brasil?"
+]
+
+},
+
+"Ailton Krenak":{
+
+contexto:
+"Brasil contemporâneo, marcado por debates sobre povos indígenas, meio ambiente e crise climática.",
+
+formacao:
+"Pensador, escritor e liderança indígena brasileira.",
+
+conceitos:[
+"Natureza",
+"Humanidade",
+"Povos indígenas",
+"Território",
+"Crise ambiental"
+],
+
+metodo:
+"Questiona concepções modernas que colocam a humanidade separada da natureza.",
+
+estudo:
+"Comparar diferentes formas de compreender a relação entre seres humanos, natureza e território.",
+
+criticas:
+"Suas ideias devem ser estudadas em diálogo com diferentes tradições indígenas, ambientais e filosóficas.",
+
+atualidade:
+"Seus temas dialogam diretamente com questões ambientais e sociais contemporâneas.",
+
+perguntas:[
+"Humanidade e natureza estão realmente separadas?",
+"Como diferentes culturas entendem a natureza?",
+"Que relação existe entre território e identidade?"
+]
+
+}
+
+};
+
+
+/* =====================================================
+   CRIAÇÃO DO BOTÃO "ESTUDAR"
+===================================================== */
+
+function adicionarBotaoEstudo(){
+
+const tabs =
+document.querySelector(
+"#modalContent .tabs"
+);
+
+if(!tabs){
+return;
+}
+
+if(
+document.getElementById(
+"botaoEstudoMuseu"
+)
+){
+return;
+}
+
+const botao =
+document.createElement("button");
+
+botao.id =
+"botaoEstudoMuseu";
+
+botao.textContent =
+"📚 Estudar";
+
+botao.onclick =
+mostrarEstudoPensador;
+
+tabs.appendChild(botao);
+
+}
+
+
+/* =====================================================
+   MOSTRAR CONTEÚDO DE ESTUDO
+===================================================== */
+
+function mostrarEstudoPensador(){
+
+const titulo =
+document.querySelector(
+"#modalContent h2"
+);
+
+if(!titulo){
+return;
+}
+
+const nome =
+titulo.textContent
+.replace("🏛️","")
+.trim();
+
+const estudo =
+estudosPensadores[nome];
+
+if(!estudo){
+
+alert(
+"Conteúdo de estudo deste pensador será desenvolvido em uma próxima etapa."
+);
+
+return;
+
+}
+
+const area =
+document.getElementById(
+"tabContent"
+);
+
+if(!area){
+return;
+}
+
+area.innerHTML = `
+
+<h3>
+📚 O que estudar sobre ${nome}
+</h3>
+
+<h3>
+🏛️ Contexto histórico
+</h3>
+
+<p>
+${estudo.contexto}
+</p>
+
+<h3>
+🎓 Vida e formação
+</h3>
+
+<p>
+${estudo.formacao}
+</p>
+
+<h3>
+🧠 Conceitos fundamentais
+</h3>
+
+<p>
+${estudo.conceitos.join(" • ")}
+</p>
+
+<h3>
+🔎 Método de pensamento
+</h3>
+
+<p>
+${estudo.metodo}
+</p>
+
+<h3>
+📖 Roteiro de estudo
+</h3>
+
+<p>
+${estudo.estudo}
+</p>
+
+<h3>
+⚖️ Críticas e debates
+</h3>
+
+<p>
+${estudo.criticas}
+</p>
+
+<h3>
+🌎 Por que estudar hoje?
+</h3>
+
+<p>
+${estudo.atualidade}
+</p>
+
+<h3>
+💭 Perguntas para reflexão
+</h3>
+
+<ul style="padding-left:22px;color:#eee;">
+
+${estudo.perguntas
+.map(
+p=>`<li style="margin:8px 0">${p}</li>`
+)
+.join("")}
+
+</ul>
+
+`;
+
+}
+
+
+/* =====================================================
+   OBSERVA ABERTURA DAS SALAS
+===================================================== */
+
+const observador =
+new MutationObserver(
+function(){
+
+adicionarBotaoEstudo();
+
+}
+);
+
+const modal =
+document.getElementById("modal");
+
+if(modal){
+
+observador.observe(
+modal,
+{
+childList:true,
+subtree:true
+}
+);
+
+}
+
+
+/* =====================================================
+   DISPONIBILIZA PARA O SITE
+===================================================== */
+
+window.estudosPensadores =
+estudosPensadores;
+
+window.mostrarEstudoPensador =
+mostrarEstudoPensador;
+
+
+})();
+
+</script>
 </body>
 
 </html>
