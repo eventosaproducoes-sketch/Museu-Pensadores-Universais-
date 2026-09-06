@@ -4435,6 +4435,844 @@ mostrarEstudoPensador;
 
 })();
 </script>
+   <!-- =========================================================
+     MUSEU VIRTUAL DOS PENSADORES UNIVERSAIS
+     BANCO ACADÊMICO DOS PENSADORES
+     MÓDULO 01 — SÓCRATES
+     
+     IMPORTANTE:
+     Este módulo é independente.
+     Não altera o visual nem substitui funções existentes.
+     ========================================================= -->
+
+<script>
+(function () {
+
+  "use strict";
+
+  /* Evita carregar o banco duas vezes */
+  if (window.__BANCO_ACADEMICO_MUSEU__) return;
+  window.__BANCO_ACADEMICO_MUSEU__ = true;
+
+
+  /* =========================================================
+     BANCO PRINCIPAL
+     ========================================================= */
+
+  const banco = {
+
+    "Sócrates": {
+
+      id: "socrates",
+
+      nome: "Sócrates",
+
+      nomeCompleto:
+        "Sócrates de Atenas",
+
+      nascimento: {
+        data: "c. 470 a.C.",
+        local: "Atenas ou região da Ática",
+        observacao:
+          "A data exata e alguns detalhes biográficos permanecem objeto de discussão."
+      },
+
+      morte: {
+        data: "399 a.C.",
+        local: "Atenas",
+        causa:
+          "Execução por ingestão de cicuta após sua condenação."
+      },
+
+
+      /* =====================================================
+         IDENTIDADE
+         ===================================================== */
+
+      identidade: {
+
+        profissao:
+          "Filósofo ateniense",
+
+        periodo:
+          "Grécia Antiga — século V a.C.",
+
+        cidade:
+          "Atenas",
+
+        importancia:
+          "Uma das figuras fundamentais da história da filosofia ocidental.",
+
+        caracteristica:
+          "Conhecido sobretudo pela prática do questionamento filosófico e pelo exame da vida humana."
+
+      },
+
+
+      /* =====================================================
+         INFÂNCIA E VIDA
+         ===================================================== */
+
+      biografia: {
+
+        resumo:
+          "Sócrates viveu em Atenas durante o século V a.C., período marcado por intensa atividade política, cultural, militar e intelectual. Não deixou obras escritas próprias conhecidas.",
+
+        infancia:
+          "As informações seguras sobre sua infância são escassas. As fontes antigas preservadas concentram-se principalmente em sua vida adulta e em suas atividades filosóficas.",
+
+        familia:
+          "As tradições antigas associam Sócrates a uma família ateniense de condição modesta. Seu pai é tradicionalmente identificado como Sofronisco e sua mãe como Fenarete.",
+
+        vidaAdulta:
+          "Passou grande parte de sua vida conversando e questionando pessoas em Atenas. As fontes também o apresentam como participante de campanhas militares.",
+
+        vidaPublica:
+          "Sua atividade filosófica acontecia principalmente por meio de conversas e perguntas, e não por meio de uma escola formal baseada em livros.",
+
+        caracterizacao:
+          "As fontes antigas apresentam Sócrates como uma figura incomum, conhecida por sua aparência, comportamento, resistência física e dedicação ao questionamento filosófico."
+
+      },
+
+
+      /* =====================================================
+         ATENAS
+         ===================================================== */
+
+      contextoHistorico: {
+
+        titulo:
+          "Atenas no século V a.C.",
+
+        descricao:
+          "Sócrates viveu durante um dos períodos mais importantes da história ateniense, marcado pela democracia, pelas guerras entre cidades gregas, pelo desenvolvimento das artes, da retórica e da investigação intelectual.",
+
+        democracia:
+          "A democracia ateniense permitia a participação política de cidadãos homens, mas era limitada e não incluía toda a população.",
+
+        guerra:
+          "Atenas esteve envolvida em conflitos importantes, especialmente na Guerra do Peloponeso contra Esparta.",
+
+        cultura:
+          "O período foi marcado por intensa produção teatral, artística, histórica e intelectual.",
+
+        sofistas:
+          "Sofistas e outros intelectuais ofereciam formação em argumentação, retórica e assuntos relacionados à vida pública.",
+
+        importanciaParaSocra:
+          "Esse ambiente ajuda a compreender por que questões sobre educação, virtude, política, conhecimento e argumentação eram tão importantes para Sócrates."
+
+      },
+
+
+      /* =====================================================
+         FORMAÇÃO E INFLUÊNCIAS
+         ===================================================== */
+
+      formacao: {
+
+        educacao:
+          "Não existe uma biografia escolar completa de Sócrates que possa ser considerada historicamente segura.",
+
+        influencias:
+          [
+            "Tradição filosófica anterior a Sócrates",
+            "Debates intelectuais da Atenas do século V a.C.",
+            "Questões éticas e políticas da vida pública ateniense",
+            "Prática do diálogo e da argumentação",
+            "Contato com diferentes grupos sociais e intelectuais"
+          ],
+
+        observacao:
+          "As tradições antigas apresentam diferentes imagens de suas influências. Por isso, o museu deverá distinguir evidência histórica de interpretação posterior."
+
+      },
+
+
+      /* =====================================================
+         MÉTODO
+         ===================================================== */
+
+      metodo: {
+
+        nome:
+          "Questionamento socrático",
+
+        descricao:
+          "Sócrates é tradicionalmente associado a conversas nas quais perguntas sucessivas são utilizadas para examinar conceitos, crenças e argumentos.",
+
+        elementos:
+          [
+            "Perguntas",
+            "Exame das definições",
+            "Identificação de contradições",
+            "Investigação das próprias crenças",
+            "Exame da vida",
+            "Busca por maior clareza conceitual"
+          ],
+
+        ironia:
+          "A chamada ironia socrática é um tema interpretativo complexo. Muitas fontes apresentam Sócrates como alguém que afirma não possuir o conhecimento que seus interlocutores acreditam possuir.",
+
+        objetivo:
+          "O objetivo não deve ser reduzido simplesmente a vencer debates. O centro da prática socrática é o exame racional de questões importantes para a vida humana."
+
+      },
+
+
+      /* =====================================================
+         IDEIAS
+         ===================================================== */
+
+      ideias: {
+
+        conhecimento:
+          "Sócrates coloca o conhecimento e a consciência da própria ignorância no centro da investigação filosófica.",
+
+        virtude:
+          "As discussões socráticas frequentemente investigam a natureza da virtude e sua relação com conhecimento, ação e vida boa.",
+
+        etica:
+          "A filosofia aparece ligada à pergunta sobre como uma pessoa deve viver.",
+
+        alma:
+          "Nas fontes socráticas, o cuidado da alma ocupa papel importante e se relaciona à qualidade moral da vida.",
+
+        exameDaVida:
+          "A tradição platônica associa Sócrates à ideia de que uma vida humana deve ser submetida ao exame racional.",
+
+        injustica:
+          "Em diálogos como o Crito, Sócrates é apresentado defendendo que cometer injustiça não se torna correto simplesmente porque alguém sofreu uma injustiça.",
+
+        politica:
+          "Sua relação com a política ateniense é complexa e não deve ser apresentada simplesmente como uma posição moderna de direita ou esquerda.",
+
+        educacao:
+          "Sua prática questiona a ideia de que educação seja apenas transmissão de informações. O diálogo exige que o interlocutor examine suas próprias crenças."
+
+      },
+
+
+      /* =====================================================
+         CONCEITOS FUNDAMENTAIS
+         ===================================================== */
+
+      conceitos: [
+
+        {
+          nome: "Conhecimento",
+          explicacao:
+            "Investigação sobre aquilo que realmente sabemos e sobre os limites do nosso conhecimento."
+        },
+
+        {
+          nome: "Ignorância",
+          explicacao:
+            "Reconhecimento de que podemos acreditar saber algo sem possuir uma compreensão suficientemente fundamentada."
+        },
+
+        {
+          nome: "Virtude",
+          explicacao:
+            "Questão central das investigações socráticas sobre a vida boa e a excelência humana."
+        },
+
+        {
+          nome: "Ética",
+          explicacao:
+            "Investigação sobre como devemos viver e agir."
+        },
+
+        {
+          nome: "Exame da vida",
+          explicacao:
+            "A vida humana deve ser examinada criticamente por meio da reflexão e do questionamento."
+        },
+
+        {
+          nome: "Diálogo",
+          explicacao:
+            "A investigação filosófica acontece por meio de perguntas, respostas, argumentos e revisão das próprias posições."
+        },
+
+        {
+          nome: "Refutação",
+          explicacao:
+            "Processo pelo qual uma posição é examinada e pode revelar contradições ou dificuldades."
+        }
+
+      ],
+
+
+      /* =====================================================
+         DISCÍPULOS E RELAÇÕES
+         ===================================================== */
+
+      pessoasRelacionadas: [
+
+        {
+          nome: "Platão",
+          relacao:
+            "Discípulo ou associado à tradição socrática e principal autor da representação filosófica de Sócrates."
+        },
+
+        {
+          nome: "Xenofonte",
+          relacao:
+            "Autor antigo que escreveu obras nas quais Sócrates aparece como personagem central."
+        },
+
+        {
+          nome: "Aristófanes",
+          relacao:
+            "Comediógrafo que apresentou uma representação satírica de Sócrates em As Nuvens."
+        },
+
+        {
+          nome: "Alcibíades",
+          relacao:
+            "Figura política ateniense associada a Sócrates em fontes antigas, especialmente no Banquete de Platão."
+        },
+
+        {
+          nome: "Críton",
+          relacao:
+            "Amigo de Sócrates apresentado no diálogo Crito."
+        },
+
+        {
+          nome: "Meleto",
+          relacao:
+            "Um dos acusadores de Sócrates em seu julgamento."
+        }
+
+      ],
+
+
+      /* =====================================================
+         OBRAS E REGISTROS
+         ===================================================== */
+
+      obras: {
+
+        aviso:
+          "Sócrates não deixou escritos próprios conhecidos. Portanto, esta seção não deve apresentar os diálogos de Platão como livros escritos por Sócrates.",
+
+        classificacao: [
+
+          {
+            titulo: "Obras próprias de Sócrates",
+            status: "Não conhecidas",
+            explicacao:
+              "Não possuímos escritos de Sócrates que tenham sobrevivido."
+          },
+
+          {
+            titulo: "Apologia de Sócrates",
+            autor:
+              "Platão",
+            status:
+              "Fonte literária sobre Sócrates",
+            explicacao:
+              "Apresenta uma versão do discurso de defesa de Sócrates em seu julgamento."
+          },
+
+          {
+            titulo: "Crito",
+            autor:
+              "Platão",
+            status:
+              "Diálogo platônico",
+            explicacao:
+              "Apresenta Sócrates discutindo com Críton questões relacionadas à justiça, às leis e à possibilidade de fugir da prisão."
+          },
+
+          {
+            titulo: "Fédon",
+            autor:
+              "Platão",
+            status:
+              "Diálogo platônico",
+            explicacao:
+              "Apresenta uma representação das últimas horas de Sócrates e discussões filosóficas relacionadas à morte e à alma."
+          },
+
+          {
+            titulo: "Banquete",
+            autor:
+              "Platão",
+            status:
+              "Diálogo platônico",
+            explicacao:
+              "Apresenta Sócrates participando de uma discussão sobre o amor."
+          },
+
+          {
+            titulo: "As Nuvens",
+            autor:
+              "Aristófanes",
+            status:
+              "Comédia antiga",
+            explicacao:
+              "Apresenta uma representação satírica de Sócrates e dos intelectuais de seu tempo."
+          },
+
+          {
+            titulo: "Memoráveis",
+            autor:
+              "Xenofonte",
+            status:
+              "Fonte antiga",
+            explicacao:
+              "Apresenta diversas conversas e episódios relacionados a Sócrates."
+          },
+
+          {
+            titulo: "Banquete",
+            autor:
+              "Xenofonte",
+            status:
+              "Fonte antiga",
+            explicacao:
+              "Outra obra de Xenofonte na qual Sócrates aparece."
+          },
+
+          {
+            titulo: "Apologia de Sócrates",
+            autor:
+              "Xenofonte",
+            status:
+              "Fonte antiga",
+            explicacao:
+              "Apresenta a interpretação de Xenofonte sobre o comportamento de Sócrates diante de seu julgamento."
+          }
+
+        ]
+
+      },
+
+
+      /* =====================================================
+         JULGAMENTO
+         ===================================================== */
+
+      julgamento: {
+
+        ano:
+          "399 a.C.",
+
+        acusacoes:
+          [
+            "Não reconhecer adequadamente os deuses da cidade",
+            "Introduzir novas entidades divinas",
+            "Corromper os jovens"
+          ],
+
+        acusadores:
+          [
+            "Meleto",
+            "Ânito",
+            "Lícon"
+          ],
+
+        defesa:
+          "A defesa de Sócrates é apresentada principalmente através da Apologia de Platão e também em uma versão de Xenofonte.",
+
+        resultado:
+          "Foi considerado culpado e condenado à morte.",
+
+        importancia:
+          "O julgamento tornou-se um dos episódios mais importantes da tradição filosófica ocidental."
+
+      },
+
+
+      /* =====================================================
+         PRISÃO E MORTE
+         ===================================================== */
+
+      morteDetalhada: {
+
+        prisao:
+          "Após a condenação, Sócrates permaneceu preso aguardando a execução.",
+
+        fuga:
+          "No Crito, Platão apresenta uma conversa na qual Críton tenta convencê-lo a fugir.",
+
+        resposta:
+          "Sócrates rejeita a fuga com base em argumentos sobre justiça, leis e responsabilidade.",
+
+        execucao:
+          "A tradição platônica apresenta Sócrates tomando cicuta.",
+
+        significado:
+          "A morte de Sócrates tornou-se parte central da tradição sobre a relação entre filosofia, consciência, justiça e vida pública."
+
+      },
+
+
+      /* =====================================================
+         PROBLEMA SOCRÁTICO
+         ===================================================== */
+
+      problemaSocrático: {
+
+        titulo:
+          "O problema socrático",
+
+        descricao:
+          "Como Sócrates não deixou textos próprios, os estudiosos precisam reconstruir sua figura a partir de autores posteriores ou contemporâneos.",
+
+        fontesPrincipais:
+          [
+            "Platão",
+            "Xenofonte",
+            "Aristófanes"
+          ],
+
+        dificuldade:
+          "Essas fontes apresentam retratos diferentes de Sócrates.",
+
+        regraDoMuseu:
+          "O museu deverá distinguir claramente fatos historicamente bem sustentados, testemunhos antigos, interpretações filosóficas e hipóteses acadêmicas."
+
+      },
+
+
+      /* =====================================================
+         CRONOLOGIA
+         ===================================================== */
+
+      cronologia: [
+
+        {
+          data: "c. 470 a.C.",
+          evento:
+            "Nascimento tradicionalmente situado nesse período."
+        },
+
+        {
+          data: "423 a.C.",
+          evento:
+            "Representação de Sócrates em As Nuvens, de Aristófanes."
+        },
+
+        {
+          data: "século V a.C.",
+          evento:
+            "Participação em campanhas militares segundo fontes antigas."
+        },
+
+        {
+          data: "406 a.C.",
+          evento:
+            "Episódio relacionado ao julgamento dos generais após a batalha de Arginusas."
+        },
+
+        {
+          data: "399 a.C.",
+          evento:
+            "Julgamento de Sócrates em Atenas."
+        },
+
+        {
+          data: "399 a.C.",
+          evento:
+            "Condenação e execução."
+        },
+
+        {
+          data: "séculos IV a.C. em diante",
+          evento:
+            "Desenvolvimento das diferentes tradições socráticas."
+        }
+
+      ],
+
+
+      /* =====================================================
+         CRÍTICAS E DEBATES
+         ===================================================== */
+
+      debates: [
+
+        "Até que ponto os diálogos de Platão representam o Sócrates histórico?",
+
+        "Qual é a relação entre o Sócrates de Platão e o Sócrates de Xenofonte?",
+
+        "Quanto da representação de Aristófanes é caricatura e quanto pode refletir aspectos históricos?",
+
+        "Sócrates possuía uma filosofia própria sistemática ou seu método era principalmente investigativo?",
+
+        "Qual era exatamente sua posição política?",
+
+        "O que significava sua relação com a religião ateniense?",
+
+        "Como interpretar sua condenação dentro da democracia ateniense?"
+      ],
+
+
+      /* =====================================================
+         INFLUÊNCIA
+         ===================================================== */
+
+      legado: {
+
+        filosofia:
+          "Sua figura tornou-se fundamental para a tradição filosófica ocidental.",
+
+        educacao:
+          "O diálogo socrático influenciou concepções posteriores de educação e pensamento crítico.",
+
+        etica:
+          "A preocupação com a maneira correta de viver tornou-se uma das marcas mais importantes da tradição socrática.",
+
+        politica:
+          "Seu julgamento continua sendo estudado em debates sobre democracia, liberdade de expressão, autoridade e responsabilidade.",
+
+        filosofiaContemporanea:
+          "Sua figura continua sendo interpretada por diferentes tradições filosóficas.",
+
+        cultura:
+          "Sócrates tornou-se um dos símbolos mais conhecidos da investigação filosófica."
+
+      },
+
+
+      /* =====================================================
+         PERGUNTAS PARA ESTUDOS
+         ===================================================== */
+
+      perguntasEstudo: {
+
+        basico: [
+
+          "Quem foi Sócrates?",
+
+          "Em qual cidade Sócrates viveu?",
+
+          "Sócrates escreveu livros?",
+
+          "O que significa questionar uma crença?",
+
+          "Por que Sócrates foi julgado?"
+        ],
+
+        intermediario: [
+
+          "Por que é difícil reconstruir historicamente o pensamento de Sócrates?",
+
+          "Qual é a diferença entre o Sócrates de Platão e o de Xenofonte?",
+
+          "Qual a importância do método de perguntas?",
+
+          "Qual a relação entre conhecimento e virtude?",
+
+          "Por que Sócrates recusou fugir da prisão na narrativa de Platão?"
+        ],
+
+        avancado: [
+
+          "O que é o problema socrático?",
+
+          "Até que ponto podemos utilizar Platão como fonte histórica sobre Sócrates?",
+
+          "Como distinguir o personagem filosófico de Platão do Sócrates histórico?",
+
+          "O julgamento de Sócrates revela limites da democracia ateniense?",
+
+          "É possível reconstruir uma filosofia de Sócrates sem escritos próprios?"
+        ]
+
+      },
+
+
+      /* =====================================================
+         FONTES ACADÊMICAS
+         ===================================================== */
+
+      fontes: [
+
+        {
+          nome:
+            "Stanford Encyclopedia of Philosophy",
+
+          tipo:
+            "Enciclopédia filosófica acadêmica",
+    ]
+  };
+
+
+  /* =========================================================
+     DISPONIBILIZA O BANCO
+     ========================================================= */
+
+  window.bancoAcademicoPensadores = banco;
+
+
+  /* =========================================================
+     CONSULTAR PENSADOR
+     ========================================================= */
+
+  window.buscarPensadorAcademico = function(nome) {
+
+    if (!nome) return null;
+
+    return banco[nome] || null;
+
+  };
+
+
+  /* =========================================================
+     LISTAR PENSADORES
+     ========================================================= */
+
+  window.listarPensadoresAcademicos = function() {
+
+    return Object.keys(banco);
+
+  };
+
+
+  /* =========================================================
+     CONTADOR DE CONTEÚDO
+     ========================================================= */
+
+  window.contarConteudoAcademico = function(nome) {
+
+    const pensador = banco[nome];
+
+    if (!pensador) return 0;
+
+    let total = 0;
+
+    function contar(obj) {
+
+      if (!obj || typeof obj !== "object") {
+        return;
+      }
+
+      Object.keys(obj).forEach(function(chave) {
+
+        total++;
+
+        if (
+          obj[chave] &&
+          typeof obj[chave] === "object"
+        ) {
+
+          contar(obj[chave]);
+
+        }
+
+      });
+
+    }
+
+    contar(pensador);
+
+    return total;
+
+  };
+
+
+  /* =========================================================
+     VERIFICAÇÃO DO BANCO
+     ========================================================= */
+
+  window.verificarBancoAcademico = function() {
+
+    const socrates = banco["Sócrates"];
+
+    const resultado = {
+
+      funcionando: !!socrates,
+
+      quantidade:
+        Object.keys(banco).length,
+
+      socrates:
+        !!socrates,
+
+      identidade:
+        !!(socrates && socrates.identidade),
+
+      biografia:
+        !!(socrates && socrates.biografia),
+
+      contexto:
+        !!(socrates && socrates.contextoHistorico),
+
+      ideias:
+        !!(socrates && socrates.ideias),
+
+      conceitos:
+        !!(
+          socrates &&
+          Array.isArray(socrates.conceitos)
+        ),
+
+      obras:
+        !!(socrates && socrates.obras),
+
+      julgamento:
+        !!(socrates && socrates.julgamento),
+
+      cronologia:
+        !!(
+          socrates &&
+          Array.isArray(socrates.cronologia)
+        ),
+
+      legado:
+        !!(socrates && socrates.legado),
+
+      perguntas:
+        !!(socrates && socrates.perguntasEstudo),
+
+      fontes:
+        !!(
+          socrates &&
+          Array.isArray(socrates.fontes)
+        )
+
+    };
+
+
+    resultado.todosCamposOK =
+      resultado.socrates &&
+      resultado.identidade &&
+      resultado.biografia &&
+      resultado.contexto &&
+      resultado.ideias &&
+      resultado.conceitos &&
+      resultado.obras &&
+      resultado.julgamento &&
+      resultado.cronologia &&
+      resultado.legado &&
+      resultado.perguntas &&
+      resultado.fontes;
+
+
+    console.log(
+      "🏛️ MUSEU — BANCO ACADÊMICO"
+    );
+
+    console.table(resultado);
+
+    return resultado;
+
+  };
+
+
+  console.log(
+    "📚 Banco acadêmico carregado."
+  );
+
+})();
+</script>
+  
 </body>
 
 </html>
