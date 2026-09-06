@@ -1268,7 +1268,140 @@ display:block;
 }
 
 }
+/* =========================================================
+   MUSEU UNIVERSAL — FUNDO GALÁCTICO
+   ========================================================= */
 
+body{
+    background:
+        #02030a
+        url("galaxia-museu.png")
+        center top / cover
+        fixed
+        no-repeat;
+
+    color:var(--text);
+}
+
+/* Escurecimento elegante para os planetas ficarem discretos */
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+
+    background:
+        radial-gradient(
+            ellipse at center,
+            rgba(5,8,20,.08),
+            rgba(0,0,0,.55)
+        ),
+        linear-gradient(
+            rgba(0,0,0,.15),
+            rgba(0,0,0,.58)
+        );
+
+    pointer-events:none;
+    z-index:-1;
+}
+
+/* O conteúdo fica acima do universo */
+main{
+    position:relative;
+    z-index:1;
+}
+
+/* Seções deixam a galáxia aparecer */
+.section{
+    background:rgba(2,3,8,.18);
+}
+
+/* Exposição */
+.exhibition{
+    background:
+        linear-gradient(
+            180deg,
+            rgba(5,6,12,.48),
+            rgba(3,3,8,.68)
+        );
+}
+
+/* Cartões com efeito de vidro */
+.card,
+.hero-card,
+.mapa-museu{
+    background:
+        linear-gradient(
+            145deg,
+            rgba(12,14,22,.72),
+            rgba(3,4,9,.58)
+        );
+
+    backdrop-filter:blur(5px);
+}
+
+/* Mapa */
+.mapa-sala{
+    background:
+        linear-gradient(
+            145deg,
+            rgba(15,17,27,.76),
+            rgba(3,4,9,.62)
+        );
+
+    backdrop-filter:blur(5px);
+}
+
+/* Barra superior */
+.topbar{
+    background:
+        rgba(2,3,8,.68);
+
+    backdrop-filter:blur(18px);
+}
+
+/* Pesquisa */
+.searchbar input{
+    background:
+        rgba(3,4,9,.70);
+}
+
+/* Modal das salas */
+.modal-box{
+    background:
+        linear-gradient(
+            145deg,
+            rgba(12,14,21,.97),
+            rgba(3,4,8,.97)
+        );
+
+    backdrop-filter:blur(18px);
+}
+
+/* Pequeno brilho dourado sobre o universo */
+.hero:after{
+    content:"";
+    position:absolute;
+    inset:0;
+
+    pointer-events:none;
+
+    background:
+        radial-gradient(
+            ellipse at center,
+            rgba(216,179,106,.09),
+            transparent 55%
+        );
+}
+
+/* Celular */
+@media(max-width:560px){
+
+    body{
+        background-position:center top;
+        background-size:auto 100%;
+    }
+
+    }
 </style>
 </head>
 
@@ -5755,47 +5888,7 @@ function mostrarSalaSocratesDireta(aba){
 
             '<p><strong>Qual método está especialmente associado a Sócrates?</strong></p>' +
 
-            '<button class="ghostbtn" id="respostaCertaSegura">' +
-            'Diálogo e questionamento' +
-            '</button>' +
 
-            '<button class="ghostbtn" id="respostaErradaSegura">' +
-            'Conquista militar' +
-            '</button>' +
-
-            '<p id="resultadoSeguro"></p>';
-
-            document.getElementById("respostaCertaSegura").onclick =
-            function(){
-                document.getElementById("resultadoSeguro").innerHTML =
-                "✓ Resposta correta!";
-            };
-
-            document.getElementById("respostaErradaSegura").onclick =
-            function(){
-                document.getElementById("resultadoSeguro").innerHTML =
-                "Tente novamente.";
-            };
-
-        };
-
-    }
-
-
-    function ligarBotoes(){
-
-        var botoes = document.querySelectorAll("button");
-
-        botoes.forEach(function(botao){
-
-            var texto =
-            botao.textContent
-            .replace(/\s+/g," ")
-            .trim();
-
-            if(texto === "Visitar sala completa"){
-
-                botao.onclick = function(event){
 
                     if(event){
                         event.preventDefault();
