@@ -3888,6 +3888,553 @@ mostrarEstudoPensador;
 })();
 
 </script>
+<!-- =========================================================
+     MUSEU VIRTUAL DOS PENSADORES UNIVERSAIS
+     SISTEMA DE INTEGRIDADE E AUTOCORREÇÃO
+     Versão 1.0
+     ========================================================= -->
+
+<script>
+(function () {
+
+  "use strict";
+
+  /* Evita instalar o sistema duas vezes */
+  if (window.__MUSEU_INTEGRIDADE_INSTALADO__) return;
+  window.__MUSEU_INTEGRIDADE_INSTALADO__ = true;
+
+  const RELATORIO = {
+    erros: [],
+    avisos: [],
+    corrigidos: [],
+    testes: []
+  };
+
+  /* =========================================================
+     REGISTRO DE ERROS JAVASCRIPT
+     ========================================================= */
+
+  window.addEventListener("error", function (evento) {
+
+    RELATORIO.erros.push({
+      tipo: "JavaScript",
+      mensagem: evento.message || "Erro desconhecido",
+      arquivo: evento.filename || "",
+      linha: evento.lineno || 0
+    });
+
+  });
+
+  window.addEventListener("unhandledrejection", function (evento) {
+
+    RELATORIO.erros.push({
+      tipo: "Promise",
+      mensagem: String(
+        evento.reason || "Erro de Promise não tratado"
+      )
+    });
+
+  });
+
+
+  /* =========================================================
+     FUNÇÕES AUXILIARES
+     ========================================================= */
+
+  function existe(id) {
+    return !!document.getElementById(id);
+  }
+
+  function funcaoExiste(nome) {
+    return typeof window[nome] === "function";
+  }
+
+  function registrarTeste(nome, ok, detalhe) {
+
+    RELATORIO.testes.push({
+      nome: nome,
+      ok: ok,
+      detalhe: detalhe || ""
+    });
+
+  }
+
+
+  /* =========================================================
+     VERIFICA ELEMENTOS IMPORTANTES
+     ========================================================= */
+
+  function verificarElementos() {
+
+    const elementosImportantes = [
+
+      "modal",
+      "search",
+      "clear",
+      "pensadores",
+      "mapa",
+      "galerias"
+
+    ];
+
+    elementosImportantes.forEach(function (id) {
+
+      const ok = existe(id);
+
+      registrarTeste(
+        "Elemento #" + id,
+        ok,
+        ok
+          ? "Encontrado"
+          : "Não encontrado"
+      );
+
+      if (!ok) {
+
+        RELATORIO.avisos.push(
+          "Elemento não encontrado: #" + id
+        );
+
+      }
+
+    });
+
+  }
+
+
+  /* =========================================================
+     VERIFICA FUNÇÕES PRINCIPAIS
+     ========================================================= */
+
+  function verificarFuncoes() {
+
+    const funcoes = [
+
+      "clearSearch",
+      "abrirPensador",
+      "mostrarPensador",
+      "abrirModal",
+      "fecharModal",
+      "mostrarQuiz",
+      "mostrarEstudoPensador"
+
+    ];
+
+    funcoes.forEach(function (nome) {
+
+      const ok = funcaoExiste(nome);
+
+      registrarTeste(
+        "Função " + nome,
+        ok,
+        ok
+          ? "Existe"
+          : "Ausente"
+      );
+
+      if (!ok) {
+
+        RELATORIO.avisos.push(
+          "Função ausente: " + nome
+        );
+
+      }
+
+    });
+
+  }
+
+
+  /* =========================================================
+     VERIFICA IDs DUPLICADOS
+     ========================================================= */
+
+  function verificarIdsDuplicados() {
+
+    const mapa = {};
+
+    document.querySelectorAll("[id]").forEach(function (elemento) {
+
+      const id = elemento.id;
+
+      if (!mapa[id]) {
+        mapa[id] = [];
+      }
+
+      mapa[id].push(elemento);
+
+    });
+
+    Object.keys(mapa).forEach(function (id) {
+
+      if (mapa[id].length > 1) {
+
+        RELATORIO.avisos.push(
+          "ID duplicado: #" +
+          id +
+          " (" +
+          mapa[id].length +
+          " ocorrências)"
+        );
+
+      }
+
+    });
+
+  }
+
+
+  /* =========================================================
+     VERIFICA LINKS INTERNOS
+     ========================================================= */
+
+  function verificarLinks() {
+
+    document.querySelectorAll("a[href^='#']").forEach(function (link) {
+
+      const destino = link.getAttribute("href");
+
+      if (!destino || destino === "#") return;
+
+      const id = destino.substring(1);
+
+      if (!document.getElementById(id)) {
+
+        RELATORIO.avisos.push(
+          "Link interno quebrado: " + destino
+        );
+
+      }
+
+    });
+
+  }
+
+
+  /* =========================================================
+     AUTOCORREÇÃO DO LIMPAR
+     ========================================================= */
+
+  function corrigirLimpar() {
+
+    if (typeof window.clearSearch === "function") {
+      return;
+    }
+
+    window.clearSearch = function () {
+
+      const campos = document.querySelectorAll(
+        'input[type="search"], input[placeholder*="Buscar"], input[id*="search"]'
+      );
+
+      campos.forEach(function (campo) {
+        campo.value = "";
+      });
+
+      document.querySelectorAll(
+        "[data-pensador], .thinker-card, .pensador-card"
+      ).forEach(function (card) {
+
+        card.style.display = "";
+
+      });
+
+      try {
+
+        if (typeof window.renderPensadores === "function") {
+          window.renderPensadores();
+        }
+
+      } catch (erro) {
+
+        RELATORIO.erros.push({
+          tipo: "Autocorreção",
+          mensagem: erro.message
+        });
+
+      }
+
+    };
+
+    RELATORIO.corrigidos.push(
+      "Função clearSearch restaurada."
+    );
+
+  }
+
+
+  /* =========================================================
+     AUTOCORREÇÃO DO BOTÃO ESTUDAR
+     ========================================================= */
+
+  function corrigirEstudo() {
+
+    if (
+      typeof window.mostrarEstudoPensador === "function"
+    ) {
+      return;
+    }
+
+    window.mostrarEstudoPensador = function (nome) {
+
+      const dados =
+        window.estudosPensadores &&
+        window.estudosPensadores[nome];
+
+      if (!dados) {
+
+        alert(
+          "O conteúdo acadêmico de " +
+          nome +
+          " ainda está sendo preparado."
+        );
+
+        return;
+
+      }
+
+      let texto = "";
+
+      if (dados.contexto) {
+        texto +=
+          "<h3>Contexto histórico</h3>" +
+          "<p>" + dados.contexto + "</p>";
+      }
+
+      if (dados.formacao) {
+        texto +=
+          "<h3>Formação</h3>" +
+          "<p>" + dados.formacao + "</p>";
+      }
+
+      if (dados.conceitos) {
+
+        texto +=
+          "<h3>Conceitos fundamentais</h3>" +
+          "<ul>";
+
+        dados.conceitos.forEach(function (item) {
+
+          texto += "<li>" + item + "</li>";
+
+        });
+
+        texto += "</ul>";
+      }
+
+      if (dados.criticas) {
+
+        texto +=
+          "<h3>Críticas e debates</h3>" +
+          "<p>" + dados.criticas + "</p>";
+
+      }
+
+      if (dados.legado) {
+
+        texto +=
+          "<h3>Legado</h3>" +
+          "<p>" + dados.legado + "</p>";
+
+      }
+
+      if (!texto) {
+
+        texto =
+          "<p>Conteúdo acadêmico em preparação.</p>";
+
+      }
+
+      const area =
+        document.querySelector(
+          "#conteudoEstudo, .conteudo-estudo, .study-content"
+        );
+
+      if (area) {
+
+        area.innerHTML = texto;
+        area.scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+
+        return;
+
+      }
+
+      alert(
+        "A área de estudo foi solicitada para: " +
+        nome
+      );
+
+    };
+
+    RELATORIO.corrigidos.push(
+      "Função mostrarEstudoPensador restaurada."
+    );
+
+  }
+
+
+  /* =========================================================
+     AUTOCORREÇÃO DOS BOTÕES DO MUSEU
+     ========================================================= */
+
+  function instalarEventosDeSeguranca() {
+
+    document.addEventListener(
+      "click",
+      function (evento) {
+
+        const botao =
+          evento.target.closest("button, a");
+
+        if (!botao) return;
+
+        const texto =
+          (botao.textContent || "")
+          .trim()
+          .toLowerCase();
+
+        /* LIMPAR */
+
+        if (
+          texto === "limpar" ||
+          texto.includes("limpar busca") ||
+          botao.id === "clear"
+        ) {
+
+          if (
+            typeof window.clearSearch === "function"
+          ) {
+
+            window.clearSearch();
+
+          }
+
+        }
+
+
+        /* ESTUDAR */
+
+        if (
+          texto.includes("estudar")
+        ) {
+
+          const nome =
+            botao.dataset.pensador ||
+            botao.dataset.nome ||
+            window.pensadorAtual;
+
+          if (nome) {
+
+            window.mostrarEstudoPensador(nome);
+
+          }
+
+        }
+
+      },
+      true
+    );
+
+  }
+
+
+  /* =========================================================
+     EXECUTA O DIAGNÓSTICO
+     ========================================================= */
+
+  function executarDiagnostico() {
+
+    RELATORIO.erros = [];
+    RELATORIO.avisos = [];
+    RELATORIO.corrigidos = [];
+    RELATORIO.testes = [];
+
+    verificarElementos();
+    verificarFuncoes();
+    verificarIdsDuplicados();
+    verificarLinks();
+
+    corrigirLimpar();
+    corrigirEstudo();
+
+    instalarEventosDeSeguranca();
+
+    console.log(
+      "🏛️ MUSEU — DIAGNÓSTICO CONCLUÍDO"
+    );
+
+    console.log(RELATORIO);
+
+    return RELATORIO;
+
+  }
+
+
+  /* =========================================================
+     RELATÓRIO PÚBLICO
+     ========================================================= */
+
+  window.museuVerificarErros =
+    executarDiagnostico;
+
+
+  window.museuRelatorio =
+    function () {
+
+      return JSON.parse(
+        JSON.stringify(RELATORIO)
+      );
+
+    };
+
+
+  /* =========================================================
+     INICIALIZAÇÃO
+     ========================================================= */
+
+  function iniciar() {
+
+    try {
+
+      executarDiagnostico();
+
+    } catch (erro) {
+
+      RELATORIO.erros.push({
+        tipo: "Sistema de integridade",
+        mensagem: erro.message
+      });
+
+      console.error(
+        "🏛️ Erro no sistema de integridade:",
+        erro
+      );
+
+    }
+
+  }
+
+
+  if (
+    document.readyState === "loading"
+  ) {
+
+    document.addEventListener(
+      "DOMContentLoaded",
+      iniciar
+    );
+
+  } else {
+
+    iniciar();
+
+  }
+
+})();
+</script>
 </body>
 
 </html>
