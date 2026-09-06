@@ -5272,7 +5272,241 @@ mostrarEstudoPensador;
 
 })();
 </script>
-  
+ <!-- =========================================================
+     MUSEU VIRTUAL DOS PENSADORES UNIVERSAIS
+     PARTE 2 — SISTEMA CENTRAL DE PENSADORES
+     ========================================================= -->
+
+<script>
+(function () {
+
+  "use strict";
+
+  /* Evita duplicação */
+  if (window.__SISTEMA_PENSADORES_MUSEU__) return;
+
+  window.__SISTEMA_PENSADORES_MUSEU__ = true;
+
+
+  /* =========================================================
+     BANCO CENTRAL
+     ========================================================= */
+
+  const bancoCentral =
+    window.bancoPensadoresMuseu ||
+    {};
+
+
+  /* =========================================================
+     IMPORTA O BANCO ACADÊMICO EXISTENTE
+     ========================================================= */
+
+  if (
+    window.bancoAcademicoPensadores &&
+    typeof window.bancoAcademicoPensadores === "object"
+  ) {
+
+    Object.keys(
+      window.bancoAcademicoPensadores
+    ).forEach(function (nome) {
+
+      if (!bancoCentral[nome]) {
+
+        bancoCentral[nome] =
+          window.bancoAcademicoPensadores[nome];
+
+      }
+
+    });
+
+  }
+
+
+  /* =========================================================
+     FUNÇÃO PARA CADASTRAR PENSADOR
+     ========================================================= */
+
+  window.cadastrarPensadorMuseu =
+    function (dados) {
+
+      if (!dados || typeof dados !== "object") {
+
+        console.warn(
+          "Museu: dados inválidos."
+        );
+
+        return false;
+
+      }
+
+
+      const nome =
+        String(dados.nome || "").trim();
+
+
+      if (!nome) {
+
+        console.warn(
+          "Museu: o pensador precisa ter nome."
+        );
+
+        return false;
+
+      }
+
+
+      /* Impede duplicação */
+
+      if (bancoCentral[nome]) {
+
+        console.warn(
+          "Museu: pensador já cadastrado:",
+          nome
+        );
+
+        return false;
+
+      }
+
+
+      bancoCentral[nome] = dados;
+
+
+      console.log(
+        "🏛️ Pensador cadastrado:",
+        nome
+      );
+
+
+      return true;
+
+    };
+
+
+  /* =========================================================
+     BUSCAR PENSADOR
+     ========================================================= */
+
+  window.buscarPensadorMuseu =
+    function (nome) {
+
+      if (!nome) return null;
+
+
+      const procura =
+        String(nome)
+        .trim()
+        .toLowerCase();
+
+
+      const nomes =
+        Object.keys(bancoCentral);
+
+
+      const encontrado =
+        nomes.find(function (item) {
+
+          return item
+            .toLowerCase() === procura;
+
+        });
+
+
+      return encontrado
+        ? bancoCentral[encontrado]
+        : null;
+
+    };
+
+
+  /* =========================================================
+     LISTAR TODOS
+     ========================================================= */
+
+  window.listarPensadoresMuseu =
+    function () {
+
+      return Object.keys(
+        bancoCentral
+      );
+
+    };
+
+
+  /* =========================================================
+     QUANTIDADE
+     ========================================================= */
+
+  window.contarPensadoresMuseu =
+    function () {
+
+      return Object.keys(
+        bancoCentral
+      ).length;
+
+    };
+
+
+  /* =========================================================
+     VERIFICAÇÃO
+     ========================================================= */
+
+  window.verificarSistemaPensadores =
+    function () {
+
+      const nomes =
+        Object.keys(bancoCentral);
+
+
+      const resultado = {
+
+        funcionando:
+          true,
+
+        quantidade:
+          nomes.length,
+
+        pensadores:
+          nomes,
+
+        socrates:
+          !!bancoCentral["Sócrates"]
+
+      };
+
+
+      console.log(
+        "🏛️ SISTEMA CENTRAL DE PENSADORES"
+      );
+
+      console.table(resultado);
+
+
+      return resultado;
+
+    };
+
+
+  /* =========================================================
+     DISPONIBILIZA O BANCO GLOBALMENTE
+     ========================================================= */
+
+  window.bancoPensadoresMuseu =
+    bancoCentral;
+
+
+  console.log(
+    "📚 Sistema central de pensadores carregado."
+  );
+
+  console.log(
+    "Pensadores cadastrados:",
+    Object.keys(bancoCentral).length
+  );
+
+
+})();
+</script> 
 </body>
 
 </html>
