@@ -5464,48 +5464,7 @@ sincronizarFavoritosJornada50();
     }
 
 })();
-    /* =========================================================
-   CORREÇÃO EXTRA — CLIQUE DIRETO NA SALA DE SÓCRATES
-   ========================================================= */
-
-document.addEventListener("click", function(event){
-
-    const botao = event.target.closest("button");
-
-    if(!botao){
-        return;
-    }
-
-    const texto = botao.textContent
-        .replace(/\s+/g," ")
-        .trim()
-        .toLowerCase();
-
-    if(texto !== "visitar sala completa"){
-        return;
-    }
-
-    /* Impede o comando antigo do botão */
-    event.preventDefault();
-    event.stopPropagation();
-    event.stopImmediatePropagation();
-
-    /* Abre a nova sala universal */
-    if(typeof criarSalaUniversal === "function"){
-
-        criarSalaUniversal("Sócrates");
-
-        if(typeof registrarSalaJornada50 === "function"){
-            registrarSalaJornada50("Sócrates");
-        }
-
-    }else{
-
-        alert("O sistema da sala de Sócrates não foi carregado.");
-
-    }
-
-}, true);
+    
     /* =========================================================
    CORREÇÃO DEFINITIVA — SALA COMPLETA DE SÓCRATES
    ========================================================= */
@@ -5541,55 +5500,7 @@ document.addEventListener("click", function(event){
     };
 
 })();
-    /* =========================================================
-   SALA SÓCRATES — ABERTURA DIRETA
-   ========================================================= */
-
-function abrirSalaSocratesDireta(){
-
-    const modal = document.getElementById("modal");
-    const conteudo = document.getElementById("modalContent");
-
-    if(!modal || !conteudo){
-        alert("Janela da sala não encontrada.");
-        return;
-    }
-
-    conteudo.innerHTML = `
-        <button
-        class="close"
-        onclick="closeModal()">
-        ×
-        </button>
-
-        <div class="kicker">
-        SALA DO PENSADOR
-        </div>
-
-        <h2>Sócrates</h2>
-
-        <p>
-        Atenas, século V a.C. — período de intensa
-        transformação política, cultural e filosófica.
-        </p>
-
-        <div class="tabs">
-
-            <button
-            class="tab active"
-            onclick="mostrarSalaSocratesDireta('vida')">
-            Vida
-            </button>
-
-            <button
-            class="tab"
-            onclick="mostrarSalaSocratesDireta('ideias')">
-            Ideias
-            </button>
-
-            <button
-            class="tab"
-            onclick="mostrarSalaSocratesDireta('obras')">
+    
             Obras
             </button>
 
@@ -5943,6 +5854,191 @@ function mostrarSalaSocratesDireta(aba){
 
 })();
 </script>
+    <!-- =====================================================
+     SALA SÓCRATES — SISTEMA INDEPENDENTE
+     ===================================================== -->
+
+<style>
+
+#sala-socrates-final{
+    display:none;
+    position:fixed;
+    inset:0;
+    z-index:99999;
+    background:rgba(0,0,0,.92);
+    padding:20px;
+    overflow:auto;
+}
+
+#sala-socrates-final:target{
+    display:block;
+}
+
+.socrates-final-box{
+    max-width:800px;
+    margin:40px auto;
+    padding:35px;
+    background:#101010;
+    border:1px solid #d8b36a;
+    border-radius:25px;
+    color:#f6f0e5;
+    position:relative;
+}
+
+.socrates-final-box h2{
+    font-size:42px;
+    color:#f1d79b;
+    margin-top:10px;
+}
+
+.socrates-final-box h3{
+    color:#d8b36a;
+    margin-top:30px;
+}
+
+.socrates-final-box p{
+    font-family:Arial,sans-serif;
+    line-height:1.7;
+    color:#c8c1b8;
+}
+
+.socrates-fechar{
+    display:inline-block;
+    margin-bottom:20px;
+    padding:10px 18px;
+    border:1px solid #d8b36a;
+    border-radius:999px;
+    color:#f1d79b;
+}
+
+.socrates-abas{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin:25px 0;
+}
+
+.socrates-abas a{
+    padding:10px 16px;
+    border:1px solid #d8b36a;
+    border-radius:999px;
+    color:#f1d79b;
+}
+
+</style>
+
+
+<div id="sala-socrates-final">
+
+    <div class="socrates-final-box">
+
+        <a
+        href="#"
+        class="socrates-fechar">
+        ✕ Fechar sala
+        </a>
+
+        <div class="kicker">
+        SALA DO PENSADOR
+        </div>
+
+        <h2>Sócrates</h2>
+
+        <p>
+        Atenas — c. 470–399 a.C.
+        </p>
+
+        <p>
+        Uma experiência dedicada à vida, ao pensamento
+        e ao legado de Sócrates, uma das figuras
+        fundamentais da história da filosofia.
+        </p>
+
+        <div class="socrates-abas">
+
+            <a href="#socrates-vida">
+            Vida
+            </a>
+
+            <a href="#socrates-ideias">
+            Ideias
+            </a>
+
+            <a href="#socrates-obras">
+            Obras
+            </a>
+
+            <a href="#socrates-legado">
+            Legado
+            </a>
+
+        </div>
+
+
+        <div id="socrates-vida">
+
+            <h3>Vida</h3>
+
+            <p>
+            Sócrates viveu em Atenas durante o século V a.C.
+            Dedicou sua vida ao diálogo, à investigação
+            e à reflexão sobre a maneira correta de viver.
+            </p>
+
+            <p>
+            Não deixou obras escritas. Seu pensamento chegou
+            até nós principalmente através de relatos de
+            Platão, Xenofonte e outros autores.
+            </p>
+
+        </div>
+
+
+        <div id="socrates-ideias">
+
+            <h3>Principais ideias</h3>
+
+            <p>
+            • Conhecimento e autoconhecimento.<br>
+            • Diálogo e questionamento.<br>
+            • Busca pela virtude.<br>
+            • Exame crítico das próprias crenças.
+            </p>
+
+        </div>
+
+
+        <div id="socrates-obras">
+
+            <h3>Obras e fontes</h3>
+
+            <p>
+            Sócrates não deixou textos escritos conhecidos.
+            Sua filosofia foi preservada principalmente
+            através dos diálogos de Platão e dos relatos
+            de Xenofonte.
+            </p>
+
+        </div>
+
+
+        <div id="socrates-legado">
+
+            <h3>Legado</h3>
+
+            <p>
+            Sua influência atravessou a filosofia antiga
+            e chegou à tradição filosófica ocidental.
+            Platão foi seu discípulo e tornou-se um dos
+            principais responsáveis pela preservação
+            de sua memória filosófica.
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
 </body>
   </html>
   
