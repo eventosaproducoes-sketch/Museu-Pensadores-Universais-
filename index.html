@@ -2506,7 +2506,231 @@ atualizarJornada();
 
 
 </script>
+<script>
 
+/* =====================================================
+   CORREÇÃO DE SEGURANÇA
+   LIMPAR + VISITAR SALA + QUIZ
+===================================================== */
+
+(function(){
+
+    /* =================================================
+       LIMPAR PESQUISA
+    ================================================= */
+
+    window.clearSearch = function(){
+
+        var campo =
+            document.getElementById("thinkerSearch");
+
+        if(campo){
+
+            campo.value = "";
+
+            campo.focus();
+
+        }
+
+        if(
+            typeof window.renderThinkers ===
+            "function"
+        ){
+
+            window.renderThinkers();
+
+        }
+
+    };
+
+
+    /* =================================================
+       VISITAR SALA
+    ================================================= */
+
+    document.addEventListener(
+        "click",
+        function(event){
+
+            var botao =
+                event.target.closest("button");
+
+            if(!botao){
+                return;
+            }
+
+            var texto =
+                botao.textContent
+                .replace(/\s+/g," ")
+                .trim()
+                .toLowerCase();
+
+            if(
+                texto !== "🏛️ visitar sala" &&
+                texto !== "visitar sala"
+            ){
+
+                return;
+
+            }
+
+            var card =
+                botao.closest(".card");
+
+            if(!card){
+
+                card =
+                    botao.closest(
+                        ".thinker-card"
+                    );
+
+            }
+
+            if(!card){
+                return;
+            }
+
+            var titulo =
+                card.querySelector(
+                    "h3"
+                );
+
+            if(!titulo){
+                return;
+            }
+
+            var nome =
+                titulo.textContent
+                .replace(/\s+/g," ")
+                .trim();
+
+            if(!nome){
+                return;
+            }
+
+            event.preventDefault();
+            event.stopPropagation();
+
+            if(
+                typeof window.openThinker ===
+                "function"
+            ){
+
+                window.openThinker(nome);
+
+            }
+
+        },
+        true
+    );
+
+
+    /* =================================================
+       QUIZ
+    ================================================= */
+
+    document.addEventListener(
+        "click",
+        function(event){
+
+            var botao =
+                event.target.closest("button");
+
+            if(!botao){
+                return;
+            }
+
+            var texto =
+                botao.textContent
+                .replace(/\s+/g," ")
+                .trim()
+                .toLowerCase();
+
+            if(
+                !texto.includes("quiz")
+            ){
+
+                return;
+
+            }
+
+            var titulo =
+                document.querySelector(
+                    "#modalContent h2"
+                );
+
+            if(!titulo){
+                return;
+            }
+
+            var nome =
+                titulo.textContent
+                .replace("🏛️","")
+                .replace("🧠","")
+                .replace("Quiz","")
+                .replace("—","")
+                .trim();
+
+            if(!nome){
+                return;
+            }
+
+            if(
+                typeof window.showQuiz ===
+                "function"
+            ){
+
+                event.preventDefault();
+                event.stopPropagation();
+
+                window.showQuiz(nome);
+
+            }
+
+        },
+        true
+    );
+
+
+    /* =================================================
+       GARANTIA DE INICIALIZAÇÃO
+    ================================================= */
+
+    if(
+        document.readyState ===
+        "loading"
+    ){
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            function(){
+
+                if(
+                    typeof window.renderThinkers ===
+                    "function"
+                ){
+
+                    window.renderThinkers();
+
+                }
+
+                if(
+                    typeof window.atualizarJornada ===
+                    "function"
+                ){
+
+                    window.atualizarJornada();
+
+                }
+
+            }
+        );
+
+    }
+
+})();
+
+</script>
 
 </body>
 
