@@ -3740,10 +3740,10 @@ obras:"Discursos, sermões e textos políticos formam parte importante de seu le
 legado:"Tornou-se um dos principais símbolos mundiais da luta pelos direitos civis.",
 influencias:"Seu pensamento influenciou movimentos sociais em vários países.",
 quiz:{
-"King ficou conhecido por defender:",
-opcoes:["Não violência e direitos civis","Segregação","Censura","Colonialismo"],
+pergunta:"King ficou conhecido por defender:",
+opcoes:["Não violência e direitos civis"],
 correta:0
-}
+    }
 },
 
 "Nelson Mandela":{
@@ -5738,7 +5738,211 @@ function mostrarSalaSocratesDireta(aba){
 
     }
 </script>
+<script>
+(function(){
 
+    function abrirSalaSegura(){
+
+        var modal = document.getElementById("modal");
+        var conteudo = document.getElementById("modalContent");
+
+        if(!modal || !conteudo){
+            alert("Janela do Museu não encontrada.");
+            return;
+        }
+
+        conteudo.innerHTML =
+        '<button class="close" id="fecharSalaSegura">×</button>' +
+
+        '<div class="kicker">SALA DO PENSADOR</div>' +
+
+        '<h2>Sócrates</h2>' +
+
+        '<p>' +
+        'Atenas, século V a.C. — filósofo associado ao diálogo, ' +
+        'ao questionamento e à investigação da vida humana.' +
+        '</p>' +
+
+        '<div class="tabs">' +
+
+        '<button class="goldbtn" id="abaVidaSegura">Vida</button>' +
+
+        '<button class="ghostbtn" id="abaIdeiasSegura">Ideias</button>' +
+
+        '<button class="ghostbtn" id="abaObrasSegura">Obras</button>' +
+
+        '<button class="ghostbtn" id="abaQuizSeguro">Quiz</button>' +
+
+        '</div>' +
+
+        '<div id="conteudoSalaSegura">' +
+
+        '<h3>Contexto histórico</h3>' +
+
+        '<p>' +
+        'Sócrates viveu em Atenas durante o século V a.C. ' +
+        'Seu método filosófico era baseado principalmente ' +
+        'no diálogo e na formulação de perguntas.' +
+        '</p>' +
+
+        '<h3>Vida</h3>' +
+
+        '<p>' +
+        'Não deixou obras escritas. Seu pensamento foi preservado ' +
+        'principalmente por autores posteriores, como Platão e Xenofonte.' +
+        '</p>' +
+
+        '</div>';
+
+        modal.classList.add("show");
+
+        document.getElementById("fecharSalaSegura").onclick =
+        function(){
+            modal.classList.remove("show");
+        };
+
+        document.getElementById("abaVidaSegura").onclick =
+        function(){
+
+            document.getElementById("conteudoSalaSegura").innerHTML =
+            '<h3>Vida</h3>' +
+            '<p>Sócrates dedicou sua vida ao diálogo, ' +
+            'ao questionamento e à busca por uma vida examinada.</p>';
+
+        };
+
+        document.getElementById("abaIdeiasSegura").onclick =
+        function(){
+
+            document.getElementById("conteudoSalaSegura").innerHTML =
+            '<h3>Principais ideias</h3>' +
+            '<ul>' +
+            '<li>Diálogo e questionamento</li>' +
+            '<li>Busca pela virtude</li>' +
+            '<li>Autoconhecimento</li>' +
+            '<li>Exame crítico da própria vida</li>' +
+            '</ul>';
+
+        };
+
+        document.getElementById("abaObrasSegura").onclick =
+        function(){
+
+            document.getElementById("conteudoSalaSegura").innerHTML =
+            '<h3>Obras</h3>' +
+            '<p>Sócrates não deixou obras escritas conhecidas. ' +
+            'Seu pensamento chegou até nós principalmente por relatos ' +
+            'de Platão, Xenofonte e outros autores.</p>';
+
+        };
+
+        document.getElementById("abaQuizSeguro").onclick =
+        function(){
+
+            document.getElementById("conteudoSalaSegura").innerHTML =
+            '<h3>🧠 Quiz</h3>' +
+
+            '<p><strong>Qual método está especialmente associado a Sócrates?</strong></p>' +
+
+            '<button class="ghostbtn" id="respostaCertaSegura">' +
+            'Diálogo e questionamento' +
+            '</button>' +
+
+            '<button class="ghostbtn" id="respostaErradaSegura">' +
+            'Conquista militar' +
+            '</button>' +
+
+            '<p id="resultadoSeguro"></p>';
+
+            document.getElementById("respostaCertaSegura").onclick =
+            function(){
+                document.getElementById("resultadoSeguro").innerHTML =
+                "✓ Resposta correta!";
+            };
+
+            document.getElementById("respostaErradaSegura").onclick =
+            function(){
+                document.getElementById("resultadoSeguro").innerHTML =
+                "Tente novamente.";
+            };
+
+        };
+
+    }
+
+
+    function ligarBotoes(){
+
+        var botoes = document.querySelectorAll("button");
+
+        botoes.forEach(function(botao){
+
+            var texto =
+            botao.textContent
+            .replace(/\s+/g," ")
+            .trim();
+
+            if(texto === "Visitar sala completa"){
+
+                botao.onclick = function(event){
+
+                    if(event){
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+
+                    abrirSalaSegura();
+
+                };
+
+            }
+
+            if(texto === "Fazer quiz"){
+
+                botao.onclick = function(event){
+
+                    if(event){
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+
+                    abrirSalaSegura();
+
+                    setTimeout(function(){
+
+                        var quiz =
+                        document.getElementById("abaQuizSeguro");
+
+                        if(quiz){
+                            quiz.click();
+                        }
+
+                    },50);
+
+                };
+
+            }
+
+        });
+
+    }
+
+
+    if(document.readyState === "loading"){
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            ligarBotoes
+        );
+
+    }else{
+
+        ligarBotoes();
+
+    }
+
+})();
+</script>
 </body>
   </html>
   
