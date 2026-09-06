@@ -5853,6 +5853,152 @@ function mostrarSalaSocratesDireta(aba){
     }
 
 })();
+    /* =========================================================
+   MUSEU UNIVERSAL — FUNDO GALÁCTICO PREMIUM
+   ========================================================= */
+
+body{
+    background:
+        #020308
+        url("galaxia-museu.png")
+        center top / cover
+        fixed
+        no-repeat;
+
+    position:relative;
+}
+
+/* Camada escura para deixar os planetas discretos */
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+
+    background:
+        radial-gradient(
+            circle at 50% 20%,
+            rgba(255,210,130,.08),
+            transparent 35%
+        ),
+        linear-gradient(
+            rgba(0,0,0,.35),
+            rgba(0,0,0,.72)
+        );
+
+    pointer-events:none;
+    z-index:-1;
+}
+
+/* Deixa o espaço aparecer entre as áreas */
+main{
+    position:relative;
+    z-index:1;
+}
+
+/* Seções transparentes para mostrar a galáxia */
+.section{
+    background:transparent;
+}
+
+/* Exposição */
+.exhibition{
+    background:
+        linear-gradient(
+            rgba(3,3,8,.60),
+            rgba(3,3,8,.78)
+        );
+
+    backdrop-filter:blur(2px);
+}
+
+/* Cartões */
+.card,
+.hero-card,
+.mapa-museu{
+    background:
+        linear-gradient(
+            145deg,
+            rgba(15,15,20,.78),
+            rgba(5,5,8,.68)
+        );
+
+    backdrop-filter:blur(8px);
+}
+
+/* Mapa */
+.mapa-sala{
+    background:
+        linear-gradient(
+            145deg,
+            rgba(20,20,28,.82),
+            rgba(5,5,10,.72)
+        );
+
+    backdrop-filter:blur(8px);
+}
+
+/* Barra superior */
+.topbar{
+    background:
+        rgba(2,2,6,.72);
+
+    backdrop-filter:
+        blur(18px);
+
+    box-shadow:
+        0 10px 40px
+        rgba(0,0,0,.35);
+}
+
+/* Pesquisa */
+.searchbar input{
+    background:
+        rgba(5,5,10,.72);
+
+    backdrop-filter:blur(8px);
+}
+
+/* Modal */
+.modal-box{
+    background:
+        linear-gradient(
+            145deg,
+            rgba(14,14,20,.97),
+            rgba(4,4,8,.97)
+        );
+
+    backdrop-filter:blur(18px);
+}
+
+/* Brilho dourado muito discreto */
+.hero::after{
+    content:"";
+
+    position:absolute;
+    inset:0;
+
+    pointer-events:none;
+
+    background:
+        radial-gradient(
+            ellipse at center,
+            rgba(216,179,106,.08),
+            transparent 55%
+        );
+}
+
+/* Celular */
+@media(max-width:560px){
+
+    body{
+        background-position:
+            center top;
+
+        background-size:
+            auto 100%;
+    }
+
+    }
 </script>
     <!-- =====================================================
      SALA SÓCRATES — SISTEMA INDEPENDENTE
