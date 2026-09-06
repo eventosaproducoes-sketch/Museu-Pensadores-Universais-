@@ -6268,6 +6268,60 @@ mostrarEstudoPensador;
 
 })();
    </script>
+   <script>
+/* =========================================================
+   MÓDULO 6B — CORREÇÃO DA CONEXÃO "OBRAS"
+   ========================================================= */
+
+(function () {
+  "use strict";
+
+  if (window.modulo6BCorrecaoObras) return;
+  window.modulo6BCorrecaoObras = true;
+
+  document.addEventListener("click", function (evento) {
+
+    var elemento = evento.target.closest(
+      "button, a, [role='button'], div"
+    );
+
+    if (!elemento) return;
+
+    var texto = (elemento.textContent || "")
+      .replace(/\s+/g, " ")
+      .trim();
+
+    if (texto !== "Obras") return;
+
+    evento.preventDefault();
+    evento.stopPropagation();
+
+    if (typeof window.abrirCatalogoObras === "function") {
+
+      window.abrirCatalogoObras("Sócrates");
+
+      console.log(
+        "✓ Botão Obras conectado ao catálogo."
+      );
+
+    } else {
+
+      alert(
+        "O catálogo de obras ainda não foi carregado. " +
+        "Vamos corrigir o módulo do catálogo."
+      );
+
+      console.warn(
+        "abrirCatalogoObras não encontrada."
+      );
+    }
+
+  }, true);
+
+  console.log("✓ Módulo 6B carregado.");
+
+})();
+   </script>
 </body>
 
 </html>
