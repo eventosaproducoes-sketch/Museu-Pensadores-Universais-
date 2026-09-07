@@ -6784,5 +6784,132 @@ mostrarEstudoPensador;
 
 })();
    </script>
+   <script>
+(function () {
+
+  "use strict";
+
+  if (window.__BOTAO_LINHA_TEMPO_MUSEU__) {
+    return;
+  }
+
+  window.__BOTAO_LINHA_TEMPO_MUSEU__ = true;
+
+
+  function adicionarBotaoLinhaDoTempo() {
+
+    var tabs =
+      document.querySelector(
+        "#modalContent .tabs"
+      );
+
+    if (!tabs) {
+      return;
+    }
+
+
+    if (
+      document.getElementById(
+        "botaoLinhaTempoMuseu"
+      )
+    ) {
+      return;
+    }
+
+
+    var botao =
+      document.createElement("button");
+
+
+    botao.id =
+      "botaoLinhaTempoMuseu";
+
+
+    botao.type =
+      "button";
+
+
+    botao.textContent =
+      "📜 Linha do Tempo";
+
+
+    botao.onclick =
+      function () {
+
+        var titulo =
+          document.querySelector(
+            "#modalContent h2"
+          );
+
+
+        if (!titulo) {
+          return;
+        }
+
+
+        var nome =
+          titulo.textContent
+            .replace("🏛️", "")
+            .trim();
+
+
+        if (!nome) {
+          return;
+        }
+
+
+        if (
+          typeof window.abrirLinhaDoTempoMuseu ===
+          "function"
+        ) {
+
+          window.abrirLinhaDoTempoMuseu(
+            nome
+          );
+
+        }
+
+      };
+
+
+    tabs.appendChild(botao);
+
+  }
+
+
+  var modal =
+    document.getElementById("modal");
+
+
+  if (modal) {
+
+    var observador =
+      new MutationObserver(
+        function () {
+
+          adicionarBotaoLinhaDoTempo();
+
+        }
+      );
+
+
+    observador.observe(
+      modal,
+      {
+        childList: true,
+        subtree: true
+      }
+    );
+
+  }
+
+
+  console.log(
+    "✓ Botão Linha do Tempo instalado."
+  );
+
+
+})();
+   </script>
 </body>
 </html>
