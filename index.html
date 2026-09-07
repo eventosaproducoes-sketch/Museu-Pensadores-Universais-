@@ -6649,6 +6649,394 @@ mostrarEstudoPensador;
 
 })();
    </script>
+   <script>
+/* =========================================================
+   MÓDULO 8C — MOTOR UNIVERSAL DE LINHAS DO TEMPO
+   Cada pensador terá sua própria cronologia.
+   ========================================================= */
+
+(function () {
+  "use strict";
+
+  if (window.modulo8CMotorUniversal) return;
+  window.modulo8CMotorUniversal = true;
+
+  /* BANCO UNIVERSAL */
+  window.bancoLinhasDoTempoMuseu =
+    window.bancoLinhasDoTempoMuseu || {};
+
+  /* Copia a linha do tempo antiga do Sócrates
+     para o novo sistema universal */
+  if (
+    !window.bancoLinhasDoTempoMuseu["Sócrates"] &&
+    Array.isArray(window.linhaTempoSocrates)
+  ) {
+    window.bancoLinhasDoTempoMuseu["Sócrates"] =
+      window.linhaTempoSocrates;
+  }
+
+  /* Cadastrar cronologia de qualquer pensador */
+  window.cadastrarLinhaDoTempo = function (nome, eventos) {
+
+    if (!nome || !Array.isArray(eventos)) {
+      console.warn(
+        "Linha do tempo inválida:",
+        nome
+      );
+      return false;
+    }
+
+    window.bancoLinhasDoTempoMuseu[nome] =
+      eventos;
+
+    return true;
+  };
+
+  /* Buscar cronologia */
+  window.buscarLinhaDoTempo = function (nome) {
+
+    return (
+      window.bancoLinhasDoTempoMuseu[nome] ||
+      []
+    );
+  };
+
+  /* Lista de pensadores com cronologia */
+  window.listarLinhasDoTempo = function () {
+
+    return Object.keys(
+      window.bancoLinhasDoTempoMuseu
+    );
+  };
+
+  /* Descobrir o pensador atualmente aberto */
+  window.identificarPensadorLinhaDoTempo =
+    function () {
+
+      var modais =
+        document.querySelectorAll(
+          "[role='dialog'], .modal, [id*='modal']"
+        );
+
+      for (var i = modais.length - 1; i >= 0; i--) {
+
+        if (
+          modais[i].offsetParent === null
+        ) {
+          continue;
+        }
+
+        var titulos =
+          modais[i].querySelectorAll(
+            "h1, h2, .titulo, .title"
+          );
+
+        for (var j = 0; j < titulos.length; j++) {
+
+          var texto =
+            (titulos[j].textContent || "")
+            .trim();
+
+          if (
+            texto &&
+            window.bancoLinhasDoTempoMuseu[texto]
+          ) {
+            return texto;
+          }
+        }
+      }
+
+      /* Fallback: procura nomes conhecidos
+         no conteúdo visível */
+      var textoPagina =
+        document.body.innerText || "";
+
+      var nomes =
+        Object.keys(
+          window.bancoLinhasDoTempoMuseu
+        );
+
+      for (var k = 0; k < nomes.length; k++) {
+
+        if (
+          textoPagina.indexOf(nomes[k]) !== -1
+        ) {
+          return nomes[k];
+        }
+      }
+
+      return null;
+    };
+
+  /* Abrir a cronologia do pensador */
+  window.abrirLinhaDoTempoMuseu =
+    function (nome) {
+
+      var eventos =
+        window.buscarLinhaDoTempo(nome);
+
+      if (!eventos.length) {
+
+        alert(
+          "A linha do tempo de " +
+          nome +
+          " ainda está sendo preparada."
+        );
+
+        return;
+      }
+
+      /* Fecha linha do tempo antiga */
+      var antigo =
+        document.getElementById(
+          "modal-linha-tempo-socrates"
+        );
+
+      if (antigo) antigo.remove();
+
+      var anterior =
+        document.getElementById(
+          "modal-linha-tempo-universal"
+        );
+
+      if (anterior) anterior.remove();
+
+      var modal =
+        document.createElement("div");
+
+      modal.id =
+        "modal-linha-tempo-universal";
+
+      var lista =
+        eventos.map(function (item) {
+
+          return `
+            <article
+              class="evento-linha-universal">
+
+              <div class="evento-data-universal">
+                ${item.data}
+              </div>
+
+              <div class="evento-conteudo-universal">
+
+                <h3>
+                  ${item.titulo}
+                </h3>
+
+                <p>
+                  ${item.texto}
+                </p>
+
+              </div>
+
+            </article>
+          `;
+
+        }).join("");
+
+      modal.innerHTML = `
+
+        <div class="caixa-linha-universal">
+
+          <button
+            class="fechar-linha-universal"
+            type="button">
+            ×
+          </button>
+
+          <div class="titulo-linha-universal">
+            ⏳ Linha do Tempo
+          </div>
+
+          <h2>
+            ${nome}
+          </h2>
+
+          <p class="intro-linha-universal">
+            Principais acontecimentos da vida,
+            do contexto histórico e do legado
+            de ${nome}.
+          </p>
+
+          <div class="linha-do-tempo-universal">
+            ${lista}
+          </div>
+
+        </div>
+      `;
+
+      document.body.appendChild(modal);
+
+      modal
+        .querySelector(
+          ".fechar-linha-universal"
+        )
+        .onclick = function () {
+          modal.remove();
+        };
+    };
+
+  /* O botão passa a descobrir automaticamente
+     qual pensador está sendo visitado */
+  document.addEventListener(
+    "click",
+    function (evento) {
+
+      var botao =
+        evento.target.closest("button");
+
+      if (!botao) return;
+
+      var texto =
+        (botao.textContent || "")
+        .replace(/\s+/g, " ")
+        .trim();
+
+      if (
+        texto.indexOf(
+          "Linha do Tempo"
+        ) === -1
+      ) {
+        return;
+      }
+
+      var nome =
+        window.identificarPensadorLinhaDoTempo();
+
+      if (!nome) {
+        return;
+      }
+
+      evento.preventDefault();
+      evento.stopImmediatePropagation();
+
+      window.abrirLinhaDoTempoMuseu(nome);
+
+    },
+    true
+  );
+
+  /* CSS */
+  var estilo =
+    document.createElement("style");
+
+  estilo.textContent = `
+
+    #modal-linha-tempo-universal {
+      position: fixed;
+      inset: 0;
+      z-index: 1000000;
+      background: rgba(0,0,0,.88);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+      box-sizing: border-box;
+      overflow-y: auto;
+    }
+
+    .caixa-linha-universal {
+      width: min(780px, 100%);
+      max-height: 92vh;
+      overflow-y: auto;
+      background: #080d18;
+      border: 1px solid #c9a85a;
+      border-radius: 24px;
+      padding: 28px;
+      color: #f3ead3;
+      box-sizing: border-box;
+      position: relative;
+      box-shadow: 0 20px 70px rgba(0,0,0,.75);
+    }
+
+    .fechar-linha-universal {
+      position: absolute;
+      right: 18px;
+      top: 10px;
+      border: 0;
+      background: transparent;
+      color: #e8cf8a;
+      font-size: 36px;
+      cursor: pointer;
+    }
+
+    .titulo-linha-universal {
+      color: #e8cf8a;
+      font-size: 29px;
+      font-weight: bold;
+    }
+
+    .caixa-linha-universal h2 {
+      color: #fff;
+      font-size: 27px;
+      margin: 7px 0;
+    }
+
+    .intro-linha-universal {
+      color: #d5d5d5;
+      line-height: 1.6;
+      margin-bottom: 28px;
+    }
+
+    .linha-do-tempo-universal {
+      border-left: 2px solid #c9a85a;
+      padding-left: 28px;
+    }
+
+    .evento-linha-universal {
+      position: relative;
+      margin-bottom: 28px;
+    }
+
+    .evento-linha-universal::before {
+      content: "";
+      position: absolute;
+      left: -37px;
+      top: 4px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: #d8b968;
+      border: 3px solid #080d18;
+      box-shadow: 0 0 0 1px #c9a85a;
+    }
+
+    .evento-data-universal {
+      color: #e8cf8a;
+      font-weight: bold;
+      margin-bottom: 6px;
+    }
+
+    .evento-conteudo-universal {
+      background: rgba(255,255,255,.035);
+      border: 1px solid rgba(201,168,90,.35);
+      border-radius: 15px;
+      padding: 16px;
+    }
+
+    .evento-conteudo-universal h3 {
+      color: #f1dfaa;
+      margin: 0 0 8px;
+      font-size: 21px;
+    }
+
+    .evento-conteudo-universal p {
+      color: #ddd;
+      line-height: 1.65;
+      margin: 0;
+    }
+
+  `;
+
+  document.head.appendChild(estilo);
+
+  console.log(
+    "✓ Módulo 8C carregado: motor universal de linhas do tempo."
+  );
+
+})();
+   </script>
 </body>
 
 </html>
