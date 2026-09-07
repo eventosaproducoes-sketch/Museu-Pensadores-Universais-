@@ -6885,40 +6885,34 @@ mostrarEstudoPensador;
       titulo: "Milão",
       texto: "Agostinho chega a Milão e assume uma posição como professor de retórica. O ambiente intelectual da cidade terá grande importância em sua trajetória."
     },
+      {
+        data: "Depois de 430",
+        titulo: "Legado",
+        texto: "Sua obra influencia profundamente a filosofia e a teologia posteriores, especialmente os debates sobre tempo, memória, liberdade, graça e natureza humana."
+      }
 
-    {
-      data: "386",
-      titulo: "Conversão",
-      texto: "Agostinho passa por uma profunda transformação religiosa, posteriormente narrada em suas Confissões."
-    },
+    ]);
 
-      data: "Depois de 430",
-      titulo: "Legado",
-      texto: "Sua obra influencia profundamente a filosofia e a teologia cristã, além de debates posteriores sobre tempo, memória, liberdade, graça, política e natureza humana."
-    }
+    window.cadastrarLinhaDoTempo(
+      "Agostinho de Hipona",
+      eventos
+    );
 
-  ]);
+    window.cadastrarLinhaDoTempo(
+      "Santo Agostinho",
+      eventos
+    );
 
+    window.cadastrarLinhaDoTempo(
+      "Agostinho",
+      eventos
+    );
 
-  /* =======================================================
-     TOMÁS DE AQUINO
-     ======================================================= */
+    console.log(
+      "✓ Agostinho cadastrado corretamente."
+    );
 
-  window.cadastrarLinhaDoTempo("Tomás de Aquino", [
-
-    {
-      data: "1224/1225",
-      titulo: "Nascimento",
-      texto: "Tomás de Aquino nasce provavelmente entre 1224 e 1225, em Roccasecca, no Reino da Sicília."
-    },
-
-    {
-      data: "Infância",
-      titulo: "Formação inicial",
-      texto: "Tomás recebe educação inicial na Abadia de Monte Cassino, importante centro religioso e intelectual."
-    },
-
-    {
-</script>
+})();
+      </script>
 </body>
 </html>
