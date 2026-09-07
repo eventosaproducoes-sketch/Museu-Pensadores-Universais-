@@ -7221,5 +7221,351 @@ mostrarEstudoPensador;
 
 })();
 </script>
+   <script>
+/* =========================================================
+   MÓDULO 8D — VERIFICAÇÃO E AUTOCORREÇÃO
+   DA LINHA DO TEMPO
+   ========================================================= */
+
+(function () {
+  "use strict";
+
+  if (window.modulo8DAutoCorrecao) return;
+  window.modulo8DAutoCorrecao = true;
+
+  console.log("======================================");
+  console.log("MUSEU — VERIFICAÇÃO DA LINHA DO TEMPO");
+  console.log("======================================");
+
+  /* -------------------------------------------------------
+     1. VERIFICAR MOTOR UNIVERSAL
+     ------------------------------------------------------- */
+
+  if (
+    typeof window.cadastrarLinhaDoTempo !== "function" ||
+    typeof window.buscarLinhaDoTempo !== "function"
+  ) {
+    console.error(
+      "ERRO: motor universal da linha do tempo não encontrado."
+    );
+
+    return;
+  }
+
+  console.log("✓ Motor universal encontrado.");
+
+
+  /* -------------------------------------------------------
+     2. VERIFICAR BANCO
+     ------------------------------------------------------- */
+
+  window.bancoLinhasDoTempoMuseu =
+    window.bancoLinhasDoTempoMuseu || {};
+
+  var nomes =
+    Object.keys(
+      window.bancoLinhasDoTempoMuseu
+    );
+
+  console.log(
+    "Pensadores cadastrados:",
+    nomes
+  );
+
+
+  /* -------------------------------------------------------
+     3. DESCOBRIR O PENSADOR DA EXPOSIÇÃO ABERTA
+     ------------------------------------------------------- */
+
+  window.detectarPensadorAtualMuseu =
+    function () {
+
+      var candidatos = [];
+
+      var elementos =
+        document.querySelectorAll(
+          "div, section, article, dialog, aside"
+        );
+
+      elementos.forEach(function (elemento) {
+
+        var estilo =
+          window.getComputedStyle(elemento);
+
+        if (
+          estilo.display === "none" ||
+          estilo.visibility === "hidden"
+        ) {
+          return;
+        }
+
+        var texto =
+          (elemento.innerText || "")
+          .replace(/\s+/g, " ")
+          .trim();
+
+        if (!texto) return;
+
+        /*
+         * Procura os nomes cadastrados dentro
+         * dos elementos visíveis.
+         */
+        nomes.forEach(function (nome) {
+
+          if (
+            texto.indexOf(nome) !== -1
+          ) {
+
+            candidatos.push({
+              nome: nome,
+              elemento: elemento,
+              tamanho: texto.length,
+              zIndex:
+                parseInt(
+                  estilo.zIndex,
+                  10
+                ) || 0
+            });
+
+          }
+
+        });
+
+      });
+
+
+      /*
+       * Preferimos o elemento menor,
+       * visível e com maior z-index.
+       */
+      candidatos.sort(function (a, b) {
+
+        if (a.zIndex !== b.zIndex) {
+          return b.zIndex - a.zIndex;
+        }
+
+        return a.tamanho - b.tamanho;
+
+      });
+
+
+      if (candidatos.length) {
+
+        console.log(
+          "Pensador identificado:",
+          candidatos[0].nome
+        );
+
+        return candidatos[0].nome;
+      }
+
+
+      console.warn(
+        "Não foi possível identificar o pensador atual."
+      );
+
+      return null;
+    };
+
+
+  /* -------------------------------------------------------
+     4. AUTOCORRIGIR A FUNÇÃO ANTIGA
+     ------------------------------------------------------- */
+
+  window.abrirLinhaTempoSocrates =
+    function () {
+
+      var nome =
+        window.detectarPensadorAtualMuseu();
+
+
+      /*
+       * Se encontrou um pensador diferente,
+       * abre a linha correta.
+       */
+      if (
+        nome &&
+        typeof window.abrirLinhaDoTempoMuseu ===
+        "function"
+      ) {
+
+        console.log(
+          "AUTOCORREÇÃO:",
+          nome
+        );
+
+        window.abrirLinhaDoTempoMuseu(
+          nome
+        );
+
+        return;
+      }
+
+
+      /*
+       * Fallback somente para Sócrates.
+       * Só será usado quando realmente não
+       * for possível identificar outro pensador.
+       */
+      if (
+        window.bancoLinhasDoTempoMuseu[
+          "Sócrates"
+        ]
+      ) {
+
+        console.warn(
+          "Fallback utilizado: Sócrates."
+        );
+
+        window.abrirLinhaDoTempoMuseu(
+          "Sócrates"
+        );
+
+      } else {
+
+        alert(
+          "Não foi possível identificar o pensador desta exposição."
+        );
+
+      }
+
+    };
+
+
+  /* -------------------------------------------------------
+     5. CORRIGIR CLIQUE NO BOTÃO
+     ------------------------------------------------------- */
+
+  document.addEventListener(
+    "click",
+    function (evento) {
+
+      var botao =
+        evento.target.closest(
+          "button"
+        );
+
+      if (!botao) return;
+
+      var texto =
+        (botao.textContent || "")
+        .replace(/\s+/g, " ")
+        .trim();
+
+      if (
+        texto.indexOf(
+          "Linha do Tempo"
+        ) === -1
+      ) {
+        return;
+      }
+
+      var nome =
+        window.detectarPensadorAtualMuseu();
+
+      if (!nome) {
+
+        console.warn(
+          "Botão Linha do Tempo clicado, mas pensador não identificado."
+        );
+
+        return;
+      }
+
+
+      if (
+        typeof window.abrirLinhaDoTempoMuseu !==
+        "function"
+      ) {
+
+        console.error(
+          "ERRO: abrirLinhaDoTempoMuseu não existe."
+        );
+
+        return;
+      }
+
+
+      evento.preventDefault();
+      evento.stopImmediatePropagation();
+
+
+      console.log(
+        "✓ Abrindo linha do tempo de:",
+        nome
+      );
+
+
+      window.abrirLinhaDoTempoMuseu(
+        nome
+      );
+
+    },
+    false
+  );
+
+
+  /* -------------------------------------------------------
+     6. RELATÓRIO DE VERIFICAÇÃO
+     ------------------------------------------------------- */
+
+  window.verificarLinhaDoTempoMuseu =
+    function () {
+
+      var banco =
+        window.bancoLinhasDoTempoMuseu || {};
+
+      var resultado = {
+        motor:
+          typeof window.abrirLinhaDoTempoMuseu ===
+          "function",
+
+        cadastro:
+          typeof window.cadastrarLinhaDoTempo ===
+          "function",
+
+        pensadores:
+          Object.keys(banco),
+
+        total:
+          Object.keys(banco).length,
+
+        socrates:
+          !!banco["Sócrates"],
+
+        agostinho:
+          !!banco["Agostinho de Hipona"],
+
+        platao:
+          !!banco["Platão"],
+
+        aristoteles:
+          !!banco["Aristóteles"]
+      };
+
+
+      console.table(resultado);
+
+      return resultado;
+    };
+
+
+  /* -------------------------------------------------------
+     7. EXECUTAR VERIFICAÇÃO AUTOMÁTICA
+     ------------------------------------------------------- */
+
+  var relatorio =
+    window.verificarLinhaDoTempoMuseu();
+
+  console.log(
+    "✓ Módulo 8D carregado."
+  );
+
+  console.log(
+    "✓ Sistema de autocorreção ativado."
+  );
+
+})();
+   </script>
 </body>
 </html>
