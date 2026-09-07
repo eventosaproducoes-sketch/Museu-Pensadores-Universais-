@@ -7567,5 +7567,241 @@ mostrarEstudoPensador;
 
 })();
    </script>
+   <script>
+/* =========================================================
+   MÓDULO 8E — CORREÇÃO DEFINITIVA
+   LINHA DO TEMPO POR EXPOSIÇÃO
+   ========================================================= */
+
+(function () {
+  "use strict";
+
+  if (window.modulo8ECorrecaoDefinitiva) return;
+  window.modulo8ECorrecaoDefinitiva = true;
+
+  console.log("✓ Módulo 8E iniciado.");
+
+  var nomes = [
+    "Sócrates",
+    "Platão",
+    "Aristóteles",
+    "Agostinho de Hipona",
+    "Santo Agostinho",
+    "Agostinho",
+    "Tomás de Aquino",
+    "Averróis"
+  ];
+
+  function descobrirPensadorDoBotao(botao) {
+
+    var elemento = botao;
+
+    for (var nivel = 0; nivel < 8 && elemento; nivel++) {
+
+      var texto =
+        (elemento.innerText || "")
+        .replace(/\s+/g, " ")
+        .trim();
+
+      for (var i = 0; i < nomes.length; i++) {
+
+        if (
+          texto.indexOf(nomes[i]) !== -1
+        ) {
+
+          console.log(
+            "Pensador encontrado na exposição:",
+            nomes[i]
+          );
+
+          return nomes[i];
+        }
+      }
+
+      elemento = elemento.parentElement;
+    }
+
+    return null;
+  }
+
+
+  function nomePrincipal(nome) {
+
+    if (
+      nome === "Santo Agostinho" ||
+      nome === "Agostinho"
+    ) {
+      return "Agostinho de Hipona";
+    }
+
+    return nome;
+  }
+
+
+  document.addEventListener(
+    "click",
+    function (evento) {
+
+      var botao =
+        evento.target.closest("button");
+
+      if (!botao) return;
+
+      var texto =
+        (botao.textContent || "")
+        .replace(/\s+/g, " ")
+        .trim();
+
+      if (
+        texto.indexOf("Linha do Tempo") === -1
+      ) {
+        return;
+      }
+
+      /*
+       * Descobre o pensador a partir da
+       * própria exposição onde o botão está.
+       */
+      var nome =
+        descobrirPensadorDoBotao(botao);
+
+      if (!nome) {
+
+        console.warn(
+          "⚠ Não foi possível identificar o pensador do botão."
+        );
+
+        return;
+      }
+
+      nome =
+        nomePrincipal(nome);
+
+      /*
+       * Verifica se existe uma cronologia.
+       */
+      var eventos =
+        window.bancoLinhasDoTempoMuseu &&
+        window.bancoLinhasDoTempoMuseu[nome];
+
+      if (
+        !Array.isArray(eventos) ||
+        eventos.length === 0
+      ) {
+
+        alert(
+          "A linha do tempo de " +
+          nome +
+          " ainda não foi cadastrada."
+        );
+
+        evento.preventDefault();
+        evento.stopImmediatePropagation();
+
+        return;
+      }
+
+      /*
+       * Impede os códigos antigos de abrirem
+       * automaticamente a linha do tempo de Sócrates.
+       */
+      evento.preventDefault();
+      evento.stopImmediatePropagation();
+
+      console.log(
+        "================================"
+      );
+
+      console.log(
+        "✓ LINHA DO TEMPO CORRETA"
+      );
+
+      console.log(
+        "Pensador:",
+        nome
+      );
+
+      console.log(
+        "Eventos:",
+        eventos.length
+      );
+
+      console.log(
+        "================================"
+      );
+
+      /*
+       * Abre somente a linha do tempo
+       * do pensador identificado.
+       */
+      if (
+        typeof window.abrirLinhaDoTempoMuseu ===
+        "function"
+      ) {
+
+        window.abrirLinhaDoTempoMuseu(
+          nome
+        );
+
+      } else {
+
+        console.error(
+          "Função abrirLinhaDoTempoMuseu não encontrada."
+        );
+
+      }
+
+    },
+    true
+  );
+
+
+  /*
+   * Ferramenta de diagnóstico.
+   */
+  window.verificarBotaoLinhaDoTempo =
+    function () {
+
+      var botoes =
+        document.querySelectorAll("button");
+
+      var encontrados = [];
+
+      botoes.forEach(function (botao) {
+
+        var texto =
+          (botao.textContent || "")
+          .trim();
+
+        if (
+          texto.indexOf("Linha do Tempo") !== -1
+        ) {
+
+          encontrados.push({
+            botao: texto,
+            pensador:
+              descobrirPensadorDoBotao(botao)
+          });
+
+        }
+
+      });
+
+      console.table(encontrados);
+
+      return encontrados;
+    };
+
+
+  console.log(
+    "✓ Módulo 8E carregado."
+  );
+
+  console.log(
+    "✓ Linha do tempo agora será identificada pela exposição."
+  );
+
+})();
+   </script>
 </body>
 </html>
