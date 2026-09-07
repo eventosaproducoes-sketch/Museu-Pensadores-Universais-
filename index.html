@@ -6322,5 +6322,342 @@ mostrarEstudoPensador;
 
 })();
       </script>
+   <script>
+(function () {
+
+  "use strict";
+
+  if (window.linhaTempoMuseuNova) return;
+  window.linhaTempoMuseuNova = true;
+
+  /* =====================================================
+     BANCO CENTRAL DAS LINHAS DO TEMPO
+  ===================================================== */
+
+  window.bancoLinhasDoTempoMuseu = {
+
+    "Sócrates": [
+
+      {
+        ano: "c. 469 a.C.",
+        titulo: "Nascimento",
+        texto: "Sócrates nasce em Atenas, na Grécia."
+      },
+
+      {
+        ano: "Século V a.C.",
+        titulo: "Formação e vida em Atenas",
+        texto: "Vive em Atenas e participa intensamente da vida pública e intelectual da cidade."
+      },
+
+      {
+        ano: "Século V a.C.",
+        titulo: "O método socrático",
+        texto: "Desenvolve uma prática filosófica baseada no diálogo, na investigação e no questionamento das certezas."
+      },
+
+      {
+        ano: "399 a.C.",
+        titulo: "Julgamento",
+        texto: "É julgado em Atenas sob acusações relacionadas à impiedade e à corrupção dos jovens."
+      },
+
+      {
+        ano: "399 a.C.",
+        titulo: "Condenação e morte",
+        texto: "Condenado à morte, Sócrates permanece em Atenas e morre após ingerir cicuta."
+      }
+
+    ],
+
+
+    "Agostinho de Hipona": [
+
+      {
+        ano: "354",
+        titulo: "Nascimento",
+        texto: "Agostinho nasce em Tagaste, no norte da África romana."
+      },
+
+      {
+        ano: "370–375",
+        titulo: "Estudos em Cartago",
+        texto: "Estuda retórica e desenvolve interesse pela filosofia e pela vida intelectual."
+      },
+
+      {
+        ano: "386",
+        titulo: "Conversão",
+        texto: "Passa por uma profunda transformação religiosa e intelectual em Milão."
+      },
+
+      {
+        ano: "387",
+        titulo: "Batismo",
+        texto: "É batizado por Ambrósio de Milão."
+      },
+
+      {
+        ano: "395",
+        titulo: "Bispo de Hipona",
+        texto: "Torna-se bispo de Hipona e passa a exercer importante atividade pastoral e intelectual."
+      },
+
+      {
+        ano: "430",
+        titulo: "Morte",
+        texto: "Agostinho morre em Hipona, durante o cerco da cidade pelos vândalos."
+      }
+
+    ]
+
+  };
+
+
+  /* =====================================================
+     BUSCAR LINHA DO TEMPO
+  ===================================================== */
+
+  window.buscarLinhaDoTempo = function (nome) {
+
+    if (!nome) return null;
+
+    var banco = window.bancoLinhasDoTempoMuseu || {};
+
+    if (banco[nome]) {
+      return banco[nome];
+    }
+
+    var procurado = String(nome)
+      .trim()
+      .toLowerCase();
+
+    var nomes = Object.keys(banco);
+
+    for (var i = 0; i < nomes.length; i++) {
+
+      if (
+        nomes[i].toLowerCase() === procurado
+      ) {
+        return banco[nomes[i]];
+      }
+
+    }
+
+    return null;
+  };
+
+
+  /* =====================================================
+     ABRIR LINHA DO TEMPO
+  ===================================================== */
+
+  window.abrirLinhaDoTempoMuseu = function (nome) {
+
+    var eventos = window.buscarLinhaDoTempo(nome);
+
+    if (!eventos) {
+
+      alert(
+        "A linha do tempo de " +
+        nome +
+        " ainda está sendo preparada."
+      );
+
+      console.warn(
+        "Linha do tempo não cadastrada:",
+        nome
+      );
+
+      return;
+    }
+
+
+    var antiga =
+      document.getElementById(
+        "linhaTempoMuseuModal"
+      );
+
+    if (antiga) {
+      antiga.remove();
+    }
+
+
+    var modal =
+      document.createElement("div");
+
+    modal.id =
+      "linhaTempoMuseuModal";
+
+
+    modal.style.cssText = `
+      position:fixed;
+      inset:0;
+      z-index:99999;
+      background:rgba(0,0,0,.88);
+      overflow-y:auto;
+      padding:30px 15px;
+    `;
+
+
+    var caixa =
+      document.createElement("div");
+
+    caixa.style.cssText = `
+      max-width:900px;
+      margin:0 auto;
+      background:#090d16;
+      border:1px solid #d8b36a;
+      border-radius:18px;
+      padding:30px;
+      color:#f5f1e8;
+      box-shadow:0 20px 80px rgba(0,0,0,.7);
+    `;
+
+
+    var html = `
+
+      <div style="
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        gap:15px;
+        margin-bottom:30px;
+      ">
+
+        <div>
+
+          <div style="
+            color:#d8b36a;
+            font-size:.85rem;
+            letter-spacing:2px;
+            text-transform:uppercase;
+          ">
+            Linha do Tempo
+          </div>
+
+          <h2 style="
+            color:#f1d79b;
+            margin-top:5px;
+          ">
+            ${nome}
+          </h2>
+
+        </div>
+
+        <button
+          id="fecharLinhaTempoMuseu"
+          style="
+            background:#151a26;
+            color:#f1d79b;
+            border:1px solid #d8b36a;
+            border-radius:10px;
+            padding:10px 15px;
+            cursor:pointer;
+          "
+        >
+          ✕ Fechar
+        </button>
+
+      </div>
+
+      <div id="conteudoLinhaTempoMuseu">
+    `;
+
+
+    for (var i = 0; i < eventos.length; i++) {
+
+      var evento = eventos[i];
+
+      html += `
+
+        <div style="
+          display:grid;
+          grid-template-columns:130px 1fr;
+          gap:20px;
+          margin-bottom:25px;
+        ">
+
+          <div style="
+            color:#d8b36a;
+            font-weight:bold;
+            font-size:1.05rem;
+          ">
+            ${evento.ano}
+          </div>
+
+          <div style="
+            border-left:2px solid #51462f;
+            padding-left:20px;
+          ">
+
+            <h3 style="
+              color:#f1d79b;
+              margin-bottom:5px;
+            ">
+              ${evento.titulo}
+            </h3>
+
+            <p style="
+              color:#ddd;
+              line-height:1.7;
+            ">
+              ${evento.texto}
+            </p>
+
+          </div>
+
+        </div>
+
+      `;
+    }
+
+
+    html += `
+      </div>
+    `;
+
+
+    caixa.innerHTML = html;
+
+    modal.appendChild(caixa);
+
+    document.body.appendChild(modal);
+
+
+    document
+      .getElementById(
+        "fecharLinhaTempoMuseu"
+      )
+      .onclick = function () {
+
+        modal.remove();
+
+      };
+
+
+    modal.onclick = function (evento) {
+
+      if (evento.target === modal) {
+        modal.remove();
+      }
+
+    };
+
+
+    console.log(
+      "✓ Linha do Tempo aberta:",
+      nome
+    );
+
+  };
+
+
+  console.log(
+    "✓ Novo sistema de Linha do Tempo carregado."
+  );
+
+})();
+   </script>
 </body>
 </html>
