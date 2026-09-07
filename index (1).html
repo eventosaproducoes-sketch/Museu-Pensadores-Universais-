@@ -1,0 +1,6327 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>
+Museu Virtual dos Pensadores Universais
+</title>
+
+<style>
+
+/* =====================================================
+   MUSEU VIRTUAL DOS PENSADORES UNIVERSAIS
+   VERSÃO LIMPA E COMPLETA
+===================================================== */
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+
+    font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+    color:#f5f1e8;
+
+    background-color:#02040a;
+
+    background-image:
+    linear-gradient(
+        rgba(2,4,10,.78),
+        rgba(2,4,10,.90)
+    ),
+    url("galaxia-museu.png");
+
+    background-position:center top;
+
+    background-size:cover;
+
+    background-attachment:fixed;
+
+    line-height:1.7;
+
+}
+
+button,
+input{
+    font-family:inherit;
+}
+
+button{
+    cursor:pointer;
+}
+
+a{
+    text-decoration:none;
+    color:inherit;
+}
+
+/* =====================================================
+   CABEÇALHO
+===================================================== */
+
+header{
+
+    position:sticky;
+
+    top:0;
+
+    z-index:1000;
+
+    background:
+    rgba(3,5,12,.96);
+
+    border-bottom:
+    1px solid
+    rgba(216,179,106,.35);
+
+    backdrop-filter:blur(12px);
+
+}
+
+.nav{
+
+    width:min(1150px,92%);
+
+    margin:auto;
+
+    min-height:70px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:20px;
+
+}
+
+.logo{
+
+    color:#f1d79b;
+
+    font-size:1.15rem;
+
+    font-weight:bold;
+
+}
+
+nav{
+
+    display:flex;
+
+    gap:18px;
+
+    flex-wrap:wrap;
+
+}
+
+nav a{
+
+    color:#f0eee9;
+
+    font-size:.95rem;
+
+}
+
+nav a:hover{
+
+    color:#f1d79b;
+
+}
+
+/* =====================================================
+   ESTRUTURA
+===================================================== */
+
+.container{
+
+    width:min(1150px,92%);
+
+    margin:auto;
+
+}
+
+section{
+
+    padding:70px 0;
+
+}
+
+.section-box{
+
+    background:
+    rgba(5,8,17,.91);
+
+    border:
+    1px solid
+    rgba(216,179,106,.25);
+
+    border-radius:20px;
+
+    padding:30px;
+
+    box-shadow:
+    0 15px 50px
+    rgba(0,0,0,.40);
+
+}
+
+.section-title{
+
+    text-align:center;
+
+    margin-bottom:30px;
+
+}
+
+.section-title h2{
+
+    color:#f1d79b;
+
+    font-size:2rem;
+
+    margin-bottom:8px;
+
+}
+
+.section-title p{
+
+    color:#ddd8ce;
+
+}
+
+/* =====================================================
+   BOTÕES
+===================================================== */
+
+.btn{
+
+    display:inline-block;
+
+    padding:11px 20px;
+
+    border-radius:30px;
+
+    border:
+    1px solid
+    #d8b36a;
+
+    font-weight:bold;
+
+    transition:.2s;
+
+}
+
+.gold{
+
+    background:#d8b36a;
+
+    color:#111;
+
+}
+
+.gold:hover{
+
+    background:#f1d79b;
+
+    transform:translateY(-2px);
+
+}
+
+.outline{
+
+    background:
+    rgba(0,0,0,.40);
+
+    color:#f1d79b;
+
+}
+
+.outline:hover{
+
+    background:
+    rgba(216,179,106,.15);
+
+}
+
+/* =====================================================
+   HERO
+===================================================== */
+
+.hero{
+
+    min-height:78vh;
+
+    display:flex;
+
+    align-items:center;
+
+    text-align:center;
+
+}
+
+.hero-content{
+
+    width:min(850px,100%);
+
+    margin:auto;
+
+    padding:80px 0;
+
+}
+
+.kicker{
+
+    color:#f1d79b;
+
+    letter-spacing:4px;
+
+    font-size:.8rem;
+
+    text-transform:uppercase;
+
+}
+
+.hero h1{
+
+    font-size:
+    clamp(2.4rem,6vw,5rem);
+
+    line-height:1.05;
+
+    margin:18px 0;
+
+    color:#fff;
+
+    text-shadow:
+    0 3px 20px #000;
+
+}
+
+.hero p{
+
+    max-width:720px;
+
+    margin:
+    0 auto 30px;
+
+    font-size:1.15rem;
+
+    color:#f4f1ea;
+
+    text-shadow:
+    0 2px 8px #000;
+
+}
+
+.hero-buttons{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:12px;
+
+    flex-wrap:wrap;
+
+}
+
+/* =====================================================
+   MAPA
+===================================================== */
+
+.map-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(
+        auto-fit,
+        minmax(180px,1fr)
+    );
+
+    gap:12px;
+
+}
+
+.map-button{
+
+    width:100%;
+
+    min-height:100px;
+
+    background:#101625;
+
+    color:#fff;
+
+    border:
+    1px solid
+    #655735;
+
+    border-radius:14px;
+
+    padding:15px;
+
+    font-size:1rem;
+
+    transition:.2s;
+
+}
+
+.map-button:hover{
+
+    border-color:#d8b36a;
+
+    background:#182033;
+
+    transform:translateY(-2px);
+
+}
+
+.map-button strong{
+
+    display:block;
+
+    color:#f1d79b;
+
+    margin-bottom:5px;
+
+}
+
+/* =====================================================
+   PESQUISA
+===================================================== */
+
+.search-area{
+
+    display:flex;
+
+    gap:10px;
+
+    margin-bottom:25px;
+
+}
+
+.search-area input{
+
+    flex:1;
+
+    min-width:0;
+
+    padding:14px 16px;
+
+    border-radius:10px;
+
+    border:
+    1px solid
+    #6f644c;
+
+    background:#080c15;
+
+    color:#fff;
+
+    font-size:1rem;
+
+}
+
+.search-area input::placeholder{
+
+    color:#aaa;
+
+}
+
+.search-area button{
+
+    border:
+    1px solid
+    #d8b36a;
+
+    border-radius:10px;
+
+    padding:
+    0 18px;
+
+    background:#151a26;
+
+    color:#f1d79b;
+
+}
+
+/* =====================================================
+   PENSADORES
+===================================================== */
+
+.thinkers{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(
+        auto-fit,
+        minmax(230px,1fr)
+    );
+
+    gap:18px;
+
+}
+
+.card{
+
+    background:
+    linear-gradient(
+        145deg,
+        rgba(22,27,40,.98),
+        rgba(7,10,18,.98)
+    );
+
+    border:
+    1px solid
+    rgba(216,179,106,.25);
+
+    border-radius:16px;
+
+    padding:22px;
+
+    transition:.2s;
+
+}
+
+.card:hover{
+
+    transform:translateY(-3px);
+
+    border-color:
+    rgba(216,179,106,.65);
+
+}
+
+.card h3{
+
+    color:#f1d79b;
+
+    margin-bottom:5px;
+
+}
+
+.card .era{
+
+    color:#aaa;
+
+    font-size:.85rem;
+
+    margin-bottom:12px;
+
+}
+
+.card p{
+
+    color:#e8e4dc;
+
+    font-size:.95rem;
+
+    margin-bottom:15px;
+
+}
+
+.card-actions{
+
+    display:flex;
+
+    gap:8px;
+
+    flex-wrap:wrap;
+
+}
+
+.card-actions button{
+
+    border:
+    1px solid
+    #d8b36a;
+
+    background:#111724;
+
+    color:#f1d79b;
+
+    border-radius:20px;
+
+    padding:8px 12px;
+
+}
+
+.card-actions button:hover{
+
+    background:#d8b36a;
+
+    color:#111;
+
+}
+
+.favorite{
+
+    font-size:1.1rem;
+
+}
+
+/* =====================================================
+   JORNADA
+===================================================== */
+
+.progress-box{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(3,1fr);
+
+    gap:15px;
+
+    text-align:center;
+
+}
+
+.stat{
+
+    background:#0c111d;
+
+    border:
+    1px solid
+    #51462f;
+
+    border-radius:14px;
+
+    padding:20px;
+
+}
+
+.stat strong{
+
+    display:block;
+
+    font-size:2rem;
+
+    color:#f1d79b;
+
+}
+
+.stat span{
+
+    color:#ccc;
+
+}
+
+.progress{
+
+    height:12px;
+
+    background:#242938;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    margin-top:25px;
+
+}
+
+.progress-bar{
+
+    width:0%;
+
+    height:100%;
+
+    background:#d8b36a;
+
+    transition:.4s;
+
+}
+
+/* =====================================================
+   PREMIUM
+===================================================== */
+
+.premium{
+
+    text-align:center;
+
+    background:
+
+    linear-gradient(
+        rgba(5,8,15,.82),
+        rgba(5,8,15,.88)
+    ),
+
+    url("galaxia-museu.png")
+
+    center / cover;
+
+}
+
+.premium h2{
+
+    color:#f1d79b;
+
+    margin-bottom:12px;
+
+}
+
+.premium p{
+
+    max-width:720px;
+
+    margin:
+    0 auto 20px;
+
+    color:#eee;
+
+}
+
+/* =====================================================
+   RODAPÉ
+===================================================== */
+
+footer{
+
+    border-top:
+    1px solid
+    rgba(216,179,106,.25);
+
+    padding:35px 0;
+
+    text-align:center;
+
+    color:#aaa;
+
+}
+
+/* =====================================================
+   MODAL
+===================================================== */
+
+.modal{
+
+    display:none;
+
+    position:fixed;
+
+    inset:0;
+
+    z-index:5000;
+
+    background:
+    rgba(0,0,0,.86);
+
+    padding:20px;
+
+    overflow:auto;
+
+}
+
+.modal.active{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+}
+
+.modal-box{
+
+    width:min(850px,100%);
+
+    max-height:90vh;
+
+    overflow:auto;
+
+    background:#090d17;
+
+    border:
+    1px solid
+    #d8b36a;
+
+    border-radius:20px;
+
+    padding:30px;
+
+    position:relative;
+
+    box-shadow:
+    0 20px 80px
+    rgba(0,0,0,.70);
+
+}
+
+.close{
+
+    position:absolute;
+
+    right:18px;
+
+    top:12px;
+
+    background:none;
+
+    border:0;
+
+    color:#f1d79b;
+
+    font-size:1.8rem;
+
+}
+
+.modal-box h2{
+
+    color:#f1d79b;
+
+    margin-bottom:5px;
+
+}
+
+.modal-box h3{
+
+    color:#f1d79b;
+
+    margin:
+    20px 0 8px;
+
+}
+
+.modal-box p{
+
+    color:#eee;
+
+}
+
+.tabs{
+
+    display:flex;
+
+    gap:8px;
+
+    flex-wrap:wrap;
+
+    margin:
+    22px 0;
+
+}
+
+.tabs button{
+
+    background:#151b29;
+
+    border:
+    1px solid
+    #635538;
+
+    color:#f1d79b;
+
+    padding:
+    9px 14px;
+
+    border-radius:20px;
+
+}
+
+.tabs button.active{
+
+    background:#d8b36a;
+
+    color:#111;
+
+}
+
+/* =====================================================
+   QUIZ
+===================================================== */
+
+.quiz-option{
+
+    display:block;
+
+    width:100%;
+
+    text-align:left;
+
+    background:#121827;
+
+    color:#eee;
+
+    border:
+    1px solid
+    #4d4431;
+
+    border-radius:10px;
+
+    padding:12px;
+
+    margin:9px 0;
+
+}
+
+.quiz-option:hover{
+
+    border-color:#d8b36a;
+
+    background:#192133;
+
+}
+
+.result{
+
+    margin-top:15px;
+
+    padding:15px;
+
+    border-radius:10px;
+
+    background:#151b29;
+
+    color:#f1d79b;
+
+}
+
+/* =====================================================
+   RESPONSIVO
+===================================================== */
+
+@media(max-width:700px){
+
+    nav{
+        display:none;
+    }
+
+    .hero{
+        min-height:70vh;
+    }
+
+    .hero h1{
+        font-size:2.6rem;
+    }
+
+    .section-box{
+        padding:20px;
+    }
+
+    .search-area{
+        flex-direction:column;
+    }
+
+    .search-area button{
+        min-height:45px;
+    }
+
+    .progress-box{
+        grid-template-columns:1fr;
+    }
+
+    body{
+
+        background-image:
+
+        linear-gradient(
+            rgba(2,4,10,.80),
+            rgba(2,4,10,.92)
+        ),
+
+        url("galaxia-museu.png");
+
+        background-size:auto 100%;
+
+        background-position:center top;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     CABEÇALHO
+===================================================== -->
+
+<header>
+
+<div class="nav">
+
+<div class="logo">
+🏛️ Museu dos Pensadores
+</div>
+
+<nav>
+
+<a href="#inicio">
+Início
+</a>
+
+<a href="#mapa">
+Mapa
+</a>
+
+<a href="#pensadores">
+Pensadores
+</a>
+
+<a href="#jornada">
+Jornada
+</a>
+
+<a href="#premium">
+Premium
+</a>
+
+</nav>
+
+</div>
+
+</header>
+
+
+<!-- =====================================================
+     CONTEÚDO
+===================================================== -->
+
+<main>
+
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<section
+class="hero"
+id="inicio">
+
+<div class="container">
+
+<div class="hero-content">
+
+<div class="kicker">
+
+Museu Virtual dos Pensadores Universais
+
+</div>
+
+<h1>
+
+Grandes ideias para um mundo melhor.
+
+</h1>
+
+<p>
+
+Uma viagem pela história das grandes mentes
+da humanidade, suas ideias, obras,
+conflitos e legados.
+
+</p>
+
+<div class="hero-buttons">
+
+<a
+class="btn gold"
+href="#mapa">
+
+Entrar no Museu
+
+</a>
+
+<a
+class="btn outline"
+href="#pensadores">
+
+Explorar Pensadores
+
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     MAPA
+===================================================== -->
+
+<section id="mapa">
+
+<div class="container">
+
+<div class="section-box">
+
+<div class="section-title">
+
+<h2>
+🗺️ Mapa do Museu
+</h2>
+
+<p>
+Escolha uma época para explorar.
+</p>
+
+</div>
+
+
+<div class="map-grid">
+
+
+<button
+class="map-button"
+onclick="filterEra('Antiguidade')">
+
+<strong>
+🏛️ Antiguidade
+</strong>
+
+Sócrates • Platão • Aristóteles
+
+</button>
+
+
+<button
+class="map-button"
+onclick="filterEra('Idade Média')">
+
+<strong>
+📜 Idade Média
+</strong>
+
+Agostinho • Aquino • Averróis
+
+</button>
+
+
+<button
+class="map-button"
+onclick="filterEra('Renascimento')">
+
+<strong>
+🎨 Renascimento
+</strong>
+
+Leonardo • Maquiavel • Erasmo
+
+</button>
+
+
+<button
+class="map-button"
+onclick="filterEra('Iluminismo')">
+
+<strong>
+💡 Iluminismo
+</strong>
+
+Locke • Rousseau • Voltaire • Kant
+
+</button>
+
+
+<button
+class="map-button"
+onclick="filterEra('Séculos XIX–XX')">
+
+<strong>
+📚 Séculos XIX–XX
+</strong>
+
+Marx • Darwin • Nietzsche • Freud
+
+</button>
+
+
+<button
+class="map-button"
+onclick="filterEra('Contemporâneos')">
+
+<strong>
+🌎 Contemporâneos
+</strong>
+
+Arendt • Freire • Mandela • Sagan
+
+</button>
+
+
+<button
+class="map-button"
+onclick="filterEra('Brasil')">
+
+<strong>
+🇧🇷 Brasil
+</strong>
+
+Machado • Darcy • Milton • Krenak
+
+</button>
+
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     GALERIA
+===================================================== -->
+
+<section id="pensadores">
+
+<div class="container">
+
+<div class="section-box">
+
+<div class="section-title">
+
+<h2>
+👤 Galeria dos Pensadores
+</h2>
+
+<p>
+Pesquise um pensador ou visite uma sala.
+</p>
+
+</div>
+
+
+<div class="search-area">
+
+<input
+id="thinkerSearch"
+type="text"
+placeholder="Pesquisar pensador ou período..."
+oninput="renderThinkers()">
+
+<button
+onclick="clearSearch()">
+
+Limpar
+
+</button>
+
+</div>
+
+
+<div
+id="thinkersList"
+class="thinkers">
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     JORNADA
+===================================================== -->
+
+<section id="jornada">
+
+<div class="container">
+
+<div class="section-box">
+
+<div class="section-title">
+
+<h2>
+🧭 Minha Jornada
+</h2>
+
+<p>
+Acompanhe sua exploração pelo museu.
+</p>
+
+</div>
+
+
+<div class="progress-box">
+
+
+<div class="stat">
+
+<strong id="visitedCount">
+0
+</strong>
+
+<span>
+Salas visitadas
+</span>
+
+</div>
+
+
+<div class="stat">
+
+<strong id="favoriteCount">
+0
+</strong>
+
+<span>
+Favoritos
+</span>
+
+</div>
+
+
+<div class="stat">
+
+<strong id="progressPercent">
+0%
+</strong>
+
+<span>
+Progresso
+</span>
+
+</div>
+
+
+</div>
+
+
+<div class="progress">
+
+<div
+id="progressBar"
+class="progress-bar">
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     PREMIUM
+===================================================== -->
+
+<section id="premium">
+
+<div class="container">
+
+<div class="section-box premium">
+
+<h2>
+✨ Experiência Premium
+</h2>
+
+<p>
+
+A experiência completa do Museu poderá reunir
+salas especiais, documentos, vídeos, áudios,
+exposições, quizzes avançados e novas galerias.
+
+</p>
+
+<p>
+
+<strong>
+A área de pagamento será construída somente
+quando todo o Museu estiver pronto.
+</strong>
+
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+</main>
+
+
+<!-- =====================================================
+     RODAPÉ
+===================================================== -->
+
+<footer>
+
+<div class="container">
+
+<p>
+🏛️ Museu Virtual dos Pensadores Universais
+</p>
+
+<p>
+Grandes ideias para um mundo melhor.
+</p>
+
+</div>
+
+</footer>
+
+
+<!-- =====================================================
+     MODAL DA SALA
+===================================================== -->
+
+<div
+id="modal"
+class="modal"
+onclick="closeModalOutside(event)">
+
+<div
+class="modal-box"
+id="modalContent">
+
+</div>
+
+</div>
+
+
+<!-- =====================================================
+     JAVASCRIPT
+     TODO O SISTEMA FICA AQUI
+===================================================== -->
+
+<script>
+
+
+/* =====================================================
+   BANCO DE PENSADORES
+===================================================== */
+
+const thinkers = [
+
+{
+nome:"Sócrates",
+era:"Antiguidade",
+descricao:"Filósofo ateniense associado ao diálogo, à investigação e ao conhecimento de si.",
+ideia:"A filosofia como investigação através de perguntas e diálogo.",
+obra:"Não deixou obras escritas. Seu pensamento é conhecido principalmente por relatos de seus discípulos.",
+legado:"Influenciou profundamente Platão, Aristóteles e toda a tradição filosófica ocidental."
+},
+
+{
+nome:"Platão",
+era:"Antiguidade",
+descricao:"Filósofo grego e discípulo de Sócrates.",
+ideia:"Reflexões sobre conhecimento, justiça, política e realidade.",
+obra:"A República, O Banquete e Fédon.",
+legado:"Fundou a Academia e exerceu enorme influência sobre a filosofia ocidental."
+},
+
+{
+nome:"Aristóteles",
+era:"Antiguidade",
+descricao:"Filósofo grego e discípulo de Platão.",
+ideia:"Investigou lógica, ética, política, natureza e conhecimento.",
+obra:"Ética a Nicômaco, Política e Metafísica.",
+legado:"Sua obra influenciou ciência, filosofia e educação por séculos."
+},
+
+{
+nome:"Agostinho de Hipona",
+era:"Idade Média",
+descricao:"Pensador cristão da Antiguidade tardia.",
+ideia:"Reflexões sobre fé, conhecimento, tempo e interioridade.",
+obra:"Confissões e A Cidade de Deus.",
+legado:"Uma das principais influências do pensamento cristão ocidental."
+},
+
+{
+nome:"Tomás de Aquino",
+era:"Idade Média",
+descricao:"Filósofo e teólogo medieval.",
+ideia:"Diálogo entre razão, filosofia e teologia.",
+obra:"Suma Teológica.",
+legado:"Tornou-se uma referência central da tradição escolástica."
+},
+
+{
+nome:"Averróis",
+era:"Idade Média",
+descricao:"Filósofo e médico de Al-Andalus.",
+ideia:"Defesa do papel da razão e interpretação filosófica de Aristóteles.",
+obra:"Comentários sobre Aristóteles.",
+legado:"Teve grande influência sobre a filosofia medieval europeia."
+},
+
+{
+nome:"Leonardo da Vinci",
+era:"Renascimento",
+descricao:"Artista, inventor, engenheiro e estudioso do Renascimento.",
+ideia:"Integração entre arte, observação da natureza e investigação.",
+obra:"Mona Lisa e A Última Ceia.",
+legado:"Símbolo do espírito multidisciplinar do Renascimento."
+},
+
+{
+nome:"Nicolau Maquiavel",
+era:"Renascimento",
+descricao:"Pensador político italiano.",
+ideia:"Análise realista do poder e da política.",
+obra:"O Príncipe.",
+legado:"Influenciou profundamente o pensamento político moderno."
+},
+
+{
+nome:"John Locke",
+era:"Iluminismo",
+descricao:"Filósofo inglês.",
+ideia:"Experiência, liberdade, direitos e governo limitado.",
+obra:"Ensaio sobre o Entendimento Humano.",
+legado:"Influenciou o liberalismo político e ideias modernas de direitos."
+},
+
+{
+nome:"Jean-Jacques Rousseau",
+era:"Iluminismo",
+descricao:"Filósofo e escritor franco-genebrino.",
+ideia:"Liberdade, educação, sociedade e contrato social.",
+obra:"O Contrato Social e Emílio.",
+legado:"Influenciou política, educação e pensamento moderno."
+},
+
+{
+nome:"Voltaire",
+era:"Iluminismo",
+descricao:"Escritor e filósofo francês.",
+ideia:"Liberdade de pensamento e crítica ao autoritarismo.",
+obra:"Cândido.",
+legado:"Uma das figuras mais conhecidas do Iluminismo."
+},
+
+{
+nome:"Immanuel Kant",
+era:"Iluminismo",
+descricao:"Filósofo alemão.",
+ideia:"Investigação dos limites da razão e da moral.",
+obra:"Crítica da Razão Pura.",
+legado:"Transformou a filosofia moderna."
+},
+
+{
+nome:"Karl Marx",
+era:"Séculos XIX–XX",
+descricao:"Filósofo, economista e pensador social.",
+ideia:"Análise histórica, econômica e social das relações de produção.",
+obra:"O Capital e Manifesto Comunista.",
+legado:"Influenciou profundamente política, economia e ciências sociais."
+},
+
+{
+nome:"Charles Darwin",
+era:"Séculos XIX–XX",
+descricao:"Naturalista britânico.",
+ideia:"Evolução das espécies através da seleção natural.",
+obra:"A Origem das Espécies.",
+legado:"Transformou a compreensão científica da vida."
+},
+
+{
+nome:"Friedrich Nietzsche",
+era:"Séculos XIX–XX",
+descricao:"Filósofo alemão.",
+ideia:"Crítica da moral, cultura e valores tradicionais.",
+obra:"Assim Falou Zaratustra.",
+legado:"Influenciou filosofia, literatura e pensamento contemporâneo."
+},
+
+{
+nome:"Sigmund Freud",
+era:"Séculos XIX–XX",
+descricao:"Médico e pensador austríaco.",
+ideia:"Investigação do inconsciente e da vida psíquica.",
+obra:"A Interpretação dos Sonhos.",
+legado:"Influenciou psicologia, cultura e artes."
+},
+
+{
+nome:"Albert Einstein",
+era:"Séculos XIX–XX",
+descricao:"Físico que revolucionou a compreensão do espaço, tempo e gravidade.",
+ideia:"Relatividade e novas formas de compreender o universo.",
+obra:"Artigos sobre relatividade.",
+legado:"Um dos cientistas mais influentes da história."
+},
+
+{
+nome:"Hannah Arendt",
+era:"Contemporâneos",
+descricao:"Pensadora política alemã-americana.",
+ideia:"Reflexões sobre poder, totalitarismo, liberdade e política.",
+obra:"As Origens do Totalitarismo.",
+legado:"Grande influência no pensamento político contemporâneo."
+},
+
+{
+nome:"Paulo Freire",
+era:"Contemporâneos",
+descricao:"Educador e filósofo brasileiro.",
+ideia:"Educação crítica, diálogo e transformação social.",
+obra:"Pedagogia do Oprimido.",
+legado:"Um dos educadores brasileiros mais influentes internacionalmente."
+},
+
+{
+nome:"Nelson Mandela",
+era:"Contemporâneos",
+descricao:"Líder político sul-africano e símbolo da luta contra o apartheid.",
+ideia:"Reconciliação, igualdade e liberdade.",
+obra:"Long Walk to Freedom.",
+legado:"Símbolo mundial da luta contra a segregação racial."
+},
+
+{
+nome:"Martin Luther King Jr.",
+era:"Contemporâneos",
+descricao:"Líder dos direitos civis nos Estados Unidos.",
+ideia:"Luta por igualdade e direitos civis através da não violência.",
+obra:"Discursos e escritos sobre direitos civis.",
+legado:"Símbolo mundial da luta por igualdade."
+},
+
+{
+nome:"Carl Sagan",
+era:"Contemporâneos",
+descricao:"Astrônomo, cientista e divulgador científico.",
+ideia:"Ciência, pensamento crítico e compreensão do universo.",
+obra:"Cosmos.",
+legado:"Popularizou a ciência para milhões de pessoas."
+},
+
+{
+nome:"Machado de Assis",
+era:"Brasil",
+descricao:"Escritor brasileiro e um dos grandes nomes da literatura em língua portuguesa.",
+ideia:"Observação crítica da sociedade, comportamento humano e ironia.",
+obra:"Dom Casmurro e Memórias Póstumas de Brás Cubas.",
+legado:"Um dos maiores escritores brasileiros."
+},
+
+{
+nome:"Milton Santos",
+era:"Brasil",
+descricao:"Geógrafo e intelectual brasileiro.",
+ideia:"Análise do espaço, globalização e desigualdades sociais.",
+obra:"Por uma Outra Globalização.",
+legado:"Grande referência da geografia brasileira e mundial."
+},
+
+{
+nome:"Darcy Ribeiro",
+era:"Brasil",
+descricao:"Antropólogo, educador e pensador brasileiro.",
+ideia:"Formação cultural brasileira e educação.",
+obra:"O Povo Brasileiro.",
+legado:"Influenciou antropologia, educação e pensamento social brasileiro."
+},
+
+{
+nome:"Ailton Krenak",
+era:"Brasil",
+descricao:"Pensador indígena, escritor e liderança intelectual brasileira.",
+ideia:"Relação entre humanidade, natureza e modos indígenas de existência.",
+obra:"Ideias para Adiar o Fim do Mundo.",
+legado:"Uma das vozes contemporâneas mais importantes sobre povos indígenas e meio ambiente."
+}
+
+];
+
+
+/* =====================================================
+   JORNADA
+===================================================== */
+
+const STORAGE_KEY =
+"museu_jornada_visitante";
+
+let jornada = {
+
+salas:[],
+
+favoritos:[],
+
+quizzes:0
+
+};
+
+
+function carregarJornada(){
+
+try{
+
+const dados =
+JSON.parse(
+localStorage.getItem(STORAGE_KEY)
+|| "{}"
+);
+
+if(Array.isArray(dados.salas))
+jornada.salas=dados.salas;
+
+if(Array.isArray(dados.favoritos))
+jornada.favoritos=dados.favoritos;
+
+if(typeof dados.quizzes==="number")
+jornada.quizzes=dados.quizzes;
+
+}catch(e){
+
+jornada={
+salas:[],
+favoritos:[],
+quizzes:0
+};
+
+}
+
+}
+
+
+function salvarJornada(){
+
+localStorage.setItem(
+STORAGE_KEY,
+JSON.stringify(jornada)
+);
+
+atualizarJornada();
+
+}
+
+
+/* =====================================================
+   ATUALIZAR JORNADA
+===================================================== */
+
+function atualizarJornada(){
+
+const total=thinkers.length;
+
+const visitadas=jornada.salas.length;
+
+const porcentagem=
+Math.min(
+100,
+Math.round(
+(visitadas/total)*100
+)
+);
+
+document.getElementById(
+"visitedCount"
+).textContent=visitadas;
+
+document.getElementById(
+"favoriteCount"
+).textContent=
+jornada.favoritos.length;
+
+document.getElementById(
+"progressPercent"
+).textContent=
+porcentagem+"%";
+
+document.getElementById(
+"progressBar"
+).style.width=
+porcentagem+"%";
+
+}
+
+
+/* =====================================================
+   REGISTRAR VISITA
+===================================================== */
+
+function registrarVisita(nome){
+
+if(!jornada.salas.includes(nome)){
+
+jornada.salas.push(nome);
+
+salvarJornada();
+
+}
+
+}
+
+
+/* =====================================================
+   FAVORITO
+===================================================== */
+
+function alternarFavorito(nome){
+
+if(jornada.favoritos.includes(nome)){
+
+jornada.favoritos=
+jornada.favoritos.filter(
+item=>item!==nome
+);
+
+}else{
+
+jornada.favoritos.push(nome);
+
+}
+
+salvarJornada();
+
+renderThinkers();
+
+}
+
+
+/* =====================================================
+   PESQUISA
+===================================================== */
+
+function renderThinkers(){
+
+const campo=
+document.getElementById(
+"thinkerSearch"
+);
+
+const termo=
+campo.value
+.toLowerCase()
+.trim();
+
+const lista=
+document.getElementById(
+"thinkersList"
+);
+
+const filtrados=
+thinkers.filter(p=>{
+
+return (
+
+p.nome
+.toLowerCase()
+.includes(termo)
+
+||
+
+p.era
+.toLowerCase()
+.includes(termo)
+
+||
+
+p.descricao
+.toLowerCase()
+.includes(termo)
+
+);
+
+});
+
+
+lista.innerHTML="";
+
+
+if(filtrados.length===0){
+
+lista.innerHTML=`
+
+<div class="card">
+
+<h3>
+Nenhum pensador encontrado
+</h3>
+
+<p>
+Tente pesquisar outro nome ou período.
+</p>
+
+</div>
+
+`;
+
+return;
+
+}
+
+
+filtrados.forEach(p=>{
+
+const favorito=
+jornada.favoritos.includes(
+p.nome
+);
+
+const card=
+document.createElement(
+"article"
+);
+
+card.className="card";
+
+card.innerHTML=`
+
+<h3>
+${p.nome}
+</h3>
+
+<div class="era">
+${p.era}
+</div>
+
+<p>
+${p.descricao}
+</p>
+
+<div class="card-actions">
+
+<button
+onclick="openThinker('${p.nome}')">
+
+🏛️ Visitar sala
+
+</button>
+
+<button
+class="favorite"
+onclick="alternarFavorito('${p.nome}')">
+
+${favorito?"★":"☆"} Favorito
+
+</button>
+
+</div>
+
+`;
+
+lista.appendChild(card);
+
+});
+
+}
+
+
+/* =====================================================
+   LIMPAR PESQUISA
+===================================================== */
+
+function clearSearch(){
+
+const campo=
+document.getElementById(
+"thinkerSearch"
+);
+
+campo.value="";
+
+renderThinkers();
+
+campo.focus();
+
+}
+
+
+/* =====================================================
+   FILTRO DO MAPA
+===================================================== */
+
+function filterEra(era){
+
+const campo=
+document.getElementById(
+"thinkerSearch"
+);
+
+campo.value=era;
+
+renderThinkers();
+
+document
+.getElementById("pensadores")
+.scrollIntoView({
+behavior:"smooth"
+});
+
+}
+
+
+/* =====================================================
+   ABRIR SALA
+===================================================== */
+
+function openThinker(nome){
+
+const pensador=
+thinkers.find(
+p=>p.nome===nome
+);
+
+if(!pensador)return;
+
+registrarVisita(nome);
+
+const favorito=
+jornada.favoritos.includes(nome);
+
+const modal=
+document.getElementById("modal");
+
+const conteudo=
+document.getElementById(
+"modalContent"
+);
+
+conteudo.innerHTML=`
+
+<button
+class="close"
+onclick="closeModal()">
+
+×
+
+</button>
+
+<h2>
+🏛️ ${pensador.nome}
+</h2>
+
+<p>
+<strong>
+${pensador.era}
+</strong>
+</p>
+
+<div class="tabs">
+
+<button
+class="active"
+onclick="showTab('vida')">
+
+Vida
+
+</button>
+
+<button
+onclick="showTab('ideias')">
+
+Ideias
+
+</button>
+
+<button
+onclick="showTab('obras')">
+
+Obras
+
+</button>
+
+<button
+onclick="showTab('legado')">
+
+Legado
+
+</button>
+
+<button
+onclick="showQuiz('${pensador.nome}')">
+
+🧠 Quiz
+
+</button>
+
+</div>
+
+
+<div id="tabContent">
+
+<h3>
+Vida e contexto
+</h3>
+
+<p>
+${pensador.descricao}
+</p>
+
+</div>
+
+
+<div style="margin-top:25px">
+
+<button
+class="btn outline"
+onclick="alternarFavorito('${pensador.nome}');openThinker('${pensador.nome}')">
+
+${favorito?"★ Remover favorito":"☆ Adicionar aos favoritos"}
+
+</button>
+
+</div>
+
+`;
+
+modal.classList.add("active");
+
+}
+
+
+/* =====================================================
+   ABAS DA SALA
+===================================================== */
+
+function showTab(aba){
+
+const nome=
+document
+.querySelector("#modalContent h2")
+.textContent
+.replace("🏛️ ","")
+.trim();
+
+const pensador=
+thinkers.find(
+p=>p.nome===nome
+);
+
+if(!pensador)return;
+
+const conteudo=
+document.getElementById(
+"tabContent"
+);
+
+if(aba==="vida"){
+
+conteudo.innerHTML=`
+
+<h3>
+Vida e contexto
+</h3>
+
+<p>
+${pensador.descricao}
+</p>
+
+`;
+
+}
+
+if(aba==="ideias"){
+
+conteudo.innerHTML=`
+
+<h3>
+Ideias principais
+</h3>
+
+<p>
+${pensador.ideia}
+</p>
+
+`;
+
+}
+
+if(aba==="obras"){
+
+conteudo.innerHTML=`
+
+<h3>
+Obras e produção
+</h3>
+
+<p>
+${pensador.obra}
+</p>
+
+`;
+
+}
+
+if(aba==="legado"){
+
+conteudo.innerHTML=`
+
+<h3>
+Legado
+</h3>
+
+<p>
+${pensador.legado}
+</p>
+
+`;
+
+}
+
+}
+
+
+/* =====================================================
+   QUIZ
+===================================================== */
+
+function showQuiz(nome){
+
+const pensador=
+thinkers.find(
+p=>p.nome===nome
+);
+
+if(!pensador)return;
+
+const modal=
+document.getElementById(
+"modal"
+);
+
+const conteudo=
+document.getElementById(
+"modalContent"
+);
+
+
+let pergunta="";
+let opcoes=[];
+let correta=0;
+
+
+/* QUESTÕES ESPECÍFICAS */
+
+if(nome==="Sócrates"){
+
+pergunta=
+"Qual método está especialmente associado a Sócrates?";
+
+opcoes=[
+"O diálogo e a investigação por perguntas",
+"A observação astronômica",
+"A seleção natural",
+"A teoria da relatividade"
+];
+
+correta=0;
+
+}
+
+
+else if(nome==="Platão"){
+
+pergunta=
+"Qual obra é associada a Platão?";
+
+opcoes=[
+"A República",
+"O Capital",
+"Cosmos",
+"A Origem das Espécies"
+];
+
+correta=0;
+
+}
+
+
+else if(nome==="Aristóteles"){
+
+pergunta=
+"Aristóteles foi discípulo de qual pensador?";
+
+opcoes=[
+"Platão",
+"Darwin",
+"Freud",
+"Einstein"
+];
+
+correta=0;
+
+}
+
+
+else if(nome==="Paulo Freire"){
+
+pergunta=
+"Qual tema está fortemente associado a Paulo Freire?";
+
+opcoes=[
+"Educação crítica e diálogo",
+"Relatividade",
+"Seleção natural",
+"Física quântica"
+];
+
+correta=0;
+
+}
+
+
+else if(nome==="Charles Darwin"){
+
+pergunta=
+"Qual conceito está associado a Darwin?";
+
+opcoes=[
+"Seleção natural",
+"Contrato social",
+"Psicanálise",
+"Imperativo categórico"
+];
+
+correta=0;
+
+}
+
+
+else if(nome==="Albert Einstein"){
+
+pergunta=
+"Einstein ficou especialmente conhecido por contribuições em qual área?";
+
+opcoes=[
+"Física",
+"Literatura",
+"Antropologia",
+"Política"
+];
+
+correta=0;
+
+}
+
+
+else if(nome==="Martin Luther King Jr."){
+
+pergunta=
+"Por qual princípio sua luta pelos direitos civis ficou especialmente conhecida?";
+
+opcoes=[
+"Não violência e igualdade",
+"Expansão territorial",
+"Absolutismo",
+"Colonialismo"
+];
+
+correta=0;
+
+}
+
+
+else{
+
+pergunta=
+"Qual área está mais relacionada ao pensamento de "+nome+"?";
+
+opcoes=[
+pensador.ideia,
+"Somente astronomia",
+"Somente matemática",
+"Somente engenharia"
+];
+
+correta=0;
+
+}
+
+
+conteudo.innerHTML=`
+
+<button
+class="close"
+onclick="closeModal()">
+
+×
+
+</button>
+
+<h2>
+🧠 Quiz — ${nome}
+</h2>
+
+<p>
+<strong>
+${pergunta}
+</strong>
+</p>
+
+<div id="quizOptions">
+
+${opcoes.map(
+(opcao,index)=>`
+
+<button
+class="quiz-option"
+onclick="answerQuiz(${index},${correta},'${nome}')">
+
+${String.fromCharCode(65+index)}.
+${opcao}
+
+</button>
+
+`
+).join("")}
+
+</div>
+
+<div
+id="quizResult"
+class="result"
+style="display:none">
+</div>
+
+`;
+
+modal.classList.add("active");
+
+}
+
+
+/* =====================================================
+   RESPOSTA DO QUIZ
+===================================================== */
+
+function answerQuiz(
+escolhida,
+correta,
+nome
+){
+
+const resultado=
+document.getElementById(
+"quizResult"
+);
+
+if(!resultado)return;
+
+if(escolhida===correta){
+
+resultado.style.display="block";
+
+resultado.innerHTML=
+"✅ Resposta correta! Excelente.";
+
+jornada.quizzes++;
+
+salvarJornada();
+
+}else{
+
+resultado.style.display="block";
+
+resultado.innerHTML=
+"❌ Resposta incorreta. Tente novamente.";
+
+}
+
+}
+
+
+/* =====================================================
+   FECHAR MODAL
+===================================================== */
+
+function closeModal(){
+
+document
+.getElementById("modal")
+.classList
+.remove("active");
+
+}
+
+
+function closeModalOutside(event){
+
+if(
+event.target.id==="modal"
+){
+
+closeModal();
+
+}
+
+}
+
+
+/* =====================================================
+   TECLA ESC
+===================================================== */
+
+document.addEventListener(
+"keydown",
+function(event){
+
+if(event.key==="Escape"){
+
+closeModal();
+
+}
+
+});
+
+
+/* =====================================================
+   INICIALIZAÇÃO
+===================================================== */
+
+carregarJornada();
+
+renderThinkers();
+
+atualizarJornada();
+
+
+</script>
+<script>
+
+/* =====================================================
+   CORREÇÃO DE SEGURANÇA
+   LIMPAR + VISITAR SALA + QUIZ
+===================================================== */
+
+(function(){
+
+    /* =================================================
+       LIMPAR PESQUISA
+    ================================================= */
+
+    window.clearSearch = function(){
+
+        var campo =
+            document.getElementById("thinkerSearch");
+
+        if(campo){
+
+            campo.value = "";
+
+            campo.focus();
+
+        }
+
+        if(
+            typeof window.renderThinkers ===
+            "function"
+        ){
+
+            window.renderThinkers();
+
+        }
+
+    };
+
+
+    /* =================================================
+       VISITAR SALA
+    ================================================= */
+
+    document.addEventListener(
+        "click",
+        function(event){
+
+            var botao =
+                event.target.closest("button");
+
+            if(!botao){
+                return;
+            }
+
+            var texto =
+                botao.textContent
+                .replace(/\s+/g," ")
+                .trim()
+                .toLowerCase();
+
+            if(
+                texto !== "🏛️ visitar sala" &&
+                texto !== "visitar sala"
+            ){
+
+                return;
+
+            }
+
+            var card =
+                botao.closest(".card");
+
+            if(!card){
+
+                card =
+                    botao.closest(
+                        ".thinker-card"
+                    );
+
+            }
+
+            if(!card){
+                return;
+            }
+
+            var titulo =
+                card.querySelector(
+                    "h3"
+                );
+
+            if(!titulo){
+                return;
+            }
+
+            var nome =
+                titulo.textContent
+                .replace(/\s+/g," ")
+                .trim();
+
+            if(!nome){
+                return;
+            }
+
+            event.preventDefault();
+            event.stopPropagation();
+
+            if(
+                typeof window.openThinker ===
+                "function"
+            ){
+
+                window.openThinker(nome);
+
+            }
+
+        },
+        true
+    );
+
+
+    /* =================================================
+       QUIZ
+    ================================================= */
+
+    document.addEventListener(
+        "click",
+        function(event){
+
+            var botao =
+                event.target.closest("button");
+
+            if(!botao){
+                return;
+            }
+
+            var texto =
+                botao.textContent
+                .replace(/\s+/g," ")
+                .trim()
+                .toLowerCase();
+
+            if(
+                !texto.includes("quiz")
+            ){
+
+                return;
+
+            }
+
+            var titulo =
+                document.querySelector(
+                    "#modalContent h2"
+                );
+
+            if(!titulo){
+                return;
+            }
+
+            var nome =
+                titulo.textContent
+                .replace("🏛️","")
+                .replace("🧠","")
+                .replace("Quiz","")
+                .replace("—","")
+                .trim();
+
+            if(!nome){
+                return;
+            }
+
+            if(
+                typeof window.showQuiz ===
+                "function"
+            ){
+
+                event.preventDefault();
+                event.stopPropagation();
+
+                window.showQuiz(nome);
+
+            }
+
+        },
+        true
+    );
+
+
+    /* =================================================
+       GARANTIA DE INICIALIZAÇÃO
+    ================================================= */
+
+    if(
+        document.readyState ===
+        "loading"
+    ){
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            function(){
+
+                if(
+                    typeof window.renderThinkers ===
+                    "function"
+                ){
+
+                    window.renderThinkers();
+
+                }
+
+                if(
+                    typeof window.atualizarJornada ===
+                    "function"
+                ){
+
+                    window.atualizarJornada();
+
+                }
+
+            }
+        );
+
+    }
+
+})();
+
+</script>
+<script>
+
+/* =====================================================
+   MUSEU — SISTEMA DE ESTUDO DOS PENSADORES
+   VERSÃO 1
+===================================================== */
+
+(function(){
+
+const estudosPensadores = {
+
+"Sócrates":{
+
+contexto:
+"Atenas do século V a.C., período de intensa transformação política, cultural e intelectual na Grécia.",
+
+formacao:
+"Sócrates não deixou textos próprios. Seu pensamento é conhecido principalmente através de Platão, Xenofonte e outras fontes antigas.",
+
+conceitos:[
+"Maiêutica",
+"Diálogo",
+"Ironia socrática",
+"Conhecimento de si",
+"Exame da vida"
+],
+
+metodo:
+"Sócrates utilizava perguntas e diálogos para examinar as opiniões das pessoas e revelar contradições.",
+
+estudo:
+"O estudante deve investigar como Sócrates transforma uma conversa comum em uma investigação filosófica.",
+
+criticas:
+"As fontes sobre Sócrates foram escritas por outras pessoas e apresentam diferentes retratos do filósofo.",
+
+atualidade:
+"O método de questionar pressupostos continua importante na educação, no pensamento crítico e na análise de argumentos.",
+
+perguntas:[
+"Por que Sócrates fazia tantas perguntas?",
+"Qual é a diferença entre opinião e conhecimento?",
+"É possível viver uma vida boa sem examiná-la?"
+]
+
+},
+
+"Platão":{
+
+contexto:
+"Grécia clássica, após a crise política de Atenas e a morte de Sócrates.",
+
+formacao:
+"Discípulo de Sócrates e fundador da Academia.",
+
+conceitos:[
+"Teoria das Formas",
+"Conhecimento",
+"Justiça",
+"Alma",
+"Política"
+],
+
+metodo:
+"Platão apresenta muitas de suas ideias através de diálogos filosóficos.",
+
+estudo:
+"O estudante deve analisar como Platão relaciona conhecimento, educação, justiça e organização política.",
+
+criticas:
+"Suas propostas políticas e sua concepção de conhecimento foram amplamente debatidas e criticadas ao longo da história.",
+
+atualidade:
+"Questões sobre educação, justiça, política e conhecimento continuam presentes em debates contemporâneos.",
+
+perguntas:[
+"O que Platão entende por conhecimento?",
+"O que seria uma sociedade justa?",
+"Qual deve ser o papel da educação?"
+]
+
+},
+
+"Aristóteles":{
+
+contexto:
+"Grécia do século IV a.C., período de grande desenvolvimento da filosofia e das ciências.",
+
+formacao:
+"Discípulo de Platão e posteriormente professor de Alexandre da Macedônia.",
+
+conceitos:[
+"Lógica",
+"Ética",
+"Virtude",
+"Causa",
+"Política",
+"Observação"
+],
+
+metodo:
+"Aristóteles combinava investigação racional, classificação, observação e análise lógica.",
+
+estudo:
+"O estudante deve perceber como Aristóteles procura organizar diferentes áreas do conhecimento.",
+
+criticas:
+"Algumas explicações científicas de Aristóteles foram posteriormente superadas pelo desenvolvimento da ciência moderna.",
+
+atualidade:
+"Suas contribuições para lógica, ética e filosofia política continuam estudadas.",
+
+perguntas:[
+"O que é uma vida virtuosa?",
+"Como Aristóteles entende a felicidade?",
+"Por que a lógica é importante para o conhecimento?"
+]
+
+},
+
+"Agostinho de Hipona":{
+
+contexto:
+"Antiguidade tardia, período de transformação do mundo romano e expansão do cristianismo.",
+
+formacao:
+"Pensador profundamente influenciado pela filosofia antiga e pela tradição cristã.",
+
+conceitos:[
+"Interioridade",
+"Tempo",
+"Fé",
+"Razão",
+"Vontade"
+],
+
+metodo:
+"Agostinho combina reflexão filosófica, experiência interior e pensamento teológico.",
+
+estudo:
+"Investigar como Agostinho relaciona conhecimento, memória, tempo, vontade e fé.",
+
+criticas:
+"Seu pensamento deve ser estudado também dentro do contexto histórico e religioso em que foi produzido.",
+
+atualidade:
+"Suas reflexões sobre memória, identidade e interioridade continuam relevantes para a filosofia.",
+
+perguntas:[
+"Como percebemos o tempo?",
+"O que significa conhecer a si mesmo?",
+"Qual relação pode existir entre fé e razão?"
+]
+
+},
+
+"Tomás de Aquino":{
+
+contexto:
+"Europa medieval, período de desenvolvimento das universidades e da escolástica.",
+
+formacao:
+"Pensador cristão fortemente influenciado por Aristóteles.",
+
+conceitos:[
+"Razão",
+"Fé",
+"Lei natural",
+"Ética",
+"Causa"
+],
+
+metodo:
+"Procura organizar argumentos filosóficos e teológicos através de questões, objeções e respostas.",
+
+estudo:
+"Observar como Tomás tenta estabelecer uma relação entre investigação racional e teologia.",
+
+criticas:
+"Suas conclusões devem ser analisadas considerando as premissas filosóficas e teológicas de seu período.",
+
+atualidade:
+"Debates sobre ética, lei natural e relação entre religião e filosofia ainda dialogam com sua obra.",
+
+perguntas:[
+"Razão e fé precisam ser opostas?",
+"O que torna uma ação moral?",
+"Existe uma moral universal?"
+]
+
+},
+
+"Averróis":{
+
+contexto:
+"Al-Andalus medieval, ambiente de intenso intercâmbio intelectual entre tradições islâmicas, judaicas e cristãs.",
+
+formacao:
+"Filósofo e médico profundamente ligado ao estudo de Aristóteles.",
+
+conceitos:[
+"Razão",
+"Filosofia",
+"Aristóteles",
+"Conhecimento",
+"Interpretação"
+],
+
+metodo:
+"Utilizou análise filosófica e comentários sistemáticos para interpretar Aristóteles.",
+
+estudo:
+"Investigar a importância de Averróis na transmissão e interpretação da filosofia aristotélica.",
+
+criticas:
+"Seu pensamento gerou debates filosóficos e teológicos tanto no mundo islâmico quanto posteriormente na Europa.",
+
+atualidade:
+"Ajuda a compreender o intercâmbio intelectual entre diferentes civilizações.",
+
+perguntas:[
+"Como ideias atravessam diferentes culturas?",
+"Qual o papel da interpretação na filosofia?",
+"Por que Aristóteles foi tão importante para Averróis?"
+]
+
+},
+
+"Leonardo da Vinci":{
+
+contexto:
+"Renascimento italiano, período marcado por novas relações entre arte, ciência e investigação da natureza.",
+
+formacao:
+"Artista, inventor, observador da natureza e estudioso de diversas áreas.",
+
+conceitos:[
+"Observação",
+"Experiência",
+"Arte",
+"Anatomia",
+"Engenharia"
+],
+
+metodo:
+"Leonardo utilizava observação detalhada, desenhos, experimentação e investigação prática.",
+
+estudo:
+"Analisar como Leonardo aproxima arte e investigação científica.",
+
+criticas:
+"Nem todos os seus projetos chegaram a ser concluídos ou comprovados na prática.",
+
+atualidade:
+"Seu exemplo é importante para estudar criatividade, interdisciplinaridade e observação.",
+
+perguntas:[
+"Arte e ciência podem trabalhar juntas?",
+"Por que observar é importante para conhecer?",
+"O que podemos aprender com sua interdisciplinaridade?"
+]
+
+},
+
+"Nicolau Maquiavel":{
+
+contexto:
+"Itália renascentista, marcada por disputas entre cidades, famílias e poderes políticos.",
+
+formacao:
+"Funcionário público, diplomata e escritor político.",
+
+conceitos:[
+"Poder",
+"Estado",
+"Virtù",
+"Fortuna",
+"Política"
+],
+
+metodo:
+"Analisa a política considerando acontecimentos históricos e comportamentos concretos dos governantes.",
+
+estudo:
+"Separar a análise política de Maquiavel das interpretações simplificadas que associam seu nome apenas à manipulação.",
+
+criticas:
+"Suas ideias sobre poder e governantes provocaram debates sobre ética e política.",
+
+atualidade:
+"Suas análises ajudam a estudar poder, liderança e funcionamento das instituições.",
+
+perguntas:[
+"Política e moral são sempre inseparáveis?",
+"O que leva um governo a manter o poder?",
+"Como devemos interpretar O Príncipe?"
+]
+
+},
+
+"John Locke":{
+
+contexto:
+"Inglaterra dos séculos XVII e XVIII, período de conflitos políticos e transformações intelectuais.",
+
+formacao:
+"Filósofo interessado em conhecimento, política, educação e liberdade.",
+
+conceitos:[
+"Experiência",
+"Liberdade",
+"Direitos",
+"Propriedade",
+"Governo"
+],
+
+metodo:
+"Analisa como adquirimos conhecimento e como instituições políticas podem ser justificadas.",
+
+estudo:
+"Investigar a relação entre experiência, conhecimento e direitos políticos.",
+
+criticas:
+"Suas ideias políticas e concepções sobre propriedade foram objeto de interpretações e críticas posteriores.",
+
+atualidade:
+"Suas ideias influenciaram concepções modernas de direitos e governo.",
+
+perguntas:[
+"De onde vem o conhecimento?",
+"Quais direitos um governo deve proteger?",
+"Qual é o limite do poder político?"
+]
+
+},
+
+"Jean-Jacques Rousseau":{
+
+contexto:
+"Europa do século XVIII, período do Iluminismo e de profundas discussões sobre sociedade e política.",
+
+formacao:
+"Filósofo e escritor envolvido em debates sobre educação, desigualdade e organização política.",
+
+conceitos:[
+"Contrato social",
+"Liberdade",
+"Vontade geral",
+"Educação",
+"Desigualdade"
+],
+
+metodo:
+"Investiga criticamente as relações entre indivíduo, sociedade e instituições políticas.",
+
+estudo:
+"Analisar sua crítica às desigualdades e sua concepção de soberania popular.",
+
+criticas:
+"Algumas ideias de Rousseau foram interpretadas de maneiras muito diferentes por correntes políticas posteriores.",
+
+atualidade:
+"Debates sobre democracia, educação e desigualdade continuam dialogando com Rousseau.",
+
+perguntas:[
+"O que torna uma sociedade legítima?",
+"Liberdade individual pode entrar em conflito com a vontade coletiva?",
+"Qual deve ser o papel da educação?"
+]
+
+},
+
+"Voltaire":{
+
+contexto:
+"Iluminismo europeu do século XVIII.",
+
+formacao:
+"Escritor, filósofo e crítico de instituições políticas e religiosas.",
+
+conceitos:[
+"Liberdade de pensamento",
+"Tolerância",
+"Razão",
+"Crítica",
+"Direitos"
+],
+
+metodo:
+"Utilizava ensaios, cartas, literatura e sátira para criticar ideias e instituições.",
+
+estudo:
+"Investigar como a crítica e a liberdade de pensamento aparecem em sua obra.",
+
+criticas:
+"Seu pensamento possui contradições e limites históricos que devem ser analisados criticamente.",
+
+atualidade:
+"Tolerância, liberdade de expressão e crítica ao autoritarismo continuam temas centrais.",
+
+perguntas:[
+"Existe limite para a liberdade de expressão?",
+"Por que a tolerância é importante?",
+"Como a sátira pode ser uma ferramenta intelectual?"
+]
+
+},
+
+"Immanuel Kant":{
+
+contexto:
+"Iluminismo europeu do século XVIII.",
+
+formacao:
+"Filósofo alemão interessado nos limites da razão, conhecimento e moral.",
+
+conceitos:[
+"Razão",
+"Conhecimento",
+"Autonomia",
+"Dever",
+"Imperativo categórico"
+],
+
+metodo:
+"Procura investigar as condições e os limites através dos quais a razão humana pode conhecer e agir.",
+
+estudo:
+"Estudar a relação entre conhecimento, liberdade e moralidade.",
+
+criticas:
+"Sua filosofia é complexa e recebeu diferentes interpretações e críticas posteriores.",
+
+atualidade:
+"Autonomia, responsabilidade moral e dignidade humana continuam temas fundamentais.",
+
+perguntas:[
+"O que torna uma ação moral?",
+"O ser humano é realmente autônomo?",
+"Quais são os limites do conhecimento?"
+]
+
+},
+
+"Karl Marx":{
+
+contexto:
+"Europa do século XIX, marcada pela industrialização, urbanização e conflitos entre classes sociais.",
+
+formacao:
+"Filósofo, economista e crítico social.",
+
+conceitos:[
+"Classe social",
+"Trabalho",
+"Capital",
+"Alienação",
+"Materialismo histórico"
+],
+
+metodo:
+"Analisa relações sociais e históricas a partir das condições materiais e econômicas.",
+
+estudo:
+"Investigar como Marx relaciona trabalho, produção, propriedade e organização social.",
+
+criticas:
+"Suas teorias foram interpretadas de diferentes maneiras e também receberam fortes críticas econômicas, políticas e filosóficas.",
+
+atualidade:
+"Desigualdade, trabalho, capitalismo e relações de produção continuam sendo temas de debate.",
+
+perguntas:[
+"Como o trabalho influencia a sociedade?",
+"O que produz desigualdade?",
+"Como devemos diferenciar Marx de interpretações políticas posteriores?"
+]
+
+},
+
+"Charles Darwin":{
+
+contexto:
+"Século XIX, período de grande expansão das ciências naturais.",
+
+formacao:
+"Naturalista britânico interessado na diversidade e transformação dos seres vivos.",
+
+conceitos:[
+"Evolução",
+"Seleção natural",
+"Adaptação",
+"Variação",
+"Descendência comum"
+],
+
+metodo:
+"Baseou-se em observações, comparação de espécies, evidências e construção gradual de explicações.",
+
+estudo:
+"Compreender a seleção natural e diferenciar evolução biológica de interpretações sociais equivocadas.",
+
+criticas:
+"A teoria da evolução foi ampliada e modificada pela ciência posterior, especialmente com genética e biologia molecular.",
+
+atualidade:
+"A evolução continua sendo um dos fundamentos das ciências biológicas modernas.",
+
+perguntas:[
+"O que é seleção natural?",
+"Como uma população pode mudar ao longo das gerações?",
+"Qual a diferença entre evolução biológica e evolução cultural?"
+]
+
+},
+
+"Friedrich Nietzsche":{
+
+contexto:
+"Europa do século XIX, período de profundas transformações culturais e filosóficas.",
+
+formacao:
+"Filósofo e escritor alemão.",
+
+conceitos:[
+"Crítica da moral",
+"Niilismo",
+"Vontade de potência",
+"Genealogia",
+"Superação"
+],
+
+metodo:
+"Utiliza crítica cultural, genealogia, aforismos e análise dos valores.",
+
+estudo:
+"Investigar como Nietzsche questiona a origem e o valor dos sistemas morais.",
+
+criticas:
+"Seu pensamento foi posteriormente apropriado e interpretado de diferentes formas, algumas delas controversas.",
+
+atualidade:
+"Suas críticas aos valores e à cultura continuam influenciando filosofia, literatura e psicologia.",
+
+perguntas:[
+"De onde vêm nossos valores?",
+"O que acontece quando antigos valores perdem sua força?",
+"Podemos criar novos valores?"
+]
+
+},
+
+"Sigmund Freud":{
+
+contexto:
+"Europa do final do século XIX e início do século XX.",
+
+formacao:
+"Médico e fundador da psicanálise.",
+
+conceitos:[
+"Inconsciente",
+"Sonhos",
+"Repressão",
+"Desejo",
+"Psicanálise"
+],
+
+metodo:
+"Desenvolveu métodos clínicos e interpretações voltadas para processos psíquicos inconscientes.",
+
+estudo:
+"Estudar a importância histórica da hipótese do inconsciente e distinguir conceitos psicanalíticos de evidências da psicologia contemporânea.",
+
+criticas:
+"Várias hipóteses freudianas foram criticadas ou reformuladas pelas ciências psicológicas posteriores.",
+
+atualidade:
+"Seu impacto cultural permanece enorme, especialmente em literatura, cinema, artes e história das ideias.",
+
+perguntas:[
+"O que significa inconsciente?",
+"Como os sonhos foram interpretados por Freud?",
+"Quais ideias de Freud permanecem controversas?"
+]
+
+},
+
+"Albert Einstein":{
+
+contexto:
+"Física do início do século XX, período de profundas transformações científicas.",
+
+formacao:
+"Físico responsável por contribuições fundamentais para a física moderna.",
+
+conceitos:[
+"Relatividade",
+"Espaço-tempo",
+"Gravidade",
+"Luz",
+"Movimento"
+],
+
+metodo:
+"Utilizou raciocínio teórico, experimentos mentais e formulação matemática.",
+
+estudo:
+"Compreender por que espaço e tempo não são absolutos na relatividade e como suas ideias modificaram a física.",
+
+criticas:
+"Suas teorias foram submetidas a testes experimentais e posteriormente integradas a novos desenvolvimentos científicos.",
+
+atualidade:
+"A relatividade permanece fundamental para diversas áreas da física e tecnologia.",
+
+perguntas:[
+"O espaço e o tempo são absolutos?",
+"O que significa relatividade?",
+"Como uma teoria científica é testada?"
+]
+
+},
+
+"Hannah Arendt":{
+
+contexto:
+"Europa do século XX, marcada por guerras, totalitarismos e grandes transformações políticas.",
+
+formacao:
+"Filósofa e teórica política de origem alemã.",
+
+conceitos:[
+"Totalitarismo",
+"Política",
+"Liberdade",
+"Ação",
+"Responsabilidade"
+],
+
+metodo:
+"Analisa acontecimentos históricos e políticos relacionando-os a conceitos filosóficos.",
+
+estudo:
+"Investigar suas análises sobre totalitarismo, ação política e responsabilidade.",
+
+criticas:
+"Algumas de suas interpretações históricas e políticas são debatidas por pesquisadores.",
+
+atualidade:
+"Suas ideias continuam presentes em estudos sobre democracia, autoritarismo e responsabilidade política.",
+
+perguntas:[
+"O que caracteriza um regime totalitário?",
+"Qual é a importância da ação política?",
+"Como indivíduos podem agir diante de sistemas autoritários?"
+]
+
+},
+
+"Paulo Freire":{
+
+contexto:
+"Brasil do século XX, marcado por desigualdade social, debates educacionais e transformações políticas.",
+
+formacao:
+"Educador e pensador brasileiro com atuação internacional.",
+
+conceitos:[
+"Diálogo",
+"Educação crítica",
+"Consciência",
+"Práxis",
+"Autonomia"
+],
+
+metodo:
+"Defende uma educação baseada no diálogo, reflexão crítica e participação ativa do estudante.",
+
+estudo:
+"Investigar a relação entre educação, consciência crítica e transformação social.",
+
+criticas:
+"Suas propostas também são objeto de debates sobre métodos educacionais, política e aplicação prática.",
+
+atualidade:
+"Seu pensamento continua influente em debates sobre educação e formação cidadã.",
+
+perguntas:[
+"Educação pode transformar a sociedade?",
+"O que significa aprender através do diálogo?",
+"Qual deve ser o papel do estudante?"
+]
+
+},
+
+"Nelson Mandela":{
+
+contexto:
+"África do Sul do século XX, marcada pelo apartheid e pela luta contra a segregação racial.",
+
+formacao:
+"Advogado e líder político envolvido na luta contra o apartheid.",
+
+conceitos:[
+"Apartheid",
+"Liberdade",
+"Reconciliação",
+"Igualdade",
+"Democracia"
+],
+
+metodo:
+"Utilizou organização política, resistência e posteriormente processos de negociação e reconciliação.",
+
+estudo:
+"Compreender a história do apartheid e os diferentes caminhos utilizados na luta contra ele.",
+
+criticas:
+"Suas estratégias políticas devem ser estudadas dentro das circunstâncias históricas específicas da África do Sul.",
+
+atualidade:
+"É referência para estudos sobre transição política, democracia e reconciliação.",
+
+perguntas:[
+"O que foi o apartheid?",
+"Como uma sociedade pode reconstruir-se após um conflito?",
+"Qual o papel da reconciliação na política?"
+]
+
+},
+
+"Martin Luther King Jr.":{
+
+contexto:
+"Estados Unidos do século XX, durante a luta pelos direitos civis.",
+
+formacao:
+"Líder religioso e político do movimento pelos direitos civis.",
+
+conceitos:[
+"Direitos civis",
+"Não violência",
+"Igualdade",
+"Justiça",
+"Desobediência civil"
+],
+
+metodo:
+"Defendeu mobilização social, protestos e resistência não violenta.",
+
+estudo:
+"Investigar a relação entre direitos civis, resistência não violenta e transformação política.",
+
+criticas:
+"Seu pensamento deve ser estudado dentro da diversidade de estratégias existentes no movimento pelos direitos civis.",
+
+atualidade:
+"Seus discursos continuam sendo estudados em debates sobre igualdade e direitos humanos.",
+
+perguntas:[
+"Por que a não violência pode ser uma estratégia política?",
+"O que são direitos civis?",
+"Como movimentos sociais produzem mudanças?"
+]
+
+},
+
+"Carl Sagan":{
+
+contexto:
+"Ciência do século XX, período de expansão da astronomia e da exploração espacial.",
+
+formacao:
+"Astrônomo, cientista e divulgador científico.",
+
+conceitos:[
+"Método científico",
+"Pensamento crítico",
+"Universo",
+"Vida extraterrestre",
+"Divulgação científica"
+],
+
+metodo:
+"Defendia investigação baseada em evidências e pensamento crítico.",
+
+estudo:
+"Investigar como ciência e comunicação podem aproximar conhecimento científico do público.",
+
+criticas:
+"Algumas hipóteses e especulações científicas devem ser diferenciadas das evidências consolidadas.",
+
+atualidade:
+"Seu legado permanece importante na divulgação científica e no pensamento crítico.",
+
+perguntas:[
+"Como diferenciar ciência de pseudociência?",
+"Por que evidências são importantes?",
+"Como comunicar ciência para o público?"
+]
+
+},
+
+"Machado de Assis":{
+
+contexto:
+"Brasil do século XIX e início do século XX.",
+
+formacao:
+"Escritor brasileiro de enorme importância para a literatura nacional.",
+
+conceitos:[
+"Ironia",
+"Sociedade",
+"Psicologia",
+"Crítica social",
+"Narrativa"
+],
+
+metodo:
+"Utilizou ironia, narradores complexos e análise psicológica dos personagens.",
+
+estudo:
+"Investigar como Machado representa sociedade, relações humanas, poder e contradições.",
+
+criticas:
+"Suas obras devem ser analisadas também considerando o contexto social e histórico brasileiro.",
+
+atualidade:
+"Continua fundamental para estudar literatura brasileira, narrativa e comportamento humano.",
+
+perguntas:[
+"Como Machado utiliza a ironia?",
+"O narrador sempre diz a verdade?",
+"Como a literatura pode revelar uma sociedade?"
+]
+
+},
+
+"Milton Santos":{
+
+contexto:
+"Brasil e mundo do século XX, marcado por urbanização, globalização e profundas desigualdades.",
+
+formacao:
+"Geógrafo brasileiro de reconhecimento internacional.",
+
+conceitos:[
+"Espaço geográfico",
+"Globalização",
+"Território",
+"Desigualdade",
+"Cidadania"
+],
+
+metodo:
+"Analisa relações entre espaço, economia, sociedade, técnica e política.",
+
+estudo:
+"Investigar como a organização do território influencia oportunidades e desigualdades.",
+
+criticas:
+"Suas interpretações podem ser comparadas com outras correntes da geografia e das ciências sociais.",
+
+atualidade:
+"Suas ideias ajudam a interpretar globalização, cidades e desigualdades contemporâneas.",
+
+perguntas:[
+"Como o espaço influencia a vida das pessoas?",
+"Globalização beneficia todos da mesma maneira?",
+"Qual a relação entre território e desigualdade?"
+]
+
+},
+
+"Darcy Ribeiro":{
+
+contexto:
+"Brasil do século XX, marcado por debates sobre identidade nacional, educação e desenvolvimento.",
+
+formacao:
+"Antropólogo, educador, escritor e pensador brasileiro.",
+
+conceitos:[
+"Cultura",
+"Identidade",
+"Educação",
+"Povos indígenas",
+"Formação do Brasil"
+],
+
+metodo:
+"Combina antropologia, história, educação e análise social.",
+
+estudo:
+"Investigar como Darcy interpreta a formação cultural e histórica brasileira.",
+
+criticas:
+"Suas interpretações sobre o Brasil também devem ser comparadas com outros estudos históricos e antropológicos.",
+
+atualidade:
+"Questões sobre identidade, educação e formação cultural permanecem centrais.",
+
+perguntas:[
+"Como se forma uma identidade nacional?",
+"Qual o papel da educação?",
+"Como diferentes povos participaram da formação do Brasil?"
+]
+
+},
+
+"Ailton Krenak":{
+
+contexto:
+"Brasil contemporâneo, marcado por debates sobre povos indígenas, meio ambiente e crise climática.",
+
+formacao:
+"Pensador, escritor e liderança indígena brasileira.",
+
+conceitos:[
+"Natureza",
+"Humanidade",
+"Povos indígenas",
+"Território",
+"Crise ambiental"
+],
+
+metodo:
+"Questiona concepções modernas que colocam a humanidade separada da natureza.",
+
+estudo:
+"Comparar diferentes formas de compreender a relação entre seres humanos, natureza e território.",
+
+criticas:
+"Suas ideias devem ser estudadas em diálogo com diferentes tradições indígenas, ambientais e filosóficas.",
+
+atualidade:
+"Seus temas dialogam diretamente com questões ambientais e sociais contemporâneas.",
+
+perguntas:[
+"Humanidade e natureza estão realmente separadas?",
+"Como diferentes culturas entendem a natureza?",
+"Que relação existe entre território e identidade?"
+]
+
+}
+
+};
+
+
+/* =====================================================
+   CRIAÇÃO DO BOTÃO "ESTUDAR"
+===================================================== */
+
+function adicionarBotaoEstudo(){
+
+const tabs =
+document.querySelector(
+"#modalContent .tabs"
+);
+
+if(!tabs){
+return;
+}
+
+if(
+document.getElementById(
+"botaoEstudoMuseu"
+)
+){
+return;
+}
+
+const botao =
+document.createElement("button");
+
+botao.id =
+"botaoEstudoMuseu";
+
+botao.textContent =
+"📚 Estudar";
+
+botao.onclick =
+mostrarEstudoPensador;
+
+tabs.appendChild(botao);
+
+}
+
+
+/* =====================================================
+   MOSTRAR CONTEÚDO DE ESTUDO
+===================================================== */
+
+function mostrarEstudoPensador(){
+
+const titulo =
+document.querySelector(
+"#modalContent h2"
+);
+
+if(!titulo){
+return;
+}
+
+const nome =
+titulo.textContent
+.replace("🏛️","")
+.trim();
+
+const estudo =
+estudosPensadores[nome];
+
+if(!estudo){
+
+alert(
+"Conteúdo de estudo deste pensador será desenvolvido em uma próxima etapa."
+);
+
+return;
+
+}
+
+const area =
+document.getElementById(
+"tabContent"
+);
+
+if(!area){
+return;
+}
+
+area.innerHTML = `
+
+<h3>
+📚 O que estudar sobre ${nome}
+</h3>
+
+<h3>
+🏛️ Contexto histórico
+</h3>
+
+<p>
+${estudo.contexto}
+</p>
+
+<h3>
+🎓 Vida e formação
+</h3>
+
+<p>
+${estudo.formacao}
+</p>
+
+<h3>
+🧠 Conceitos fundamentais
+</h3>
+
+<p>
+${estudo.conceitos.join(" • ")}
+</p>
+
+<h3>
+🔎 Método de pensamento
+</h3>
+
+<p>
+${estudo.metodo}
+</p>
+
+<h3>
+📖 Roteiro de estudo
+</h3>
+
+<p>
+${estudo.estudo}
+</p>
+
+<h3>
+⚖️ Críticas e debates
+</h3>
+
+<p>
+${estudo.criticas}
+</p>
+
+<h3>
+🌎 Por que estudar hoje?
+</h3>
+
+<p>
+${estudo.atualidade}
+</p>
+
+<h3>
+💭 Perguntas para reflexão
+</h3>
+
+<ul style="padding-left:22px;color:#eee;">
+
+${estudo.perguntas
+.map(
+p=>`<li style="margin:8px 0">${p}</li>`
+)
+.join("")}
+
+</ul>
+
+`;
+
+}
+
+
+/* =====================================================
+   OBSERVA ABERTURA DAS SALAS
+===================================================== */
+
+const observador =
+new MutationObserver(
+function(){
+
+adicionarBotaoEstudo();
+
+}
+);
+
+const modal =
+document.getElementById("modal");
+
+if(modal){
+
+observador.observe(
+modal,
+{
+childList:true,
+subtree:true
+}
+);
+
+}
+
+
+/* =====================================================
+   DISPONIBILIZA PARA O SITE
+===================================================== */
+
+window.estudosPensadores =
+estudosPensadores;
+
+window.mostrarEstudoPensador =
+mostrarEstudoPensador;
+
+
+})();
+
+</script>
+<!-- =========================================================
+     MUSEU VIRTUAL DOS PENSADORES UNIVERSAIS
+     SISTEMA DE INTEGRIDADE E AUTOCORREÇÃO
+     Versão 1.0
+     ========================================================= -->
+
+<script>
+(function () {
+
+  "use strict";
+
+  /* Evita instalar o sistema duas vezes */
+  if (window.__MUSEU_INTEGRIDADE_INSTALADO__) return;
+  window.__MUSEU_INTEGRIDADE_INSTALADO__ = true;
+
+  const RELATORIO = {
+    erros: [],
+    avisos: [],
+    corrigidos: [],
+    testes: []
+  };
+
+  /* =========================================================
+     REGISTRO DE ERROS JAVASCRIPT
+     ========================================================= */
+
+  window.addEventListener("error", function (evento) {
+
+    RELATORIO.erros.push({
+      tipo: "JavaScript",
+      mensagem: evento.message || "Erro desconhecido",
+      arquivo: evento.filename || "",
+      linha: evento.lineno || 0
+    });
+
+  });
+
+  window.addEventListener("unhandledrejection", function (evento) {
+
+    RELATORIO.erros.push({
+      tipo: "Promise",
+      mensagem: String(
+        evento.reason || "Erro de Promise não tratado"
+      )
+    });
+
+  });
+
+
+  /* =========================================================
+     FUNÇÕES AUXILIARES
+     ========================================================= */
+
+  function existe(id) {
+    return !!document.getElementById(id);
+  }
+
+  function funcaoExiste(nome) {
+    return typeof window[nome] === "function";
+  }
+
+  function registrarTeste(nome, ok, detalhe) {
+
+    RELATORIO.testes.push({
+      nome: nome,
+      ok: ok,
+      detalhe: detalhe || ""
+    });
+
+  }
+
+
+  /* =========================================================
+     VERIFICA ELEMENTOS IMPORTANTES
+     ========================================================= */
+
+  function verificarElementos() {
+
+    const elementosImportantes = [
+
+      "modal",
+      "search",
+      "clear",
+      "pensadores",
+      "mapa",
+      "galerias"
+
+    ];
+
+    elementosImportantes.forEach(function (id) {
+
+      const ok = existe(id);
+
+      registrarTeste(
+        "Elemento #" + id,
+        ok,
+        ok
+          ? "Encontrado"
+          : "Não encontrado"
+      );
+
+      if (!ok) {
+
+        RELATORIO.avisos.push(
+          "Elemento não encontrado: #" + id
+        );
+
+      }
+
+    });
+
+  }
+
+
+  /* =========================================================
+     VERIFICA FUNÇÕES PRINCIPAIS
+     ========================================================= */
+
+  function verificarFuncoes() {
+
+    const funcoes = [
+
+      "clearSearch",
+      "abrirPensador",
+      "mostrarPensador",
+      "abrirModal",
+      "fecharModal",
+      "mostrarQuiz",
+      "mostrarEstudoPensador"
+
+    ];
+
+    funcoes.forEach(function (nome) {
+
+      const ok = funcaoExiste(nome);
+
+      registrarTeste(
+        "Função " + nome,
+        ok,
+        ok
+          ? "Existe"
+          : "Ausente"
+      );
+
+      if (!ok) {
+
+        RELATORIO.avisos.push(
+          "Função ausente: " + nome
+        );
+
+      }
+
+    });
+
+  }
+
+
+  /* =========================================================
+     VERIFICA IDs DUPLICADOS
+     ========================================================= */
+
+  function verificarIdsDuplicados() {
+
+    const mapa = {};
+
+    document.querySelectorAll("[id]").forEach(function (elemento) {
+
+      const id = elemento.id;
+
+      if (!mapa[id]) {
+        mapa[id] = [];
+      }
+
+      mapa[id].push(elemento);
+
+    });
+
+    Object.keys(mapa).forEach(function (id) {
+
+      if (mapa[id].length > 1) {
+
+        RELATORIO.avisos.push(
+          "ID duplicado: #" +
+          id +
+          " (" +
+          mapa[id].length +
+          " ocorrências)"
+        );
+
+      }
+
+    });
+
+  }
+
+
+  /* =========================================================
+     VERIFICA LINKS INTERNOS
+     ========================================================= */
+
+  function verificarLinks() {
+
+    document.querySelectorAll("a[href^='#']").forEach(function (link) {
+
+      const destino = link.getAttribute("href");
+
+      if (!destino || destino === "#") return;
+
+      const id = destino.substring(1);
+
+      if (!document.getElementById(id)) {
+
+        RELATORIO.avisos.push(
+          "Link interno quebrado: " + destino
+        );
+
+      }
+
+    });
+
+  }
+
+
+  /* =========================================================
+     AUTOCORREÇÃO DO LIMPAR
+     ========================================================= */
+
+  function corrigirLimpar() {
+
+    if (typeof window.clearSearch === "function") {
+      return;
+    }
+
+    window.clearSearch = function () {
+
+      const campos = document.querySelectorAll(
+        'input[type="search"], input[placeholder*="Buscar"], input[id*="search"]'
+      );
+
+      campos.forEach(function (campo) {
+        campo.value = "";
+      });
+
+      document.querySelectorAll(
+        "[data-pensador], .thinker-card, .pensador-card"
+      ).forEach(function (card) {
+
+        card.style.display = "";
+
+      });
+
+      try {
+
+        if (typeof window.renderPensadores === "function") {
+          window.renderPensadores();
+        }
+
+      } catch (erro) {
+
+        RELATORIO.erros.push({
+          tipo: "Autocorreção",
+          mensagem: erro.message
+        });
+
+      }
+
+    };
+
+    RELATORIO.corrigidos.push(
+      "Função clearSearch restaurada."
+    );
+
+  }
+
+
+  /* =========================================================
+     AUTOCORREÇÃO DO BOTÃO ESTUDAR
+     ========================================================= */
+
+  function corrigirEstudo() {
+
+    if (
+      typeof window.mostrarEstudoPensador === "function"
+    ) {
+      return;
+    }
+
+    window.mostrarEstudoPensador = function (nome) {
+
+      const dados =
+        window.estudosPensadores &&
+        window.estudosPensadores[nome];
+
+      if (!dados) {
+
+        alert(
+          "O conteúdo acadêmico de " +
+          nome +
+          " ainda está sendo preparado."
+        );
+
+        return;
+
+      }
+
+      let texto = "";
+
+      if (dados.contexto) {
+        texto +=
+          "<h3>Contexto histórico</h3>" +
+          "<p>" + dados.contexto + "</p>";
+      }
+
+      if (dados.formacao) {
+        texto +=
+          "<h3>Formação</h3>" +
+          "<p>" + dados.formacao + "</p>";
+      }
+
+      if (dados.conceitos) {
+
+        texto +=
+          "<h3>Conceitos fundamentais</h3>" +
+          "<ul>";
+
+        dados.conceitos.forEach(function (item) {
+
+          texto += "<li>" + item + "</li>";
+
+        });
+
+        texto += "</ul>";
+      }
+
+      if (dados.criticas) {
+
+        texto +=
+          "<h3>Críticas e debates</h3>" +
+          "<p>" + dados.criticas + "</p>";
+
+      }
+
+      if (dados.legado) {
+
+        texto +=
+          "<h3>Legado</h3>" +
+          "<p>" + dados.legado + "</p>";
+
+      }
+
+      if (!texto) {
+
+        texto =
+          "<p>Conteúdo acadêmico em preparação.</p>";
+
+      }
+
+      const area =
+        document.querySelector(
+          "#conteudoEstudo, .conteudo-estudo, .study-content"
+        );
+
+      if (area) {
+
+        area.innerHTML = texto;
+        area.scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+
+        return;
+
+      }
+
+      alert(
+        "A área de estudo foi solicitada para: " +
+        nome
+      );
+
+    };
+
+    RELATORIO.corrigidos.push(
+      "Função mostrarEstudoPensador restaurada."
+    );
+
+  }
+
+
+  /* =========================================================
+     AUTOCORREÇÃO DOS BOTÕES DO MUSEU
+     ========================================================= */
+
+  function instalarEventosDeSeguranca() {
+
+    document.addEventListener(
+      "click",
+      function (evento) {
+
+        const botao =
+          evento.target.closest("button, a");
+
+        if (!botao) return;
+
+        const texto =
+          (botao.textContent || "")
+          .trim()
+          .toLowerCase();
+
+        /* LIMPAR */
+
+        if (
+          texto === "limpar" ||
+          texto.includes("limpar busca") ||
+          botao.id === "clear"
+        ) {
+
+          if (
+            typeof window.clearSearch === "function"
+          ) {
+
+            window.clearSearch();
+
+          }
+
+        }
+
+
+        /* ESTUDAR */
+
+        if (
+          texto.includes("estudar")
+        ) {
+
+          const nome =
+            botao.dataset.pensador ||
+            botao.dataset.nome ||
+            window.pensadorAtual;
+
+          if (nome) {
+
+            window.mostrarEstudoPensador(nome);
+
+          }
+
+        }
+
+      },
+      true
+    );
+
+  }
+
+
+  /* =========================================================
+     EXECUTA O DIAGNÓSTICO
+     ========================================================= */
+
+  function executarDiagnostico() {
+
+    RELATORIO.erros = [];
+    RELATORIO.avisos = [];
+    RELATORIO.corrigidos = [];
+    RELATORIO.testes = [];
+
+    verificarElementos();
+    verificarFuncoes();
+    verificarIdsDuplicados();
+    verificarLinks();
+
+    corrigirLimpar();
+    corrigirEstudo();
+
+    instalarEventosDeSeguranca();
+
+    console.log(
+      "🏛️ MUSEU — DIAGNÓSTICO CONCLUÍDO"
+    );
+
+    console.log(RELATORIO);
+
+    return RELATORIO;
+
+  }
+
+
+  /* =========================================================
+     RELATÓRIO PÚBLICO
+     ========================================================= */
+
+  window.museuVerificarErros =
+    executarDiagnostico;
+
+
+  window.museuRelatorio =
+    function () {
+
+      return JSON.parse(
+        JSON.stringify(RELATORIO)
+      );
+
+    };
+
+
+  /* =========================================================
+     INICIALIZAÇÃO
+     ========================================================= */
+
+  function iniciar() {
+
+    try {
+
+      executarDiagnostico();
+
+    } catch (erro) {
+
+      RELATORIO.erros.push({
+        tipo: "Sistema de integridade",
+        mensagem: erro.message
+      });
+
+      console.error(
+        "🏛️ Erro no sistema de integridade:",
+        erro
+      );
+
+    }
+
+  }
+
+
+  if (
+    document.readyState === "loading"
+  ) {
+
+    document.addEventListener(
+      "DOMContentLoaded",
+      iniciar
+    );
+
+  } else {
+
+    iniciar();
+
+  }
+
+})();
+</script>
+   <!-- =========================================================
+     MUSEU VIRTUAL DOS PENSADORES UNIVERSAIS
+     BANCO ACADÊMICO DOS PENSADORES
+     MÓDULO 01 — SÓCRATES
+     
+     IMPORTANTE:
+     Este módulo é independente.
+     Não altera o visual nem substitui funções existentes.
+     ========================================================= -->
+
+<script>
+(function () {
+
+  "use strict";
+
+  /* Evita carregar o banco duas vezes */
+  if (window.__BANCO_ACADEMICO_MUSEU__) return;
+  window.__BANCO_ACADEMICO_MUSEU__ = true;
+
+
+  /* =========================================================
+     BANCO PRINCIPAL
+     ========================================================= */
+
+  const banco = {
+
+    "Sócrates": {
+
+      id: "socrates",
+
+      nome: "Sócrates",
+
+      nomeCompleto:
+        "Sócrates de Atenas",
+
+      nascimento: {
+        data: "c. 470 a.C.",
+        local: "Atenas ou região da Ática",
+        observacao:
+          "A data exata e alguns detalhes biográficos permanecem objeto de discussão."
+      },
+
+      morte: {
+        data: "399 a.C.",
+        local: "Atenas",
+        causa:
+          "Execução por ingestão de cicuta após sua condenação."
+      },
+
+
+      /* =====================================================
+         IDENTIDADE
+         ===================================================== */
+
+      identidade: {
+
+        profissao:
+          "Filósofo ateniense",
+
+        periodo:
+          "Grécia Antiga — século V a.C.",
+
+        cidade:
+          "Atenas",
+
+        importancia:
+          "Uma das figuras fundamentais da história da filosofia ocidental.",
+
+        caracteristica:
+          "Conhecido sobretudo pela prática do questionamento filosófico e pelo exame da vida humana."
+
+      },
+
+
+      /* =====================================================
+         INFÂNCIA E VIDA
+         ===================================================== */
+
+      biografia: {
+
+        resumo:
+          "Sócrates viveu em Atenas durante o século V a.C., período marcado por intensa atividade política, cultural, militar e intelectual. Não deixou obras escritas próprias conhecidas.",
+
+        infancia:
+          "As informações seguras sobre sua infância são escassas. As fontes antigas preservadas concentram-se principalmente em sua vida adulta e em suas atividades filosóficas.",
+
+        familia:
+          "As tradições antigas associam Sócrates a uma família ateniense de condição modesta. Seu pai é tradicionalmente identificado como Sofronisco e sua mãe como Fenarete.",
+
+        vidaAdulta:
+          "Passou grande parte de sua vida conversando e questionando pessoas em Atenas. As fontes também o apresentam como participante de campanhas militares.",
+
+        vidaPublica:
+          "Sua atividade filosófica acontecia principalmente por meio de conversas e perguntas, e não por meio de uma escola formal baseada em livros.",
+
+        caracterizacao:
+          "As fontes antigas apresentam Sócrates como uma figura incomum, conhecida por sua aparência, comportamento, resistência física e dedicação ao questionamento filosófico."
+
+      },
+
+
+      /* =====================================================
+         ATENAS
+         ===================================================== */
+
+      contextoHistorico: {
+
+        titulo:
+          "Atenas no século V a.C.",
+
+        descricao:
+          "Sócrates viveu durante um dos períodos mais importantes da história ateniense, marcado pela democracia, pelas guerras entre cidades gregas, pelo desenvolvimento das artes, da retórica e da investigação intelectual.",
+
+        democracia:
+          "A democracia ateniense permitia a participação política de cidadãos homens, mas era limitada e não incluía toda a população.",
+
+        guerra:
+          "Atenas esteve envolvida em conflitos importantes, especialmente na Guerra do Peloponeso contra Esparta.",
+
+        cultura:
+          "O período foi marcado por intensa produção teatral, artística, histórica e intelectual.",
+
+        sofistas:
+          "Sofistas e outros intelectuais ofereciam formação em argumentação, retórica e assuntos relacionados à vida pública.",
+
+        importanciaParaSocra:
+          "Esse ambiente ajuda a compreender por que questões sobre educação, virtude, política, conhecimento e argumentação eram tão importantes para Sócrates."
+
+      },
+
+
+      /* =====================================================
+         FORMAÇÃO E INFLUÊNCIAS
+         ===================================================== */
+
+      formacao: {
+
+        educacao:
+          "Não existe uma biografia escolar completa de Sócrates que possa ser considerada historicamente segura.",
+
+        influencias:
+          [
+            "Tradição filosófica anterior a Sócrates",
+            "Debates intelectuais da Atenas do século V a.C.",
+            "Questões éticas e políticas da vida pública ateniense",
+            "Prática do diálogo e da argumentação",
+            "Contato com diferentes grupos sociais e intelectuais"
+          ],
+
+        observacao:
+          "As tradições antigas apresentam diferentes imagens de suas influências. Por isso, o museu deverá distinguir evidência histórica de interpretação posterior."
+
+      },
+
+
+      /* =====================================================
+         MÉTODO
+         ===================================================== */
+
+      metodo: {
+
+        nome:
+          "Questionamento socrático",
+
+        descricao:
+          "Sócrates é tradicionalmente associado a conversas nas quais perguntas sucessivas são utilizadas para examinar conceitos, crenças e argumentos.",
+
+        elementos:
+          [
+            "Perguntas",
+            "Exame das definições",
+            "Identificação de contradições",
+            "Investigação das próprias crenças",
+            "Exame da vida",
+            "Busca por maior clareza conceitual"
+          ],
+
+        ironia:
+          "A chamada ironia socrática é um tema interpretativo complexo. Muitas fontes apresentam Sócrates como alguém que afirma não possuir o conhecimento que seus interlocutores acreditam possuir.",
+
+        objetivo:
+          "O objetivo não deve ser reduzido simplesmente a vencer debates. O centro da prática socrática é o exame racional de questões importantes para a vida humana."
+
+      },
+
+
+      /* =====================================================
+         IDEIAS
+         ===================================================== */
+
+      ideias: {
+
+        conhecimento:
+          "Sócrates coloca o conhecimento e a consciência da própria ignorância no centro da investigação filosófica.",
+
+        virtude:
+          "As discussões socráticas frequentemente investigam a natureza da virtude e sua relação com conhecimento, ação e vida boa.",
+
+        etica:
+          "A filosofia aparece ligada à pergunta sobre como uma pessoa deve viver.",
+
+        alma:
+          "Nas fontes socráticas, o cuidado da alma ocupa papel importante e se relaciona à qualidade moral da vida.",
+
+        exameDaVida:
+          "A tradição platônica associa Sócrates à ideia de que uma vida humana deve ser submetida ao exame racional.",
+
+        injustica:
+          "Em diálogos como o Crito, Sócrates é apresentado defendendo que cometer injustiça não se torna correto simplesmente porque alguém sofreu uma injustiça.",
+
+        politica:
+          "Sua relação com a política ateniense é complexa e não deve ser apresentada simplesmente como uma posição moderna de direita ou esquerda.",
+
+        educacao:
+          "Sua prática questiona a ideia de que educação seja apenas transmissão de informações. O diálogo exige que o interlocutor examine suas próprias crenças."
+
+      },
+
+
+      /* =====================================================
+         CONCEITOS FUNDAMENTAIS
+         ===================================================== */
+
+      conceitos: [
+
+        {
+          nome: "Conhecimento",
+          explicacao:
+            "Investigação sobre aquilo que realmente sabemos e sobre os limites do nosso conhecimento."
+        },
+
+        {
+          nome: "Ignorância",
+          explicacao:
+            "Reconhecimento de que podemos acreditar saber algo sem possuir uma compreensão suficientemente fundamentada."
+        },
+
+        {
+          nome: "Virtude",
+          explicacao:
+            "Questão central das investigações socráticas sobre a vida boa e a excelência humana."
+        },
+
+        {
+          nome: "Ética",
+          explicacao:
+            "Investigação sobre como devemos viver e agir."
+        },
+
+        {
+          nome: "Exame da vida",
+          explicacao:
+            "A vida humana deve ser examinada criticamente por meio da reflexão e do questionamento."
+        },
+
+        {
+          nome: "Diálogo",
+          explicacao:
+            "A investigação filosófica acontece por meio de perguntas, respostas, argumentos e revisão das próprias posições."
+        },
+
+        {
+          nome: "Refutação",
+          explicacao:
+            "Processo pelo qual uma posição é examinada e pode revelar contradições ou dificuldades."
+        }
+
+      ],
+
+
+      /* =====================================================
+         DISCÍPULOS E RELAÇÕES
+         ===================================================== */
+
+      pessoasRelacionadas: [
+
+        {
+          nome: "Platão",
+          relacao:
+            "Discípulo ou associado à tradição socrática e principal autor da representação filosófica de Sócrates."
+        },
+
+        {
+          nome: "Xenofonte",
+          relacao:
+            "Autor antigo que escreveu obras nas quais Sócrates aparece como personagem central."
+        },
+
+        {
+          nome: "Aristófanes",
+          relacao:
+            "Comediógrafo que apresentou uma representação satírica de Sócrates em As Nuvens."
+        },
+
+        {
+          nome: "Alcibíades",
+          relacao:
+            "Figura política ateniense associada a Sócrates em fontes antigas, especialmente no Banquete de Platão."
+        },
+
+        {
+          nome: "Críton",
+          relacao:
+            "Amigo de Sócrates apresentado no diálogo Crito."
+        },
+
+        {
+          nome: "Meleto",
+          relacao:
+            "Um dos acusadores de Sócrates em seu julgamento."
+        }
+
+      ],
+
+
+      /* =====================================================
+         OBRAS E REGISTROS
+         ===================================================== */
+
+      obras: {
+
+        aviso:
+          "Sócrates não deixou escritos próprios conhecidos. Portanto, esta seção não deve apresentar os diálogos de Platão como livros escritos por Sócrates.",
+
+        classificacao: [
+
+          {
+            titulo: "Obras próprias de Sócrates",
+            status: "Não conhecidas",
+            explicacao:
+              "Não possuímos escritos de Sócrates que tenham sobrevivido."
+          },
+
+          {
+            titulo: "Apologia de Sócrates",
+            autor:
+              "Platão",
+            status:
+              "Fonte literária sobre Sócrates",
+            explicacao:
+              "Apresenta uma versão do discurso de defesa de Sócrates em seu julgamento."
+          },
+
+          {
+            titulo: "Crito",
+            autor:
+              "Platão",
+            status:
+              "Diálogo platônico",
+            explicacao:
+              "Apresenta Sócrates discutindo com Críton questões relacionadas à justiça, às leis e à possibilidade de fugir da prisão."
+          },
+
+          {
+            titulo: "Fédon",
+            autor:
+              "Platão",
+            status:
+              "Diálogo platônico",
+            explicacao:
+              "Apresenta uma representação das últimas horas de Sócrates e discussões filosóficas relacionadas à morte e à alma."
+          },
+
+          {
+            titulo: "Banquete",
+            autor:
+              "Platão",
+            status:
+              "Diálogo platônico",
+            explicacao:
+              "Apresenta Sócrates participando de uma discussão sobre o amor."
+          },
+
+          {
+            titulo: "As Nuvens",
+            autor:
+              "Aristófanes",
+            status:
+              "Comédia antiga",
+            explicacao:
+              "Apresenta uma representação satírica de Sócrates e dos intelectuais de seu tempo."
+          },
+
+          {
+            titulo: "Memoráveis",
+            autor:
+              "Xenofonte",
+            status:
+              "Fonte antiga",
+            explicacao:
+              "Apresenta diversas conversas e episódios relacionados a Sócrates."
+          },
+
+          {
+            titulo: "Banquete",
+            autor:
+              "Xenofonte",
+            status:
+              "Fonte antiga",
+            explicacao:
+              "Outra obra de Xenofonte na qual Sócrates aparece."
+          },
+
+          {
+            titulo: "Apologia de Sócrates",
+            autor:
+              "Xenofonte",
+            status:
+              "Fonte antiga",
+            explicacao:
+              "Apresenta a interpretação de Xenofonte sobre o comportamento de Sócrates diante de seu julgamento."
+          }
+
+        ]
+
+      },
+
+
+      /* =====================================================
+         JULGAMENTO
+         ===================================================== */
+
+      julgamento: {
+
+        ano:
+          "399 a.C.",
+
+        acusacoes:
+          [
+            "Não reconhecer adequadamente os deuses da cidade",
+            "Introduzir novas entidades divinas",
+            "Corromper os jovens"
+          ],
+
+        acusadores:
+          [
+            "Meleto",
+            "Ânito",
+            "Lícon"
+          ],
+
+        defesa:
+          "A defesa de Sócrates é apresentada principalmente através da Apologia de Platão e também em uma versão de Xenofonte.",
+
+        resultado:
+          "Foi considerado culpado e condenado à morte.",
+
+        importancia:
+          "O julgamento tornou-se um dos episódios mais importantes da tradição filosófica ocidental."
+
+      },
+
+
+      /* =====================================================
+         PRISÃO E MORTE
+         ===================================================== */
+
+      morteDetalhada: {
+
+        prisao:
+          "Após a condenação, Sócrates permaneceu preso aguardando a execução.",
+
+        fuga:
+          "No Crito, Platão apresenta uma conversa na qual Críton tenta convencê-lo a fugir.",
+
+        resposta:
+          "Sócrates rejeita a fuga com base em argumentos sobre justiça, leis e responsabilidade.",
+
+        execucao:
+          "A tradição platônica apresenta Sócrates tomando cicuta.",
+
+        significado:
+          "A morte de Sócrates tornou-se parte central da tradição sobre a relação entre filosofia, consciência, justiça e vida pública."
+
+      },
+
+
+      /* =====================================================
+         PROBLEMA SOCRÁTICO
+         ===================================================== */
+
+      problemaSocrático: {
+
+        titulo:
+          "O problema socrático",
+
+        descricao:
+          "Como Sócrates não deixou textos próprios, os estudiosos precisam reconstruir sua figura a partir de autores posteriores ou contemporâneos.",
+
+        fontesPrincipais:
+          [
+            "Platão",
+            "Xenofonte",
+            "Aristófanes"
+          ],
+
+        dificuldade:
+          "Essas fontes apresentam retratos diferentes de Sócrates.",
+
+        regraDoMuseu:
+          "O museu deverá distinguir claramente fatos historicamente bem sustentados, testemunhos antigos, interpretações filosóficas e hipóteses acadêmicas."
+
+      },
+
+
+      /* =====================================================
+         CRONOLOGIA
+         ===================================================== */
+
+      cronologia: [
+
+        {
+          data: "c. 470 a.C.",
+          evento:
+            "Nascimento tradicionalmente situado nesse período."
+        },
+
+        {
+          data: "423 a.C.",
+          evento:
+            "Representação de Sócrates em As Nuvens, de Aristófanes."
+        },
+
+        {
+          data: "século V a.C.",
+          evento:
+            "Participação em campanhas militares segundo fontes antigas."
+        },
+
+        {
+          data: "406 a.C.",
+          evento:
+            "Episódio relacionado ao julgamento dos generais após a batalha de Arginusas."
+        },
+
+        {
+          data: "399 a.C.",
+          evento:
+            "Julgamento de Sócrates em Atenas."
+        },
+
+        {
+          data: "399 a.C.",
+          evento:
+            "Condenação e execução."
+        },
+
+        {
+          data: "séculos IV a.C. em diante",
+          evento:
+            "Desenvolvimento das diferentes tradições socráticas."
+        }
+
+      ],
+
+
+      /* =====================================================
+         CRÍTICAS E DEBATES
+         ===================================================== */
+
+      debates: [
+
+        "Até que ponto os diálogos de Platão representam o Sócrates histórico?",
+
+        "Qual é a relação entre o Sócrates de Platão e o Sócrates de Xenofonte?",
+
+        "Quanto da representação de Aristófanes é caricatura e quanto pode refletir aspectos históricos?",
+
+        "Sócrates possuía uma filosofia própria sistemática ou seu método era principalmente investigativo?",
+
+        "Qual era exatamente sua posição política?",
+
+        "O que significava sua relação com a religião ateniense?",
+
+        "Como interpretar sua condenação dentro da democracia ateniense?"
+      ],
+
+
+      /* =====================================================
+         INFLUÊNCIA
+         ===================================================== */
+
+      legado: {
+
+        filosofia:
+          "Sua figura tornou-se fundamental para a tradição filosófica ocidental.",
+
+        educacao:
+          "O diálogo socrático influenciou concepções posteriores de educação e pensamento crítico.",
+
+        etica:
+          "A preocupação com a maneira correta de viver tornou-se uma das marcas mais importantes da tradição socrática.",
+
+        politica:
+          "Seu julgamento continua sendo estudado em debates sobre democracia, liberdade de expressão, autoridade e responsabilidade.",
+
+        filosofiaContemporanea:
+          "Sua figura continua sendo interpretada por diferentes tradições filosóficas.",
+
+        cultura:
+          "Sócrates tornou-se um dos símbolos mais conhecidos da investigação filosófica."
+
+      },
+
+
+      /* =====================================================
+         PERGUNTAS PARA ESTUDOS
+         ===================================================== */
+
+      perguntasEstudo: {
+
+        basico: [
+
+          "Quem foi Sócrates?",
+
+          "Em qual cidade Sócrates viveu?",
+
+          "Sócrates escreveu livros?",
+
+          "O que significa questionar uma crença?",
+
+          "Por que Sócrates foi julgado?"
+        ],
+
+        intermediario: [
+
+          "Por que é difícil reconstruir historicamente o pensamento de Sócrates?",
+
+          "Qual é a diferença entre o Sócrates de Platão e o de Xenofonte?",
+
+          "Qual a importância do método de perguntas?",
+
+          "Qual a relação entre conhecimento e virtude?",
+
+          "Por que Sócrates recusou fugir da prisão na narrativa de Platão?"
+        ],
+
+        avancado: [
+
+          "O que é o problema socrático?",
+
+          "Até que ponto podemos utilizar Platão como fonte histórica sobre Sócrates?",
+
+          "Como distinguir o personagem filosófico de Platão do Sócrates histórico?",
+
+          "O julgamento de Sócrates revela limites da democracia ateniense?",
+
+          "É possível reconstruir uma filosofia de Sócrates sem escritos próprios?"
+        ]
+
+      },
+
+
+      /* =====================================================
+         FONTES ACADÊMICAS
+         ===================================================== */
+
+      fontes: [
+
+        {
+          nome:
+            "Stanford Encyclopedia of Philosophy",
+
+          tipo:
+            "Enciclopédia filosófica acadêmica",
+    ]
+  };
+
+
+  /* =========================================================
+     DISPONIBILIZA O BANCO
+     ========================================================= */
+
+  window.bancoAcademicoPensadores = banco;
+
+
+  /* =========================================================
+     CONSULTAR PENSADOR
+     ========================================================= */
+
+  window.buscarPensadorAcademico = function(nome) {
+
+    if (!nome) return null;
+
+    return banco[nome] || null;
+
+  };
+
+
+  /* =========================================================
+     LISTAR PENSADORES
+     ========================================================= */
+
+  window.listarPensadoresAcademicos = function() {
+
+    return Object.keys(banco);
+
+  };
+
+
+  /* =========================================================
+     CONTADOR DE CONTEÚDO
+     ========================================================= */
+
+  window.contarConteudoAcademico = function(nome) {
+
+    const pensador = banco[nome];
+
+    if (!pensador) return 0;
+
+    let total = 0;
+
+    function contar(obj) {
+
+      if (!obj || typeof obj !== "object") {
+        return;
+      }
+
+      Object.keys(obj).forEach(function(chave) {
+
+        total++;
+
+        if (
+          obj[chave] &&
+          typeof obj[chave] === "object"
+        ) {
+
+          contar(obj[chave]);
+
+        }
+
+      });
+
+    }
+
+    contar(pensador);
+
+    return total;
+
+  };
+
+
+  /* =========================================================
+     VERIFICAÇÃO DO BANCO
+     ========================================================= */
+
+  window.verificarBancoAcademico = function() {
+
+    const socrates = banco["Sócrates"];
+
+    const resultado = {
+
+      funcionando: !!socrates,
+
+      quantidade:
+        Object.keys(banco).length,
+
+      socrates:
+        !!socrates,
+
+      identidade:
+        !!(socrates && socrates.identidade),
+
+      biografia:
+        !!(socrates && socrates.biografia),
+
+      contexto:
+        !!(socrates && socrates.contextoHistorico),
+
+      ideias:
+        !!(socrates && socrates.ideias),
+
+      conceitos:
+        !!(
+          socrates &&
+          Array.isArray(socrates.conceitos)
+        ),
+
+      obras:
+        !!(socrates && socrates.obras),
+
+      julgamento:
+        !!(socrates && socrates.julgamento),
+
+      cronologia:
+        !!(
+          socrates &&
+          Array.isArray(socrates.cronologia)
+        ),
+
+      legado:
+        !!(socrates && socrates.legado),
+
+      perguntas:
+        !!(socrates && socrates.perguntasEstudo),
+
+      fontes:
+        !!(
+          socrates &&
+          Array.isArray(socrates.fontes)
+        )
+
+    };
+
+
+    resultado.todosCamposOK =
+      resultado.socrates &&
+      resultado.identidade &&
+      resultado.biografia &&
+      resultado.contexto &&
+      resultado.ideias &&
+      resultado.conceitos &&
+      resultado.obras &&
+      resultado.julgamento &&
+      resultado.cronologia &&
+      resultado.legado &&
+      resultado.perguntas &&
+      resultado.fontes;
+
+
+    console.log(
+      "🏛️ MUSEU — BANCO ACADÊMICO"
+    );
+
+    console.table(resultado);
+
+    return resultado;
+
+  };
+
+
+  console.log(
+    "📚 Banco acadêmico carregado."
+  );
+
+})();
+</script>
+ <!-- =========================================================
+     MUSEU VIRTUAL DOS PENSADORES UNIVERSAIS
+     PARTE 2 — SISTEMA CENTRAL DE PENSADORES
+     ========================================================= -->
+
+<script>
+(function () {
+
+  "use strict";
+
+  /* Evita duplicação */
+  if (window.__SISTEMA_PENSADORES_MUSEU__) return;
+
+  window.__SISTEMA_PENSADORES_MUSEU__ = true;
+
+
+  /* =========================================================
+     BANCO CENTRAL
+     ========================================================= */
+
+  const bancoCentral =
+    window.bancoPensadoresMuseu ||
+    {};
+
+
+  /* =========================================================
+     IMPORTA O BANCO ACADÊMICO EXISTENTE
+     ========================================================= */
+
+  if (
+    window.bancoAcademicoPensadores &&
+    typeof window.bancoAcademicoPensadores === "object"
+  ) {
+
+    Object.keys(
+      window.bancoAcademicoPensadores
+    ).forEach(function (nome) {
+
+      if (!bancoCentral[nome]) {
+
+        bancoCentral[nome] =
+          window.bancoAcademicoPensadores[nome];
+
+      }
+
+    });
+
+  }
+
+
+  /* =========================================================
+     FUNÇÃO PARA CADASTRAR PENSADOR
+     ========================================================= */
+
+  window.cadastrarPensadorMuseu =
+    function (dados) {
+
+      if (!dados || typeof dados !== "object") {
+
+        console.warn(
+          "Museu: dados inválidos."
+        );
+
+        return false;
+
+      }
+
+
+      const nome =
+        String(dados.nome || "").trim();
+
+
+      if (!nome) {
+
+        console.warn(
+          "Museu: o pensador precisa ter nome."
+        );
+
+        return false;
+
+      }
+
+
+      /* Impede duplicação */
+
+      if (bancoCentral[nome]) {
+
+        console.warn(
+          "Museu: pensador já cadastrado:",
+          nome
+        );
+
+        return false;
+
+      }
+
+
+      bancoCentral[nome] = dados;
+
+
+      console.log(
+        "🏛️ Pensador cadastrado:",
+        nome
+      );
+
+
+      return true;
+
+    };
+
+
+  /* =========================================================
+     BUSCAR PENSADOR
+     ========================================================= */
+
+  window.buscarPensadorMuseu =
+    function (nome) {
+
+      if (!nome) return null;
+
+
+      const procura =
+        String(nome)
+        .trim()
+        .toLowerCase();
+
+
+      const nomes =
+        Object.keys(bancoCentral);
+
+
+      const encontrado =
+        nomes.find(function (item) {
+
+          return item
+            .toLowerCase() === procura;
+
+        });
+
+
+      return encontrado
+        ? bancoCentral[encontrado]
+        : null;
+
+    };
+
+
+  /* =========================================================
+     LISTAR TODOS
+     ========================================================= */
+
+  window.listarPensadoresMuseu =
+    function () {
+
+      return Object.keys(
+        bancoCentral
+      );
+
+    };
+
+
+  /* =========================================================
+     QUANTIDADE
+     ========================================================= */
+
+  window.contarPensadoresMuseu =
+    function () {
+
+      return Object.keys(
+        bancoCentral
+      ).length;
+
+    };
+
+
+  /* =========================================================
+     VERIFICAÇÃO
+     ========================================================= */
+
+  window.verificarSistemaPensadores =
+    function () {
+
+      const nomes =
+        Object.keys(bancoCentral);
+
+
+      const resultado = {
+
+        funcionando:
+          true,
+
+        quantidade:
+          nomes.length,
+
+        pensadores:
+          nomes,
+
+        socrates:
+          !!bancoCentral["Sócrates"]
+
+      };
+
+
+      console.log(
+        "🏛️ SISTEMA CENTRAL DE PENSADORES"
+      );
+
+      console.table(resultado);
+
+
+      return resultado;
+
+    };
+
+
+  /* =========================================================
+     DISPONIBILIZA O BANCO GLOBALMENTE
+     ========================================================= */
+
+  window.bancoPensadoresMuseu =
+    bancoCentral;
+
+
+  console.log(
+    "📚 Sistema central de pensadores carregado."
+  );
+
+  console.log(
+    "Pensadores cadastrados:",
+    Object.keys(bancoCentral).length
+  );
+
+
+})();
+</script> 
+   <!-- =========================================================
+     MUSEU VIRTUAL DOS PENSADORES UNIVERSAIS
+     PARTE 4 — CONEXÃO COM EXPOSIÇÃO ACADÊMICA
+     ========================================================= -->
+
+<script>
+(function () {
+
+  "use strict";
+
+  if (window.__CONEXAO_EXPOSICAO_MUSEU__) {
+    return;
+  }
+
+  window.__CONEXAO_EXPOSICAO_MUSEU__ = true;
+
+
+  /* =========================================================
+     BOTÃO DE EXPOSIÇÃO ACADÊMICA
+     ========================================================= */
+
+  function criarBotao(nome) {
+
+    const botao = document.createElement("button");
+
+    botao.type = "button";
+
+    botao.className =
+      "botao-exposicao-academica";
+
+    botao.textContent =
+      "📚 Explorar exposição completa";
+
+    botao.dataset.pensador =
+      nome;
+
+    botao.addEventListener(
+      "click",
+      function () {
+
+        if (
+          typeof window.abrirExposicaoAcademica ===
+          "function"
+        ) {
+
+          window.abrirExposicaoAcademica(
+            nome
+          );
+
+        } else {
+
+          console.warn(
+            "Motor da exposição acadêmica ainda não carregado."
+          );
+
+        }
+
+      }
+    );
+
+    return botao;
+
+  }
+
+
+  /* =========================================================
+     FUNÇÃO PÚBLICA
+     ========================================================= */
+
+  window.adicionarBotaoExposicaoAcademica =
+    function (nome, container) {
+
+      if (!nome || !container) {
+        return false;
+      }
+
+
+      /* Evita botão duplicado */
+
+      if (
+        container.querySelector(
+          ".botao-exposicao-academica"
+        )
+      ) {
+
+        return false;
+
+      }
+
+
+      container.appendChild(
+        criarBotao(nome)
+      );
+
+
+      return true;
+
+    };
+
+
+  /* =========================================================
+     ESTILO
+     ========================================================= */
+
+  const estilo =
+    document.createElement("style");
+
+  estilo.textContent = `
+
+    .botao-exposicao-academica {
+      display: inline-block;
+      margin: 10px 5px;
+      padding: 12px 18px;
+      border: 1px solid #b89545;
+      border-radius: 8px;
+      background: #151515;
+      color: #d8b45a;
+      font-family: Georgia, serif;
+      font-size: 15px;
+      cursor: pointer;
+      transition: .2s ease;
+    }
+
+    .botao-exposicao-academica:hover {
+      background: #b89545;
+      color: #111;
+      transform: translateY(-1px);
+    }
+
+  `;
+
+  document.head.appendChild(estilo);
+
+
+  console.log(
+    "📚 Conexão da exposição acadêmica carregada."
+  );
+
+
+})();
+</script>
+   <!-- =========================================================
+     MUSEU VIRTUAL DOS PENSADORES UNIVERSAIS
+     PARTE 5 — CATÁLOGO DE OBRAS E FONTES
+     ========================================================= -->
+
+<script>
+(function () {
+
+  "use strict";
+
+  if (window.__CATALOGO_OBRAS_MUSEU__) {
+    return;
+  }
+
+  window.__CATALOGO_OBRAS_MUSEU__ = true;
+
+
+  /* =========================================================
+     CATÁLOGO DE SÓCRATES
+     ========================================================= */
+
+  const catalogoObras = {
+
+    "Sócrates": [
+
+      {
+        titulo: "Apologia de Sócrates",
+        autor: "Platão",
+        categoria: "Fonte antiga sobre Sócrates",
+        tipo: "Diálogo",
+        status: "Fonte literária",
+        descricao:
+          "Apresenta uma versão do discurso de defesa de Sócrates durante seu julgamento em Atenas.",
+        temas: [
+          "Julgamento",
+          "Filosofia",
+          "Justiça",
+          "Missão filosófica",
+          "Vida examinada"
+        ]
+      },
+
+
+      {
+        titulo: "Crito",
+        autor: "Platão",
+        categoria: "Fonte antiga sobre Sócrates",
+        tipo: "Diálogo",
+        status: "Fonte literária",
+        descricao:
+          "Apresenta Sócrates discutindo com Críton sobre justiça, leis e a possibilidade de fugir da prisão.",
+        temas: [
+          "Justiça",
+          "Leis",
+          "Dever",
+          "Responsabilidade"
+        ]
+      },
+
+
+      {
+        titulo: "Fédon",
+        autor: "Platão",
+        categoria: "Fonte antiga sobre Sócrates",
+        tipo: "Diálogo",
+        status: "Fonte literária",
+        descricao:
+          "Apresenta uma narrativa das últimas horas de Sócrates e discussões filosóficas sobre a morte e a alma.",
+        temas: [
+          "Morte",
+          "Alma",
+          "Filosofia",
+          "Conhecimento"
+        ]
+      },
+
+
+      {
+        titulo: "Banquete",
+        autor: "Platão",
+        categoria: "Fonte antiga sobre Sócrates",
+        tipo: "Diálogo",
+        status: "Fonte literária",
+        descricao:
+          "Apresenta Sócrates participando de uma discussão sobre o amor.",
+        temas: [
+          "Amor",
+          "Desejo",
+          "Filosofia",
+          "Conhecimento"
+        ]
+      },
+
+
+      {
+        titulo: "As Nuvens",
+        autor: "Aristófanes",
+        categoria: "Fonte antiga sobre Sócrates",
+        tipo: "Comédia",
+        status: "Representação satírica",
+        descricao:
+          "Apresenta uma representação cômica de Sócrates e de outros tipos de intelectuais da Atenas do século V a.C.",
+        temas: [
+          "Comédia",
+          "Intelectuais",
+          "Educação",
+          "Retórica",
+          "Sociedade ateniense"
+        ]
+      },
+
+
+      {
+        titulo: "Memoráveis",
+        autor: "Xenofonte",
+        categoria: "Fonte antiga sobre Sócrates",
+        tipo: "Memórias socráticas",
+        status: "Fonte antiga",
+        descricao:
+          "Reúne episódios e conversas destinados a apresentar uma imagem de Sócrates.",
+        temas: [
+          "Vida",
+          "Ética",
+          "Educação",
+          "Virtude"
+        ]
+      },
+
+
+      {
+        titulo: "Apologia de Sócrates",
+        autor: "Xenofonte",
+        categoria: "Fonte antiga sobre Sócrates",
+        tipo: "Apologia",
+        status: "Fonte antiga",
+        descricao:
+          "Apresenta a interpretação de Xenofonte sobre a conduta de Sócrates diante de seu julgamento.",
+        temas: [
+          "Julgamento",
+          "Defesa",
+          "Virtude",
+          "Morte"
+        ]
+      },
+
+
+      {
+        titulo: "Banquete",
+        autor: "Xenofonte",
+        categoria: "Fonte antiga sobre Sócrates",
+        tipo: "Diálogo",
+        status: "Fonte antiga",
+        descricao:
+          "Apresenta Sócrates e seus companheiros em uma reunião na qual são discutidos diferentes temas.",
+        temas: [
+          "Educação",
+          "Amizade",
+          "Virtude",
+          "Sociedade"
+        ]
+      },
+
+
+      {
+        titulo: "Escritos próprios de Sócrates",
+        autor: "Sócrates",
+        categoria: "Obra própria",
+        tipo: "Escritos",
+        status: "Não conhecidos",
+        descricao:
+          "Não possuímos escritos próprios de Sócrates que tenham sobrevivido.",
+        temas: [
+          "Problema socrático",
+          "Fontes históricas",
+          "Autoria"
+        ]
+      }
+
+    ]
+
+  };
+
+
+  /* =========================================================
+     DISPONIBILIZA O CATÁLOGO
+     ========================================================= */
+
+  window.catalogoObrasMuseu =
+    catalogoObras;
+
+
+  /* =========================================================
+     BUSCAR OBRAS
+     ========================================================= */
+
+  window.buscarObrasPensador =
+    function (nome) {
+
+      return catalogoObras[nome] || [];
+
+    };
+
+
+  /* =========================================================
+     CONTAR OBRAS
+     ========================================================= */
+
+  window.contarObrasPensador =
+    function (nome) {
+
+      return (
+        catalogoObras[nome] || []
+      ).length;
+
+    };
+
+
+  /* =========================================================
+     MOSTRAR CATÁLOGO
+     ========================================================= */
+
+  window.abrirCatalogoObras =
+    function (nome) {
+
+      const obras =
+        catalogoObras[nome] || [];
+
+
+      if (!obras.length) {
+
+        alert(
+          "Ainda não existe catálogo de obras para " +
+          nome +
+          "."
+        );
+
+        return;
+
+      }
+
+
+      let html = `
+
+        <div class="catalogo-obras-museu">
+
+          <div class="catalogo-titulo">
+
+            <span>CATÁLOGO ACADÊMICO</span>
+
+            <h2>
+              Obras e fontes — ${nome}
+            </h2>
+
+            <p>
+              Catálogo organizado por autoria,
+              natureza da fonte e situação histórica.
+            </p>
+
+          </div>
+
+      `;
+
+
+      obras.forEach(
+        function (obra, indice) {
+
+          html += `
+
+            <article
+              class="obra-museu-card"
+            >
+
+              <div class="obra-numero">
+                ${indice + 1}
+              </div>
+
+              <div>
+
+                <h3>
+                  ${obra.titulo}
+                </h3>
+
+                <p>
+                  <strong>Autor:</strong>
+                  ${obra.autor}
+                </p>
+
+                <p>
+                  <strong>Categoria:</strong>
+                  ${obra.categoria}
+                </p>
+
+                <p>
+                  <strong>Tipo:</strong>
+                  ${obra.tipo}
+                </p>
+
+                <p>
+                  <strong>Status:</strong>
+                  ${obra.status}
+                </p>
+
+                <p>
+                  ${obra.descricao}
+                </p>
+
+                <div class="obra-temas">
+
+                  ${obra.temas.map(
+                    function (tema) {
+
+                      return `
+                        <span>
+                          ${tema}
+                        </span>
+                      `;
+
+                    }
+                  ).join("")}
+
+                </div>
+
+              </div>
+
+            </article>
+
+          `;
+
+        }
+      );
+
+
+      html += `
+        </div>
+      `;
+
+
+      /* =====================================================
+         JANELA
+         ===================================================== */
+
+      let janela =
+        document.getElementById(
+          "janelaCatalogoObrasMuseu"
+        );
+
+
+      if (!janela) {
+
+        janela =
+          document.createElement("div");
+
+        janela.id =
+          "janelaCatalogoObrasMuseu";
+
+        janela.innerHTML = `
+
+          <div
+            class="fundo-catalogo-obras"
+          >
+
+            <div
+              class="painel-catalogo-obras"
+            >
+
+              <button
+                type="button"
+                class="fechar-catalogo-obras"
+              >
+                ×
+              </button>
+
+              <div
+                id="conteudoCatalogoObras"
+              ></div>
+
+            </div>
+
+          </div>
+
+        `;
+
+
+        document.body.appendChild(janela);
+
+
+        janela
+          .querySelector(
+            ".fechar-catalogo-obras"
+          )
+          .addEventListener(
+            "click",
+            function () {
+
+              janela.remove();
+
+            }
+          );
+
+
+        janela
+          .querySelector(
+            ".fundo-catalogo-obras"
+          )
+          .addEventListener(
+            "click",
+            function (evento) {
+
+              if (
+                evento.target === this
+              ) {
+
+                janela.remove();
+
+              }
+
+            }
+          );
+
+      }
+
+
+      document.getElementById(
+        "conteudoCatalogoObras"
+      ).innerHTML = html;
+
+
+      janela.style.display =
+        "block";
+
+    };
+
+
+  /* =========================================================
+     ESTILO
+     ========================================================= */
+
+  const estilo =
+    document.createElement("style");
+
+  estilo.textContent = `
+
+    #janelaCatalogoObrasMuseu {
+      position: fixed;
+      inset: 0;
+      z-index: 999998;
+      display: none;
+      font-family: Georgia, serif;
+    }
+
+    .fundo-catalogo-obras {
+      position: absolute;
+      inset: 0;
+      overflow-y: auto;
+      padding: 15px;
+      background: rgba(0,0,0,.94);
+    }
+
+    .painel-catalogo-obras {
+      position: relative;
+      max-width: 900px;
+      margin: 20px auto;
+      padding: 25px;
+      background: #111;
+      color: #eee;
+      border: 1px solid #b89545;
+      border-radius: 14px;
+    }
+
+    .fechar-catalogo-obras {
+      position: sticky;
+      top: 0;
+      float: right;
+      z-index: 5;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: 1px solid #b89545;
+      background: #111;
+      color: #d8b45a;
+      font-size: 28px;
+      cursor: pointer;
+    }
+
+    .catalogo-titulo {
+      padding: 10px 5px 25px;
+      border-bottom: 1px solid #4c3d20;
+    }
+
+    .catalogo-titulo span {
+      color: #d8b45a;
+      font-size: 12px;
+      letter-spacing: 2px;
+    }
+
+    .catalogo-titulo h2 {
+      color: #d8b45a;
+      font-size: 28px;
+    }
+
+    .catalogo-titulo p {
+      color: #aaa;
+      line-height: 1.6;
+    }
+
+    .obra-museu-card {
+      display: flex;
+      gap: 18px;
+      margin-top: 20px;
+      padding: 18px;
+      background: rgba(255,255,255,.025);
+      border-left: 2px solid #b89545;
+      border-radius: 8px;
+    }
+
+    .obra-numero {
+      flex: 0 0 34px;
+      height: 34px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid #b89545;
+      border-radius: 50%;
+      color: #d8b45a;
+    }
+
+    .obra-museu-card h3 {
+      margin-top: 0;
+      color: #d8b45a;
+    }
+
+    .obra-museu-card p {
+      line-height: 1.6;
+    }
+
+    .obra-temas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 12px;
+    }
+
+    .obra-temas span {
+      padding: 5px 9px;
+      border: 1px solid #554522;
+      border-radius: 20px;
+      color: #cdbb87;
+      font-size: 12px;
+    }
+
+    @media (max-width: 600px) {
+
+      .fundo-catalogo-obras {
+        padding: 7px;
+      }
+
+      .painel-catalogo-obras {
+        margin: 5px auto;
+        padding: 15px;
+      }
+
+      .obra-museu-card {
+        flex-direction: column;
+      }
+
+    }
+
+  `;
+
+
+  document.head.appendChild(estilo);
+
+
+  console.log(
+    "📜 Catálogo de obras carregado."
+  );
+
+})();
+   </script>
+   <script>
+/* =========================================================
+   MÓDULO 6 — CONEXÃO DO BOTÃO "OBRAS" AO CATÁLOGO
+   ========================================================= */
+
+(function () {
+  "use strict";
+
+  if (window.moduloConexaoObrasMuseu) return;
+  window.moduloConexaoObrasMuseu = true;
+
+  document.addEventListener("click", function (evento) {
+    var botao = evento.target.closest("button");
+
+    if (!botao) return;
+
+    var texto = (botao.textContent || "").trim();
+
+    /* Só atua sobre o botão "Obras" */
+    if (texto !== "Obras") return;
+
+    /* Confirma que o catálogo acadêmico existe */
+    if (typeof window.abrirCatalogoObras !== "function") {
+      console.warn("Catálogo de obras ainda não está disponível.");
+      return;
+    }
+
+    /*
+      O botão "Obras" da exposição do Sócrates
+      abrirá diretamente o catálogo.
+    */
+    evento.preventDefault();
+    evento.stopImmediatePropagation();
+
+    window.abrirCatalogoObras("Sócrates");
+  }, true);
+
+  console.log("✓ Módulo 6 carregado: botão Obras conectado ao catálogo.");
+
+})();
+   </script>
+   <script>
+/* =========================================================
+   MÓDULO 6B — CORREÇÃO DA CONEXÃO "OBRAS"
+   ========================================================= */
+
+(function () {
+  "use strict";
+
+  if (window.modulo6BCorrecaoObras) return;
+  window.modulo6BCorrecaoObras = true;
+
+  document.addEventListener("click", function (evento) {
+
+    var elemento = evento.target.closest(
+      "button, a, [role='button'], div"
+    );
+
+    if (!elemento) return;
+
+    var texto = (elemento.textContent || "")
+      .replace(/\s+/g, " ")
+      .trim();
+
+    if (texto !== "Obras") return;
+
+    evento.preventDefault();
+    evento.stopPropagation();
+
+    if (typeof window.abrirCatalogoObras === "function") {
+
+      window.abrirCatalogoObras("Sócrates");
+
+      console.log(
+        "✓ Botão Obras conectado ao catálogo."
+      );
+
+    } else {
+
+      alert(
+        "O catálogo de obras ainda não foi carregado. " +
+        "Vamos corrigir o módulo do catálogo."
+      );
+
+      console.warn(
+        "abrirCatalogoObras não encontrada."
+      );
+    }
+
+  }, true);
+
+  console.log("✓ Módulo 6B carregado.");
+
+})();
+   </script>
+</body>
+
+</html>
