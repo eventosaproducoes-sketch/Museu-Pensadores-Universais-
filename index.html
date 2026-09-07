@@ -6571,6 +6571,84 @@ mostrarEstudoPensador;
 
 })();
 </script>
+   <script>
+/* =========================================================
+   MÓDULO 8B — BOTÃO LINHA DO TEMPO DE SÓCRATES
+   ========================================================= */
+
+(function () {
+  "use strict";
+
+  if (window.modulo8BBotaoTimeline) return;
+  window.modulo8BBotaoTimeline = true;
+
+  function adicionarBotaoTimeline() {
+
+    if (typeof window.abrirLinhaTempoSocrates !== "function") {
+      return;
+    }
+
+    var botoes = document.querySelectorAll("button");
+
+    botoes.forEach(function (botao) {
+
+      if ((botao.textContent || "").trim() !== "Obras") {
+        return;
+      }
+
+      var area = botao.parentElement;
+
+      if (!area) return;
+
+      var existe = Array.from(
+        area.querySelectorAll("button")
+      ).some(function (b) {
+        return (b.textContent || "").includes("Linha do Tempo");
+      });
+
+      if (existe) return;
+
+      var novo = document.createElement("button");
+
+      novo.type = "button";
+      novo.textContent = "⏳ Linha do Tempo";
+
+      novo.onclick = function () {
+        window.abrirLinhaTempoSocrates();
+      };
+
+      novo.style.cssText = `
+        margin: 8px 6px;
+        padding: 10px 18px;
+        border-radius: 25px;
+        border: 1px solid #c9a85a;
+        background: #080d18;
+        color: #f1dfaa;
+        font-size: 16px;
+        cursor: pointer;
+      `;
+
+      area.appendChild(novo);
+    });
+  }
+
+  adicionarBotaoTimeline();
+
+  var observador = new MutationObserver(function () {
+    adicionarBotaoTimeline();
+  });
+
+  observador.observe(document.body, {
+    childList: true,
+    subtree: true
+  });
+
+  console.log(
+    "✓ Módulo 8B carregado: botão Linha do Tempo."
+  );
+
+})();
+   </script>
 </body>
 
 </html>
