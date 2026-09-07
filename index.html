@@ -6659,5 +6659,130 @@ mostrarEstudoPensador;
 
 })();
    </script>
+   <script>
+(function () {
+
+  "use strict";
+
+  if (window.conexaoLinhaTempoMuseu) return;
+  window.conexaoLinhaTempoMuseu = true;
+
+  function adicionarBotao(area) {
+
+    if (!area) return;
+
+    var titulo = area.querySelector("h1, h2");
+
+    if (!titulo) return;
+
+    var nome = titulo.textContent
+      .replace(/\s+/g, " ")
+      .trim();
+
+    if (!nome) return;
+
+    if (
+      typeof window.buscarLinhaDoTempo !== "function"
+    ) {
+      return;
+    }
+
+    if (
+      !window.buscarLinhaDoTempo(nome)
+    ) {
+      return;
+    }
+
+    if (
+      area.querySelector(
+        ".botao-linha-tempo-museu"
+      )
+    ) {
+      return;
+    }
+
+    var botao = document.createElement("button");
+
+    botao.type = "button";
+
+    botao.className =
+      "botao-linha-tempo-museu";
+
+    botao.textContent =
+      "📜 Linha do Tempo";
+
+    botao.style.cssText = `
+      display:inline-block;
+      margin:10px 5px;
+      padding:10px 16px;
+      border:1px solid #d8b36a;
+      border-radius:20px;
+      background:#151a26;
+      color:#f1d79b;
+      font-family:Georgia,serif;
+      cursor:pointer;
+    `;
+
+    botao.onclick = function () {
+
+      window.abrirLinhaDoTempoMuseu(nome);
+
+    };
+
+
+    var local =
+      area.querySelector(".tabs");
+
+    if (!local) {
+      local = area;
+    }
+
+    local.appendChild(botao);
+
+  }
+
+
+  function procurarExposicoes() {
+
+    var areas =
+      document.querySelectorAll(
+        "[role='dialog'], .modal, .modal-box"
+      );
+
+    areas.forEach(function (area) {
+
+      adicionarBotao(area);
+
+    });
+
+  }
+
+
+  procurarExposicoes();
+
+
+  var observador =
+    new MutationObserver(function () {
+
+      procurarExposicoes();
+
+    });
+
+
+  observador.observe(
+    document.body,
+    {
+      childList:true,
+      subtree:true
+    }
+  );
+
+
+  console.log(
+    "✓ Botão Linha do Tempo conectado."
+  );
+
+})();
+   </script>
 </body>
 </html>
