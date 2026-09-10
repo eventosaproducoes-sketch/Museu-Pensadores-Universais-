@@ -567,4 +567,70 @@ document.getElementById("room").innerHTML=`
 ["2023","ABL","É eleito para a Academia Brasileira de Letras."]
 ]
 };
-    
+  function openTimeline(name){
+let data=LT[name];
+
+if(!data){
+openModal(`
+<button class="close" onclick="closeModal()">×</button>
+<h2>📜 Linha do Tempo</h2>
+<p class="content">A linha do tempo de ${name} ainda está sendo ampliada.</p>
+`);
+return;
+}
+
+let eventos=data.map(function(e){
+return `
+<div class="event">
+<i></i>
+<strong>${e[0]} — ${e[1]}</strong>
+<p>${e[2]}</p>
+</div>`;
+}).join("");
+
+openModal(`
+<button class="close" onclick="closeModal()">×</button>
+<h2>📜 ${name}</h2>
+<div class="period">Linha do Tempo Individual</div>
+<div class="timeline">${eventos}</div>
+`);
+}
+
+function openWorks(){
+let name=current?current[0]:"";
+
+let texto=name==="Sócrates"
+?"Não são conhecidos escritos próprios de Sócrates. Seu pensamento é conhecido principalmente por fontes antigas como Platão, Xenofonte e Aristófanes."
+:"O catálogo de obras de "+name+" será desenvolvido individualmente, com autoria, contexto histórico e fontes.";
+
+openModal(`
+<button class="close" onclick="closeModal()">×</button>
+<h2>📚 Obras — ${name}</h2>
+<div class="content">
+<p>${texto}</p>
+</div>
+`);
+}
+
+function showQuiz(){
+let name=current?current[0]:"Pensador";
+
+openModal(`
+<button class="close" onclick="closeModal()">×</button>
+<h2>🧠 Quiz — ${name}</h2>
+<div class="content">
+<p>Qual é a importância histórica de ${name}?</p>
+<button class="gold" onclick="alert('Resposta registrada!')">Responder</button>
+</div>
+`);
+}
+
+function membership(){
+alert("O Passe Anual será ativado na etapa de pagamento do Museu.");
+}
+
+renderPensadores();
+
+</script>
+</body>
+</html>  
