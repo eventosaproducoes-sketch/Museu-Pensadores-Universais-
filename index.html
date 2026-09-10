@@ -386,77 +386,7 @@ const LT={
 ["2001","Morte","Morre em São Paulo."]
 ],
 "Darcy Ribeiro":[
-["1922","Nascimento","Nasce em Montes Claros."],
-["1950","Antropologia","Atua em pesquisas sobre povos indígenas."],
-["1962","UnB","Participa da criação e organização da Universidade de Brasília."],
-["1997","Morte","Morre em Brasília."]
-],
-"Hannah Arendt":[
-["1906","Nascimento","Nasce em Hannover."],
-["1933","Exílio","Deixa a Alemanha após a ascensão do nazismo."],
-["1951","Totalitarismo","Publica As Origens do Totalitarismo."],
-["1975","Morte","Morre em Nova York."]
-],
-"Simone de Beauvoir":[
-["1908","Nascimento","Nasce em Paris."],
-["1929","Filosofia","Conclui sua formação filosófica e conhece Sartre."],
-["1949","O Segundo Sexo","Publica O Segundo Sexo."],
-["1986","Morte","Morre em Paris."]
-],
-"Martin Luther King Jr.":[
-["1929","Nascimento","Nasce em Atlanta."],
-["1955","Montgomery","Destaca-se no movimento contra a segregação racial."],
-["1963","Marcha","Lidera mobilizações pelos direitos civis."],
-["1968","Morte","É assassinado em Memphis."]
-],
-"Nelson Mandela":[
-["1918","Nascimento","Nasce em Mvezo."],
-["1944","ANC","Entra para o Congresso Nacional Africano."],
-["1990","Libertação","É libertado após 27 anos de prisão."],
-["1994","Presidência","Torna-se presidente da África do Sul."]
-],
-"Carl Sagan":[
-["1934","Nascimento","Nasce em Nova York."],
-["1960","Astronomia","Inicia importante carreira acadêmica e científica."],
-["1980","Cosmos","A série Cosmos amplia mundialmente sua divulgação científica."],
-["1996","Morte","Morre em Seattle."]
-],
-"Stephen Hawking":[
-["1942","Nascimento","Nasce em Oxford."],
-["1974","Buracos negros","Apresenta sua proposta sobre a radiação de Hawking."],
-["1988","Uma Breve História do Tempo","Publica seu livro de divulgação científica."],
-["2018","Morte","Morre em Cambridge."]
-],
-"Ailton Krenak":[
-["1953","Nascimento","Nasce em Minas Gerais."],
-["1980s","Ativismo","Atua na defesa dos direitos dos povos indígenas."],
-["1987–88","Constituição","Participa ativamente das mobilizações indígenas durante a Constituinte."],
-["2024","Morte","Morre em Minas Gerais."]
-]
-};
 
-function abrirLinhaTempo(nome){
- const dados=LT[nome];
- if(!dados){
-   alert("Linha do tempo ainda não cadastrada para "+nome+".");
-   return;
- }
- let h=`<button class="close" onclick="closeModal()">×</button><h2>📜 Linha do Tempo — ${nome}</h2><div class="timeline">`;
- dados.forEach(e=>h+=`<div class="event"><strong>${e[0]} — ${e[1]}</strong><p>${e[2]}</p></div>`);
- h+=`</div>`;
- openModal(h);
-}
-
-const obsLT=new MutationObserver(()=>{
- const tabs=document.querySelector(".tabs");
- if(!tabs||document.getElementById("btnTimeline"))return;
- const b=document.createElement("button");
- b.id="btnTimeline";b.className="tab";b.textContent="📜 Linha do Tempo";
- b.onclick=()=>abrirLinhaTempo(currentThinker?.n);
- tabs.appendChild(b);
-});
-obsLT.observe(document.body,{subtree:true,childList:true});
-  
 </script>
 </body>
 </html>
