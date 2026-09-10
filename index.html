@@ -256,6 +256,47 @@ function showRoadmap(){openModal(`<button class="close" onclick="closeModal()">�
 function toast(msg){const x=document.getElementById("toast");x.textContent=msg;x.classList.add("show");setTimeout(()=>x.classList.remove("show"),2400)}
 document.addEventListener("keydown",e=>{if(e.key==="Escape")closeModal()});
 renderThinkers();
+  /* ===== LINHA DO TEMPO — SÓCRATES ===== */
+
+const linhaSocrates = [
+ ["469 a.C.","Nascimento","Sócrates nasce em Atenas."],
+ ["450 a.C.","Juventude","Vive em Atenas e participa da vida da cidade."],
+ ["431 a.C.","Guerra","Participa da Guerra do Peloponeso como cidadão e soldado."],
+ ["399 a.C.","Julgamento","É acusado de impiedade e de corromper a juventude."],
+ ["399 a.C.","Defesa","Apresenta sua defesa diante do tribunal ateniense."],
+ ["399 a.C.","Condenação","É condenado à morte."],
+ ["399 a.C.","Morte","Morre após beber cicuta."]
+];
+
+function abrirLinhaSocrates(){
+ let html=`<button class="close" onclick="closeModal()">×</button>
+ <h2>📜 Linha do Tempo — Sócrates</h2>
+ <div class="timeline">`;
+
+ linhaSocrates.forEach(e=>{
+   html+=`<div class="event">
+   <strong>${e[0]} — ${e[1]}</strong>
+   <p>${e[2]}</p>
+   </div>`;
+ });
+
+ html+=`</div>`;
+ openModal(html);
+}
+
+const observarSala = new MutationObserver(()=>{
+ const tabs=document.querySelector(".tabs");
+ if(!tabs || document.getElementById("btnTimeline")) return;
+
+ const b=document.createElement("button");
+ b.id="btnTimeline";
+ b.className="tab";
+ b.textContent="📜 Linha do Tempo";
+ b.onclick=abrirLinhaSocrates;
+ tabs.appendChild(b);
+});
+
+observarSala.observe(document.body,{subtree:true,childList:true});
 </script>
 </body>
 </html>
