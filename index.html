@@ -256,47 +256,207 @@ function showRoadmap(){openModal(`<button class="close" onclick="closeModal()">�
 function toast(msg){const x=document.getElementById("toast");x.textContent=msg;x.classList.add("show");setTimeout(()=>x.classList.remove("show"),2400)}
 document.addEventListener("keydown",e=>{if(e.key==="Escape")closeModal()});
 renderThinkers();
-  /* ===== LINHA DO TEMPO — SÓCRATES ===== */
+  /* ===== LINHA DO TEMPO UNIVERSAL ===== */
 
-const linhaSocrates = [
- ["469 a.C.","Nascimento","Sócrates nasce em Atenas."],
- ["450 a.C.","Juventude","Vive em Atenas e participa da vida da cidade."],
- ["431 a.C.","Guerra","Participa da Guerra do Peloponeso como cidadão e soldado."],
- ["399 a.C.","Julgamento","É acusado de impiedade e de corromper a juventude."],
- ["399 a.C.","Defesa","Apresenta sua defesa diante do tribunal ateniense."],
- ["399 a.C.","Condenação","É condenado à morte."],
- ["399 a.C.","Morte","Morre após beber cicuta."]
-];
+const LT={
+"Sócrates":[
+["469 a.C.","Nascimento","Nasce em Atenas."],
+["431 a.C.","Guerra","Participa da Guerra do Peloponeso."],
+["399 a.C.","Julgamento","É acusado de impiedade e de corromper a juventude."],
+["399 a.C.","Morte","É condenado e executado por cicuta."]
+],
+"Platão":[
+["c. 428 a.C.","Nascimento","Nasce em Atenas ou região próxima."],
+["c. 387 a.C.","Academia","Funda a Academia em Atenas."],
+["c. 360 a.C.","Diálogos","Produz obras filosóficas que marcam a tradição ocidental."],
+["c. 347 a.C.","Morte","Morre em Atenas."]
+],
+"Aristóteles":[
+["384 a.C.","Nascimento","Nasce em Estagira."],
+["367 a.C.","Academia","Entra na Academia de Platão."],
+["335 a.C.","Liceu","Funda o Liceu em Atenas."],
+["322 a.C.","Morte","Morre em Cálcis."]
+],
+"Confúcio":[
+["551 a.C.","Nascimento","Nasce no Estado de Lu."],
+["c. 500 a.C.","Ensino","Desenvolve ensinamentos sobre ética, educação e governo."],
+["c. 480 a.C.","Discipulado","Seus ensinamentos passam a ser transmitidos por discípulos."],
+["479 a.C.","Morte","Morre no Estado de Lu."]
+],
+"Agostinho de Hipona":[
+["354","Nascimento","Nasce em Tagaste, no Norte da África."],
+["386","Conversão","Passa por profunda transformação religiosa e intelectual."],
+["395","Bispo","Torna-se bispo de Hipona."],
+["430","Morte","Morre durante o cerco de Hipona."]
+],
+"Tomás de Aquino":[
+["1225","Nascimento","Nasce na Itália."],
+["1244","Dominicanos","Ingressa na Ordem Dominicana."],
+["1256","Professor","Inicia importante período de ensino em Paris."],
+["1274","Morte","Morre durante viagem ao Concílio de Lyon."]
+],
+"Averróis":[
+["1126","Nascimento","Nasce em Córdoba."],
+["1169","Magistratura","Atua como juiz em Sevilha."],
+["1182","Córdoba","Torna-se importante autoridade jurídica e intelectual."],
+["1198","Morte","Morre em Marrakesh."]
+],
+"Leonardo da Vinci":[
+["1452","Nascimento","Nasce em Vinci, na Itália."],
+["1482","Milão","Vai para Milão e amplia sua atuação artística e científica."],
+["1503","Mona Lisa","Trabalha em uma de suas pinturas mais famosas."],
+["1519","Morte","Morre em Amboise, na França."]
+],
+"Nicolau Maquiavel":[
+["1469","Nascimento","Nasce em Florença."],
+["1498","Vida pública","Entra para a administração da República de Florença."],
+["1513","O Príncipe","Escreve O Príncipe."],
+["1527","Morte","Morre em Florença."]
+],
+"John Locke":[
+["1632","Nascimento","Nasce na Inglaterra."],
+["1689","Direitos","Publica obras fundamentais do liberalismo político."],
+["1690","Ensaio","Publica o Ensaio sobre o Entendimento Humano."],
+["1704","Morte","Morre na Inglaterra."]
+],
+"Jean-Jacques Rousseau":[
+["1712","Nascimento","Nasce em Genebra."],
+["1750","Primeiro Discurso","Ganha destaque ao criticar os efeitos sociais das artes e ciências."],
+["1762","Contrato Social","Publica O Contrato Social."],
+["1778","Morte","Morre em Ermenonville."]
+],
+"Voltaire":[
+["1694","Nascimento","Nasce em Paris."],
+["1734","Cartas Inglesas","Publica Cartas Filosóficas."],
+["1759","Cândido","Publica Cândido."],
+["1778","Morte","Morre em Paris."]
+],
+"Immanuel Kant":[
+["1724","Nascimento","Nasce em Königsberg."],
+["1770","Professor","Assume a cátedra de lógica e metafísica."],
+["1781","Crítica da Razão Pura","Publica sua obra filosófica central."],
+["1804","Morte","Morre em Königsberg."]
+],
+"Karl Marx":[
+["1818","Nascimento","Nasce em Trier."],
+["1848","Manifesto","Publica, com Engels, o Manifesto Comunista."],
+["1867","O Capital","Publica o primeiro volume de O Capital."],
+["1883","Morte","Morre em Londres."]
+],
+"Charles Darwin":[
+["1809","Nascimento","Nasce na Inglaterra."],
+["1831","Beagle","Inicia a viagem no HMS Beagle."],
+["1859","Evolução","Publica A Origem das Espécies."],
+["1882","Morte","Morre em Down, Inglaterra."]
+],
+"Friedrich Nietzsche":[
+["1844","Nascimento","Nasce em Röcken."],
+["1869","Professor","Torna-se professor de filologia em Basileia."],
+["1883","Zaratustra","Publica partes de Assim Falou Zaratustra."],
+["1900","Morte","Morre em Weimar."]
+],
+"Sigmund Freud":[
+["1856","Nascimento","Nasce em Freiberg."],
+["1885","Paris","Estuda com Charcot em Paris."],
+["1900","A Interpretação dos Sonhos","Publica uma de suas obras fundamentais."],
+["1939","Morte","Morre em Londres."]
+],
+"Albert Einstein":[
+["1879","Nascimento","Nasce em Ulm."],
+["1905","Ano miraculoso","Publica trabalhos fundamentais da física moderna."],
+["1915","Relatividade geral","Apresenta a teoria da relatividade geral."],
+["1955","Morte","Morre em Princeton."]
+],
+"Machado de Assis":[
+["1839","Nascimento","Nasce no Rio de Janeiro."],
+["1869","Casamento","Casa-se com Carolina Augusta Xavier de Novais."],
+["1881","Memórias Póstumas","Publica Memórias Póstumas de Brás Cubas."],
+["1908","Morte","Morre no Rio de Janeiro."]
+],
+"Paulo Freire":[
+["1921","Nascimento","Nasce em Recife."],
+["1963","Angicos","Coordena experiência marcante de alfabetização de adultos."],
+["1968","Pedagogia","Escreve Pedagogia do Oprimido."],
+["1997","Morte","Morre em São Paulo."]
+],
+"Milton Santos":[
+["1926","Nascimento","Nasce na Bahia."],
+["1970","Geografia","Consolida sua produção sobre território e espaço."],
+["1994","Prêmio Vautrin Lud","Recebe importante reconhecimento internacional."],
+["2001","Morte","Morre em São Paulo."]
+],
+"Darcy Ribeiro":[
+["1922","Nascimento","Nasce em Montes Claros."],
+["1950","Antropologia","Atua em pesquisas sobre povos indígenas."],
+["1962","UnB","Participa da criação e organização da Universidade de Brasília."],
+["1997","Morte","Morre em Brasília."]
+],
+"Hannah Arendt":[
+["1906","Nascimento","Nasce em Hannover."],
+["1933","Exílio","Deixa a Alemanha após a ascensão do nazismo."],
+["1951","Totalitarismo","Publica As Origens do Totalitarismo."],
+["1975","Morte","Morre em Nova York."]
+],
+"Simone de Beauvoir":[
+["1908","Nascimento","Nasce em Paris."],
+["1929","Filosofia","Conclui sua formação filosófica e conhece Sartre."],
+["1949","O Segundo Sexo","Publica O Segundo Sexo."],
+["1986","Morte","Morre em Paris."]
+],
+"Martin Luther King Jr.":[
+["1929","Nascimento","Nasce em Atlanta."],
+["1955","Montgomery","Destaca-se no movimento contra a segregação racial."],
+["1963","Marcha","Lidera mobilizações pelos direitos civis."],
+["1968","Morte","É assassinado em Memphis."]
+],
+"Nelson Mandela":[
+["1918","Nascimento","Nasce em Mvezo."],
+["1944","ANC","Entra para o Congresso Nacional Africano."],
+["1990","Libertação","É libertado após 27 anos de prisão."],
+["1994","Presidência","Torna-se presidente da África do Sul."]
+],
+"Carl Sagan":[
+["1934","Nascimento","Nasce em Nova York."],
+["1960","Astronomia","Inicia importante carreira acadêmica e científica."],
+["1980","Cosmos","A série Cosmos amplia mundialmente sua divulgação científica."],
+["1996","Morte","Morre em Seattle."]
+],
+"Stephen Hawking":[
+["1942","Nascimento","Nasce em Oxford."],
+["1974","Buracos negros","Apresenta sua proposta sobre a radiação de Hawking."],
+["1988","Uma Breve História do Tempo","Publica seu livro de divulgação científica."],
+["2018","Morte","Morre em Cambridge."]
+],
+"Ailton Krenak":[
+["1953","Nascimento","Nasce em Minas Gerais."],
+["1980s","Ativismo","Atua na defesa dos direitos dos povos indígenas."],
+["1987–88","Constituição","Participa ativamente das mobilizações indígenas durante a Constituinte."],
+["2024","Morte","Morre em Minas Gerais."]
+]
+};
 
-function abrirLinhaSocrates(){
- let html=`<button class="close" onclick="closeModal()">×</button>
- <h2>📜 Linha do Tempo — Sócrates</h2>
- <div class="timeline">`;
-
- linhaSocrates.forEach(e=>{
-   html+=`<div class="event">
-   <strong>${e[0]} — ${e[1]}</strong>
-   <p>${e[2]}</p>
-   </div>`;
- });
-
- html+=`</div>`;
- openModal(html);
+function abrirLinhaTempo(nome){
+ const dados=LT[nome];
+ if(!dados){
+   alert("Linha do tempo ainda não cadastrada para "+nome+".");
+   return;
+ }
+ let h=`<button class="close" onclick="closeModal()">×</button><h2>📜 Linha do Tempo — ${nome}</h2><div class="timeline">`;
+ dados.forEach(e=>h+=`<div class="event"><strong>${e[0]} — ${e[1]}</strong><p>${e[2]}</p></div>`);
+ h+=`</div>`;
+ openModal(h);
 }
 
-const observarSala = new MutationObserver(()=>{
+const obsLT=new MutationObserver(()=>{
  const tabs=document.querySelector(".tabs");
- if(!tabs || document.getElementById("btnTimeline")) return;
-
+ if(!tabs||document.getElementById("btnTimeline"))return;
  const b=document.createElement("button");
- b.id="btnTimeline";
- b.className="tab";
- b.textContent="📜 Linha do Tempo";
- b.onclick=abrirLinhaSocrates;
+ b.id="btnTimeline";b.className="tab";b.textContent="📜 Linha do Tempo";
+ b.onclick=()=>abrirLinhaTempo(currentThinker?.n);
  tabs.appendChild(b);
 });
-
-observarSala.observe(document.body,{subtree:true,childList:true});
+obsLT.observe(document.body,{subtree:true,childList:true});
+  
 </script>
 </body>
 </html>
