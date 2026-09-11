@@ -122,3 +122,134 @@ h1 em{color:var(--g2);font-style:normal}
 <footer class="footer"><div class="container">Museu Virtual dos Pensadores Universais • Acervo em expansão</div></footer>
 
 <div class="modal" id="modal"><div class="box" id="modalBox"></div></div>
+  <script>
+const thinkers=[
+["Sócrates","Antiguidade","469–399 a.C.","🗿"],
+["Platão","Antiguidade","427–347 a.C.","🏛️"],
+["Aristóteles","Antiguidade","384–322 a.C.","📜"],
+["Confúcio","Antiguidade","551–479 a.C.","☯️"],
+["Agostinho de Hipona","Idade Média","354–430","✝️"],
+["Tomás de Aquino","Idade Média","1225–1274","📖"],
+["Averróis","Idade Média","1126–1198","🌙"],
+["Leonardo da Vinci","Renascimento","1452–1519","🎨"],
+["Nicolau Maquiavel","Renascimento","1469–1527","👑"],
+["Erasmo de Roterdã","Renascimento","1466–1536","📚"],
+["John Locke","Iluminismo","1632–1704","🕯️"],
+["Jean-Jacques Rousseau","Iluminismo","1712–1778","🌿"],
+["Voltaire","Iluminismo","1694–1778","✒️"],
+["Immanuel Kant","Iluminismo","1724–1804","🧠"],
+["Karl Marx","Séculos XIX–XX","1818–1883","⚒️"],
+["Charles Darwin","Séculos XIX–XX","1809–1882","🧬"],
+["Friedrich Nietzsche","Séculos XIX–XX","1844–1900","⚡"],
+["Sigmund Freud","Séculos XIX–XX","1856–1939","🛋️"],
+["Albert Einstein","Séculos XIX–XX","1879–1955","🌌"],
+["Hannah Arendt","Contemporâneos","1906–1975","📚"],
+["Paulo Freire","Contemporâneos","1921–1997","🎓"],
+["Nelson Mandela","Contemporâneos","1918–2013","🕊️"],
+["Martin Luther King Jr.","Contemporâneos","1929–1968","✊"],
+["Carl Sagan","Contemporâneos","1934–1996","🌌"],
+["Stephen Hawking","Contemporâneos","1942–2018","🔭"],
+["Machado de Assis","Contemporâneos","1839–1908","📖"],
+["Milton Santos","Contemporâneos","1926–2001","🌎"],
+["Darcy Ribeiro","Contemporâneos","1922–1997","🎓"],
+["Ailton Krenak","Contemporâneos","1953–","🌿"],
+["Simone de Beauvoir","Contemporâneos","1908–1986","📚"]
+];
+
+function esc(s){
+ return String(s).replace(/[&<>"']/g,m=>({
+ "&":"&amp;","<":"&lt;",">":"&gt;",
+ '"':"&quot;","'":"&#39;"
+ }[m]));
+}
+
+function renderPensadores(){
+ const grid=document.getElementById("thinkerGrid");
+ const input=document.getElementById("searchInput");
+ if(!grid)return;
+
+ const termo=(input?.value||"").toLowerCase().trim();
+
+ const lista=thinkers.filter(t=>
+   !termo ||
+   t[0].toLowerCase().includes(termo) ||
+   t[1].toLowerCase().includes(termo)
+ );
+
+ grid.innerHTML=lista.map(t=>`
+  <article class="card thinker">
+   <div class="portrait">${t[3]}</div>
+   <div class="period">${esc(t[1])}</div>
+   <h3>${esc(t[0])}</h3>
+   <p>${esc(t[2])}</p>
+   <div class="card-actions">
+    <button class="gold" onclick="openThinker('${esc(t[0])}')">
+     Visitar
+    </button>
+    <button class="btn" onclick="openTimeline('${esc(t[0])}')">
+     📜 Linha do tempo
+    </button>
+   </div>
+  </article>
+ `).join("");
+}
+
+function clearSearch(){
+ const input=document.getElementById("searchInput");
+ if(input)input.value="";
+ renderPensadores();
+}
+
+function filterEra(era){
+ const input=document.getElementById("searchInput");
+ if(input)input.value="";
+ renderPensadores();
+
+ const grid=document.getElementById("thinkerGrid");
+ if(!grid)return;
+
+ const lista=thinkers.filter(t=>t[1]===era);
+
+ grid.innerHTML=lista.map(t=>`
+  <article class="card thinker">
+   <div class="portrait">${t[3]}</div>
+   <div class="period">${esc(t[1])}</div>
+   <h3>${esc(t[0])}</h3>
+   <p>${esc(t[2])}</p>
+   <div class="card-actions">
+    <button class="gold" onclick="openThinker('${esc(t[0])}')">Visitar</button>
+    <button class="btn" onclick="openTimeline('${esc(t[0])}')">📜 Linha do tempo</button>
+   </div>
+  </article>
+ `).join("");
+
+ document.getElementById("pensadores")?.scrollIntoView({
+   behavior:"smooth"
+ });
+}
+
+function openSearch(){
+ document.getElementById("pensadores")?.scrollIntoView({
+   behavior:"smooth"
+ });
+ setTimeout(()=>{
+   document.getElementById("searchInput")?.focus();
+ },500);
+}
+
+function membership(){
+ alert("Passe Anual — R$120 por 12 meses.\n\nA área premium será liberada quando o sistema de acesso estiver concluído.");
+}
+
+function closeModal(){
+ const modal=document.getElementById("modal");
+ if(modal)modal.classList.remove("show");
+}
+
+document.getElementById("modal")?.addEventListener("click",e=>{
+ if(e.target.id==="modal")closeModal();
+});
+
+renderPensadores();
+  </script>
+  
