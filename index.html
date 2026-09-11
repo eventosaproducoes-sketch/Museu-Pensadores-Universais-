@@ -492,3 +492,372 @@ legado:"Sua obra tornou-se fundamental para os estudos feministas e para debates
 }
 };
     
+<script>
+/* =====================================================
+   MUSEU — SISTEMA DE AUTOCORREÇÃO E RECUPERAÇÃO
+   ===================================================== */
+
+(function(){
+
+"use strict";
+
+window.MUSEU_STATUS={
+ iniciado:false,
+ erros:[],
+ reparos:[]
+};
+
+function registrar(msg){
+ window.MUSEU_STATUS.reparos.push(msg);
+ console.log("Museu:",msg);
+}
+
+/* ---------- VERIFICAÇÃO BÁSICA ---------- */
+
+function verificarEstrutura(){
+
+ const ids=[
+  "thinkerGrid",
+  "searchInput",
+  "modal",
+  "modalBox"
+ ];
+
+ ids.forEach(function(id){
+
+  if(!document.getElementById(id)){
+   window.MUSEU_STATUS.erros.push(
+    "Elemento ausente: #"+id
+   );
+  }
+
+ });
+
+}
+
+/* ---------- RECUPERA PENSADORES ---------- */
+
+function recuperarPensadores(){
+
+ if(!Array.isArray(window.thinkers)){
+
+  window.thinkers=[
+   ["Sócrates","Antiguidade","469–399 a.C.","🗿"],
+   ["Platão","Antiguidade","427–347 a.C.","🏛️"],
+   ["Aristóteles","Antiguidade","384–322 a.C.","📜"],
+   ["Confúcio","Antiguidade","551–479 a.C.","☯️"],
+   ["Agostinho de Hipona","Idade Média","354–430","✝️"],
+   ["Tomás de Aquino","Idade Média","1225–1274","📖"],
+   ["Averróis","Idade Média","1126–1198","🌙"],
+   ["Leonardo da Vinci","Renascimento","1452–1519","🎨"],
+   ["Nicolau Maquiavel","Renascimento","1469–1527","👑"],
+   ["Erasmo de Roterdã","Renascimento","1466–1536","📚"],
+   ["John Locke","Iluminismo","1632–1704","🕯️"],
+   ["Jean-Jacques Rousseau","Iluminismo","1712–1778","🌿"],
+   ["Voltaire","Iluminismo","1694–1778","✒️"],
+   ["Immanuel Kant","Iluminismo","1724–1804","🧠"],
+   ["Karl Marx","Séculos XIX–XX","1818–1883","⚒️"],
+   ["Charles Darwin","Séculos XIX–XX","1809–1882","🧬"],
+   ["Friedrich Nietzsche","Séculos XIX–XX","1844–1900","⚡"],
+   ["Sigmund Freud","Séculos XIX–XX","1856–1939","🛋️"],
+   ["Albert Einstein","Séculos XIX–XX","1879–1955","🌌"],
+   ["Hannah Arendt","Contemporâneos","1906–1975","📚"],
+   ["Paulo Freire","Contemporâneos","1921–1997","🎓"],
+   ["Nelson Mandela","Contemporâneos","1918–2013","🕊️"],
+   ["Martin Luther King Jr.","Contemporâneos","1929–1968","✊"],
+   ["Carl Sagan","Contemporâneos","1934–1996","🌌"],
+   ["Stephen Hawking","Contemporâneos","1942–2018","🔭"],
+   ["Machado de Assis","Contemporâneos","1839–1908","📖"],
+   ["Milton Santos","Contemporâneos","1926–2001","🌎"],
+   ["Darcy Ribeiro","Contemporâneos","1922–1997","🎓"],
+   ["Ailton Krenak","Contemporâneos","1953–","🌿"],
+   ["Simone de Beauvoir","Contemporâneos","1908–1986","📚"]
+  ];
+
+  registrar("Banco de pensadores recuperado.");
+
+ }
+
+}
+
+/* ---------- MODAL DE SEGURANÇA ---------- */
+
+function recuperarModal(){
+
+ let modal=document.getElementById("modal");
+ let box=document.getElementById("modalBox");
+
+ if(!modal){
+
+  modal=document.createElement("div");
+  modal.id="modal";
+  modal.className="modal";
+
+  document.body.appendChild(modal);
+
+  registrar("Modal recuperado.");
+
+ }
+
+ if(!box){
+
+  box=document.createElement("div");
+  box.id="modalBox";
+  box.className="box";
+
+  modal.appendChild(box);
+
+  registrar("Área do modal recuperada.");
+
+ }
+
+}
+
+/* ---------- ESCAPE ---------- */
+
+function seguro(texto){
+
+ return String(texto)
+  .replace(/&/g,"&amp;")
+  .replace(/</g,"&lt;")
+  .replace(/>/g,"&gt;")
+  .replace(/"/g,"&quot;")
+  .replace(/'/g,"&#39;");
+
+}
+
+/* ---------- RENDERIZAÇÃO SEGURA ---------- */
+
+function reconstruirPensadores(){
+
+ const grid=document.getElementById("thinkerGrid");
+
+ if(!grid)return;
+
+ const input=document.getElementById("searchInput");
+
+ const termo=input
+  ?String(input.value||"").toLowerCase().trim()
+  :"";
+
+ const lista=window.thinkers.filter(function(t){
+
+  return !termo ||
+   t[0].toLowerCase().includes(termo) ||
+   t[1].toLowerCase().includes(termo);
+
+ });
+
+ grid.innerHTML="";
+
+ lista.forEach(function(t){
+
+  const article=document.createElement("article");
+  article.className="card thinker";
+
+  article.innerHTML=
+   '<div class="portrait">'+seguro(t[3])+'</div>'+
+   '<div class="period">'+seguro(t[1])+'</div>'+
+   '<h3>'+seguro(t[0])+'</h3>'+
+   '<p>'+seguro(t[2])+'</p>'+
+   '<div class="card-actions">'+
+   '<button class="gold" data-pensador="'+seguro(t[0])+'">Visitar</button>'+
+   '<button class="btn" data-timeline="'+seguro(t[0])+'">📜 Linha do tempo</button>'+
+   '</div>';
+
+  grid.appendChild(article);
+
+ });
+
+ registrar("Lista de pensadores reconstruída.");
+
+}
+
+/* ---------- EVENTOS SEGUROS ---------- */
+
+function instalarEventos(){
+
+ const grid=document.getElementById("thinkerGrid");
+
+ if(!grid)return;
+
+ grid.addEventListener("click",function(e){
+
+  const visita=e.target.closest("[data-pensador]");
+  const linha=e.target.closest("[data-timeline]");
+
+  if(visita){
+
+   const nome=visita.getAttribute("data-pensador");
+
+   if(typeof window.openThinker==="function"){
+    window.openThinker(nome);
+   }else{
+    abrirExposicaoSegura(nome);
+   }
+
+  }
+
+  if(linha){
+
+   const nome=linha.getAttribute("data-timeline");
+
+   if(typeof window.openTimeline==="function"){
+    window.openTimeline(nome);
+   }else{
+    abrirLinhaSegura(nome);
+   }
+
+  }
+
+ });
+
+}
+
+/* ---------- EXPOSIÇÃO DE SEGURANÇA ---------- */
+
+function abrirExposicaoSegura(nome){
+
+ const modal=document.getElementById("modal");
+ const box=document.getElementById("modalBox");
+
+ if(!modal||!box)return;
+
+ box.innerHTML=
+  '<button class="close" onclick="closeModal()">×</button>'+
+  '<div class="period">Exposição individual</div>'+
+  '<h2>'+seguro(nome)+'</h2>'+
+  '<div class="content">'+
+  '<h3>História do pensador</h3>'+
+  '<p>O conteúdo completo desta exposição está sendo organizado no acervo do Museu.</p>'+
+  '</div>';
+
+ modal.classList.add("show");
+
+}
+
+/* ---------- LINHA DO TEMPO DE SEGURANÇA ---------- */
+
+function abrirLinhaSegura(nome){
+
+ const modal=document.getElementById("modal");
+ const box=document.getElementById("modalBox");
+
+ if(!modal||!box)return;
+
+ box.innerHTML=
+  '<button class="close" onclick="closeModal()">×</button>'+
+  '<div class="period">Linha do tempo</div>'+
+  '<h2>'+seguro(nome)+'</h2>'+
+  '<div class="content">'+
+  '<p>A linha do tempo individual de <strong>'+
+  seguro(nome)+
+  '</strong> será carregada pelo acervo correspondente.</p>'+
+  '</div>';
+
+ modal.classList.add("show");
+
+}
+
+/* ---------- FECHAMENTO ---------- */
+
+if(typeof window.closeModal!=="function"){
+
+ window.closeModal=function(){
+
+  const modal=document.getElementById("modal");
+
+  if(modal){
+   modal.classList.remove("show");
+  }
+
+ };
+
+}
+
+/* ---------- DIAGNÓSTICO ---------- */
+
+window.museuDiagnostico=function(){
+
+ return{
+
+  pensadores:Array.isArray(window.thinkers)
+   ?window.thinkers.length
+   :0,
+
+  modal:!!document.getElementById("modal"),
+
+  modalBox:!!document.getElementById("modalBox"),
+
+  grid:!!document.getElementById("thinkerGrid"),
+
+  erros:window.MUSEU_STATUS.erros,
+
+  reparos:window.MUSEU_STATUS.reparos
+
+ };
+
+};
+
+/* ---------- INICIALIZAÇÃO ---------- */
+
+function iniciar(){
+
+ try{
+
+  verificarEstrutura();
+
+  recuperarPensadores();
+
+  recuperarModal();
+
+  if(!document.getElementById("thinkerGrid")){
+
+   window.MUSEU_STATUS.erros.push(
+    "Grade de pensadores não encontrada."
+   );
+
+  }else{
+
+   reconstruirPensadores();
+   instalarEventos();
+
+  }
+
+  window.MUSEU_STATUS.iniciado=true;
+
+  console.log(
+   "🏛️ Museu: sistema de recuperação ativo.",
+   window.museuDiagnostico()
+  );
+
+ }catch(erro){
+
+  window.MUSEU_STATUS.erros.push(
+   String(erro)
+  );
+
+  console.error(
+   "Museu: erro durante recuperação.",
+   erro
+  );
+
+ }
+
+}
+
+if(document.readyState==="loading"){
+
+ document.addEventListener(
+  "DOMContentLoaded",
+  iniciar
+ );
+
+}else{
+
+ iniciar();
+
+}
+
+})();
+</script>
