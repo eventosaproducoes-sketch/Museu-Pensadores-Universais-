@@ -1778,3 +1778,138 @@ instalar();
 
 })();
   </script>
+  <script>
+(function(){
+
+const novasLinhas={
+
+"Machado de Assis":[
+["1839","Nasce no Rio de Janeiro, em 21 de junho."],
+["1855","Publica seu primeiro poema conhecido, iniciando sua trajetória literária."],
+["1864","Publica seu primeiro livro, Crisálidas."],
+["1869","Casa-se com Carolina Augusta Xavier de Novais."],
+["1872","Publica Ressurreição, seu primeiro romance."],
+["1881","Publica Memórias Póstumas de Brás Cubas, obra decisiva do Realismo brasileiro."],
+["1884","Publica Histórias sem Data."],
+["1888","Publica a obra Páginas Recolhidas."],
+["1889","Com a Proclamação da República, continua atuando como funcionário público e escritor."],
+["1891","Publica Quincas Borba."],
+["1897","Participa da fundação da Academia Brasileira de Letras e torna-se seu primeiro presidente."],
+["1899","Publica Dom Casmurro."],
+["1904","Publica Esaú e Jacó."],
+["1908","Publica Memorial de Aires."],
+["1908","Morre no Rio de Janeiro, em 29 de setembro."],
+["Legado","É considerado um dos maiores escritores da língua portuguesa e um dos principais nomes da literatura brasileira."]
+],
+
+"Milton Santos":[
+["1926","Nasce em Brotas de Macaúbas, Bahia, em 3 de maio."],
+["1948","Conclui sua formação em Direito na Universidade Federal da Bahia."],
+["1950s","Inicia carreira acadêmica e desenvolve estudos sobre geografia urbana e organização do território."],
+["1958","Obtém doutorado em Geografia pela Universidade de Estrasburgo, na França."],
+["1960s","Atua como professor e pesquisador e amplia seus estudos sobre desenvolvimento e espaço urbano."],
+["1964","Após o golpe militar brasileiro, deixa o país e inicia um longo período de atuação internacional."],
+["1970s","Ensina e pesquisa em universidades da Europa, África, América do Norte e América Latina."],
+["1980s","Retorna ao Brasil e passa a atuar na Universidade de São Paulo."],
+["1994","Recebe o Prêmio Vautrin Lud, uma das maiores distinções internacionais da Geografia."],
+["1996","Publica A Natureza do Espaço, uma de suas obras mais importantes."],
+["2000","Publica Por uma Outra Globalização."],
+["2001","Morre em São Paulo, em 24 de junho."],
+["Legado","É uma das maiores referências da geografia brasileira e mundial, especialmente nos estudos sobre território, globalização e desigualdade."]
+],
+
+"Darcy Ribeiro":[
+["1922","Nasce em Montes Claros, Minas Gerais, em 26 de outubro."],
+["1946","Forma-se em Ciências Sociais pela Escola Livre de Sociologia e Política de São Paulo."],
+["1947","Inicia trabalho de campo junto a povos indígenas brasileiros."],
+["1950s","Dedica-se à pesquisa antropológica e à defesa dos povos indígenas."],
+["1953","Participa da criação do Museu do Índio no Rio de Janeiro."],
+["1961","Participa da criação da Universidade de Brasília e torna-se seu primeiro reitor."],
+["1962","Assume o Ministério da Educação e Cultura no governo João Goulart."],
+["1963","Torna-se chefe da Casa Civil da Presidência da República."],
+["1964","Com o golpe militar, deixa o Brasil e inicia período de exílio."],
+["1970s","Retorna ao Brasil e desenvolve projetos educacionais e culturais."],
+["1982","É eleito vice-governador do estado do Rio de Janeiro."],
+["1983","Participa da implantação dos Centros Integrados de Educação Pública (CIEPs)."],
+["1990","É eleito senador pelo Rio de Janeiro."],
+["1995","Publica O Povo Brasileiro, uma de suas obras mais conhecidas."],
+["1996","Morre em Brasília, em 17 de fevereiro."],
+["Legado","É lembrado por sua atuação na antropologia, educação, política e defesa da diversidade cultural brasileira."]
+],
+
+"Ailton Krenak":[
+["1953","Nasce no território do povo Krenak, na região do Rio Doce, em Minas Gerais."],
+["1970s","Passa a atuar na defesa dos direitos dos povos indígenas e na articulação do movimento indígena brasileiro."],
+["1980s","Participa de mobilizações nacionais em defesa dos direitos indígenas durante o processo de redemocratização."],
+["1987","Participa da Assembleia Nacional Constituinte e ganha destaque na defesa dos direitos indígenas."],
+["1988","A Constituição Federal reconhece direitos fundamentais dos povos indígenas, após intensa mobilização indígena."],
+["1990s","Continua atuando em projetos relacionados à cultura, educação e proteção dos povos indígenas."],
+["2000s","Amplia sua atuação como escritor, pensador e ambientalista."],
+["2019","Publica Ideias para Adiar o Fim do Mundo."],
+["2020","Publica A Vida Não é Útil."],
+["2020s","Sua produção ganha grande projeção nacional e internacional nos debates sobre humanidade, natureza e crise ambiental."],
+["2023","É eleito para a Academia Brasileira de Letras, tornando-se o primeiro indígena a ocupar uma cadeira na instituição."],
+["Legado","Tornou-se uma das principais vozes contemporâneas dos povos indígenas e da reflexão sobre a relação entre humanidade, natureza e território."]
+]
+
+};
+
+function instalar(){
+
+if(!window.linhasTempoMuseu){
+window.linhasTempoMuseu={};
+}
+
+Object.assign(window.linhasTempoMuseu,novasLinhas);
+
+window.openTimeline=function(nome){
+
+const dados=window.linhasTempoMuseu[nome];
+const modal=document.getElementById("modal");
+const box=document.getElementById("modalBox");
+
+if(!modal||!box)return;
+
+if(!dados){
+
+box.innerHTML=
+'<button class="close" onclick="closeModal()">×</button>'+
+'<div class="period">Linha do tempo</div>'+
+'<h2>📜 '+esc(nome)+'</h2>'+
+'<div class="content"><p>A linha do tempo individual deste pensador será acrescentada ao acervo.</p></div>';
+
+}else{
+
+box.innerHTML=
+'<button class="close" onclick="closeModal()">×</button>'+
+'<div class="period">Linha do tempo individual</div>'+
+'<h2>📜 '+esc(nome)+'</h2>'+
+'<div class="timeline">'+
+dados.map(function(item){
+return '<div class="event">'+
+'<i></i>'+
+'<strong>'+esc(item[0])+'</strong>'+
+'<p>'+esc(item[1])+'</p>'+
+'</div>';
+}).join("")+
+'</div>';
+
+}
+
+modal.classList.add("show");
+
+};
+
+console.log("🏛️ Módulo 7 carregado.");
+
+}
+
+if(document.readyState==="loading"){
+document.addEventListener("DOMContentLoaded",instalar);
+}else{
+instalar();
+}
+
+})();
+  </script>
+  
