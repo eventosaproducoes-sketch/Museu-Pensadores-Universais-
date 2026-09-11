@@ -1966,4 +1966,279 @@ console.log("🏛️ Módulo 8: Simone de Beauvoir e Stephen Hawking carregado."
 
 })();
    </script>
+  <script>
+(function(){
+
+"use strict";
+
+const PENSADORES=[
+"Sócrates",
+"Platão",
+"Aristóteles",
+"Confúcio",
+"Agostinho de Hipona",
+"Tomás de Aquino",
+"Averróis",
+"Leonardo da Vinci",
+"Nicolau Maquiavel",
+"Erasmo de Roterdã",
+"John Locke",
+"Jean-Jacques Rousseau",
+"Voltaire",
+"Immanuel Kant",
+"Karl Marx",
+"Charles Darwin",
+"Friedrich Nietzsche",
+"Sigmund Freud",
+"Albert Einstein",
+"Hannah Arendt",
+"Paulo Freire",
+"Nelson Mandela",
+"Martin Luther King Jr.",
+"Carl Sagan",
+"Machado de Assis",
+"Milton Santos",
+"Darcy Ribeiro",
+"Ailton Krenak",
+"Simone de Beauvoir",
+"Stephen Hawking"
+];
+
+/* ==============================
+   AUTOCORREÇÃO SEGURA
+   ============================== */
+
+function corrigir(){
+
+let correcoes=[];
+
+/* Corrige esc caso desapareça */
+if(typeof window.esc!=="function"){
+window.esc=function(text){
+return String(text??"")
+.replace(/&/g,"&amp;")
+.replace(/</g,"&lt;")
+.replace(/>/g,"&gt;")
+.replace(/"/g,"&quot;")
+.replace(/'/g,"&#039;");
+};
+correcoes.push("Função esc restaurada.");
+}
+
+/* Garante banco de linhas do tempo */
+if(!window.linhasTempoMuseu){
+window.linhasTempoMuseu={};
+correcoes.push("Banco de linhas do tempo recriado.");
+}
+
+/* Corrige closeModal somente se estiver ausente */
+if(typeof window.closeModal!=="function"){
+window.closeModal=function(){
+const modal=document.getElementById("modal");
+if(modal) modal.classList.remove("show");
+};
+correcoes.push("Função closeModal restaurada.");
+}
+
+/* Corrige openTimeline somente se estiver ausente */
+if(typeof window.openTimeline!=="function"){
+
+window.openTimeline=function(nome){
+
+const modal=document.getElementById("modal");
+const box=document.getElementById("modalBox");
+const dados=window.linhasTempoMuseu[nome];
+
+if(!modal||!box)return;
+
+if(!dados){
+
+box.innerHTML=
+'<button class="close" onclick="closeModal()">×</button>'+
+'<div class="period">Linha do tempo</div>'+
+'<h2>📜 '+esc(nome)+'</h2>'+
+'<div class="content">'+
+'<p>A linha do tempo individual deste pensador ainda não foi cadastrada.</p>'+
+'</div>';
+
+}else{
+
+box.innerHTML=
+'<button class="close" onclick="closeModal()">×</button>'+
+'<div class="period">Linha do tempo individual</div>'+
+'<h2>📜 '+esc(nome)+'</h2>'+
+'<div class="timeline">'+
+dados.map(function(item){
+
+return '<div class="event">'+
+'<i></i>'+
+'<strong>'+esc(item[0])+'</strong>'+
+'<p>'+esc(item[1])+'</p>'+
+'</div>';
+
+}).join("")+
+'</div>';
+
+}
+
+modal.classList.add("show");
+
+};
+
+correcoes.push("Função openTimeline restaurada.");
+
+}
+
+/* Garante modal */
+if(!document.getElementById("modal")){
+correcoes.push("ALERTA: elemento #modal não encontrado.");
+}
+
+if(!document.getElementById("modalBox")){
+correcoes.push("ALERTA: elemento #modalBox não encontrado.");
+}
+
+return correcoes;
+
+}
+
+
+/* ==============================
+   DIAGNÓSTICO DOS 30 PENSADORES
+   ============================== */
+
+function diagnosticar(){
+
+const resultado={
+pensadores:0,
+linhasTempo:0,
+faltando:[],
+errosEstruturais:[],
+correcoes:[]
+};
+
+if(Array.isArray(window.thinkers)){
+resultado.pensadores=window.thinkers.length;
+}else{
+resultado.errosEstruturais.push("Banco thinkers não encontrado.");
+}
+
+if(window.linhasTempoMuseu){
+
+PENSADORES.forEach(function(nome){
+
+if(window.linhasTempoMuseu[nome]){
+resultado.linhasTempo++;
+}else{
+resultado.faltando.push(nome);
+}
+
+});
+
+}else{
+
+resultado.errosEstruturais.push(
+"Banco linhasTempoMuseu não encontrado."
+);
+
+}
+
+/* IDs duplicados */
+const ids={};
+
+document.querySelectorAll("[id]").forEach(function(el){
+
+const id=el.id;
+
+if(ids[id]){
+resultado.errosEstruturais.push(
+"ID duplicado: #"+id
+);
+}
+
+ids[id]=true;
+
+});
+
+
+/* Funções principais */
+[
+"openThinker",
+"openTimeline",
+"closeModal",
+"renderPensadores",
+"clearSearch"
+].forEach(function(nome){
+
+if(typeof window[nome]!=="function"){
+resultado.errosEstruturais.push(
+"Função ausente: "+nome
+);
+}
+
+});
+
+
+resultado.correcoes=corrigir();
+
+window.museuStatus=resultado;
+
+console.log("🏛️ DIAGNÓSTICO DO MUSEU");
+console.log("Pensadores:",resultado.pensadores);
+console.log("Linhas do tempo:",resultado.linhasTempo);
+console.log("Faltando:",resultado.faltando);
+console.log("Erros:",resultado.errosEstruturais);
+console.log("Correções:",resultado.correcoes);
+
+return resultado;
+
+}
+
+
+/* ==============================
+   VERIFICAÇÃO AUTOMÁTICA
+   ============================== */
+
+function iniciar(){
+
+const resultado=diagnosticar();
+
+if(resultado.faltando.length===0 &&
+   resultado.errosEstruturais.length===0){
+
+console.log(
+"✅ Museu verificado: estrutura principal funcionando."
+);
+
+}else{
+
+console.warn(
+"⚠️ Museu encontrou itens que precisam de revisão."
+);
+
+}
+
+}
+
+/* Disponibiliza diagnóstico para futuras revisões */
+window.museuDiagnosticoCompleto=diagnosticar;
+window.museuCorrigir=corrigir;
+
+
+/* Executa automaticamente */
+if(document.readyState==="loading"){
+
+document.addEventListener(
+"DOMContentLoaded",
+iniciar
+);
+
+}else{
+
+iniciar();
+
+}
+
+})();
+  </script>
   
