@@ -3,65 +3,61 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#080808">
-<meta name="description" content="Museu Virtual dos Pensadores Universais">
 <title>Museu Virtual dos Pensadores Universais</title>
 <style>
-:root{--bg:#070707;--p:#111;--p2:#171717;--g:#d8b36a;--g2:#f1d79b;--t:#f6f0e5;--m:#aaa19a;--l:rgba(216,179,106,.25)}
+:root{--bg:#070707;--p:#111;--g:#d8b36a;--g2:#f1d79b;--t:#f6f0e5;--m:#aaa19a;--l:rgba(216,179,106,.25)}
 *{box-sizing:border-box}html{scroll-behavior:smooth}
-body{margin:0;background:radial-gradient(circle at 50% -10%,#292117,#080808 45%,#050505 80%);color:var(--t);font-family:Georgia,serif}
-button,input{font:inherit}button{cursor:pointer}a{text-decoration:none;color:inherit}
+body{margin:0;background:radial-gradient(circle at 50% -10%,#292117,#080808 45%,#050505);color:var(--t);font-family:Georgia,serif}
+button,input{font:inherit}button{cursor:pointer}a{color:inherit;text-decoration:none}
 .container{width:min(1150px,92%);margin:auto}
-.top{position:fixed;top:0;left:0;right:0;z-index:20;background:#080808dd;border-bottom:1px solid var(--l);backdrop-filter:blur(12px)}
-.nav{height:68px;display:flex;align-items:center;justify-content:space-between;gap:12px}
-.brand{font-size:14px;letter-spacing:.12em;text-transform:uppercase}.brand b{color:var(--g);font-size:22px;margin-right:8px}
-.links{display:flex;gap:18px;font-size:13px;color:#ccc}.links a:hover{color:var(--g2)}
-.btn,.gold{border:1px solid var(--l);border-radius:999px;padding:10px 15px;background:transparent;color:var(--t)}
+.top{position:fixed;top:0;left:0;right:0;z-index:20;background:#080808ee;border-bottom:1px solid var(--l)}
+.nav{height:68px;display:flex;align-items:center;justify-content:space-between;gap:10px}
+.brand{font-size:14px;letter-spacing:.1em}.brand b{color:var(--g);font-size:22px}
+.links{display:flex;gap:18px;font-size:13px;color:#ccc}
+.btn,.gold{border:1px solid var(--l);border-radius:999px;padding:9px 14px;background:transparent;color:var(--t)}
 .gold{background:linear-gradient(135deg,#c89c4f,#efd38f);color:#17110a;border:0;font-weight:bold}
 .hero{min-height:100vh;display:grid;place-items:center;padding:110px 0 60px}
-.cols{display:grid;grid-template-columns:1.25fr .75fr;gap:45px;align-items:center}
-.kicker{color:var(--g);font-size:11px;letter-spacing:.25em;text-transform:uppercase}
-h1{font-size:clamp(45px,7vw,82px);line-height:.95;font-weight:500;margin:18px 0}
-h1 em{color:var(--g2);font-style:normal}.lead{font-family:Arial;color:#c5beb5;line-height:1.7;font-size:16px}
-.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:25px}
-.hero-card,.card{border:1px solid var(--l);border-radius:22px;background:linear-gradient(145deg,#171717,#0b0b0b)}
-.hero-card{height:400px;display:grid;place-items:center;text-align:center;padding:25px}
-.bust{font-size:130px;color:#d9c18f;filter:grayscale(1);opacity:.8}
-.hero-card h3{margin:-60px 0 0;font-size:24px}
-.section{padding:85px 0}.head{margin-bottom:30px}.head h2{font-size:40px;font-weight:500;margin:8px 0}
-.intro{font-family:Arial;color:var(--m);line-height:1.6;max-width:700px}
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.card{padding:22px;transition:.2s}.card:hover{transform:translateY(-4px);border-color:var(--g)}
-.era{min-height:170px;display:flex;flex-direction:column;justify-content:end}.era h3{font-size:23px;margin:0 0 8px}.era p,.thinker p{font-family:Arial;color:var(--m);font-size:13px;line-height:1.5}
-.search{display:flex;gap:8px;margin:20px 0}.search input{flex:1;padding:13px 18px;border-radius:30px;background:#101010;border:1px solid var(--l);color:white;outline:0}
-.portrait{height:105px;border-radius:15px;background:radial-gradient(circle,#806c4d,#211b15 55%,#090909);display:grid;place-items:center;font-size:45px;color:#efd6a1;margin-bottom:15px}
-.thinker h3{margin:0 0 3px;font-size:21px}.period{color:var(--g);font-size:11px;text-transform:uppercase}
-.card-actions{display:flex;gap:7px;margin-top:15px;flex-wrap:wrap}
-.exhibition{border-top:1px solid var(--l);border-bottom:1px solid var(--l);background:#0b0b0b}
-.exhibit{display:grid;grid-template-columns:.7fr 1.3fr;gap:40px;align-items:center}
-.statue{height:430px;display:grid;place-items:center;border:1px solid var(--l);border-radius:25px;background:radial-gradient(circle,#3a3023,#080808 68%);font-size:170px}
-.quote{border-left:2px solid var(--g);padding-left:18px;color:#e6d4ae;font-size:21px;line-height:1.45}
-.facts{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.fact{border:1px solid var(--l);padding:13px;border-radius:12px}.fact b{color:var(--g2);display:block}
-.timeline{position:relative;margin:25px 0}.timeline:before{content:"";position:absolute;left:9px;top:0;bottom:0;width:1px;background:var(--l)}
-.event{position:relative;padding:0 0 25px 35px}.event i{position:absolute;left:3px;top:4px;width:13px;height:13px;border:1px solid var(--g);border-radius:50%;background:#080808}.event strong{color:var(--g)}.event p{font-family:Arial;color:var(--m);line-height:1.5;margin:5px 0}
-.footer{padding:45px 0;border-top:1px solid var(--l);font:13px Arial;color:#999}
-.modal{position:fixed;inset:0;background:#000c;z-index:100;display:none;align-items:center;justify-content:center;padding:15px}
+.cols{display:grid;grid-template-columns:1.2fr .8fr;gap:40px;align-items:center}
+.kicker{color:var(--g);font-size:11px;letter-spacing:.22em;text-transform:uppercase}
+h1{font-size:clamp(45px,7vw,80px);line-height:.95;font-weight:500;margin:18px 0}
+h1 em{color:var(--g2);font-style:normal}
+.lead,.intro{font-family:Arial;color:#bbb;line-height:1.7}
+.hero-card,.card{border:1px solid var(--l);border-radius:20px;background:linear-gradient(145deg,#171717,#0b0b0b)}
+.hero-card{height:390px;display:grid;place-items:center;text-align:center}
+.bust{font-size:130px;color:#d9c18f}
+.section{padding:80px 0}.head{margin-bottom:28px}.head h2{font-size:40px;font-weight:500;margin:8px 0}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
+.card{padding:20px}.era{min-height:150px}.era h3{font-size:22px;margin:0 0 8px}
+.era p,.thinker p{font:13px Arial;color:var(--m);line-height:1.5}
+.search{display:flex;gap:8px;margin:20px 0}.search input{flex:1;padding:13px 18px;border-radius:30px;background:#101010;border:1px solid var(--l);color:white}
+.portrait{height:100px;border-radius:15px;background:radial-gradient(circle,#806c4d,#090909 70%);display:grid;place-items:center;font-size:44px;margin-bottom:14px}
+.thinker h3{margin:0 0 3px}.period{color:var(--g);font-size:11px;text-transform:uppercase}
+.card-actions{display:flex;gap:6px;flex-wrap:wrap;margin-top:14px}
+.exhibition{border-top:1px solid var(--l);border-bottom:1px solid var(--l)}
+.exhibit{display:grid;grid-template-columns:.7fr 1.3fr;gap:35px;align-items:center}
+.statue{height:400px;display:grid;place-items:center;border:1px solid var(--l);border-radius:25px;font-size:160px}
+.quote{border-left:2px solid var(--g);padding-left:18px;color:#e6d4ae;font-size:21px}
+.modal{position:fixed;inset:0;background:#000d;z-index:100;display:none;align-items:center;justify-content:center;padding:15px}
 .modal.show{display:flex}.box{width:min(800px,100%);max-height:90vh;overflow:auto;background:#101010;border:1px solid var(--l);border-radius:22px;padding:25px;position:relative}
 .close{position:absolute;right:15px;top:10px;background:none;border:0;color:#aaa;font-size:28px}
-.box h2{font-size:35px;margin:0 40px 15px 0}.tabs{display:flex;gap:7px;flex-wrap:wrap;margin:20px 0}.tab{padding:8px 12px;border-radius:20px;border:1px solid var(--l);background:#0a0a0a;color:#ccc}.tab.active{background:var(--g);color:#111}
-.content{font-family:Arial;color:#bbb;line-height:1.65}.content h3{font-family:Georgia;color:var(--g2)}
-@media(max-width:800px){.links{display:none}.cols,.exhibit{grid-template-columns:1fr}.grid{grid-template-columns:1fr 1fr}.facts{grid-template-columns:1fr}.statue{height:300px}}
-@media(max-width:550px){.grid{grid-template-columns:1fr}h1{font-size:48px}.hero-card{height:300px}.bust{font-size:100px}}
+.box h2{font-size:34px;margin:0 35px 12px 0}
+.tabs{display:flex;gap:7px;flex-wrap:wrap;margin:20px 0}
+.tab{padding:8px 12px;border-radius:20px;border:1px solid var(--l);background:#0a0a0a;color:#ccc}
+.content{font:15px Arial;color:#bbb;line-height:1.65}
+.timeline{position:relative;margin:25px 0}.timeline:before{content:"";position:absolute;left:8px;top:0;bottom:0;width:1px;background:var(--l)}
+.event{position:relative;padding:0 0 25px 32px}.event i{position:absolute;left:2px;top:4px;width:13px;height:13px;border:1px solid var(--g);border-radius:50%;background:#080808}
+.event strong{color:var(--g)}.event p{font:13px Arial;color:var(--m);line-height:1.5}
+.footer{padding:40px 0;border-top:1px solid var(--l);font:13px Arial;color:#999}
+@media(max-width:800px){.links{display:none}.cols,.exhibit{grid-template-columns:1fr}.grid{grid-template-columns:1fr 1fr}}
+@media(max-width:550px){.grid{grid-template-columns:1fr}h1{font-size:48px}}
 </style>
 </head>
 <body>
 
 <header class="top">
 <div class="container nav">
-<a class="brand" href="#inicio"><b>✦</b>Museu dos Pensadores</a>
-<nav class="links">
-<a href="#museu">O Museu</a><a href="#galerias">Galerias</a><a href="#pensadores">Pensadores</a>
-</nav>
+<a class="brand" href="#inicio"><b>✦</b> Museu dos Pensadores</a>
+<nav class="links"><a href="#museu">Museu</a><a href="#galerias">Galerias</a><a href="#pensadores">Pensadores</a></nav>
 <div><button class="btn" onclick="openSearch()">⌕</button> <button class="gold" onclick="membership()">Passe Anual</button></div>
 </div>
 </header>
@@ -73,7 +69,7 @@ h1 em{color:var(--g2);font-style:normal}.lead{font-family:Arial;color:#c5beb5;li
 <div class="kicker">Museu Virtual dos Pensadores Universais</div>
 <h1>Grandes ideias para um <em>mundo melhor.</em></h1>
 <p class="lead">Uma viagem pela história das grandes mentes da humanidade — suas vidas, perguntas, obras, conflitos, descobertas e legados.</p>
-<div class="actions"><a class="gold" href="#pensadores">Explorar pensadores</a><a class="btn" href="#galerias">Entrar no Museu</a></div>
+<div style="margin-top:25px"><a class="gold" href="#pensadores">Explorar pensadores</a></div>
 </div>
 <div class="hero-card"><div class="bust">◖◗</div><h3>Uma sala. Uma vida. Uma ideia.</h3></div>
 </div>
@@ -83,12 +79,12 @@ h1 em{color:var(--g2);font-style:normal}.lead{font-family:Arial;color:#c5beb5;li
 <div class="container">
 <div class="head"><div class="kicker">O conceito</div><h2>Um museu feito para visitar</h2><p class="intro">Cada pensador possui sua própria exposição, história, ideias, obras, legado e linha do tempo.</p></div>
 <div class="grid">
-<div class="card era"><h3>Antiguidade</h3><p>Filosofia, ética, política e nascimento do pensamento sistemático.</p></div>
-<div class="card era"><h3>Idade Média</h3><p>Fé, razão, ciência e encontros entre culturas.</p></div>
-<div class="card era"><h3>Renascimento</h3><p>Humanismo, arte, ciência e transformação.</p></div>
-<div class="card era"><h3>Iluminismo</h3><p>Liberdade, razão, direitos e política.</p></div>
-<div class="card era"><h3>Séculos XIX–XX</h3><p>Ciência, revoluções, crítica social e modernidade.</p></div>
-<div class="card era"><h3>Contemporâneos</h3><p>Educação, sociedade, cultura e futuro.</p></div>
+<div class="card era"><h3>Antiguidade</h3><p>Filosofia, ética e política.</p></div>
+<div class="card era"><h3>Idade Média</h3><p>Fé, razão e ciência.</p></div>
+<div class="card era"><h3>Renascimento</h3><p>Humanismo, arte e ciência.</p></div>
+<div class="card era"><h3>Iluminismo</h3><p>Razão, liberdade e direitos.</p></div>
+<div class="card era"><h3>Séculos XIX–XX</h3><p>Ciência, revoluções e modernidade.</p></div>
+<div class="card era"><h3>Contemporâneos</h3><p>Educação, sociedade e futuro.</p></div>
 </div>
 </div>
 </section>
@@ -108,51 +104,9 @@ h1 em{color:var(--g2);font-style:normal}.lead{font-family:Arial;color:#c5beb5;li
 </section>
 
 <section class="section" id="pensadores">
-  <section class="section" id="museu">
 <div class="container">
-<div class="head">
-<div class="kicker">O conceito</div>
-<h2>Um museu feito para visitar</h2>
-<p class="intro">Cada pensador possui sua própria exposição, história, ideias, obras, legado e linha do tempo.</p>
-</div>
-<div class="grid">
-<div class="card era"><h3>Antiguidade</h3><p>Filosofia, ética, política e nascimento do pensamento sistemático.</p></div>
-<div class="card era"><h3>Idade Média</h3><p>Fé, razão, ciência e encontros entre culturas.</p></div>
-<div class="card era"><h3>Renascimento</h3><p>Humanismo, arte, ciência e transformação.</p></div>
-<div class="card era"><h3>Iluminismo</h3><p>Liberdade, razão, direitos e política.</p></div>
-<div class="card era"><h3>Séculos XIX–XX</h3><p>Ciência, revoluções, crítica social e modernidade.</p></div>
-<div class="card era"><h3>Contemporâneos</h3><p>Educação, sociedade, cultura e futuro.</p></div>
-</div>
-</div>
-</section>
-
-<section class="section" id="galerias">
-<div class="container">
-<div class="head">
-<div class="kicker">Mapa do Museu</div>
-<h2>Galerias permanentes</h2>
-</div>
-<div class="grid">
-<button class="card era" onclick="filterEra('Antiguidade')"><h3>Antiguidade</h3><p>Sócrates, Platão, Aristóteles e Confúcio.</p></button>
-<button class="card era" onclick="filterEra('Idade Média')"><h3>Idade Média</h3><p>Agostinho, Tomás de Aquino e Averróis.</p></button>
-<button class="card era" onclick="filterEra('Renascimento')"><h3>Renascimento</h3><p>Maquiavel, Leonardo e Erasmo.</p></button>
-<button class="card era" onclick="filterEra('Iluminismo')"><h3>Iluminismo</h3><p>Locke, Rousseau, Voltaire e Kant.</p></button>
-<button class="card era" onclick="filterEra('Séculos XIX–XX')"><h3>Séculos XIX–XX</h3><p>Marx, Darwin, Nietzsche, Freud e Einstein.</p></button>
-<button class="card era" onclick="filterEra('Contemporâneos')"><h3>Contemporâneos</h3><p>Arendt, Freire, Mandela, Sagan e outros.</p></button>
-</div>
-</div>
-</section>
-
-<section class="section" id="pensadores">
-<div class="container">
-<div class="head">
-<div class="kicker">Acervo</div>
-<h2>Pensadores</h2>
-</div>
-<div class="search">
-<input id="searchInput" placeholder="Buscar pensador..." oninput="renderPensadores">
-<button class="btn" onclick="clearSearch()">Limpar</button>
-</div>
+<div class="head"><div class="kicker">Acervo</div><h2>Pensadores</h2></div>
+<div class="search"><input id="searchInput" placeholder="Buscar pensador..." oninput="renderPensadores()"><button class="btn" onclick="clearSearch()">Limpar</button></div>
 <div class="grid" id="thinkerGrid"></div>
 </div>
 </section>
@@ -160,477 +114,11 @@ h1 em{color:var(--g2);font-style:normal}.lead{font-family:Arial;color:#c5beb5;li
 <section class="exhibition">
 <div class="container section exhibit">
 <div class="statue">◖◗</div>
-<div>
-<div class="kicker">Exposição em destaque</div>
-<h2>Sócrates</h2>
-<div class="quote">“Uma vida não examinada não vale a pena ser vivida.”</div>
-<p class="intro">Conheça sua vida, seu método de investigação, suas ideias, seu julgamento e sua influência.</p>
-<button class="gold" onclick="openThinker('Sócrates')">Visitar exposição</button>
-</div>
+<div><div class="kicker">Exposição em destaque</div><h2>Sócrates</h2><div class="quote">“Uma vida não examinada não vale a pena ser vivida.”</div><button class="gold" onclick="openThinker('Sócrates')">Visitar exposição</button></div>
 </div>
 </section>
+</main>
 
-<footer class="footer">
-<div class="container">Museu Virtual dos Pensadores Universais • Acervo em expansão</div>
-</footer>
+<footer class="footer"><div class="container">Museu Virtual dos Pensadores Universais • Acervo em expansão</div></footer>
 
-<div class="modal" id="modal">
-<div class="box" id="modalBox"></div>
-  </div>
-  <script>
-const thinkers=[
-["Sócrates","c. 470–399 a.C.","Antiguidade","👤"],
-["Platão","c. 428–348 a.C.","Antiguidade","🏛️"],
-["Aristóteles","384–322 a.C.","Antiguidade","📜"],
-["Confúcio","551–479 a.C.","Antiguidade","🧭"],
-["Agostinho de Hipona","354–430","Idade Média","⛪"],
-["Tomás de Aquino","1225–1274","Idade Média","📚"],
-["Averróis","1126–1198","Idade Média","🌙"],
-["Nicolau Maquiavel","1469–1527","Renascimento","👑"],
-["Leonardo da Vinci","1452–1519","Renascimento","🎨"],
-["Erasmo de Roterdã","1466–1536","Renascimento","📖"],
-["John Locke","1632–1704","Iluminismo","⚖️"],
-["Jean-Jacques Rousseau","1712–1778","Iluminismo","🌿"],
-["Voltaire","1694–1778","Iluminismo","✒️"],
-["Immanuel Kant","1724–1804","Iluminismo","🧠"],
-["Karl Marx","1818–1883","Séculos XIX–XX","⚒️"],
-["Charles Darwin","1809–1882","Séculos XIX–XX","🧬"],
-["Friedrich Nietzsche","1844–1900","Séculos XIX–XX","⚡"],
-["Sigmund Freud","1856–1939","Séculos XIX–XX","🛋️"],
-["Albert Einstein","1879–1955","Séculos XIX–XX","🌌"],
-["Machado de Assis","1839–1908","Séculos XIX–XX","📕"],
-["Paulo Freire","1921–1997","Contemporâneos","🎓"],
-["Milton Santos","1926–2001","Contemporâneos","🌎"],
-["Darcy Ribeiro","1922–1997","Contemporâneos","🏫"],
-["Hannah Arendt","1906–1975","Contemporâneos","💡"],
-["Simone de Beauvoir","1908–1986","Contemporâneos","✍️"],
-["Martin Luther King Jr.","1929–1968","Contemporâneos","🕊️"],
-["Nelson Mandela","1918–2013","Contemporâneos","🕊️"],
-["Carl Sagan","1934–1996","Contemporâneos","🔭"],
-["Stephen Hawking","1942–2018","Contemporâneos","🌌"],
-["Ailton Krenak","1953–","Contemporâneos","🌱"]
-];
-    function esc(s){
-return String(s).replace(/'/g,"&#39;").replace(/"/g,"&quot;");
-}
-
-let current=null;
-
-function openModal(html){
-document.getElementById("modalBox").innerHTML=html;
-document.getElementById("modal").classList.add("show");
-}
-
-function closeModal(){
-document.getElementById("modal").classList.remove("show");
-}
-
-document.getElementById("modal").onclick=function(e){
-if(e.target.id==="modal")closeModal();
-};
-
-function renderPensadores(){
-let q=(document.getElementById("searchInput").value||"").toLowerCase();
-
-let lista=thinkers.filter(function(t){
-return t[0].toLowerCase().includes(q);
-});
-
-document.getElementById("thinkerGrid").innerHTML=lista.map(function(t){
-return `
-<div class="card thinker">
-<div class="portrait">${t[3]}</div>
-<h3>${t[0]}</h3>
-<div class="period">${t[1]} • ${t[2]}</div>
-<p>Explore a exposição, ideias, obras, legado e linha do tempo.</p>
-<div class="card-actions">
-<button class="gold" onclick="openThinker('${esc(t[0])}')">Ver exposição</button>
-<button class="btn" onclick="openTimeline('${esc(t[0])}')">📜 Linha do Tempo</button>
-</div>
-</div>`;
-}).join("");
-}
-
-function clearSearch(){
-document.getElementById("searchInput").value="";
-renderPensadores();
-}
-
-function openSearch(){
-document.getElementById("pensadores").scrollIntoView({behavior:"smooth"});
-setTimeout(function(){
-document.getElementById("searchInput").focus();
-},400);
-}
-
-function filterEra(era){
-document.getElementById("pensadores").scrollIntoView({behavior:"smooth"});
-
-document.getElementById("searchInput").value="";
-
-let lista=thinkers.filter(function(t){
-return t[2]===era;
-});
-
-document.getElementById("thinkerGrid").innerHTML=lista.map(function(t){
-return `
-<div class="card thinker">
-<div class="portrait">${t[3]}</div>
-<h3>${t[0]}</h3>
-<div class="period">${t[1]}</div>
-<p>${t[2]}</p>
-<div class="card-actions">
-<button class="gold" onclick="openThinker('${esc(t[0])}')">Ver exposição</button>
-<button class="btn" onclick="openTimeline('${esc(t[0])}')">📜 Linha do Tempo</button>
-</div>
-</div>`;
-}).join("");
-}
-
-function openThinker(name){
-current=thinkers.find(function(t){
-return t[0]===name;
-});
-
-if(!current)return;
-
-openModal(`
-<button class="close" onclick="closeModal()">×</button>
-
-<h2>${current[3]} ${current[0]}</h2>
-
-<div class="period">${current[1]} • ${current[2]}</div>
-
-<div class="tabs">
-<button class="tab active" onclick="showTab(this,'vida')">Vida</button>
-<button class="tab" onclick="showTab(this,'ideias')">Ideias</button>
-<button class="tab" onclick="openWorks()">Obras</button>
-<button class="tab" onclick="openTimeline('${esc(name)}')">📜 Linha do Tempo</button>
-<button class="tab" onclick="showQuiz()">Quiz</button>
-</div>
-
-<div id="room" class="content">
-<h3>Exposição</h3>
-<p>${current[0]} faz parte do acervo do Museu Virtual dos Pensadores Universais.</p>
-<p>Esta sala apresenta sua trajetória histórica, formação intelectual, ideias, obras, debates, influência e legado.</p>
-</div>
-`);
-}
-
-function showTab(btn,tipo){
-document.querySelectorAll(".tab").forEach(function(x){
-x.classList.remove("active");
-});
-
-btn.classList.add("active");
-
-if(tipo==="ideias"){
-document.getElementById("room").innerHTML=`
-<h3>Ideias centrais</h3>
-<p>Conheça as principais perguntas, conceitos e contribuições associados a ${current[0]}.</p>
-<p>O conteúdo acadêmico de cada pensador será ampliado individualmente.</p>
-`;
-}else{
-document.getElementById("room").innerHTML=`
-<h3>Vida</h3>
-<p>Explore a trajetória histórica de ${current[0]}, seu contexto e os acontecimentos que marcaram sua vida.</p>
-`;
-}
-    }
-    const LT={
-"Sócrates":[
-["c. 470 a.C.","Nascimento","Nasce em Atenas ou região próxima."],
-["Juventude","Formação","Desenvolve sua prática filosófica por meio do diálogo."],
-["399 a.C.","Julgamento","É condenado por impiedade e corrupção da juventude."],
-["399 a.C.","Morte","Morre após beber cicuta."]
-],
-
-"Platão":[
-["c. 428 a.C.","Nascimento","Nasce em Atenas ou região próxima."],
-["c. 407 a.C.","Encontro com Sócrates","Passa a acompanhar Sócrates e desenvolve sua formação filosófica."],
-["c. 387 a.C.","Academia","Funda a Academia em Atenas."],
-["c. 348 a.C.","Morte","Morre em Atenas."]
-],
-
-"Aristóteles":[
-["384 a.C.","Nascimento","Nasce em Estagira."],
-["367 a.C.","Academia","Vai para Atenas e estuda na Academia de Platão."],
-["343 a.C.","Alexandre","É chamado para participar da educação do jovem Alexandre."],
-["335 a.C.","Liceu","Funda sua própria escola em Atenas."],
-["322 a.C.","Morte","Morre em Cálcis."]
-],
-
-"Confúcio":[
-["551 a.C.","Nascimento","Nasce no Estado de Lu."],
-["Juventude","Formação","Dedica-se ao estudo e à formação moral."],
-["c. 500 a.C.","Ensino","Torna-se conhecido como mestre e educador."],
-["479 a.C.","Morte","Morre no Estado de Lu."]
-],
-
-"Agostinho de Hipona":[
-["354","Nascimento","Nasce em Tagaste, no norte da África."],
-["384","Milão","Vai para Milão e entra em contato com novos ambientes intelectuais."],
-["386","Conversão","Passa por uma profunda transformação intelectual e religiosa."],
-["395","Bispo","Torna-se bispo de Hipona."],
-["430","Morte","Morre durante o cerco de Hipona."]
-],
-
-"Tomás de Aquino":[
-["1225","Nascimento","Nasce na Itália."],
-["1244","Dominicanos","Ingressa na Ordem Dominicana."],
-["1256","Professor","Obtém reconhecimento acadêmico em Paris."],
-["1265","Suma Teológica","Trabalha em sua grande síntese teológica."],
-["1274","Morte","Morre durante uma viagem."]
-],
-
-"Averróis":[
-["1126","Nascimento","Nasce em Córdoba."],
-["1169","Cadi","Assume função jurídica em Sevilha."],
-["1182","Comentador","Produz importantes comentários sobre Aristóteles."],
-["1198","Morte","Morre em Marrakesh."]
-],
-
-"Nicolau Maquiavel":[
-["1469","Nascimento","Nasce em Florença."],
-["1498","Diplomacia","Entra para o serviço público florentino."],
-["1513","O Príncipe","Escreve O Príncipe."],
-["1527","Morte","Morre em Florença."]
-],
-
-"Leonardo da Vinci":[
-["1452","Nascimento","Nasce em Vinci."],
-["1472","Artista","É registrado na guilda dos pintores de Florença."],
-["1482","Milão","Vai trabalhar em Milão."],
-["1503","Mona Lisa","Trabalha em importantes projetos artísticos."],
-["1519","Morte","Morre na França."]
-],
-
-"Erasmo de Roterdã":[
-["1466","Nascimento","Nasce em Roterdã."],
-["1509","Elogio da Loucura","Publica sua obra satírica mais famosa."],
-["1516","Novo Testamento","Publica edição crítica do Novo Testamento grego."],
-["1536","Morte","Morre em Basileia."]
-],
-
-"John Locke":[
-["1632","Nascimento","Nasce na Inglaterra."],
-["1689","Direitos","Publica obras fundamentais sobre governo e liberdade."],
-["1690","Ensaio","Publica o Ensaio sobre o Entendimento Humano."],
-["1704","Morte","Morre na Inglaterra."]
-],
-
-"Jean-Jacques Rousseau":[
-["1712","Nascimento","Nasce em Genebra."],
-["1750","Primeiro Discurso","Ganha destaque ao criticar os efeitos sociais das artes e ciências."],
-["1762","Contrato Social","Publica O Contrato Social."],
-["1778","Morte","Morre em Ermenonville."]
-],
-
-"Voltaire":[
-["1694","Nascimento","Nasce em Paris."],
-["1734","Cartas Filosóficas","Publica Cartas Filosóficas."],
-["1759","Cândido","Publica Cândido."],
-["1778","Morte","Morre em Paris."]
-],
-
-"Immanuel Kant":[
-["1724","Nascimento","Nasce em Königsberg."],
-["1770","Professor","Assume a cátedra de lógica e metafísica."],
-["1781","Crítica da Razão Pura","Publica sua obra filosófica central."],
-["1804","Morte","Morre em Königsberg."]
-],
-
-"Karl Marx":[
-["1818","Nascimento","Nasce em Trier."],
-["1843","Paris","Passa a viver em Paris e aprofunda seus estudos sociais."],
-["1848","Manifesto","Publica com Engels o Manifesto Comunista."],
-["1867","O Capital","Publica o primeiro volume de O Capital."],
-["1883","Morte","Morre em Londres."]
-],
-
-"Charles Darwin":[
-["1809","Nascimento","Nasce na Inglaterra."],
-["1831","Beagle","Inicia a viagem no HMS Beagle."],
-["1859","Evolução","Publica A Origem das Espécies."],
-["1882","Morte","Morre em Down."]
-],
-
-"Friedrich Nietzsche":[
-["1844","Nascimento","Nasce em Röcken."],
-["1869","Professor","Torna-se professor de filologia em Basileia."],
-["1883","Zaratustra","Publica partes de Assim Falou Zaratustra."],
-["1887","Genealogia","Publica A Genealogia da Moral."],
-["1900","Morte","Morre em Weimar."]
-],
-
-"Sigmund Freud":[
-["1856","Nascimento","Nasce em Freiberg."],
-["1885","Paris","Estuda com Charcot."],
-["1900","Sonhos","Publica A Interpretação dos Sonhos."],
-["1923","Psicanálise","Publica O Ego e o Id."],
-["1939","Morte","Morre em Londres."]
-],
-
-"Albert Einstein":[
-["1879","Nascimento","Nasce em Ulm."],
-["1905","Ano miraculoso","Publica trabalhos fundamentais da física moderna."],
-["1915","Relatividade","Apresenta a teoria da relatividade geral."],
-["1921","Nobel","Recebe o Nobel de Física."],
-["1955","Morte","Morre em Princeton."]
-],
-
-"Machado de Assis":[
-["1839","Nascimento","Nasce no Rio de Janeiro."],
-["1869","Casamento","Casa-se com Carolina Augusta Xavier de Novais."],
-["1881","Brás Cubas","Publica Memórias Póstumas de Brás Cubas."],
-["1897","Academia Brasileira","Torna-se o primeiro presidente da Academia Brasileira de Letras."],
-["1908","Morte","Morre no Rio de Janeiro."]
-],
-
-"Paulo Freire":[
-["1921","Nascimento","Nasce em Recife."],
-["1963","Angicos","Coordena experiência marcante de alfabetização de adultos."],
-["1968","Pedagogia","Escreve Pedagogia do Oprimido."],
-["1980","Retorno","Retorna ao Brasil após o exílio."],
-["1997","Morte","Morre em São Paulo."]
-],
-
-"Milton Santos":[
-["1926","Nascimento","Nasce na Bahia."],
-["1958","Doutorado","Conclui doutorado em Geografia na França."],
-["1970","Geografia","Consolida sua produção sobre território e espaço."],
-["1994","Vautrin Lud","Recebe importante reconhecimento internacional."],
-["2001","Morte","Morre em São Paulo."]
-],
-
-"Darcy Ribeiro":[
-["1922","Nascimento","Nasce em Montes Claros."],
-["1950","Antropologia","Atua em pesquisas sobre povos indígenas."],
-["1962","Brasília","Participa da criação da Universidade de Brasília."],
-["1982","Política","É eleito vice-governador do Rio de Janeiro."],
-["1997","Morte","Morre em Brasília."]
-],
-
-"Hannah Arendt":[
-["1906","Nascimento","Nasce em Linden, Alemanha."],
-["1929","Doutorado","Conclui sua tese sobre Santo Agostinho."],
-["1933","Exílio","Deixa a Alemanha após a ascensão do nazismo."],
-["1951","Origens","Publica As Origens do Totalitarismo."],
-["1975","Morte","Morre em Nova York."]
-],
-
-"Simone de Beauvoir":[
-["1908","Nascimento","Nasce em Paris."],
-["1929","Filosofia","Conclui sua formação filosófica."],
-["1949","Segundo Sexo","Publica O Segundo Sexo."],
-["1954","Goncourt","Recebe o Prêmio Goncourt por Os Mandarins."],
-["1986","Morte","Morre em Paris."]
-],
-
-"Martin Luther King Jr.":[
-["1929","Nascimento","Nasce em Atlanta."],
-["1955","Montgomery","Participa da luta pelos direitos civis."],
-["1963","Washington","Lidera a Marcha sobre Washington."],
-["1964","Nobel","Recebe o Prêmio Nobel da Paz."],
-["1968","Morte","É assassinado em Memphis."]
-],
-
-"Nelson Mandela":[
-["1918","Nascimento","Nasce em Mvezo."],
-["1944","ANC","Entra para o Congresso Nacional Africano."],
-["1964","Prisão","Recebe sentença de prisão perpétua."],
-["1990","Libertação","É libertado após décadas de prisão."],
-["1994","Presidência","Torna-se presidente da África do Sul."]
-],
-
-"Carl Sagan":[
-["1934","Nascimento","Nasce em Nova York."],
-["1960","Astronomia","Inicia carreira acadêmica e científica."],
-["1977","Cosmos","Começa a desenvolver projetos de divulgação científica."],
-["1980","Cosmos","A série Cosmos amplia sua divulgação científica."],
-["1996","Morte","Morre em Seattle."]
-],
-
-"Stephen Hawking":[
-["1942","Nascimento","Nasce em Oxford."],
-["1966","Cosmologia","Conclui sua pesquisa de doutorado em Cambridge."],
-["1974","Buracos negros","Apresenta sua teoria sobre a radiação dos buracos negros."],
-["1988","Uma Breve História do Tempo","Publica seu livro de divulgação mais famoso."],
-["2018","Morte","Morre em Cambridge."]
-],
-
-"Ailton Krenak":[
-["1953","Nascimento","Nasce em Minas Gerais."],
-["1987","Movimento indígena","Ganha destaque na defesa dos povos indígenas."],
-["2019","Ideias para Adiar o Fim do Mundo","Publica obra de grande repercussão."],
-["2020","Academia","Recebe reconhecimento nacional por sua produção intelectual."],
-["2023","ABL","É eleito para a Academia Brasileira de Letras."]
-]
-};
-  function openTimeline(name){
-let data=LT[name];
-
-if(!data){
-openModal(`
-<button class="close" onclick="closeModal()">×</button>
-<h2>📜 Linha do Tempo</h2>
-<p class="content">A linha do tempo de ${name} ainda está sendo ampliada.</p>
-`);
-return;
-}
-
-let eventos=data.map(function(e){
-return `
-<div class="event">
-<i></i>
-<strong>${e[0]} — ${e[1]}</strong>
-<p>${e[2]}</p>
-</div>`;
-}).join("");
-
-openModal(`
-<button class="close" onclick="closeModal()">×</button>
-<h2>📜 ${name}</h2>
-<div class="period">Linha do Tempo Individual</div>
-<div class="timeline">${eventos}</div>
-`);
-}
-
-function openWorks(){
-let name=current?current[0]:"";
-
-let texto=name==="Sócrates"
-?"Não são conhecidos escritos próprios de Sócrates. Seu pensamento é conhecido principalmente por fontes antigas como Platão, Xenofonte e Aristófanes."
-:"O catálogo de obras de "+name+" será desenvolvido individualmente, com autoria, contexto histórico e fontes.";
-
-openModal(`
-<button class="close" onclick="closeModal()">×</button>
-<h2>📚 Obras — ${name}</h2>
-<div class="content">
-<p>${texto}</p>
-</div>
-`);
-}
-
-function showQuiz(){
-let name=current?current[0]:"Pensador";
-
-openModal(`
-<button class="close" onclick="closeModal()">×</button>
-<h2>🧠 Quiz — ${name}</h2>
-<div class="content">
-<p>Qual é a importância histórica de ${name}?</p>
-<button class="gold" onclick="alert('Resposta registrada!')">Responder</button>
-</div>
-`);
-}
-
-function membership(){
-alert("O Passe Anual será ativado na etapa de pagamento do Museu.");
-}
-
-renderPensadores();
-
-</script>
-</body>
-</html>  
+<div class="modal" id="modal"><div class="box" id="modalBox"></div></div>
