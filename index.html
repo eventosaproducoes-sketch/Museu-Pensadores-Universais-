@@ -252,4 +252,243 @@ document.getElementById("modal")?.addEventListener("click",e=>{
 
 renderPensadores();
   </script>
+  <script>
+const historias={
+
+"Sócrates":{
+bio:"Filósofo ateniense do século V a.C., conhecido por transformar o diálogo e a investigação ética em instrumentos fundamentais da filosofia ocidental. Não deixou escritos conhecidos; seu pensamento é reconstruído principalmente a partir de Platão, Xenofonte e Aristófanes.",
+contexto:"Viveu durante o período de grande desenvolvimento político, artístico e intelectual de Atenas, mas também em meio às tensões da Guerra do Peloponeso e às crises da democracia ateniense.",
+ideias:"Exame da própria vida, busca da definição dos conceitos, cuidado da alma, reconhecimento da própria ignorância e investigação ética por meio do diálogo.",
+obras:"Não são conhecidos escritos próprios de Sócrates. Os diálogos de Platão e textos de Xenofonte são fontes antigas importantes para reconstruir sua figura.",
+legado:"Tornou-se uma das figuras centrais da tradição filosófica ocidental e influenciou profundamente Platão, Aristóteles e inúmeras gerações posteriores."
+},
+
+"Platão":{
+bio:"Filósofo ateniense, discípulo de Sócrates e mestre de Aristóteles. Fundou a Academia e desenvolveu uma filosofia que investigou conhecimento, justiça, política, educação, alma e realidade.",
+contexto:"Viveu após a Guerra do Peloponeso, período de profundas transformações políticas em Atenas e no mundo grego.",
+ideias:"Teoria das Formas, conhecimento, justiça, educação filosófica, organização política e relação entre mundo sensível e inteligível.",
+obras:"Entre seus diálogos estão República, Apologia de Sócrates, Fédon, Banquete, Timeu e Leis.",
+legado:"Sua filosofia tornou-se uma das bases da tradição filosófica ocidental, influenciando metafísica, ética, política, educação e religião."
+},
+
+"Aristóteles":{
+bio:"Filósofo grego nascido em Estagira. Foi discípulo de Platão, tutor de Alexandre da Macedônia e fundador do Liceu em Atenas.",
+contexto:"Viveu durante a expansão do poder macedônico e o período de transformação do mundo grego.",
+ideias:"Lógica, ética das virtudes, metafísica, política, biologia, teoria do conhecimento e investigação sistemática da natureza.",
+obras:"Ética a Nicômaco, Política, Metafísica, Física, Poética e Sobre a Alma estão entre as obras associadas à sua tradição textual.",
+legado:"Sua obra influenciou profundamente a filosofia, ciência, lógica, medicina, política e educação por mais de dois milênios."
+},
+
+"Confúcio":{
+bio:"Pensador chinês tradicionalmente situado entre 551 e 479 a.C. Seus ensinamentos enfatizaram educação, formação moral, relações humanas e responsabilidade social.",
+contexto:"Viveu durante o período de fragmentação política e conflitos entre Estados na China antiga.",
+ideias:"Ren, associado à humanidade e benevolência; li, ligado aos ritos e às formas adequadas de relacionamento; educação e responsabilidade moral.",
+obras:"Os Analectos preservam ensinamentos atribuídos a Confúcio e foram compilados por seus seguidores ao longo do tempo.",
+legado:"O pensamento confucionista exerceu influência duradoura sobre educação, ética, família, governo e cultura do Leste Asiático."
+},
+
+"Agostinho de Hipona":{
+bio:"Filósofo e teólogo cristão nascido em 354 em Tagaste, no norte da África. Tornou-se bispo de Hipona e produziu uma das obras intelectuais mais influentes da Antiguidade Tardia.",
+contexto:"Viveu durante a transformação do Império Romano e a expansão do cristianismo.",
+ideias:"Interioridade, memória, tempo, vontade, graça, relação entre fé e razão e reflexão sobre a condição humana.",
+obras:"Confissões, A Cidade de Deus e Sobre a Trindade estão entre suas obras mais importantes.",
+legado:"Influenciou profundamente a filosofia cristã, a teologia medieval e debates posteriores sobre tempo, consciência, liberdade e política."
+},
+
+"Tomás de Aquino":{
+bio:"Filósofo e teólogo dominicano do século XIII. Desenvolveu uma síntese entre a tradição cristã e elementos fundamentais da filosofia de Aristóteles.",
+contexto:"Viveu no auge das universidades medievais e do desenvolvimento da escolástica.",
+ideias:"Relação entre fé e razão, lei natural, ética das virtudes, metafísica e argumentos sobre a existência de Deus.",
+obras:"Suma Teológica e Suma contra os Gentios são algumas de suas principais obras.",
+legado:"Tornou-se uma das figuras mais importantes da filosofia e teologia medieval e uma referência central do pensamento tomista."
+},
+
+"John Locke":{
+bio:"Filósofo inglês nascido em 1632. Tornou-se uma das figuras fundamentais do empirismo moderno e da reflexão política liberal.",
+contexto:"Viveu durante conflitos políticos e religiosos na Inglaterra e no período que antecedeu e acompanhou importantes transformações políticas modernas.",
+ideias:"Experiência como fonte do conhecimento, direitos naturais, liberdade, propriedade e governo baseado no consentimento.",
+obras:"Ensaio sobre o Entendimento Humano, Dois Tratados sobre o Governo e Carta sobre a Tolerância.",
+legado:"Suas ideias tiveram enorme influência sobre a filosofia política moderna, a teoria dos direitos e o pensamento iluminista."
+},
+
+"Jean-Jacques Rousseau":{
+bio:"Pensador de origem genebrina que viveu entre 1712 e 1778. Escreveu sobre educação, política, desigualdade, liberdade e natureza humana.",
+contexto:"Foi uma figura importante do Iluminismo, embora também tenha criticado aspectos da sociedade e da cultura de seu tempo.",
+ideias:"Contrato social, vontade geral, liberdade política, educação e crítica às desigualdades sociais.",
+obras:"Do Contrato Social, Emílio e Discurso sobre a Origem e os Fundamentos da Desigualdade entre os Homens.",
+legado:"Influenciou profundamente a filosofia política, a educação e debates modernos sobre democracia e igualdade."
+},
+
+"Voltaire":{
+bio:"Escritor e filósofo francês, nascido em 1694. Tornou-se uma das principais figuras do Iluminismo europeu.",
+contexto:"Atuou em uma Europa marcada por monarquias, conflitos religiosos e debates sobre razão e tolerância.",
+ideias:"Liberdade de pensamento, tolerância religiosa, crítica ao fanatismo e defesa da razão.",
+obras:"Cândido, Cartas Filosóficas e Dicionário Filosófico.",
+legado:"Sua defesa da tolerância e da crítica intelectual tornou-se uma referência importante do Iluminismo."
+},
+
+"Immanuel Kant":{
+bio:"Filósofo alemão nascido em 1724. Desenvolveu uma das mais influentes filosofias da modernidade.",
+contexto:"Viveu no período do Iluminismo e procurou investigar os limites e as possibilidades da razão humana.",
+ideias:"Conhecimento, razão, autonomia moral, dever, liberdade e esclarecimento.",
+obras:"Crítica da Razão Pura, Crítica da Razão Prática e Fundamentação da Metafísica dos Costumes.",
+legado:"Sua filosofia transformou debates sobre conhecimento, ética, metafísica e estética."
+},
+
+"Nicolau Maquiavel":{
+bio:"Pensador e diplomata florentino nascido em 1469. Estudou profundamente política, poder e organização dos Estados.",
+contexto:"Viveu durante as disputas políticas e militares da Itália renascentista.",
+ideias:"Realismo político, poder, Estado, liderança e relação entre política e moral.",
+obras:"O Príncipe e Discursos sobre a Primeira Década de Tito Lívio.",
+legado:"Seu nome tornou-se associado ao estudo realista da política e à análise dos mecanismos de poder."
+},
+
+"Leonardo da Vinci":{
+bio:"Artista, engenheiro, inventor e investigador italiano do Renascimento. Representa de maneira exemplar a integração entre arte, observação e investigação da natureza.",
+contexto:"Viveu no Renascimento italiano, período de intensa transformação artística, científica e cultural.",
+ideias:"Observação direta, investigação da natureza, anatomia, engenharia e relação entre arte e ciência.",
+obras:"Sua produção inclui pinturas como Mona Lisa e A Última Ceia, além de milhares de desenhos e estudos.",
+legado:"É considerado um dos grandes símbolos do espírito interdisciplinar do Renascimento."
+},
+
+"Erasmo de Roterdã":{
+bio:"Humanista cristão nascido por volta de 1466. Foi um dos principais intelectuais europeus do Renascimento.",
+contexto:"Viveu durante o Humanismo renascentista e as profundas transformações religiosas que antecederam a Reforma.",
+ideias:"Educação, humanismo, crítica aos abusos institucionais e valorização da formação moral.",
+obras:"Elogio da Loucura, Educação do Príncipe Cristão e Colóquios.",
+legado:"Contribuiu para o humanismo europeu e para debates sobre educação, religião e reforma intelectual."
+},
+
+"Averróis":{
+bio:"Filósofo, médico e jurista nascido em Córdoba em 1126. Foi um dos grandes intérpretes medievais de Aristóteles.",
+contexto:"Viveu no mundo islâmico medieval, marcado por intensa produção científica, filosófica e cultural.",
+ideias:"Relação entre filosofia e religião, interpretação de Aristóteles, conhecimento e natureza.",
+obras:"Seus comentários sobre Aristóteles tiveram enorme circulação no mundo islâmico e posteriormente na Europa latina.",
+legado:"Exerceu grande influência sobre a filosofia medieval europeia e sobre a transmissão do pensamento aristotélico."
+},
+
+"Karl Marx":{
+bio:"Filósofo, economista e crítico social alemão nascido em 1818. Analisou o capitalismo, o trabalho, as classes sociais e as transformações históricas.",
+contexto:"Viveu durante a industrialização europeia, crescimento urbano e conflitos entre trabalhadores e proprietários.",
+ideias:"Materialismo histórico, classes sociais, trabalho, capital e crítica da economia política.",
+obras:"Manifesto do Partido Comunista, O Capital e A Ideologia Alemã.",
+legado:"Influenciou profundamente a filosofia, economia, sociologia, política e movimentos sociais."
+},
+
+"Charles Darwin":{
+bio:"Naturalista inglês nascido em 1809. Desenvolveu a teoria da evolução por seleção natural.",
+contexto:"Viveu durante uma época de grandes transformações científicas e de expansão das investigações sobre a natureza.",
+ideias:"Evolução, seleção natural, adaptação e ancestralidade comum.",
+obras:"A Origem das Espécies e A Descendência do Homem.",
+legado:"Sua teoria transformou a biologia e modificou profundamente a compreensão científica da diversidade da vida."
+},
+
+"Friedrich Nietzsche":{
+bio:"Filósofo alemão nascido em 1844. Desenvolveu uma crítica radical da moral, religião, cultura e filosofia ocidentais.",
+contexto:"Viveu durante profundas mudanças intelectuais e culturais na Europa do século XIX.",
+ideias:"Crítica da moral, niilismo, vontade de poder, superação de valores e questionamento das verdades estabelecidas.",
+obras:"Assim Falou Zaratustra, Além do Bem e do Mal e Genealogia da Moral.",
+legado:"Influenciou filosofia, literatura, psicologia, teoria cultural e pensamento contemporâneo."
+},
+
+"Sigmund Freud":{
+bio:"Médico e pensador austríaco nascido em
   
+<script>
+"Albert Einstein":{
+bio:"Físico nascido em 1879 que revolucionou a física moderna com suas teorias da relatividade e contribuições à física quântica.",
+contexto:"Viveu durante uma transformação radical da ciência no início do século XX.",
+ideias:"Relatividade especial e geral, natureza da luz, espaço-tempo e relação entre matéria e energia.",
+obras:"Seus artigos científicos, incluindo os trabalhos de 1905, transformaram a física.",
+legado:"É uma das figuras científicas mais influentes da história moderna."
+},
+
+"Hannah Arendt":{
+bio:"Pensadora alemã de origem judaica, nascida em 1906. Investigou totalitarismo, política, liberdade, ação e responsabilidade.",
+contexto:"Viveu as grandes rupturas políticas do século XX, incluindo o nazismo e a Segunda Guerra Mundial.",
+ideias:"Totalitarismo, esfera pública, ação política, liberdade, banalidade do mal e responsabilidade.",
+obras:"As Origens do Totalitarismo, A Condição Humana e Eichmann em Jerusalém.",
+legado:"Sua obra permanece central nos estudos de política, autoritarismo e responsabilidade moral."
+},
+
+"Paulo Freire":{
+bio:"Educador e filósofo brasileiro nascido em 1921. Desenvolveu uma pedagogia centrada no diálogo, na consciência crítica e na participação dos educandos.",
+contexto:"Atuou em um Brasil marcado por desigualdades sociais, disputas políticas e desafios educacionais.",
+ideias:"Educação dialógica, consciência crítica, autonomia, leitura do mundo e educação como prática de transformação.",
+obras:"Pedagogia do Oprimido, Educação como Prática da Liberdade e Pedagogia da Autonomia.",
+legado:"Tornou-se uma referência mundial nos estudos de educação e pedagogia crítica."
+},
+
+"Nelson Mandela":{
+bio:"Líder político sul-africano nascido em 1918. Tornou-se uma das principais figuras da luta contra o apartheid.",
+contexto:"Viveu durante o regime de segregação racial institucionalizada na África do Sul.",
+ideias:"Liberdade, igualdade, reconciliação e resistência política.",
+obras:"Long Walk to Freedom, sua autobiografia.",
+legado:"Tornou-se símbolo mundial da luta contra o apartheid e da reconciliação política."
+},
+
+"Martin Luther King Jr.":{
+bio:"Pastor e líder dos direitos civis nos Estados Unidos, nascido em 1929. Defendeu a igualdade racial e a resistência não violenta.",
+contexto:"Atuou durante o movimento pelos direitos civis norte-americano.",
+ideias:"Direitos civis, igualdade, justiça e resistência não violenta.",
+obras:"Discursos, sermões e textos políticos, incluindo a Carta da Prisão de Birmingham.",
+legado:"É uma das principais referências históricas da luta pelos direitos civis."
+},
+
+"Carl Sagan":{
+bio:"Astrônomo e divulgador científico norte-americano nascido em 1934. Trabalhou para aproximar ciência, sociedade e reflexão sobre o lugar da humanidade no cosmos.",
+contexto:"Viveu durante a expansão da exploração espacial e da ciência planetária.",
+ideias:"Pensamento científico, ceticismo, exploração espacial e responsabilidade humana.",
+obras:"Cosmos, O Mundo Assombrado pelos Demônios e Pálido Ponto Azul.",
+legado:"Popularizou a ciência para milhões de pessoas e defendeu o pensamento crítico."
+},
+
+"Stephen Hawking":{
+bio:"Físico britânico nascido em 1942, conhecido por suas pesquisas sobre cosmologia, buracos negros e origem do universo.",
+contexto:"Atuou durante importantes avanços da física teórica e da cosmologia moderna.",
+ideias:"Buracos negros, cosmologia, espaço-tempo e origem do universo.",
+obras:"Uma Breve História do Tempo e outros trabalhos científicos e de divulgação.",
+legado:"Tornou-se uma das figuras mais conhecidas da ciência contemporânea."
+},
+
+"Machado de Assis":{
+bio:"Escritor brasileiro nascido em 1839, considerado um dos maiores nomes da literatura brasileira.",
+contexto:"Viveu durante o Império e os primeiros anos da República brasileira.",
+ideias:"Suas obras exploram sociedade, relações humanas, ironia, memória, ambição e comportamento.",
+obras:"Memórias Póstumas de Brás Cubas, Dom Casmurro, Quincas Borba e diversos contos.",
+legado:"Sua obra ocupa posição central na literatura brasileira e permanece amplamente estudada."
+},
+
+"Milton Santos":{
+bio:"Geógrafo brasileiro nascido em 1926. Desenvolveu uma análise crítica do espaço geográfico e da globalização.",
+contexto:"Pensou o território e as desigualdades em um mundo marcado pela expansão do capitalismo e da globalização.",
+ideias:"Território, espaço, técnica, globalização e desigualdades socioespaciais.",
+obras:"Por uma Outra Globalização e A Natureza do Espaço.",
+legado:"É uma das principais referências da geografia brasileira e latino-americana."
+},
+
+"Darcy Ribeiro":{
+bio:"Antropólogo, educador, escritor e político brasileiro nascido em 1922. Estudou a formação cultural e social do Brasil.",
+contexto:"Atuou em debates sobre educação, povos indígenas, identidade brasileira e desenvolvimento.",
+ideias:"Formação do povo brasileiro, educação pública, diversidade cultural e desenvolvimento.",
+obras:"O Povo Brasileiro, Os Índios e diversos estudos antropológicos e educacionais.",
+legado:"Influenciou profundamente a antropologia, educação e interpretação da sociedade brasileira."
+},
+
+"Ailton Krenak":{
+bio:"Pensador, escritor e liderança indígena brasileira. Sua obra questiona a relação da sociedade moderna com a natureza e os povos originários.",
+contexto:"Sua produção está ligada aos debates contemporâneos sobre povos indígenas, meio ambiente e crise civilizatória.",
+ideias:"Relação entre humanidade e natureza, crítica ao modelo de desenvolvimento e valorização dos saberes indígenas.",
+obras:"Ideias para Adiar o Fim do Mundo, A Vida Não é Útil e Futuro Ancestral.",
+legado:"Tornou-se uma das vozes contemporâneas mais importantes dos debates sobre natureza, cultura e povos originários."
+},
+
+"Simone de Beauvoir":{
+bio:"Filósofa, escritora e intelectual francesa nascida em 1908. Investigou liberdade, existência, condição das mulheres e relações sociais.",
+contexto:"Viveu grandes transformações sociais e políticas do século XX e esteve ligada ao existencialismo francês.",
+ideias:"Liberdade, existência, construção social da condição feminina e responsabilidade.",
+obras:"O Segundo Sexo, A Convidada e Memórias de uma Moça Bem-Comportada.",
+legado:"Sua obra tornou-se fundamental para os estudos feministas e para debates sobre liberdade e condição humana."
+}
+};
+    
