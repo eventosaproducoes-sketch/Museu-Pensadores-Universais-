@@ -1505,3 +1505,137 @@ instalar();
 
 })();
   </script>
+  <script>
+(function(){
+
+const novasLinhas={
+
+"Friedrich Nietzsche":[
+["1844","Nascimento em Röcken, na Prússia."],
+["1858","Ingressa na escola de Schulpforta, onde recebe formação clássica."],
+["1864","Ingressa na Universidade de Bonn para estudar teologia e filologia."],
+["1865","Transfere-se para a Universidade de Leipzig."],
+["1868","Conhece Richard Wagner, com quem mantém relação intelectual por alguns anos."],
+["1869","É nomeado professor de filologia clássica na Universidade de Basileia, aos 24 anos."],
+["1872","Publica O Nascimento da Tragédia."],
+["1878","Publica Humano, Demasiado Humano."],
+["1883–1885","Publica as quatro partes de Assim Falou Zaratustra."],
+["1886","Publica Além do Bem e do Mal."],
+["1887","Publica Genealogia da Moral."],
+["1889","Sofre um colapso mental em Turim e deixa de produzir intelectualmente de forma ativa."],
+["1900","Morre em Weimar."],
+["Legado","Sua crítica da moral, da religião e da cultura influenciou profundamente a filosofia e o pensamento contemporâneo."]
+],
+
+"Sigmund Freud":[
+["1856","Nascimento em Freiberg, no Império Austríaco."],
+["1873","Ingressa na Universidade de Viena para estudar medicina."],
+["1881","Obtém seu diploma de medicina."],
+["1885","Vai para Paris estudar com Jean-Martin Charcot."],
+["1886","Retorna a Viena e inicia sua prática médica."],
+["1895","Publica, com Josef Breuer, Estudos sobre a Histeria."],
+["1900","Publica A Interpretação dos Sonhos."],
+["1902","Forma-se em Viena um grupo de estudos que posteriormente dará origem ao movimento psicanalítico organizado."],
+["1905","Publica Três Ensaios sobre a Teoria da Sexualidade."],
+["1910","É fundada a Associação Psicanalítica Internacional."],
+["1923","Publica O Ego e o Id."],
+["1933","Obras de Freud são queimadas publicamente pelos nazistas na Alemanha."],
+["1938","Freud deixa Viena e vai para Londres após a anexação da Áustria pela Alemanha nazista."],
+["1939","Morre em Londres."],
+["Legado","A psicanálise exerceu enorme influência sobre psicologia, literatura, arte e cultura, embora diversas ideias freudianas sejam objeto de debate científico e histórico."]
+],
+
+"Albert Einstein":[
+["1879","Nascimento em Ulm, no Império Alemão."],
+["1896","Ingressa na Escola Politécnica de Zurique."],
+["1900","Conclui sua formação no Instituto Politécnico de Zurique."],
+["1902","Começa a trabalhar no Escritório de Patentes de Berna."],
+["1905","Publica quatro trabalhos fundamentais, incluindo estudos sobre o efeito fotoelétrico, movimento browniano, relatividade especial e equivalência entre massa e energia."],
+["1909","Deixa o escritório de patentes e passa a dedicar-se à carreira acadêmica."],
+["1915","Apresenta a formulação final da teoria da relatividade geral."],
+["1919","Observações de um eclipse ajudam a confirmar uma previsão da relatividade geral e tornam Einstein mundialmente famoso."],
+["1921","Recebe o Prêmio Nobel de Física, principalmente por sua explicação do efeito fotoelétrico."],
+["1933","Deixa a Alemanha após a ascensão do nazismo e estabelece-se nos Estados Unidos."],
+["1939","Assina, com outros cientistas, uma carta ao presidente Roosevelt alertando sobre o possível desenvolvimento de armas nucleares."],
+["1940","Torna-se cidadão dos Estados Unidos."],
+["1955","Morre em Princeton, Nova Jersey."],
+["Legado","Transformou a física moderna e tornou-se um dos cientistas mais reconhecidos da história."]
+],
+
+"Hannah Arendt":[
+["1906","Nascimento em Linden, então parte do Império Alemão."],
+["1924","Ingressa na Universidade de Marburg e estuda filosofia."],
+["1928","Obtém doutorado em filosofia na Universidade de Heidelberg."],
+["1933","Deixa a Alemanha após a ascensão do regime nazista."],
+["1933–1940","Vive na França e trabalha em organizações de apoio a refugiados judeus."],
+["1941","Chega aos Estados Unidos."],
+["1951","Publica As Origens do Totalitarismo e obtém cidadania norte-americana."],
+["1958","Publica A Condição Humana."],
+["1961","Acompanha o julgamento de Adolf Eichmann em Jerusalém como correspondente da revista The New Yorker."],
+["1963","Publica Eichmann em Jerusalém, desenvolvendo sua conhecida reflexão sobre a banalidade do mal."],
+["1963","Publica Sobre a Revolução."],
+["1970","Publica Sobre a Violência."],
+["1975","Morre em Nova York."],
+["Legado","Sua obra tornou-se fundamental para o estudo do totalitarismo, política, liberdade, responsabilidade e ação humana."]
+]
+
+};
+
+function instalar(){
+
+if(!window.linhasTempoMuseu){
+window.linhasTempoMuseu={};
+}
+
+Object.assign(window.linhasTempoMuseu,novasLinhas);
+
+window.openTimeline=function(nome){
+
+const dados=window.linhasTempoMuseu[nome];
+const modal=document.getElementById("modal");
+const box=document.getElementById("modalBox");
+
+if(!modal||!box)return;
+
+if(!dados){
+
+box.innerHTML=
+'<button class="close" onclick="closeModal()">×</button>'+
+'<div class="period">Linha do tempo</div>'+
+'<h2>📜 '+esc(nome)+'</h2>'+
+'<div class="content"><p>A linha do tempo individual deste pensador será acrescentada ao acervo.</p></div>';
+
+}else{
+
+box.innerHTML=
+'<button class="close" onclick="closeModal()">×</button>'+
+'<div class="period">Linha do tempo individual</div>'+
+'<h2>📜 '+esc(nome)+'</h2>'+
+'<div class="timeline">'+
+dados.map(function(item){
+return '<div class="event">'+
+'<i></i>'+
+'<strong>'+esc(item[0])+'</strong>'+
+'<p>'+esc(item[1])+'</p>'+
+'</div>';
+}).join("")+
+'</div>';
+
+}
+
+modal.classList.add("show");
+
+};
+
+console.log("🏛️ Módulo 5 carregado.");
+
+}
+
+if(document.readyState==="loading"){
+document.addEventListener("DOMContentLoaded",instalar);
+}else{
+instalar();
+}
+
+})();
+  </script>
