@@ -972,3 +972,99 @@ console.log(
 );
 
   </script>
+  <script>
+/* =========================================
+   LINHAS DO TEMPO — MÓDULO 1
+   SÓCRATES • PLATÃO • ARISTÓTELES • CONFÚCIO
+   ========================================= */
+
+window.linhasTempoMuseu = {
+
+"Sócrates":[
+["c. 469 a.C.","Nascimento em Atenas ou região próxima, segundo as fontes antigas."],
+["Juventude","Viveu no ambiente cultural e político de Atenas e recebeu formação própria de um cidadão ateniense de sua época."],
+["Século V a.C.","Passou a dedicar-se intensamente ao diálogo filosófico e à investigação de questões éticas."],
+["Vida adulta","Desenvolveu o método de questionamento associado à tradição socrática, examinando conceitos como justiça, virtude e conhecimento."],
+["Guerra do Peloponeso","Participou como hoplita em campanhas militares, conforme relatos antigos."],
+["399 a.C.","Foi julgado em Atenas sob acusações de impiedade e corrupção da juventude."],
+["399 a.C.","Condenado à morte após o julgamento."],
+["399 a.C.","Morreu após ingerir cicuta, segundo os relatos de Platão."],
+["Legado","Sua figura tornou-se fundamental para a filosofia ocidental. Sócrates não deixou escritos próprios conhecidos."]
+],
+
+"Platão":[
+["427/428 a.C.","Nascimento de Platão em Atenas ou região próxima, segundo a tradição."],
+["Juventude","Pertenceu a uma família aristocrática ateniense e recebeu formação intelectual ampla."],
+["c. 407 a.C.","Conheceu Sócrates e tornou-se seu discípulo."],
+["399 a.C.","A execução de Sócrates marcou profundamente sua trajetória filosófica."],
+["Século IV a.C.","Realizou viagens e entrou em contato com diferentes tradições intelectuais."],
+["c. 387 a.C.","Fundou a Academia em Atenas, uma das instituições educacionais mais importantes da Antiguidade."],
+["Período maduro","Escreveu diálogos filosóficos sobre justiça, conhecimento, política, alma e realidade."],
+["Século IV a.C.","Desenvolveu reflexões associadas à teoria das Formas e à educação filosófica."],
+["347 a.C.","Morte de Platão em Atenas, segundo a tradição."],
+["Legado","Sua filosofia influenciou profundamente a metafísica, ética, política, educação e tradição filosófica ocidental."]
+],
+
+"Aristóteles":[
+["384 a.C.","Nascimento em Estagira, na Macedônia."],
+["Juventude","Foi educado em ambiente ligado à medicina e à investigação da natureza."],
+["c. 367 a.C.","Chegou a Atenas e ingressou na Academia de Platão."],
+["367–347 a.C.","Permaneceu aproximadamente duas décadas ligado à Academia."],
+["Século IV a.C.","Desenvolveu pesquisas sobre lógica, natureza, ética, política, metafísica e diversos campos do conhecimento."],
+["343/342 a.C.","Tradicionalmente associado à educação de Alexandre, futuro Alexandre, o Grande."],
+["335 a.C.","Retornou a Atenas e fundou o Liceu."],
+["Período do Liceu","Organizou estudos sistemáticos sobre filosofia, ciência, política, biologia e lógica."],
+["323 a.C.","Após a morte de Alexandre, deixou Atenas diante de tensões políticas."],
+["322 a.C.","Morreu em Cálcis, na Eubeia."],
+["Legado","Sua obra tornou-se uma das bases da filosofia e da ciência ocidentais."]
+],
+
+"Confúcio":[
+["551 a.C.","Nascimento tradicionalmente situado em Qufu, no estado de Lu, na China."],
+["Juventude","Recebeu formação ligada às tradições culturais e rituais de seu período."],
+["Vida adulta","Atuou como professor e desenvolveu uma tradição de ensino baseada na formação moral."],
+["Século VI–V a.C.","Ensinou princípios relacionados à humanidade, educação, rituais, família e responsabilidade social."],
+["Período de conflitos","Viveu durante uma época de fragmentação política e disputas entre Estados chineses."],
+["Vida madura","Segundo tradições posteriores, ocupou funções administrativas no Estado de Lu."],
+["Anos finais","Continuou ensinando e formando discípulos."],
+["479 a.C.","Morte tradicionalmente situada neste ano."],
+["Após sua morte","Seus discípulos e sucessores preservaram e transmitiram seus ensinamentos."],
+["Séculos posteriores","O pensamento confucionista tornou-se uma das grandes tradições intelectuais da China e do Leste Asiático."]
+]
+};
+
+window.openTimeline=function(nome){
+
+const dados=window.linhasTempoMuseu[nome];
+
+if(!dados){
+alert("A linha do tempo de "+nome+" ainda está sendo preparada.");
+return;
+}
+
+const modal=document.getElementById("modal");
+const box=document.getElementById("modalBox");
+
+if(!modal||!box)return;
+
+box.innerHTML=
+'<button class="close" onclick="closeModal()">×</button>'+
+'<div class="period">Linha do tempo individual</div>'+
+'<h2>📜 '+esc(nome)+'</h2>'+
+'<div class="timeline">'+
+dados.map(function(item){
+return '<div class="event">'+
+'<i></i>'+
+'<strong>'+esc(item[0])+'</strong>'+
+'<p>'+esc(item[1])+'</p>'+
+'</div>';
+}).join("")+
+'</div>';
+
+modal.classList.add("show");
+
+};
+
+console.log("🏛️ Linhas do tempo individuais: módulo 1 carregado.");
+
+  </script>
