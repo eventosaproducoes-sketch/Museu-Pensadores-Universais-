@@ -2241,4 +2241,1057 @@ iniciar();
 
 })();
   </script>
+  <script>
+(function(){
+
+"use strict";
+
+/* =========================================================
+   🏛️ MUSEU VIRTUAL DOS PENSADORES UNIVERSAIS
+   MÁQUINA MESTRE DE DIAGNÓSTICO, REVISÃO E AUTOCORREÇÃO
+   ========================================================= */
+
+const MUSEU_MESTRE={
+
+versao:"1.0",
+
+pensadores:[
+"Sócrates",
+"Platão",
+"Aristóteles",
+"Confúcio",
+"Agostinho de Hipona",
+"Tomás de Aquino",
+"Averróis",
+"Leonardo da Vinci",
+"Nicolau Maquiavel",
+"Erasmo de Roterdã",
+"John Locke",
+"Jean-Jacques Rousseau",
+"Voltaire",
+"Immanuel Kant",
+"Karl Marx",
+"Charles Darwin",
+"Friedrich Nietzsche",
+"Sigmund Freud",
+"Albert Einstein",
+"Hannah Arendt",
+"Paulo Freire",
+"Nelson Mandela",
+"Martin Luther King Jr.",
+"Carl Sagan",
+"Machado de Assis",
+"Milton Santos",
+"Darcy Ribeiro",
+"Ailton Krenak",
+"Simone de Beauvoir",
+"Stephen Hawking"
+],
+
+dadosAcademicos:{
+
+"Sócrates":{
+nascimento:"c. 469 a.C.",
+morte:"399 a.C.",
+periodo:"Antiguidade",
+observacao:"Não deixou escritos conhecidos; seu pensamento é conhecido principalmente por fontes antigas."
+},
+
+"Platão":{
+nascimento:"c. 428/427 a.C.",
+morte:"c. 348/347 a.C.",
+periodo:"Antiguidade"
+},
+
+"Aristóteles":{
+nascimento:"384 a.C.",
+morte:"322 a.C.",
+periodo:"Antiguidade"
+},
+
+"Confúcio":{
+nascimento:"551 a.C.",
+morte:"479 a.C.",
+periodo:"Antiguidade"
+},
+
+"Agostinho de Hipona":{
+nascimento:"354",
+morte:"430",
+periodo:"Antiguidade Tardia"
+},
+
+"Tomás de Aquino":{
+nascimento:"c. 1225",
+morte:"1274",
+periodo:"Idade Média"
+},
+
+"Averróis":{
+nascimento:"1126",
+morte:"1198",
+periodo:"Idade Média"
+},
+
+"Leonardo da Vinci":{
+nascimento:"1452",
+morte:"1519",
+periodo:"Renascimento"
+},
+
+"Nicolau Maquiavel":{
+nascimento:"1469",
+morte:"1527",
+periodo:"Renascimento"
+},
+
+"Erasmo de Roterdã":{
+nascimento:"1466",
+morte:"1536",
+periodo:"Renascimento"
+},
+
+"John Locke":{
+nascimento:"1632",
+morte:"1704",
+periodo:"Idade Moderna / Iluminismo"
+},
+
+"Jean-Jacques Rousseau":{
+nascimento:"1712",
+morte:"1778",
+periodo:"Iluminismo"
+},
+
+"Voltaire":{
+nascimento:"1694",
+morte:"1778",
+periodo:"Iluminismo"
+},
+
+"Immanuel Kant":{
+nascimento:"1724",
+morte:"1804",
+periodo:"Iluminismo"
+},
+
+"Karl Marx":{
+nascimento:"1818",
+morte:"1883",
+periodo:"Século XIX"
+},
+
+"Charles Darwin":{
+nascimento:"1809",
+morte:"1882",
+periodo:"Século XIX"
+},
+
+"Friedrich Nietzsche":{
+nascimento:"1844",
+morte:"1900",
+periodo:"Século XIX"
+},
+
+"Sigmund Freud":{
+nascimento:"1856",
+morte:"1939",
+periodo:"Séculos XIX–XX"
+},
+
+"Albert Einstein":{
+nascimento:"1879",
+morte:"1955",
+periodo:"Século XX"
+},
+
+"Hannah Arendt":{
+nascimento:"1906",
+morte:"1975",
+periodo:"Século XX"
+},
+
+"Paulo Freire":{
+nascimento:"1921",
+morte:"1997",
+periodo:"Século XX"
+},
+
+"Nelson Mandela":{
+nascimento:"1918",
+morte:"2013",
+periodo:"Séculos XX–XXI"
+},
+
+"Martin Luther King Jr.":{
+nascimento:"1929",
+morte:"1968",
+periodo:"Século XX"
+},
+
+"Carl Sagan":{
+nascimento:"1934",
+morte:"1996",
+periodo:"Século XX"
+},
+
+"Machado de Assis":{
+nascimento:"1839",
+morte:"1908",
+periodo:"Séculos XIX–XX"
+},
+
+"Milton Santos":{
+nascimento:"1926",
+morte:"2001",
+periodo:"Séculos XX–XXI"
+},
+
+"Darcy Ribeiro":{
+nascimento:"1922",
+morte:"1997",
+periodo:"Século XX"
+},
+
+"Ailton Krenak":{
+nascimento:"1953",
+morte:"—",
+periodo:"Contemporâneo"
+},
+
+"Simone de Beauvoir":{
+nascimento:"1908",
+morte:"1986",
+periodo:"Século XX"
+},
+
+"Stephen Hawking":{
+nascimento:"1942",
+morte:"2018",
+periodo:"Séculos XX–XXI"
+}
+
+},
+
+/* =========================================================
+   ALIASES
+   ========================================================= */
+
+aliases:{
+"Santo Agostinho":"Agostinho de Hipona",
+"Agostinho":"Agostinho de Hipona",
+"Maquiavel":"Nicolau Maquiavel",
+"Rousseau":"Jean-Jacques Rousseau",
+"Locke":"John Locke",
+"Kant":"Immanuel Kant",
+"Marx":"Karl Marx",
+"Darwin":"Charles Darwin",
+"Nietzsche":"Friedrich Nietzsche",
+"Freud":"Sigmund Freud",
+"Einstein":"Albert Einstein",
+"Arendt":"Hannah Arendt",
+"Mandela":"Nelson Mandela",
+"King":"Martin Luther King Jr.",
+"Sagan":"Carl Sagan",
+"Hawking":"Stephen Hawking",
+"Beauvoir":"Simone de Beauvoir"
+}
+
+};
+
+
+/* =========================================================
+   UTILIDADES
+   ========================================================= */
+
+function normalizar(nome){
+
+if(!nome)return "";
+
+nome=String(nome).trim();
+
+if(MUSEU_MESTRE.aliases[nome]){
+return MUSEU_MESTRE.aliases[nome];
+}
+
+return nome;
+}
+
+
+function escapar(texto){
+
+return String(texto==null?"":texto)
+.replace(/&/g,"&amp;")
+.replace(/</g,"&lt;")
+.replace(/>/g,"&gt;")
+.replace(/"/g,"&quot;")
+.replace(/'/g,"&#039;");
+
+}
+
+
+/* =========================================================
+   BANCO DE LINHAS DO TEMPO
+   ========================================================= */
+
+if(!window.linhasTempoMuseu){
+
+window.linhasTempoMuseu={};
+
+}
+
+
+/* =========================================================
+   REPARAÇÃO DA FUNÇÃO ESC
+   ========================================================= */
+
+function repararEsc(){
+
+if(typeof window.esc!=="function"){
+
+window.esc=escapar;
+
+return "esc restaurada";
+
+}
+
+return "esc OK";
+
+}
+
+
+/* =========================================================
+   REPARAÇÃO DO MODAL
+   ========================================================= */
+
+function repararCloseModal(){
+
+if(typeof window.closeModal!=="function"){
+
+window.closeModal=function(){
+
+const modal=document.getElementById("modal");
+
+if(modal){
+
+modal.classList.remove("show");
+
+}
+
+};
+
+return "closeModal restaurada";
+
+}
+
+return "closeModal OK";
+
+}
+
+
+/* =========================================================
+   REPARAÇÃO DA LINHA DO TEMPO
+   ========================================================= */
+
+function repararOpenTimeline(){
+
+if(typeof window.openTimeline==="function"){
+
+return "openTimeline OK";
+
+}
+
+
+window.openTimeline=function(nome){
+
+nome=normalizar(nome);
+
+const modal=document.getElementById("modal");
+const box=document.getElementById("modalBox");
+
+if(!modal||!box){
+
+console.warn("🏛️ Modal não encontrado.");
+
+return;
+
+}
+
+const dados=window.linhasTempoMuseu[nome];
+
+if(!dados){
+
+box.innerHTML=
+'<button class="close" onclick="closeModal()">×</button>'+
+'<div class="period">Linha do tempo</div>'+
+'<h2>📜 '+escapar(nome)+'</h2>'+
+'<div class="content">'+
+'<p>A linha do tempo individual deste pensador ainda não foi cadastrada.</p>'+
+'</div>';
+
+}else{
+
+box.innerHTML=
+'<button class="close" onclick="closeModal()">×</button>'+
+'<div class="period">Linha do tempo individual</div>'+
+'<h2>📜 '+escapar(nome)+'</h2>'+
+'<div class="timeline">'+
+
+dados.map(function(item){
+
+return '<div class="event">'+
+'<i></i>'+
+'<strong>'+escapar(item[0])+'</strong>'+
+'<p>'+escapar(item[1])+'</p>'+
+'</div>';
+
+}).join("")+
+
+'</div>';
+
+}
+
+modal.classList.add("show");
+
+};
+
+return "openTimeline restaurada";
+
+}
+
+
+/* =========================================================
+   REPARAÇÃO DO VISITAR
+   ========================================================= */
+
+function repararOpenThinker(){
+
+if(typeof window.openThinker==="function"){
+
+return "openThinker OK";
+
+}
+
+window.openThinker=function(nome){
+
+nome=normalizar(nome);
+
+const modal=document.getElementById("modal");
+const box=document.getElementById("modalBox");
+
+if(!modal||!box)return;
+
+let historia=null;
+
+if(window.historias){
+
+historia=window.historias[nome];
+
+}
+
+let html=
+'<button class="close" onclick="closeModal()">×</button>'+
+'<div class="period">EXPOSIÇÃO</div>'+
+'<h2>🏛️ '+escapar(nome)+'</h2>';
+
+if(historia){
+
+if(historia.bio)
+html+='<div class="content"><h3>Biografia</h3><p>'+
+escapar(historia.bio)+'</p></div>';
+
+if(historia.contexto)
+html+='<div class="content"><h3>Contexto histórico</h3><p>'+
+escapar(historia.contexto)+'</p></div>';
+
+if(historia.ideias)
+html+='<div class="content"><h3>Ideias</h3><p>'+
+escapar(historia.ideias)+'</p></div>';
+
+if(historia.obras)
+html+='<div class="content"><h3>Obras</h3><p>'+
+escapar(historia.obras)+'</p></div>';
+
+if(historia.legado)
+html+='<div class="content"><h3>Legado</h3><p>'+
+escapar(historia.legado)+'</p></div>';
+
+}else{
+
+html+=
+'<div class="content">'+
+'<p>Exposição individual em preparação.</p>'+
+'</div>';
+
+}
+
+box.innerHTML=html;
+
+modal.classList.add("show");
+
+};
+
+return "openThinker restaurada";
+
+}
+
+
+/* =========================================================
+   VERIFICAÇÃO DOS PENSADORES
+   ========================================================= */
+
+function verificarPensadores(){
+
+const resultado={
+esperados:MUSEU_MESTRE.pensadores.length,
+encontrados:0,
+faltando:[],
+duplicados:[],
+ok:true
+};
+
+let nomes=[];
+
+if(Array.isArray(window.thinkers)){
+
+window.thinkers.forEach(function(item){
+
+let nome="";
+
+if(typeof item==="string"){
+
+nome=item;
+
+}else if(item){
+
+nome=item.nome||
+item.name||
+item.titulo||
+"";
+
+}
+
+if(nome){
+
+nomes.push(normalizar(nome));
+
+}
+
+});
+
+}
+
+
+MUSEU_MESTRE.pensadores.forEach(function(nome){
+
+if(nomes.includes(nome)){
+
+resultado.encontrados++;
+
+}else{
+
+resultado.faltando.push(nome);
+
+}
+
+});
+
+
+const contador={};
+
+nomes.forEach(function(nome){
+
+contador[nome]=(contador[nome]||0)+1;
+
+});
+
+Object.keys(contador).forEach(function(nome){
+
+if(contador[nome]>1){
+
+resultado.duplicados.push(nome);
+
+}
+
+});
+
+
+if(
+resultado.faltando.length||
+resultado.duplicados.length
+){
+
+resultado.ok=false;
+
+}
+
+return resultado;
+
+}
+
+
+/* =========================================================
+   VERIFICAÇÃO DAS LINHAS DO TEMPO
+   ========================================================= */
+
+function verificarTimelines(){
+
+const resultado={
+esperados:MUSEU_MESTRE.pensadores.length,
+encontrados:0,
+faltando:[],
+vazias:[],
+ok:true
+};
+
+MUSEU_MESTRE.pensadores.forEach(function(nome){
+
+const dados=window.linhasTempoMuseu[nome];
+
+if(Array.isArray(dados)){
+
+resultado.encontrados++;
+
+if(dados.length===0){
+
+resultado.vazias.push(nome);
+
+}
+
+}else{
+
+resultado.faltando.push(nome);
+
+}
+
+});
+
+
+if(
+resultado.faltando.length||
+resultado.vazias.length
+){
+
+resultado.ok=false;
+
+}
+
+return resultado;
+
+}
+
+
+/* =========================================================
+   VERIFICAÇÃO DO HTML
+   ========================================================= */
+
+function verificarEstrutura(){
+
+const resultado={
+modal:false,
+modalBox:false,
+pensadores:false,
+idsDuplicados:[],
+funcoes:[],
+ok:true
+};
+
+resultado.modal=!!document.getElementById("modal");
+resultado.modalBox=!!document.getElementById("modalBox");
+resultado.pensadores=!!document.getElementById("pensadores");
+
+
+const ids={};
+
+document.querySelectorAll("[id]").forEach(function(el){
+
+const id=el.id;
+
+if(ids[id]){
+
+resultado.idsDuplicados.push(id);
+
+}
+
+ids[id]=true;
+
+});
+
+
+[
+"openThinker",
+"openTimeline",
+"closeModal",
+"renderPensadores",
+"clearSearch"
+].forEach(function(nome){
+
+if(typeof window[nome!=="function"]){
+
+}
+
+if(typeof window[nome]!=="function"){
+
+resultado.funcoes.push(nome);
+
+}
+
+});
+
+
+if(
+!resultado.modal||
+!resultado.modalBox||
+!resultado.pensadores||
+resultado.idsDuplicados.length||
+resultado.funcoes.length
+){
+
+resultado.ok=false;
+
+}
+
+return resultado;
+
+}
+
+
+/* =========================================================
+   CAPTURA DE ERROS JAVASCRIPT
+   ========================================================= */
+
+if(!window.__museuErros){
+
+window.__museuErros=[];
+
+window.addEventListener("error",function(event){
+
+window.__museuErros.push({
+
+tipo:"JavaScript",
+mensagem:event.message||"Erro desconhecido",
+arquivo:event.filename||"",
+linha:event.lineno||0
+
+});
+
+});
+
+
+window.addEventListener(
+"unhandledrejection",
+function(event){
+
+window.__museuErros.push({
+
+tipo:"Promise",
+mensagem:String(
+event.reason||"Erro de Promise"
+)
+
+});
+
+});
+
+}
+
+
+/* =========================================================
+   AUTOCORREÇÃO GERAL
+   ========================================================= */
+
+function corrigirTudo(){
+
+const correcoes=[];
+
+correcoes.push(repararEsc());
+correcoes.push(repararCloseModal());
+correcoes.push(repararOpenTimeline());
+correcoes.push(repararOpenThinker());
+
+return correcoes;
+
+}
+
+
+/* =========================================================
+   RELATÓRIO COMPLETO
+   ========================================================= */
+
+function diagnostico(){
+
+const correcoes=corrigirTudo();
+
+const pensadores=verificarPensadores();
+const timelines=verificarTimelines();
+const estrutura=verificarEstrutura();
+
+const relatorio={
+
+versao:MUSEU_MESTRE.versao,
+
+pensadores:pensadores,
+
+linhasTempo:timelines,
+
+estrutura:estrutura,
+
+errosJavaScript:window.__museuErros||[],
+
+correcoes:correcoes,
+
+status:
+(
+pensadores.ok&&
+timelines.ok&&
+estrutura.ok&&
+(!window.__museuErros||
+window.__museuErros.length===0)
+)
+?"APROVADO":"REVISÃO NECESSÁRIA"
+
+};
+
+window.museuRelatorioMestre=relatorio;
+
+console.group("🏛️ MUSEU VIRTUAL — MÁQUINA MESTRE");
+
+console.log(
+"Pensadores:",
+pensadores.encontrados+
+"/"+
+pensadores.esperados
+);
+
+console.log(
+"Linhas do tempo:",
+timelines.encontrados+
+"/"+
+timelines.esperados
+);
+
+console.log(
+"Modal:",
+estrutura.modal?"OK":"ERRO"
+);
+
+console.log(
+"ModalBox:",
+estrutura.modalBox?"OK":"ERRO"
+);
+
+console.log(
+"IDs duplicados:",
+estrutura.idsDuplicados.length
+);
+
+console.log(
+"Erros JavaScript:",
+(window.__museuErros||[]).length
+);
+
+console.log(
+"Faltando linhas do tempo:",
+timelines.faltando
+);
+
+console.log(
+"Correções executadas:",
+correcoes
+);
+
+console.log(
+"STATUS:",
+relatorio.status
+);
+
+console.groupEnd();
+
+return relatorio;
+
+}
+
+
+/* =========================================================
+   REVISÃO ACADÊMICA
+   ========================================================= */
+
+function revisarAcademico(){
+
+const resultado={
+total:MUSEU_MESTRE.pensadores.length,
+verificados:0,
+observacoes:[]
+};
+
+MUSEU_MESTRE.pensadores.forEach(function(nome){
+
+const dados=MUSEU_MESTRE.dadosAcademicos[nome];
+
+if(dados){
+
+resultado.verificados++;
+
+}else{
+
+resultado.observacoes.push(
+"Sem ficha acadêmica mestre: "+nome
+);
+
+}
+
+});
+
+
+/*
+Não altera automaticamente fatos históricos.
+A máquina somente sinaliza ausência.
+Isso evita que uma correção automática invente informação.
+*/
+
+window.museuRevisaoAcademica=resultado;
+
+return resultado;
+
+}
+
+
+/* =========================================================
+   NORMALIZAÇÃO DE NOMES
+   ========================================================= */
+
+function revisarNomes(){
+
+let alteracoes=0;
+
+if(window.thinkers&&Array.isArray(window.thinkers)){
+
+window.thinkers.forEach(function(item){
+
+if(!item)return;
+
+let nome=
+typeof item==="string"
+?item
+:item.nome||item.name||"";
+
+const correto=normalizar(nome);
+
+if(nome&&correto!==nome){
+
+if(typeof item==="string"){
+
+}else if(item.nome){
+
+item.nome=correto;
+
+}else if(item.name){
+
+item.name=correto;
+
+}
+
+alteracoes++;
+
+}
+
+});
+
+}
+
+return alteracoes;
+
+}
+
+
+/* =========================================================
+   BOTÃO DE DIAGNÓSTICO MANUAL
+   ========================================================= */
+
+window.museuDiagnosticoCompleto=function(){
+
+revisarNomes();
+
+const relatorio=diagnostico();
+
+const academico=revisarAcademico();
+
+relatorio.revisaoAcademica=academico;
+
+return relatorio;
+
+};
+
+
+/* =========================================================
+   AUTOCORREÇÃO MANUAL
+   ========================================================= */
+
+window.museuAutocorrigir=function(){
+
+const resultado=corrigirTudo();
+
+revisarNomes();
+
+console.log(
+"🛠️ Autocorreção executada:",
+resultado
+);
+
+return resultado;
+
+};
+
+
+/* =========================================================
+   EXECUÇÃO AUTOMÁTICA
+   ========================================================= */
+
+function iniciarMaquina(){
+
+try{
+
+revisarNomes();
+
+const relatorio=diagnostico();
+
+const academico=revisarAcademico();
+
+relatorio.revisaoAcademica=academico;
+
+console.log(
+"🏛️ Máquina Mestre do Museu iniciada."
+);
+
+}catch(erro){
+
+console.error(
+"❌ A Máquina Mestre encontrou um erro interno:",
+erro
+);
+
+}
+
+}
+
+
+/* =========================================================
+   INÍCIO
+   ========================================================= */
+
+if(document.readyState==="loading"){
+
+document.addEventListener(
+"DOMContentLoaded",
+iniciarMaquina
+);
+
+}else{
+
+iniciarMaquina();
+
+}
+
+})();
+  </script>
   
