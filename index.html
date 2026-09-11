@@ -1133,4 +1133,123 @@ console.log("🏛️ Linhas do tempo individuais: módulo 1 carregado.");
 });
 
 console.log("🏛️ Módulo 2 de linhas do tempo carregado.");
-  
+  <script>
+(function(){
+
+const extras={
+
+"Agostinho de Hipona":[
+["354","Nascimento em Tagaste, no norte da África."],
+["383","Viaja para Roma."],
+["384","Chega a Milão e passa a lecionar retórica."],
+["386","Passa por uma importante transformação intelectual e religiosa."],
+["387","É batizado em Milão."],
+["391","É ordenado sacerdote em Hipona."],
+["395/396","Torna-se bispo de Hipona."],
+["397–400","Escreve Confissões."],
+["413–426","Desenvolve A Cidade de Deus."],
+["430","Morre em Hipona."],
+["Legado","Uma das figuras mais influentes da filosofia e teologia cristãs."]
+],
+
+"Tomás de Aquino":[
+["c. 1225","Nascimento na Itália."],
+["1239–1244","Estuda na Universidade de Nápoles."],
+["1244","Ingressa na Ordem Dominicana."],
+["1245","Vai para Paris para continuar seus estudos."],
+["1248–1252","Estuda em Colônia com Alberto Magno."],
+["1256","Obtém reconhecimento como mestre em teologia."],
+["1265–1274","Desenvolve grande parte de sua produção filosófica e teológica."],
+["1265–1274","Produz a Suma Teológica."],
+["1274","Morre no mosteiro de Fossanova."],
+["Legado","Grande referência da escolástica e da síntese entre Aristóteles e o pensamento cristão."]
+],
+
+"Averróis":[
+["1126","Nascimento em Córdoba, no al-Andalus."],
+["Juventude","Estuda direito, medicina e filosofia."],
+["1169","É nomeado juiz em Sevilha."],
+["1170s","Ocupa importantes funções jurídicas em Córdoba."],
+["1182","Torna-se médico da corte almóada."],
+["Século XII","Produz extensos comentários sobre Aristóteles."],
+["1195","Enfrenta dificuldades políticas e é afastado temporariamente de suas funções."],
+["1198","Morre em Marrakech."],
+["Séculos posteriores","Seus comentários sobre Aristóteles influenciam a filosofia medieval europeia."],
+["Legado","Um dos principais intérpretes medievais de Aristóteles."]
+],
+
+"Leonardo da Vinci":[
+["1452","Nascimento em Vinci, na Toscana."],
+["c. 1469–1472","Entra no ambiente artístico de Andrea del Verrocchio."],
+["1472","É registrado na corporação dos pintores de Florença."],
+["1482","Vai para Milão."],
+["1480s–1490s","Desenvolve estudos de arte, engenharia, anatomia e natureza."],
+["1495–1498","Pinta A Última Ceia."],
+["1503–1506","Trabalha em projetos artísticos, incluindo a Mona Lisa."],
+["1513","Vai para Roma."],
+["1516","Muda-se para a França."],
+["1519","Morre em Amboise."],
+["Legado","Símbolo do Renascimento e da integração entre arte, ciência e investigação."]
+]
+
+};
+
+function carregar(){
+
+if(!window.linhasTempoMuseu){
+window.linhasTempoMuseu={};
+}
+
+Object.assign(window.linhasTempoMuseu,extras);
+
+window.openTimeline=function(nome){
+
+const dados=window.linhasTempoMuseu[nome];
+
+const modal=document.getElementById("modal");
+const box=document.getElementById("modalBox");
+
+if(!modal||!box)return;
+
+if(!dados){
+
+box.innerHTML=
+'<button class="close" onclick="closeModal()">×</button>'+
+'<div class="period">Linha do tempo</div>'+
+'<h2>📜 '+esc(nome)+'</h2>'+
+'<div class="content"><p>A linha do tempo individual deste pensador será acrescentada ao acervo.</p></div>';
+
+}else{
+
+box.innerHTML=
+'<button class="close" onclick="closeModal()">×</button>'+
+'<div class="period">Linha do tempo individual</div>'+
+'<h2>📜 '+esc(nome)+'</h2>'+
+'<div class="timeline">'+
+dados.map(function(item){
+return '<div class="event">'+
+'<i></i>'+
+'<strong>'+esc(item[0])+'</strong>'+
+'<p>'+esc(item[1])+'</p>'+
+'</div>';
+}).join("")+
+'</div>';
+
+}
+
+modal.classList.add("show");
+
+};
+
+console.log("🏛️ Banco complementar de linhas do tempo carregado.");
+
+}
+
+if(document.readyState==="loading"){
+document.addEventListener("DOMContentLoaded",carregar);
+}else{
+carregar();
+}
+
+})();
+  </script>
