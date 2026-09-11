@@ -1639,3 +1639,142 @@ instalar();
 
 })();
   </script>
+  <script>
+(function(){
+
+const novasLinhas={
+
+"Paulo Freire":[
+["1921","Nascimento em Recife, Pernambuco."],
+["1930s","Vivencia dificuldades econômicas durante a infância, experiência que influencia sua reflexão posterior sobre educação e desigualdade."],
+["1943","Ingressa na Faculdade de Direito do Recife."],
+["1947","Começa a trabalhar no Serviço Social da Indústria (SESI), aproximando-se dos problemas educacionais dos trabalhadores."],
+["1950s","Desenvolve experiências de alfabetização e educação de adultos."],
+["1963","Realiza experiência de alfabetização em Angicos, no Rio Grande do Norte, envolvendo centenas de trabalhadores."],
+["1964","Após o golpe militar no Brasil, é preso e posteriormente deixa o país."],
+["1968","Conclui Pedagogia do Oprimido, publicada inicialmente no exterior."],
+["1970","Pedagogia do Oprimido ganha edição em inglês e passa a alcançar leitores internacionais."],
+["1979","Retorna ao Brasil após anos de exílio."],
+["1989","Assume a Secretaria Municipal de Educação de São Paulo."],
+["1996","Publica Pedagogia da Autonomia."],
+["1997","Morre em São Paulo."],
+["Legado","Tornou-se uma das maiores referências mundiais da educação crítica, dialógica e popular."]
+],
+
+"Nelson Mandela":[
+["1918","Nascimento em Mvezo, na África do Sul."],
+["1939","Ingressa na Universidade de Fort Hare."],
+["1941","Muda-se para Joanesburgo."],
+["1944","Participa da fundação da Liga da Juventude do Congresso Nacional Africano (ANC)."],
+["1952","Participa da Campanha de Desafio contra as leis do apartheid."],
+["1956","É preso com outros ativistas no chamado Julgamento por Traição."],
+["1961","Passa a atuar na organização armada Umkhonto we Sizwe, ligada ao ANC."],
+["1962","É preso pelas autoridades sul-africanas."],
+["1964","É condenado à prisão perpétua no Julgamento de Rivonia."],
+["1964–1982","Permanece preso na Ilha Robben."],
+["1985","Recusa uma oferta de liberdade condicionada que exigia renunciar à luta política."],
+["1990","É libertado após 27 anos de prisão."],
+["1991","É eleito presidente do ANC."],
+["1993","Recebe o Prêmio Nobel da Paz juntamente com F. W. de Klerk."],
+["1994","É eleito presidente da África do Sul nas primeiras eleições nacionais democráticas multirraciais."],
+["1999","Deixa a presidência."],
+["2013","Morre em Joanesburgo."],
+["Legado","Tornou-se símbolo mundial da resistência ao apartheid, da igualdade e da reconciliação."]
+],
+
+"Martin Luther King Jr.":[
+["1929","Nascimento em Atlanta, Georgia, Estados Unidos."],
+["1944","Ingressa no Morehouse College."],
+["1948","Conclui sua graduação e inicia estudos teológicos."],
+["1951","Conclui estudos no Crozer Theological Seminary."],
+["1954","Torna-se pastor da Dexter Avenue Baptist Church, em Montgomery."],
+["1955","Lidera, ao lado de outros ativistas, o movimento de boicote aos ônibus de Montgomery."],
+["1957","Ajuda a fundar a Southern Christian Leadership Conference (SCLC)."],
+["1963","Participa das grandes mobilizações por direitos civis em Birmingham e Washington."],
+["1963","Profere o discurso conhecido como I Have a Dream."],
+["1964","É aprovada a Civil Rights Act nos Estados Unidos."],
+["1964","Recebe o Prêmio Nobel da Paz."],
+["1965","Participa das campanhas pelo direito de voto e das marchas de Selma."],
+["1967","Amplia sua atuação para temas relacionados à pobreza e à Guerra do Vietnã."],
+["1968","É assassinado em Memphis, Tennessee."],
+["Legado","Tornou-se uma das principais referências mundiais da luta pelos direitos civis e da resistência não violenta."]
+],
+
+"Carl Sagan":[
+["1934","Nascimento em Brooklyn, Nova York."],
+["1951","Ingressa na Universidade de Chicago."],
+["1955","Conclui sua graduação em física."],
+["1956","Obtém mestrado em física."],
+["1960","Obtém doutorado em astronomia e astrofísica."],
+["1960s","Participa de pesquisas relacionadas a planetas e à exploração espacial."],
+["1968","Passa a atuar na Universidade Cornell."],
+["1972","Participa de estudos e projetos ligados às missões espaciais da NASA."],
+["1977","Publica Os Dragões do Éden."],
+["1980","Cosmos é lançado como livro e série de televisão, alcançando enorme público internacional."],
+["1985","Publica Contato, romance que posteriormente seria adaptado para o cinema."],
+["1994","Publica Pálido Ponto Azul."],
+["1995","Publica O Mundo Assombrado pelos Demônios."],
+["1996","Morre em Seattle, Washington."],
+["Legado","Popularizou a astronomia e o pensamento científico e tornou-se uma das vozes mais importantes da divulgação científica do século XX."]
+]
+
+};
+
+function instalar(){
+
+if(!window.linhasTempoMuseu){
+window.linhasTempoMuseu={};
+}
+
+Object.assign(window.linhasTempoMuseu,novasLinhas);
+
+window.openTimeline=function(nome){
+
+const dados=window.linhasTempoMuseu[nome];
+const modal=document.getElementById("modal");
+const box=document.getElementById("modalBox");
+
+if(!modal||!box)return;
+
+if(!dados){
+
+box.innerHTML=
+'<button class="close" onclick="closeModal()">×</button>'+
+'<div class="period">Linha do tempo</div>'+
+'<h2>📜 '+esc(nome)+'</h2>'+
+'<div class="content"><p>A linha do tempo individual deste pensador será acrescentada ao acervo.</p></div>';
+
+}else{
+
+box.innerHTML=
+'<button class="close" onclick="closeModal()">×</button>'+
+'<div class="period">Linha do tempo individual</div>'+
+'<h2>📜 '+esc(nome)+'</h2>'+
+'<div class="timeline">'+
+dados.map(function(item){
+return '<div class="event">'+
+'<i></i>'+
+'<strong>'+esc(item[0])+'</strong>'+
+'<p>'+esc(item[1])+'</p>'+
+'</div>';
+}).join("")+
+'</div>';
+
+}
+
+modal.classList.add("show");
+
+};
+
+console.log("🏛️ Módulo 6 carregado.");
+
+}
+
+if(document.readyState==="loading"){
+document.addEventListener("DOMContentLoaded",instalar);
+}else{
+instalar();
+}
+
+})();
+  </script>
