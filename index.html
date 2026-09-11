@@ -1376,3 +1376,132 @@ instalar();
 
 })();
   </script>
+  <script>
+(function(){
+
+const novasLinhas={
+
+"Voltaire":[
+["1694","Nascimento de François-Marie Arouet, posteriormente conhecido como Voltaire, em Paris."],
+["1717","É preso na Bastilha por causa de seus escritos e conflitos políticos."],
+["1726","Vai para a Inglaterra, onde entra em contato com ideias políticas, científicas e filosóficas inglesas."],
+["1734","Publica as Cartas Filosóficas, obra que apresenta aspectos do pensamento inglês ao público francês."],
+["1750","Viaja para a corte de Frederico II da Prússia."],
+["1759","Publica Cândido, uma de suas obras literárias mais conhecidas."],
+["1763","Publica o Tratado sobre a Tolerância."],
+["1764","Publica o Dicionário Filosófico."],
+["1760s–1770s","Atua intensamente em campanhas contra o fanatismo e em defesa da tolerância."],
+["1778","Retorna a Paris e recebe grande reconhecimento público."],
+["1778","Morre em Paris."],
+["Legado","Tornou-se um dos principais símbolos do Iluminismo francês e da defesa da tolerância e da liberdade de pensamento."]
+],
+
+"Immanuel Kant":[
+["1724","Nascimento em Königsberg, na Prússia."],
+["1732","Ingressa no Collegium Fridericianum para sua formação inicial."],
+["1740","Entra na Universidade de Königsberg."],
+["1746","Conclui sua primeira obra importante e inicia atividade como preceptor particular."],
+["1755","Obtém habilitação para lecionar na Universidade de Königsberg."],
+["1770","Assume a cátedra de lógica e metafísica em Königsberg."],
+["1781","Publica a primeira edição da Crítica da Razão Pura."],
+["1785","Publica a Fundamentação da Metafísica dos Costumes."],
+["1788","Publica a Crítica da Razão Prática."],
+["1790","Publica a Crítica da Faculdade de Julgar."],
+["1797","Publica a Metafísica dos Costumes."],
+["1804","Morre em Königsberg."],
+["Legado","Sua filosofia transformou os debates modernos sobre conhecimento, razão, ética, liberdade e estética."]
+],
+
+"Karl Marx":[
+["1818","Nascimento em Trier, na Prússia."],
+["1835","Ingressa na Universidade de Bonn."],
+["1836","Continua seus estudos na Universidade de Berlim."],
+["1841","Obtém o título de doutor pela Universidade de Jena."],
+["1842","Passa a trabalhar como jornalista e editor da Rheinische Zeitung."],
+["1843","Muda-se para Paris e entra em contato com diferentes correntes socialistas."],
+["1844","Conhece Friedrich Engels em Paris, iniciando uma colaboração intelectual duradoura."],
+["1848","Publica com Engels o Manifesto do Partido Comunista."],
+["1849","Estabelece-se em Londres após ser expulso de diferentes países europeus."],
+["1859","Publica Contribuição à Crítica da Economia Política."],
+["1867","Publica o primeiro volume de O Capital."],
+["1871","Analisa a experiência da Comuna de Paris."],
+["1883","Morre em Londres."],
+["Legado","Sua crítica do capitalismo e sua análise das classes sociais influenciaram profundamente filosofia, economia, sociologia e política."]
+],
+
+"Charles Darwin":[
+["1809","Nascimento em Shrewsbury, na Inglaterra."],
+["1825","Ingressa na Universidade de Edimburgo para estudar medicina."],
+["1828","Vai para Cambridge, onde desenvolve interesse crescente pela história natural."],
+["1831","Parte na viagem do HMS Beagle."],
+["1832–1835","Realiza observações e coleta materiais em diferentes regiões da América do Sul."],
+["1836","Retorna à Inglaterra após quase cinco anos de viagem."],
+["1837","Começa a desenvolver sistematicamente suas ideias sobre transformação das espécies."],
+["1858","Apresenta, junto com Alfred Russel Wallace, trabalhos sobre seleção natural."],
+["1859","Publica A Origem das Espécies."],
+["1871","Publica A Descendência do Homem."],
+["1881","Publica trabalhos sobre minhocas e sua importância na formação do solo."],
+["1882","Morre em Down, na Inglaterra, e é sepultado na Abadia de Westminster."],
+["Legado","Sua teoria da evolução por seleção natural transformou a biologia e a compreensão científica da diversidade da vida."]
+]
+
+};
+
+function instalar(){
+
+if(!window.linhasTempoMuseu){
+window.linhasTempoMuseu={};
+}
+
+Object.assign(window.linhasTempoMuseu,novasLinhas);
+
+window.openTimeline=function(nome){
+
+const dados=window.linhasTempoMuseu[nome];
+const modal=document.getElementById("modal");
+const box=document.getElementById("modalBox");
+
+if(!modal||!box)return;
+
+if(!dados){
+
+box.innerHTML=
+'<button class="close" onclick="closeModal()">×</button>'+
+'<div class="period">Linha do tempo</div>'+
+'<h2>📜 '+esc(nome)+'</h2>'+
+'<div class="content"><p>A linha do tempo individual deste pensador será acrescentada ao acervo.</p></div>';
+
+}else{
+
+box.innerHTML=
+'<button class="close" onclick="closeModal()">×</button>'+
+'<div class="period">Linha do tempo individual</div>'+
+'<h2>📜 '+esc(nome)+'</h2>'+
+'<div class="timeline">'+
+dados.map(function(item){
+return '<div class="event">'+
+'<i></i>'+
+'<strong>'+esc(item[0])+'</strong>'+
+'<p>'+esc(item[1])+'</p>'+
+'</div>';
+}).join("")+
+'</div>';
+
+}
+
+modal.classList.add("show");
+
+};
+
+console.log("🏛️ Módulo 4 carregado.");
+
+}
+
+if(document.readyState==="loading"){
+document.addEventListener("DOMContentLoaded",instalar);
+}else{
+instalar();
+}
+
+})();
+  </script>
