@@ -861,3 +861,114 @@ if(document.readyState==="loading"){
 
 })();
 </script>
+  <script>
+/* ==========================================
+   MUSEU — CORREÇÃO DOS BOTÕES
+   ========================================== */
+
+function abrirModalMuseu(titulo,conteudo){
+
+ const modal=document.getElementById("modal");
+ const box=document.getElementById("modalBox");
+
+ if(!modal||!box)return;
+
+ box.innerHTML=
+ '<button class="close" onclick="closeModal()">×</button>'+
+ '<div class="period">Museu Virtual dos Pensadores</div>'+
+ '<h2>'+titulo+'</h2>'+
+ '<div class="content">'+conteudo+'</div>';
+
+ modal.classList.add("show");
+}
+
+/* BOTÃO VISITAR */
+
+window.openThinker=function(nome){
+
+ const dados=thinkers.find(function(t){
+  return t[0]===nome;
+ });
+
+ if(!dados){
+  abrirModalMuseu(
+   nome,
+   "<p>Informações deste pensador ainda estão sendo preparadas.</p>"
+  );
+  return;
+ }
+
+ abrirModalMuseu(
+  esc(nome),
+  "<p><strong>Período:</strong> "+esc(dados[2])+"</p>"+
+  "<p><strong>Escola histórica:</strong> "+esc(dados[1])+"</p>"+
+  "<p>A exposição individual de <strong>"+esc(nome)+
+  "</strong> faz parte do acervo do Museu Virtual dos Pensadores Universais.</p>"+
+  "<p>Biografia, contexto histórico, ideias, obras, influência e linha do tempo serão organizados individualmente para este pensador.</p>"+
+  '<div class="card-actions">'+
+  '<button class="gold" onclick="openTimeline(\''+
+  esc(nome)+
+  '\')">📜 Linha do tempo</button>'+
+  '</div>'
+ );
+
+};
+
+/* BOTÃO LINHA DO TEMPO */
+
+window.openTimeline=function(nome){
+
+ const dados=thinkers.find(function(t){
+  return t[0]===nome;
+ });
+
+ if(!dados){
+  abrirModalMuseu(
+   "Linha do Tempo",
+   "<p>Pensador não encontrado.</p>"
+  );
+  return;
+ }
+
+ abrirModalMuseu(
+  "📜 Linha do Tempo — "+esc(nome),
+  '<div class="timeline">'+
+   '<div class="event">'+
+    '<i></i>'+
+    '<strong>'+esc(dados[2])+'</strong>'+
+    '<p>Período histórico associado a '+esc(nome)+'.</p>'+
+   '</div>'+
+   '<div class="event">'+
+    '<i></i>'+
+    '<strong>Trajetória intelectual</strong>'+
+    '<p>Esta linha do tempo será preenchida com os acontecimentos específicos da vida, formação, obras e legado de '+esc(nome)+'.</p>'+
+   '</div>'+
+   '<div class="event">'+
+    '<i></i>'+
+    '<strong>Legado</strong>'+
+    '<p>O Museu apresentará individualmente a influência histórica e intelectual de '+esc(nome)+'.</p>'+
+   '</div>'+
+  '</div>'
+ );
+
+};
+
+/* GARANTE QUE O MODAL FECHE */
+
+window.closeModal=function(){
+
+ const modal=document.getElementById("modal");
+
+ if(modal){
+  modal.classList.remove("show");
+ }
+
+};
+
+/* TESTE AUTOMÁTICO */
+
+console.log(
+ "🏛️ Museu: botões Visitar e Linha do Tempo corrigidos."
+);
+
+  </script>
