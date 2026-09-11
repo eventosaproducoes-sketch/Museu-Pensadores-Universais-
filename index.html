@@ -1253,3 +1253,126 @@ carregar();
 
 })();
   </script>
+  <script>
+(function(){
+
+const novasLinhas={
+
+"Nicolau Maquiavel":[
+["1469","Nascimento em Florença, na Itália."],
+["1498","Entra para o serviço público da República de Florença."],
+["1498–1512","Atua como diplomata e funcionário público em diversas missões."],
+["1500–1510","Viaja em missões diplomáticas e observa diferentes formas de governo e organização militar."],
+["1512","A República de Florença cai e os Médici retornam ao poder. Maquiavel perde suas funções."],
+["1513","É preso e posteriormente afastado da vida política. Começa a escrever obras políticas importantes."],
+["1513","Escreve O Príncipe, obra que seria publicada posteriormente."],
+["1517–1519","Desenvolve os Discursos sobre a Primeira Década de Tito Lívio."],
+["1520","Recebe encomendas dos Médici e volta gradualmente a participar da vida intelectual florentina."],
+["1525","Conclui a História de Florença."],
+["1527","Morre em Florença."],
+["Legado","Tornou-se uma referência fundamental para o estudo realista da política e do poder."]
+],
+
+"Erasmo de Roterdã":[
+["c. 1466","Nascimento tradicionalmente situado em Roterdã, nos Países Baixos."],
+["Juventude","Recebe formação religiosa e humanista."],
+["1492","É ordenado sacerdote."],
+["1495–1499","Estuda em Paris e aprofunda sua formação humanista."],
+["1500s","Viaja pela Europa e entra em contato com importantes intelectuais e centros de estudo."],
+["1509","Publica Elogio da Loucura, uma de suas obras mais conhecidas."],
+["1516","Publica uma edição do Novo Testamento em grego acompanhada de tradução latina e notas."],
+["1517–1521","Acompanha os conflitos religiosos provocados pela Reforma Protestante."],
+["1524","Publica Sobre o Livre-Arbítrio, em debate com Martinho Lutero."],
+["1536","Morre em Basileia, na atual Suíça."],
+["Legado","É uma das grandes figuras do Humanismo renascentista europeu."]
+],
+
+"John Locke":[
+["1632","Nascimento em Wrington, na Inglaterra."],
+["1652","Ingressa na Universidade de Oxford."],
+["1660s","Desenvolve interesse crescente por filosofia, medicina e ciência natural."],
+["1667","Conhece Anthony Ashley Cooper, futuro conde de Shaftesbury, e passa a participar mais diretamente da vida política."],
+["1675–1679","Vive na França e amplia seus estudos filosóficos."],
+["1683","Vai para os Países Baixos durante o período de conflitos políticos na Inglaterra."],
+["1689","Retorna à Inglaterra após a Revolução Gloriosa."],
+["1689–1690","Publica Carta sobre a Tolerância e os Dois Tratados sobre o Governo."],
+["1690","Publica Ensaio sobre o Entendimento Humano."],
+["1693","Publica Alguns Pensamentos sobre a Educação."],
+["1704","Morre em Oates, na Inglaterra."],
+["Legado","Sua filosofia do conhecimento e suas ideias sobre liberdade, direitos e governo influenciaram profundamente a modernidade."]
+],
+
+"Jean-Jacques Rousseau":[
+["1712","Nascimento em Genebra."],
+["1728","Sai de Genebra ainda jovem e inicia uma trajetória marcada por mudanças e viagens."],
+["1742","Vai para Paris e entra em círculos intelectuais ligados ao Iluminismo."],
+["1750","Publica o Discurso sobre as Ciências e as Artes."],
+["1755","Publica o Discurso sobre a Origem e os Fundamentos da Desigualdade entre os Homens."],
+["1761","Publica Júlia ou a Nova Heloísa."],
+["1762","Publica Do Contrato Social e Emílio, obras que provocam forte reação política e religiosa."],
+["1762","É obrigado a deixar determinados territórios devido à perseguição provocada por suas obras."],
+["1770","Retorna a Paris e continua seus escritos autobiográficos."],
+["1778","Morre em Ermenonville, na França."],
+["Legado","Influenciou profundamente a filosofia política, a educação, os debates sobre liberdade e a ideia de soberania popular."]
+]
+
+};
+
+function instalar(){
+
+if(!window.linhasTempoMuseu){
+window.linhasTempoMuseu={};
+}
+
+Object.assign(window.linhasTempoMuseu,novasLinhas);
+
+window.openTimeline=function(nome){
+
+const dados=window.linhasTempoMuseu[nome];
+const modal=document.getElementById("modal");
+const box=document.getElementById("modalBox");
+
+if(!modal||!box)return;
+
+if(!dados){
+
+box.innerHTML=
+'<button class="close" onclick="closeModal()">×</button>'+
+'<div class="period">Linha do tempo</div>'+
+'<h2>📜 '+esc(nome)+'</h2>'+
+'<div class="content"><p>A linha do tempo individual deste pensador será acrescentada ao acervo.</p></div>';
+
+}else{
+
+box.innerHTML=
+'<button class="close" onclick="closeModal()">×</button>'+
+'<div class="period">Linha do tempo individual</div>'+
+'<h2>📜 '+esc(nome)+'</h2>'+
+'<div class="timeline">'+
+dados.map(function(item){
+return '<div class="event">'+
+'<i></i>'+
+'<strong>'+esc(item[0])+'</strong>'+
+'<p>'+esc(item[1])+'</p>'+
+'</div>';
+}).join("")+
+'</div>';
+
+}
+
+modal.classList.add("show");
+
+};
+
+console.log("🏛️ Módulo 3 — Maquiavel, Erasmo, Locke e Rousseau carregado.");
+
+}
+
+if(document.readyState==="loading"){
+document.addEventListener("DOMContentLoaded",instalar);
+}else{
+instalar();
+}
+
+})();
+  </script>
