@@ -6962,6 +6962,37 @@ console.log(
 })();
 
   </script>
+  <script>
+/* CORREÇÃO DO SELO — ACERVO EM REVISÃO */
+
+(function(){
+
+  function corrigirTexto(node){
+
+    if(node.nodeType === 3){
+
+      node.nodeValue = node.nodeValue
+        .replace(/✓\s*ACERVO\s+REVISADO/gi,"🟡 ACERVO EM REVISÃO")
+        .replace(/ACERVO\s+REVISADO/gi,"ACERVO EM REVISÃO");
+
+      return;
+    }
+
+    node.childNodes.forEach(corrigirTexto);
+  }
+
+  function aplicar(){
+    corrigirTexto(document.body);
+  }
+
+  if(document.readyState === "loading"){
+    document.addEventListener("DOMContentLoaded",aplicar);
+  }else{
+    aplicar();
+  }
+
+})();
+  </script>
   
   
   
