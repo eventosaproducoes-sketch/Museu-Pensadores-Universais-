@@ -9798,6 +9798,42 @@ console.log("🔬 Conteúdo Expert 02 ativado.");
   console.log("✅ Averróis revisado — 8/8 critérios.");
 })();
 </script>
+  <script>
+(function(){
+  window.passaporteAcademicoMuseu =
+    window.passaporteAcademicoMuseu || {};
+
+  window.passaporteAcademicoMuseu["Leonardo da Vinci"] = {
+    status: "revisado",
+    data: "12/09/2026",
+    versao: "1.1",
+    criterios: {
+      biografia: true,
+      cronologia: true,
+      contexto: true,
+      ideias: true,
+      obras: true,
+      influencia: true,
+      controversias: true,
+      fontes: true
+    },
+    fontes: [
+      {
+        titulo: "Encyclopaedia Britannica — Leonardo da Vinci",
+        url: "https://www.britannica.com/biography/Leonardo-da-Vinci"
+      }
+    ],
+    observacoes:
+      "Revisão documental concluída dos oito critérios do Passaporte Acadêmico."
+  };
+
+  if(typeof window.salvarMemoriaRevisaoMuseu === "function"){
+    window.salvarMemoriaRevisaoMuseu();
+  }
+
+  console.log("✅ Leonardo da Vinci revisado — 8/8 critérios.");
+})();
+  </script>
   
   
   
