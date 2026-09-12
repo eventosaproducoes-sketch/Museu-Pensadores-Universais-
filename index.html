@@ -9314,6 +9314,80 @@ console.log("🔬 Conteúdo Expert 02 ativado.");
   }
 
 })();
+  </script><script>
+/* =====================================================
+   MUSEU — RECUPERAÇÃO DO CONSULTA EXPERT
+   Não apaga código existente.
+   ===================================================== */
+(function(){
+
+  function iniciarExpert(){
+
+    var botao = document.querySelector(
+      'button[onclick*="ConsultaExpert"],' +
+      'button[onclick*="consultaExpert"],' +
+      '[onclick*="abrirConsultaExpert"]'
+    );
+
+    /*
+     * Se o sistema original existir, não mexemos nele.
+     */
+    if(typeof window.abrirConsultaExpert === "function"){
+      console.log("🔬 abrirConsultaExpert encontrado.");
+      return;
+    }
+
+    console.log(
+      "⚠️ Função abrirConsultaExpert não encontrada."
+    );
+
+    /*
+     * Criamos uma função mínima de emergência.
+     */
+    window.abrirConsultaExpert = function(nome){
+
+      var modal = document.querySelector(".modal");
+
+      if(!modal){
+        alert(
+          "🔬 Consulta Expert\n\n"+
+          "Pensador: "+nome+
+          "\n\nO módulo acadêmico está sendo recuperado."
+        );
+        return;
+      }
+
+      modal.innerHTML =
+        '<div class="box">'+
+        '<button class="close" onclick="closeModal()">×</button>'+
+        '<div class="kicker">Consulta acadêmica</div>'+
+        '<h2>🔬 Consulta Expert</h2>'+
+        '<p class="content"><strong>'+
+        nome+
+        '</strong></p>'+
+        '<p class="content">'+
+        'O módulo Expert está em recuperação estrutural. '+
+        'O conteúdo acadêmico será conectado ao banco central '+
+        'sem alterar a revisão ou a linha do tempo.'+
+        '</p>'+
+        '<button class="gold" onclick="closeModal()">Fechar</button>'+
+        '</div>';
+
+      modal.classList.add("show");
+    };
+
+  }
+
+  if(document.readyState === "loading"){
+    document.addEventListener(
+      "DOMContentLoaded",
+      iniciarExpert
+    );
+  }else{
+    iniciarExpert();
+  }
+
+})();
   </script>
   
   
