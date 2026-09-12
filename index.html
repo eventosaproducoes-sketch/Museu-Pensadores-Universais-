@@ -6993,6 +6993,60 @@ console.log(
 
 })();
   </script>
+  <script>
+/* =====================================================
+   CORREÇÃO DEFINITIVA DOS SELOS ACADÊMICOS
+   O PASSAPORTE ACADÊMICO É A FONTE OFICIAL
+   ===================================================== */
+
+(function(){
+
+  window.criarSeloAcademico=function(nome){
+
+    var dados =
+      window.passaporteAcademicoMuseu &&
+      window.passaporteAcademicoMuseu[nome];
+
+    if(!dados){
+      return `
+        <div class="selo-academico">
+          🟡 ACERVO EM REVISÃO
+        </div>
+      `;
+    }
+
+    if(dados.status==="aprovado"){
+      return `
+        <div class="selo-academico">
+          🟢 ✓ ACERVO APROVADO
+          <small>Revisão acadêmica concluída</small>
+        </div>
+      `;
+    }
+
+    if(dados.status==="revisado"){
+      return `
+        <div class="selo-academico">
+          🔵 ACERVO REVISADO
+          <small>Revisão documental concluída</small>
+        </div>
+      `;
+    }
+
+    return `
+      <div class="selo-academico">
+        🟡 ACERVO EM REVISÃO
+        <small>Revisão acadêmica em andamento</small>
+      </div>
+    `;
+  };
+
+  console.log(
+    "✅ Selo acadêmico sincronizado com o Passaporte."
+  );
+
+})();
+  </script>
   
   
   
