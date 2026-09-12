@@ -7336,6 +7336,81 @@ console.log(
 
 })();
   </script>
+  <script>
+/* =====================================================
+   REVISÃO DOCUMENTAL CONCLUÍDA — AGOSTINHO DE HIPONA
+   ===================================================== */
+
+(function(){
+
+  if(!window.passaporteAcademicoMuseu){
+    window.passaporteAcademicoMuseu={};
+  }
+
+  var r=window.passaporteAcademicoMuseu["Agostinho de Hipona"];
+
+  if(!r){
+    r={
+      status:"em_revisao",
+      data:null,
+      versao:"1.0",
+      revisor:"Museu Virtual dos Pensadores Universais",
+      criterios:{},
+      fontes:[],
+      observacoes:[]
+    };
+
+    window.passaporteAcademicoMuseu["Agostinho de Hipona"]=r;
+  }
+
+  var criterios=[
+    "Dados biográficos",
+    "Cronologia",
+    "Contexto histórico",
+    "Principais ideias",
+    "Obras e autoria",
+    "Influência e legado",
+    "Informações controversas",
+    "Fontes utilizadas"
+  ];
+
+  criterios.forEach(function(c){
+    r.criterios[c]="ok";
+  });
+
+  r.status="revisado";
+  r.data="11/09/2026";
+  r.versao="1.1";
+  r.revisor="Museu Virtual dos Pensadores Universais";
+
+  r.fontes=[
+    "Stanford Encyclopedia of Philosophy — Augustine — https://plato.stanford.edu/entries/augustine/",
+    "Internet Encyclopedia of Philosophy — Augustine — https://iep.utm.edu/augustin/"
+  ];
+
+  r.observacoes=[
+    "Agostinho de Hipona viveu de 354 a 430.",
+    "Nasceu em Tagaste, no norte da África romana.",
+    "Foi ordenado sacerdote em 391 e tornou-se bispo de Hipona por volta de 395/396.",
+    "Sua trajetória intelectual envolveu retórica, ceticismo, neoplatonismo e cristianismo.",
+    "Entre seus temas filosóficos estão conhecimento, linguagem, memória, tempo, vontade, liberdade, graça e relação entre fé e razão.",
+    "Confissões é uma obra autobiográfica e filosófica fundamental para compreender sua trajetória intelectual e espiritual.",
+    "A Cidade de Deus foi escrita em contexto de grandes transformações do mundo romano e tornou-se uma de suas obras mais influentes.",
+    "Historicamente, Agostinho deve ser classificado como pensador da Antiguidade Tardia, e não simplesmente como pensador medieval.",
+    "Sua influência posterior sobre a filosofia e a teologia medievais foi extraordinariamente ampla.",
+    "O registro foi classificado como REVISADO DOCUMENTALMENTE, não como aprovação definitiva."
+  ];
+
+  if(typeof window.salvarMemoriaRevisaoMuseu==="function"){
+    window.salvarMemoriaRevisaoMuseu();
+  }
+
+  console.log(
+    "🔵 Agostinho de Hipona: revisão documental concluída — 8/8 critérios."
+  );
+
+})();
+  </script>
   
   
   
