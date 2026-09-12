@@ -8047,6 +8047,137 @@ else painel();
 })();
   </script>
   
+  <script>
+/* =====================================================
+   MODO CONSULTA EXPERT — MUSEU
+   ===================================================== */
+
+(function(){
+
+window.abrirConsultaExpert=function(nome){
+
+var h=window.historias&&window.historias[nome]||{};
+
+var box=document.getElementById("modalBox");
+if(!box)return;
+
+box.innerHTML=`
+<div style="max-width:850px;margin:auto">
+
+<h2>🔬 Consulta Expert</h2>
+
+<p>
+<strong>${nome}</strong><br>
+Modo acadêmico do Museu Virtual dos Pensadores Universais.
+</p>
+
+<div style="padding:15px;border:1px solid #b99a45;border-radius:12px;margin:15px 0">
+<strong>📚 Análise especializada</strong>
+<p>
+${h.bio||"Informações biográficas em revisão documental."}
+</p>
+<p>
+<strong>Contexto:</strong>
+${h.contexto||"Contexto histórico disponível no acervo."}
+</p>
+<p>
+<strong>Ideias:</strong>
+${h.ideias||"Ideias em análise."}
+</p>
+</div>
+
+<h3>🔎 Consultas Expert</h3>
+
+<button onclick="consultaExpert('${nome}','Qual é a principal contribuição filosófica deste pensador?')">
+Principal contribuição
+</button>
+
+<button onclick="consultaExpert('${nome}','Quais são as principais controvérsias acadêmicas?')">
+Controvérsias
+</button>
+
+<button onclick="consultaExpert('${nome}','Como suas ideias influenciaram outros pensadores?')">
+Influência
+</button>
+
+<button onclick="consultaExpert('${nome}','O que é consenso e o que permanece debatido?')">
+Consenso e debate
+</button>
+
+<textarea id="perguntaExpert"
+placeholder="Digite sua consulta acadêmica..."
+style="width:100%;min-height:90px;margin-top:15px;padding:12px;box-sizing:border-box">
+</textarea>
+
+<button onclick="consultaExpert('${nome}')">
+🔬 Consultar
+</button>
+
+<div id="respostaExpert" style="margin-top:20px"></div>
+
+<p style="font-size:.85em;opacity:.75;margin-top:20px">
+⚖️ Modo acadêmico: distingue informações documentadas,
+interpretações e questões controversas. A consulta não substitui
+a análise das fontes acadêmicas.
+</p>
+
+</div>
+`;
+
+};
+
+window.consultaExpert=function(nome,pergunta){
+
+var h=window.historias&&window.historias[nome]||{};
+var p=pergunta||
+(document.getElementById("perguntaExpert")||{}).value||"";
+
+var resposta=document.getElementById("respostaExpert");
+if(!resposta)return;
+
+var texto="";
+
+if(p.toLowerCase().includes("contribuição")){
+texto="<strong>Contribuição:</strong><br>"+
+(h.ideias||"A contribuição deve ser analisada a partir das ideias registradas no acervo.")+
+"<br><br><strong>Leitura expert:</strong> a importância histórica de um pensador deve ser avaliada considerando seu contexto, seus conceitos e sua recepção posterior.";
+}
+
+else if(p.toLowerCase().includes("controvérsia")){
+texto="<strong>Controvérsias:</strong><br>"+
+"Uma análise acadêmica deve separar fatos documentados, interpretações posteriores e pontos que permanecem debatidos entre pesquisadores.";
+}
+
+else if(p.toLowerCase().includes("influência")){
+texto="<strong>Influência e legado:</strong><br>"+
+(h.legado||"O legado deve ser analisado por sua recepção histórica e pela influência exercida sobre outros autores e tradições.")+
+"<br><br>O impacto histórico não significa que todas as interpretações posteriores representem fielmente o pensamento original.";
+}
+
+else if(p.toLowerCase().includes("consenso")||
+p.toLowerCase().includes("debatido")){
+texto="<strong>Consenso e debate:</strong><br>"+
+"Consenso acadêmico corresponde ao que possui forte sustentação documental ou bibliográfica. Questões interpretativas ou controversas devem permanecer explicitamente identificadas no Museu.";
+}
+
+else{
+texto="<strong>Consulta recebida:</strong><br>"+p+
+"<br><br><strong>Resposta metodológica:</strong><br>"+
+"Para responder em nível expert, a questão deve ser confrontada com a biografia, o contexto histórico, as obras, as ideias, a recepção e as fontes acadêmicas do pensador.";
+}
+
+resposta.innerHTML=
+"<div style='padding:18px;border:1px solid #b99a45;border-radius:12px'>"+
+texto+
+"</div>";
+
+};
+
+console.log("🔬 Consulta Expert instalada.");
+
+})();
+  </script>
+  
   
   
   
