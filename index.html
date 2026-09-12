@@ -8517,6 +8517,91 @@ console.log("🔬 Conteúdo Expert 02 ativado.");
   console.log("🛡️ PROTEÇÃO DA REVISÃO ATIVADA");
 })();
   </script>
+  <script>
+(function(){
+
+  /* Preserva o Expert anterior */
+  var consultaAnterior = window.consultaExpert;
+
+  var E3 = {
+
+    "Voltaire":{
+      contrib:"Voltaire foi uma figura central do Iluminismo francês, destacando-se pela defesa da tolerância religiosa, crítica ao fanatismo e valorização da razão e da liberdade intelectual.",
+      cont:"Sua relação com religião, colonialismo, escravidão e algumas posições sobre povos e culturas exige leitura histórica cuidadosa e não deve ser reduzida apenas à imagem de defensor moderno da liberdade.",
+      infl:"Sua obra influenciou debates sobre tolerância, liberdade de expressão, crítica religiosa e pensamento político europeu.",
+      cons:"Há amplo consenso sobre sua importância no Iluminismo, mas há debate sobre até que ponto sua obra constitui uma filosofia sistemática ou principalmente uma intervenção intelectual, literária e política."
+    },
+
+    "Immanuel Kant":{
+      contrib:"Kant transformou a filosofia moderna ao investigar os limites e as condições do conhecimento, além de desenvolver uma influente ética baseada na autonomia e no dever.",
+      cont:"Sua obra contém afirmações sobre raça, gênero e povos que hoje são objeto de crítica acadêmica. Essas posições devem ser apresentadas no contexto histórico sem serem ocultadas.",
+      infl:"Influenciou profundamente a epistemologia, ética, metafísica, filosofia política e filosofia da religião.",
+      cons:"Existe amplo consenso sobre sua importância para a filosofia moderna. Os debates concentram-se principalmente na interpretação de conceitos como coisa em si, liberdade, autonomia e imperativo categórico."
+    },
+
+    "Karl Marx":{
+      contrib:"Marx desenvolveu uma crítica sistemática das relações sociais e econômicas do capitalismo, analisando trabalho, mercadoria, exploração, classes sociais e transformação histórica.",
+      cont:"É necessário distinguir os textos de Marx das interpretações posteriores chamadas de marxismo. Também existem debates sobre determinismo histórico, teoria do valor e diferentes interpretações políticas de sua obra.",
+      infl:"Sua influência alcança filosofia, economia política, sociologia, história, ciência política e movimentos sociais.",
+      cons:"Há amplo reconhecimento de sua importância intelectual, embora exista intenso debate sobre como interpretar sua teoria econômica, sua concepção da história e suas consequências políticas."
+    },
+
+    "Charles Darwin":{
+      contrib:"Darwin formulou, com seleção natural, uma das principais explicações científicas para a diversidade e evolução dos seres vivos.",
+      cont:"A teoria da evolução deve ser distinguida das apropriações sociais posteriores, como o chamado darwinismo social, que não corresponde simplesmente à teoria biológica de Darwin.",
+      infl:"Sua contribuição transformou a biologia e teve consequências profundas para debates sobre natureza, humanidade e história da vida.",
+      cons:"A evolução por descendência com modificação é fundamento da biologia moderna. A investigação científica continua refinando mecanismos, evidências e modelos evolutivos."
+    },
+
+    "Friedrich Nietzsche":{
+      contrib:"Nietzsche criticou valores morais estabelecidos e desenvolveu análises sobre niilismo, moralidade, cultura, poder, interpretação e formação do indivíduo.",
+      cont:"Sua obra é frequentemente apropriada por diferentes correntes políticas. Também existem debates sobre sua relação com nacionalismo, antissemitismo e interpretações posteriores feitas após sua morte.",
+      infl:"Influenciou profundamente filosofia continental, literatura, psicologia, teoria crítica e estudos culturais.",
+      cons:"Existe amplo reconhecimento de sua originalidade, mas suas obras são deliberadamente aforísticas e interpretativamente complexas, produzindo diferentes leituras acadêmicas."
+    },
+
+    "Sigmund Freud":{
+      contrib:"Freud foi fundador da psicanálise e desenvolveu conceitos influentes sobre inconsciente, conflito psíquico, sonhos, sexualidade e formação da personalidade.",
+      cont:"Muitas hipóteses e métodos freudianos são objeto de críticas e debates científicos. É importante distinguir a influência histórica da psicanálise de sua validação empírica como ciência.",
+      infl:"Seu impacto alcançou psicologia, psiquiatria, literatura, cinema, filosofia e cultura ocidental.",
+      cons:"Há consenso sobre sua enorme influência histórica, mas existe forte debate sobre a validade científica de várias formulações específicas da teoria psicanalítica."
+    }
+
+  };
+
+  window.consultaExpert = function(nome, pergunta){
+
+    if(E3[nome]){
+
+      var q = String(pergunta || "").toLowerCase();
+
+      if(q.includes("controv") || q.includes("crític") || q.includes("problema")){
+        return E3[nome].cont;
+      }
+
+      if(q.includes("influ") || q.includes("legado")){
+        return E3[nome].infl;
+      }
+
+      if(q.includes("consenso") || q.includes("debate")){
+        return E3[nome].cons;
+      }
+
+      return E3[nome].contrib;
+    }
+
+    /* Mantém os Experts anteriores funcionando */
+    if(typeof consultaAnterior === "function"){
+      return consultaAnterior(nome, pergunta);
+    }
+
+    return "Consulta acadêmica disponível para este pensador.";
+  };
+
+  console.log("🔬 Conteúdo Expert 03 ativado — módulos anteriores preservados.");
+
+})();
+  </script>
   
   
   
