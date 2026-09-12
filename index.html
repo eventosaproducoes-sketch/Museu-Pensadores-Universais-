@@ -6076,6 +6076,330 @@ console.log(
 
 })();
 </script>
+  <script>
+(function(){
+
+"use strict";
+
+window.abrirPainelRevisaoMuseu=function(){
+
+const banco=
+window.passaporteAcademicoMuseu||{};
+
+const nomes=Object.keys(banco);
+
+let aprovados=0;
+let revisados=0;
+let pendentes=0;
+
+nomes.forEach(function(nome){
+
+const s=banco[nome].status;
+
+if(s==="aprovado") aprovados++;
+else if(s==="revisado") revisados++;
+else pendentes++;
+
+});
+
+
+let painel=
+document.getElementById("painelRevisaoSeguro");
+
+if(!painel){
+
+painel=document.createElement("div");
+
+painel.id="painelRevisaoSeguro";
+
+painel.style.cssText=
+"position:fixed;inset:0;z-index:999999;"+
+"background:rgba(0,0,0,.94);overflow:auto;"+
+"padding:20px;box-sizing:border-box;";
+
+document.body.appendChild(painel);
+
+}
+
+
+let html=
+'<div style="max-width:850px;margin:20px auto;'+
+'background:#111;color:#eee;padding:22px;'+
+'border:1px solid #806b2a;border-radius:15px;">'+
+
+'<button onclick="fecharPainelSeguro()" '+
+'style="float:right;font-size:25px;background:none;'+
+'color:#fff;border:0;cursor:pointer;">×</button>'+
+
+'<h2>🏛️ Revisão Acadêmica do Museu</h2>'+
+
+'<p>🟢 Aprovados: <b>'+aprovados+
+'</b> &nbsp; 🔵 Revisados: <b>'+revisados+
+'</b> &nbsp; 🟡 Pendentes: <b>'+pendentes+'</b></p>'+
+
+'<hr>';
+
+nomes.forEach(function(nome){
+
+const r=banco[nome];
+
+let status=
+r.status==="aprovado"
+?"🟢 REVISADO E APROVADO"
+:r.status==="revisado"
+?"🔵 REVISADO"
+:"🟡 EM REVISÃO";
+
+html+=
+'<div style="padding:12px 0;border-bottom:1px solid #333;">'+
+'<b>'+escaparSeguro(nome)+'</b>'+
+'<br><span>'+status+'</span>'+
+'<br><button onclick="abrirRevisaoSegura(\''+
+nome.replace(/'/g,"\\'")+
+'\')" style="margin-top:7px;padding:7px 12px;cursor:pointer;">'+
+'🔎 Abrir revisão'+
+'</button>'+
+'</div>';
+
+});
+
+
+html+=
+'<br><button onclick="fecharPainelSeguro()" '+
+'style="padding:10px 15px;cursor:pointer;">'+
+'Fechar painel</button>'+
+'</div>';
+
+painel.innerHTML=html;
+painel.style.display="block";
+
+};
+
+
+window.fecharPainelSeguro=function(){
+
+const p=
+document.getElementById("painelRevisaoSeguro");
+
+if(p)p.style.display="none";
+
+};
+
+
+window.abrirRevisaoSegura=function(nome){
+
+const banco=
+window.passaporteAcademicoMuseu||{};
+
+const r=banco[nome];
+
+if(!r)return;
+
+const criterios=[
+"Dados biográficos",
+"Cronologia",
+"Contexto histórico",
+"Principais ideias",
+"Obras e autoria",
+"Influência e legado",
+"Informações controversas",
+"Fontes utilizadas"
+];
+
+let html=
+'<div style="max-width:850px;margin:20px auto;'+
+'background:#111;color:#eee;padding:22px;'+
+'border:1px solid #806b2a;border-radius:15px;">'+
+
+'<button onclick="abrirPainelRevisaoMuseu()" '+
+'style="float:right;padding:7px;cursor:pointer;">← Voltar</button>'+
+
+'<h2>📚 '+escaparSeguro(nome)+'</h2>'+
+
+'<p><b>Status:</b> '+
+(r.status==="aprovado"
+?"🟢 REVISADO E APROVADO"
+:r.status==="revisado"
+?"🔵 REVISADO"
+:"🟡 EM REVISÃO")+
+'</p>'+
+
+'<p><b>Última revisão:</b> '+
+(r.data||"Ainda não realizada")+
+'</p>'+
+
+'<h3>Checklist</h3>';
+
+criterios.forEach(function(c){
+
+const ok=r.criterios&&r.criterios[c]==="ok";
+
+html+=
+'<label style="display:block;padding:9px 0;">'+
+'<input type="checkbox" data-criterio="'+
+escaparSeguro(c)+'" '+(ok?"checked":"")+
+'> '+(ok?"✓ ":"○ ")+
+escaparSeguro(c)+
+'</label>';
+
+});
+
+
+html+=
+'<h3>Fontes</h3>'+
+'<textarea id="fontesSeguras" '+
+'style="width:100%;min-height:100px;box-sizing:border-box;">'+
+(r.fontes||[]).join("\n")+
+'</textarea>'+
+
+'<h3>Observações</h3>'+
+'<textarea id="obsSeguras" '+
+'style="width:100%;min-height:100px;box-sizing:border-box;">'+
+(r.observacoes||[]).join("\n")+
+'</textarea>'+
+
+'<br><br>'+
+
+'<button onclick="salvarRevisaoSegura(\''+
+nome.replace(/'/g,"\\'")+
+'\')" style="padding:10px 15px;cursor:pointer;">'+
+'💾 Salvar revisão</button>'+
+
+'</div>';
+
+const painel=
+document.getElementById("painelRevisaoSeguro");
+
+if(painel){
+
+painel.innerHTML=html;
+painel.style.display="block";
+
+}
+
+};
+
+
+window.salvarRevisaoSegura=function(nome){
+
+const r=
+window.passaporteAcademicoMuseu[nome];
+
+if(!r)return;
+
+const criterios=[
+"Dados biográficos",
+"Cronologia",
+"Contexto histórico",
+"Principais ideias",
+"Obras e autoria",
+"Influência e legado",
+"Informações controversas",
+"Fontes utilizadas"
+];
+
+r.criterios=r.criterios||{};
+
+let total=0;
+
+document.querySelectorAll(
+"#painelRevisaoSeguro input[type=checkbox]"
+).forEach(function(input){
+
+const c=input.getAttribute("data-criterio");
+
+r.criterios[c]=input.checked?"ok":"pendente";
+
+if(input.checked)total++;
+
+});
+
+
+const fontes=
+document.getElementById("fontesSeguras");
+
+const obs=
+document.getElementById("obsSeguras");
+
+r.fontes=fontes
+?fontes.value.split("\n").map(x=>x.trim()).filter(Boolean)
+:[];
+
+r.observacoes=obs
+?obs.value.split("\n").map(x=>x.trim()).filter(Boolean)
+:[];
+
+r.data=
+new Date().toLocaleDateString("pt-BR");
+
+r.versao=r.versao||"1.0";
+
+r.status=
+total===criterios.length
+?"revisado"
+:"em_revisao";
+
+alert(
+"Revisão salva: "+
+total+"/"+criterios.length+
+" critérios conferidos."
+);
+
+abrirPainelRevisaoMuseu();
+
+};
+
+
+function escaparSeguro(texto){
+
+return String(texto||"")
+.replace(/&/g,"&amp;")
+.replace(/</g,"&lt;")
+.replace(/>/g,"&gt;")
+.replace(/"/g,"&quot;")
+.replace(/'/g,"&#039;");
+
+}
+
+
+/* Liga o botão que já existe */
+
+function ligar(){
+
+const botao=
+document.getElementById(
+"botaoPainelRevisaoMuseu"
+);
+
+if(botao){
+
+botao.onclick=
+window.abrirPainelRevisaoMuseu;
+
+}
+
+console.log(
+"🏛️ Ponte do Painel de Revisão ativada."
+);
+
+}
+
+
+if(document.readyState==="loading"){
+
+document.addEventListener(
+"DOMContentLoaded",
+ligar
+);
+
+}else{
+
+ligar();
+
+}
+
+})();
+  </script>
   
   
   
