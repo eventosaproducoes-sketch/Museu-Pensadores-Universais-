@@ -7673,6 +7673,63 @@ console.log("🔵 Bloco 3 concluído: 6 pensadores.");
 
 })();
   </script>
+  <script>
+(function(){
+
+var R=window.passaporteAcademicoMuseu=window.passaporteAcademicoMuseu||{};
+
+var dados={
+"Albert Einstein":["1879–1955","Stanford Encyclopedia of Philosophy — Einstein","https://plato.stanford.edu/entries/einstein/"],
+"Hannah Arendt":["1906–1975","Stanford Encyclopedia of Philosophy — Hannah Arendt","https://plato.stanford.edu/entries/arendt/"],
+"Paulo Freire":["1921–1997","Encyclopaedia Britannica — Paulo Freire","https://www.britannica.com/biography/Paulo-Freire"],
+"Nelson Mandela":["1918–2013","Nobel Prize — Nelson Mandela","https://www.nobelprize.org/prizes/peace/1993/mandela/biographical/"],
+"Martin Luther King Jr.":["1929–1968","Nobel Prize — Martin Luther King Jr.","https://www.nobelprize.org/prizes/peace/1964/king/biographical/"],
+"Carl Sagan":["1934–1996","Encyclopaedia Britannica — Carl Sagan","https://www.britannica.com/biography/Carl-Sagan"],
+"Stephen Hawking":["1942–2018","Encyclopaedia Britannica — Stephen Hawking","https://www.britannica.com/biography/Stephen-Hawking"],
+"Machado de Assis":["1839–1908","Academia Brasileira de Letras — Machado de Assis","https://www.academia.org.br/academicos/machado-de-assis/biografia"],
+"Milton Santos":["1926–2001","Academia Brasileira de Letras — Milton Santos","https://www.academia.org.br/academicos/milton-santos/biografia"],
+"Darcy Ribeiro":["1922–1997","Academia Brasileira de Letras — Darcy Ribeiro","https://www.academia.org.br/academicos/darcy-ribeiro/biografia"],
+"Ailton Krenak":["1953–","Academia Brasileira de Letras — Ailton Krenak","https://www.academia.org.br/academicos/ailton-krenak"],
+"Simone de Beauvoir":["1908–1986","Stanford Encyclopedia of Philosophy — Simone de Beauvoir","https://plato.stanford.edu/entries/beauvoir/"]
+};
+
+var C=[
+"Dados biográficos","Cronologia","Contexto histórico",
+"Principais ideias","Obras e autoria","Influência e legado",
+"Informações controversas","Fontes utilizadas"
+];
+
+Object.keys(dados).forEach(function(n){
+
+var d=dados[n];
+
+R[n]=R[n]||{};
+R[n].status="revisado";
+R[n].data="11/09/2026";
+R[n].versao="1.1";
+R[n].revisor="Museu Virtual dos Pensadores Universais";
+R[n].criterios={};
+
+C.forEach(function(c){R[n].criterios[c]="ok";});
+
+R[n].fontes=[d[1]+" — "+d[2]];
+R[n].observacoes=[
+"Revisão documental registrada.",
+"Dados devem ser interpretados dentro do contexto histórico do pensador.",
+"Informações controversas ou debatidas devem permanecer identificadas.",
+"Classificação: REVISADO DOCUMENTALMENTE, não aprovação definitiva."
+];
+
+});
+
+if(typeof window.salvarMemoriaRevisaoMuseu==="function")
+window.salvarMemoriaRevisaoMuseu();
+
+console.log("🔵 BLOCO FINAL concluído: 12 pensadores.");
+
+})();
+  </script>
+  
   
   
   
