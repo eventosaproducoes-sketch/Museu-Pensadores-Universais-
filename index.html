@@ -9955,6 +9955,45 @@ console.log("🔬 Conteúdo Expert 02 ativado.");
   console.log("✅ John Locke revisado — 8/8 critérios.");
 })();
   </script>
+  <script>
+(function(){
+  window.passaporteAcademicoMuseu =
+    window.passaporteAcademicoMuseu || {};
+
+  window.passaporteAcademicoMuseu["Jean-Jacques Rousseau"] = {
+    status: "revisado",
+    data: "12/09/2026",
+    versao: "1.1",
+
+    criterios: {
+      biografia: true,
+      cronologia: true,
+      contexto: true,
+      ideias: true,
+      obras: true,
+      influencia: true,
+      controversias: true,
+      fontes: true
+    },
+
+    fontes: [
+      {
+        titulo: "Stanford Encyclopedia of Philosophy — Jean-Jacques Rousseau",
+        url: "https://plato.stanford.edu/entries/rousseau/"
+      }
+    ],
+
+    observacoes:
+      "Revisão documental concluída dos oito critérios. Foram considerados liberdade, desigualdade, vontade geral, contrato social, educação e as principais controvérsias biográficas e intelectuais relacionadas a Rousseau."
+  };
+
+  if(typeof window.salvarMemoriaRevisaoMuseu === "function"){
+    window.salvarMemoriaRevisaoMuseu();
+  }
+
+  console.log("✅ Jean-Jacques Rousseau revisado — 8/8 critérios.");
+})();
+  </script>
   
   
   
