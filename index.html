@@ -8228,7 +8228,68 @@ console.log("🔬 Ponte Consulta Expert instalada.");
 
 })();
   </script>
-  
+  <script>
+(function(){
+
+window.abrirConsultaExpertSeguro=function(nome){
+
+if(typeof window.abrirConsultaExpert!=="function"){
+alert("Consulta Expert não carregada.");
+return;
+}
+
+try{
+
+window.abrirConsultaExpert(nome);
+
+}catch(e){
+
+console.error("Consulta Expert:",e);
+
+var box=document.getElementById("modalBox");
+
+if(box){
+box.innerHTML=
+"<div style='padding:20px'>"+
+"<h2>🔬 Consulta Expert</h2>"+
+"<p>O modo Expert está disponível, mas encontrou um erro ao abrir.</p>"+
+"</div>";
+}
+
+}
+
+};
+
+document.addEventListener("click",function(e){
+
+var b=e.target.closest("#btnConsultaExpert");
+
+if(!b)return;
+
+e.preventDefault();
+e.stopPropagation();
+
+var nome=b.getAttribute("data-pensador");
+
+if(!nome){
+
+var box=document.getElementById("modalBox");
+var h=box&&box.querySelector("h2");
+
+if(h)
+nome=h.textContent
+.replace("🏛️","")
+.replace("🔬","")
+.trim();
+}
+
+if(nome)
+window.abrirConsultaExpertSeguro(nome);
+
+},true);
+
+})();
+  </script>
   
   
   
