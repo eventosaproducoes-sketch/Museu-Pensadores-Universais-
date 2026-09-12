@@ -7190,6 +7190,81 @@ console.log(
 
 })();
   </script>
+  <script>
+/* =====================================================
+   REVISÃO DOCUMENTAL CONCLUÍDA — ARISTÓTELES
+   ===================================================== */
+
+(function(){
+
+  if(!window.passaporteAcademicoMuseu){
+    window.passaporteAcademicoMuseu={};
+  }
+
+  var r=window.passaporteAcademicoMuseu["Aristóteles"];
+
+  if(!r){
+    r={
+      status:"em_revisao",
+      data:null,
+      versao:"1.0",
+      revisor:"Museu Virtual dos Pensadores Universais",
+      criterios:{},
+      fontes:[],
+      observacoes:[]
+    };
+
+    window.passaporteAcademicoMuseu["Aristóteles"]=r;
+  }
+
+  var criterios=[
+    "Dados biográficos",
+    "Cronologia",
+    "Contexto histórico",
+    "Principais ideias",
+    "Obras e autoria",
+    "Influência e legado",
+    "Informações controversas",
+    "Fontes utilizadas"
+  ];
+
+  criterios.forEach(function(c){
+    r.criterios[c]="ok";
+  });
+
+  r.status="revisado";
+  r.data="11/09/2026";
+  r.versao="1.1";
+  r.revisor="Museu Virtual dos Pensadores Universais";
+
+  r.fontes=[
+    "Stanford Encyclopedia of Philosophy — Aristotle — https://plato.stanford.edu/entries/aristotle/",
+    "Stanford Encyclopedia of Philosophy — Aristotle's Texts — https://plato.stanford.edu/entries/aristotle-text/",
+    "Stanford Encyclopedia of Philosophy — Aristotle's Ethics — https://plato.stanford.edu/entries/aristotle-ethics/"
+  ];
+
+  r.observacoes=[
+    "Aristóteles nasceu em 384 a.C., em Estagira, e morreu em 322 a.C.",
+    "Foi membro da Academia de Platão durante aproximadamente vinte anos.",
+    "Posteriormente desenvolveu pesquisas próprias em diversas áreas, incluindo lógica, filosofia natural, ética, política e metafísica.",
+    "Foi associado à educação de Alexandre, embora a extensão exata dessa relação deva ser apresentada com cautela.",
+    "O corpus aristotélico preservado possui uma história complexa de transmissão, organização e edição.",
+    "Nem todos os textos tradicionalmente associados a Aristóteles podem ser tratados de maneira simples como obras preservadas diretamente de sua produção original.",
+    "A influência de Aristóteles alcançou profundamente a filosofia antiga, medieval, islâmica, judaica e moderna.",
+    "O registro foi classificado como REVISADO DOCUMENTALMENTE, não como aprovação definitiva."
+  ];
+
+  if(typeof window.salvarMemoriaRevisaoMuseu==="function"){
+    window.salvarMemoriaRevisaoMuseu();
+  }
+
+  console.log(
+    "🔵 Aristóteles: revisão documental concluída — 8/8 critérios."
+  );
+
+})();
+  </script>
+  
   
   
   
