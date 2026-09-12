@@ -8290,6 +8290,98 @@ window.abrirConsultaExpertSeguro(nome);
 
 })();
   </script>
+  <script>
+(function(){
+
+var E={
+"Sócrates":{
+contrib:"Sua contribuição central está na prática filosófica do questionamento. Em vez de apresentar um sistema escrito, Sócrates utilizava o diálogo para examinar conceitos como justiça, virtude, conhecimento e vida boa.",
+cont:"O principal problema acadêmico é reconstruir o Sócrates histórico. Ele não deixou escritos próprios conhecidos. Platão, Xenofonte e Aristófanes oferecem representações diferentes.",
+infl:"Sua prática filosófica influenciou profundamente Platão e, por meio dele, grande parte da tradição filosófica ocidental.",
+cons:"É bem estabelecido que Sócrates viveu em Atenas e morreu em 399 a.C. Já a reconstrução exata de suas doutrinas permanece debatida."
+},
+
+"Platão":{
+contrib:"Platão desenvolveu uma filosofia abrangente sobre conhecimento, realidade, alma, ética e política. Seus diálogos transformaram o debate filosófico em investigação sistemática por meio de argumentos.",
+cont:"Uma questão central é distinguir as posições do próprio Platão das ideias colocadas na boca de personagens, especialmente Sócrates.",
+infl:"Sua Academia e seus diálogos exerceram influência duradoura sobre metafísica, epistemologia, ética, política e filosofia da educação.",
+cons:"A autoria dos diálogos é tradicionalmente atribuída a Platão, mas a interpretação de sua evolução filosófica e de algumas obras permanece objeto de debate."
+},
+
+"Aristóteles":{
+contrib:"Aristóteles investigou lógica, metafísica, ética, política, biologia, física e teoria do conhecimento. Sua abordagem combina análise conceitual, argumentação e investigação da natureza.",
+cont:"O corpus aristotélico preservado possui uma história complexa de transmissão, organização e edição. Nem todo texto tradicionalmente associado a Aristóteles deve ser tratado sem ressalvas.",
+infl:"Sua influência alcançou tradições filosóficas gregas, islâmicas, judaicas, cristãs e posteriormente a filosofia moderna.",
+cons:"Sua vida, formação e principais linhas de pensamento são amplamente documentadas; questões de transmissão e autenticidade textual exigem maior cautela."
+},
+
+"Confúcio":{
+contrib:"A tradição confuciana enfatiza formação moral, educação, relações humanas, ritual, responsabilidade e cultivo do caráter.",
+cont:"A reconstrução histórica de Confúcio depende de fontes posteriores, e diferentes tradições preservaram versões distintas de sua vida e ensinamentos.",
+infl:"Sua tradição influenciou profundamente a educação, a ética e a organização social de várias sociedades do Leste Asiático.",
+cons:"As datas tradicionais são 551–479 a.C.; porém, detalhes biográficos e a formação dos Analectos devem ser tratados com cautela histórica."
+},
+
+"Agostinho de Hipona":{
+contrib:"Agostinho articulou questões filosóficas e cristãs sobre conhecimento, memória, tempo, vontade, liberdade, graça e interioridade.",
+cont:"Sua obra exige distinguir seu contexto da Antiguidade Tardia das interpretações medievais posteriores que transformaram sua recepção.",
+infl:"Sua influência foi enorme sobre a filosofia e teologia medievais e continuou em debates posteriores sobre subjetividade, tempo, vontade e conhecimento.",
+cons:"Sua vida é relativamente bem documentada, especialmente por Confissões e outras fontes; a interpretação filosófica de suas posições continua debatida."
+},
+
+"Tomás de Aquino":{
+contrib:"Tomás de Aquino procurou integrar filosofia aristotélica e teologia cristã, desenvolvendo argumentos sobre metafísica, ética, conhecimento, lei natural e Deus.",
+cont:"Sua relação entre razão e fé, assim como a interpretação de seus argumentos sobre Deus, continua sendo objeto de diferentes leituras acadêmicas.",
+infl:"Sua síntese filosófico-teológica tornou-se uma das referências mais importantes da escolástica e exerceu influência duradoura na filosofia e teologia.",
+cons:"É amplamente reconhecido como uma figura central da escolástica medieval; detalhes interpretativos de sua obra exigem análise do contexto e dos textos."
+}
+};
+
+window.consultaExpert=function(nome,pergunta){
+
+var d=E[nome];
+var r=document.getElementById("respostaExpert");
+
+if(!r)return;
+
+if(!d){
+r.innerHTML="<div style='padding:18px;border:1px solid #b99a45;border-radius:12px'><strong>🔬 Consulta Expert</strong><br><br>Este pensador ainda está recebendo conteúdo especializado individualizado.</div>";
+return;
+}
+
+var p=(pergunta||
+(document.getElementById("perguntaExpert")||{}).value||"").toLowerCase();
+
+var titulo="Análise especializada";
+var texto=d.contrib;
+
+if(p.includes("controv")){
+titulo="⚖️ Controvérsias acadêmicas";
+texto=d.cont;
+}
+else if(p.includes("influ")){
+titulo="🌎 Influência e legado";
+texto=d.infl;
+}
+else if(p.includes("consenso")||p.includes("debate")){
+titulo="📚 Consenso e questões debatidas";
+texto=d.cons;
+}
+
+r.innerHTML=
+"<div style='padding:18px;border:1px solid #b99a45;border-radius:12px'>"+
+"<h3>"+titulo+"</h3>"+
+"<p>"+texto+"</p>"+
+"<hr>"+
+"<small>🔬 Modo Expert — distingue dados históricos, interpretações e questões acadêmicas debatidas.</small>"+
+"</div>";
+
+};
+
+console.log("🔬 Conteúdo Expert 01 ativado.");
+
+})();
+  </script>
   
   
   
