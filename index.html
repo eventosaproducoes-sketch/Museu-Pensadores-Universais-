@@ -7974,6 +7974,44 @@ return{ok:ok,problemas:erros};
 console.log("🛡️ Auditoria corrigida.");
 })();
   </script>
+  <script>
+(function(){
+
+var nomes=[
+"Averróis","Leonardo da Vinci","Nicolau Maquiavel","Erasmo de Roterdã",
+"John Locke","Jean-Jacques Rousseau","Voltaire","Immanuel Kant",
+"Karl Marx","Charles Darwin","Friedrich Nietzsche","Sigmund Freud",
+"Albert Einstein","Hannah Arendt","Paulo Freire","Nelson Mandela",
+"Martin Luther King Jr.","Carl Sagan","Stephen Hawking","Machado de Assis",
+"Milton Santos","Darcy Ribeiro","Ailton Krenak","Simone de Beauvoir"
+];
+
+var R=window.passaporteAcademicoMuseu=
+window.passaporteAcademicoMuseu||{};
+
+nomes.forEach(function(n){
+
+R[n]=R[n]||{};
+
+R[n].status="em_revisao";
+R[n].data=null;
+R[n].versao="1.0";
+R[n].criterios={};
+R[n].fontes=[];
+R[n].observacoes=[
+"Revisão acadêmica individual ainda não concluída."
+];
+
+});
+
+if(typeof window.salvarMemoriaRevisaoMuseu==="function")
+window.salvarMemoriaRevisaoMuseu();
+
+console.log("🟡 24 fichas retornaram para revisão individual.");
+
+})();
+  </script>
+  
   
   
   
