@@ -6865,6 +6865,66 @@ console.log(
 
 })();
   </script>
+  <script>
+/* =====================================================
+   PASSAPORTE ACADÊMICO — BLOCO 01
+   5 PRIMEIROS PENSADORES
+   ===================================================== */
+
+(function(){
+
+  window.registroAcademico01 = {
+
+    "Sócrates":{
+      status:"🔵 Revisado documentalmente",
+      criterios:8,
+      fonte:"Stanford Encyclopedia of Philosophy — Socrates",
+      observacao:"Revisão considera a ausência de escritos próprios e o problema socrático."
+    },
+
+    "Platão":{
+      status:"🔵 Revisado documentalmente",
+      criterios:8,
+      fonte:"Stanford Encyclopedia of Philosophy — Plato",
+      observacao:"Data de nascimento apresentada como aproximada e distinção entre Platão e o personagem Sócrates."
+    },
+
+    "Aristóteles":{
+      status:"🔵 Revisado documentalmente",
+      criterios:8,
+      fonte:"Stanford Encyclopedia of Philosophy — Aristotle",
+      observacao:"Considerada a história complexa de transmissão do corpus aristotélico."
+    },
+
+    "Confúcio":{
+      status:"🔵 Revisado documentalmente",
+      criterios:8,
+      fonte:"Stanford Encyclopedia of Philosophy — Confucius",
+      observacao:"Biografia tratada com cautela devido às fontes posteriores e às diferentes tradições."
+    },
+
+    "Agostinho de Hipona":{
+      status:"🔵 Revisado documentalmente",
+      criterios:8,
+      fonte:"Stanford Encyclopedia of Philosophy — Augustine",
+      observacao:"Classificação histórica corrigida para Antiguidade Tardia, mantendo sua importância para a filosofia medieval."
+    }
+
+  };
+
+  window.consultarRegistroAcademico01=function(nome){
+    return window.registroAcademico01[nome] || null;
+  };
+
+  console.log(
+    "✅ Passaporte acadêmico — bloco 01:",
+    Object.keys(window.registroAcademico01).length,
+    "registros."
+  );
+
+})();
+  </script>
+  
   
   
   
