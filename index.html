@@ -8910,6 +8910,220 @@ console.log("🔬 Conteúdo Expert 02 ativado.");
 
 })();
   </script>
+                                                <script>
+/* =========================================================
+   MUSEU — CAMADA MESTRE DE ESTADO ACADÊMICO
+   Não apaga nem modifica os módulos anteriores.
+   ========================================================= */
+(function(){
+
+  "use strict";
+
+  var CHAVE = "museuPensadoresRevisaoAcademica_v1";
+
+  var REVISADOS = [
+    "Sócrates",
+    "Platão",
+    "Aristóteles",
+    "Confúcio",
+    "Agostinho de Hipona",
+    "Tomás de Aquino"
+  ];
+
+  var PENSADORES = [
+    "Sócrates",
+    "Platão",
+    "Aristóteles",
+    "Confúcio",
+    "Agostinho de Hipona",
+    "Tomás de Aquino",
+    "Averróis",
+    "Leonardo da Vinci",
+    "Nicolau Maquiavel",
+    "Erasmo de Roterdã",
+    "John Locke",
+    "Jean-Jacques Rousseau",
+    "Voltaire",
+    "Immanuel Kant",
+    "Karl Marx",
+    "Charles Darwin",
+    "Friedrich Nietzsche",
+    "Sigmund Freud",
+    "Albert Einstein",
+    "Hannah Arendt",
+    "Paulo Freire",
+    "Nelson Mandela",
+    "Martin Luther King Jr.",
+    "Carl Sagan",
+    "Stephen Hawking",
+    "Machado de Assis",
+    "Milton Santos",
+    "Darcy Ribeiro",
+    "Ailton Krenak",
+    "Simone de Beauvoir"
+  ];
+
+  function eRevisado(nome){
+    return REVISADOS.indexOf(nome) !== -1;
+  }
+
+  function construirEstado(){
+
+    var dados = {};
+
+    try{
+      dados = JSON.parse(
+        localStorage.getItem(CHAVE) || "{}"
+      );
+    }catch(e){
+      dados = {};
+    }
+
+    if(!dados || typeof dados !== "object"){
+      dados = {};
+    }
+
+    PENSADORES.forEach(function(nome){
+
+      if(!dados[nome] || typeof dados[nome] !== "object"){
+        dados[nome] = {};
+      }
+
+      /*
+       * REGRA MESTRA:
+       *
+       * somente os 6 abaixo podem estar revisados.
+       * todos os outros ficam em revisão.
+       */
+
+      if(eRevisado(nome)){
+
+        dados[nome].status = "revisado";
+        dados[nome].versao =
+          dados[nome].versao || "1.1";
+
+      }else{
+
+        dados[nome].status = "em_revisao";
+
+        /*
+         * Não deixamos registros antigos
+         * indicarem aprovação.
+         */
+        delete dados[nome].aprovado;
+      }
+
+    });
+
+    localStorage.setItem(
+      CHAVE,
+      JSON.stringify(dados)
+    );
+
+    return dados;
+  }
+
+
+  /* ---------------------------------------------------------
+     FUNÇÃO MESTRA
+     --------------------------------------------------------- */
+
+  window.estadoAcademicoMuseu = function(){
+
+    var dados = construirEstado();
+
+    var aprovados = 0;
+    var revisados = 0;
+    var pendentes = 0;
+
+    PENSADORES.forEach(function(nome){
+
+      if(dados[nome].status === "aprovado"){
+        aprovados++;
+      }
+
+      else if(dados[nome].status === "revisado"){
+        revisados++;
+      }
+
+      else{
+        pendentes++;
+      }
+
+    });
+
+    return {
+      total:PENSADORES.length,
+      aprovados:aprovados,
+      revisados:revisados,
+      pendentes:pendentes,
+      dados:dados
+    };
+  };
+
+
+  /* ---------------------------------------------------------
+     CORREÇÃO IMEDIATA
+     --------------------------------------------------------- */
+
+  var resultado = window.estadoAcademicoMuseu();
+
+  console.log(
+    "🏛️ ESTADO ACADÊMICO MESTRE",
+    "Total:",resultado.total,
+    "Revisados:",resultado.revisados,
+    "Pendentes:",resultado.pendentes,
+    "Aprovados:",resultado.aprovados
+  );
+
+
+  /* ---------------------------------------------------------
+     CORREÇÃO APÓS O CARREGAMENTO
+     --------------------------------------------------------- */
+
+  window.addEventListener("load",function(){
+
+    setTimeout(function(){
+
+      var r = window.estadoAcademicoMuseu();
+
+      console.log(
+        "🛡️ Proteção acadêmica final:",
+        r.revisados + " revisados",
+        r.pendentes + " em revisão",
+        r.aprovados + " aprovados"
+      );
+
+    },1000);
+
+  });
+
+
+  /*
+   * Função pública para verificar sem alterar
+   * timelines ou Experts.
+   */
+
+  window.verificarEstadoAcademicoMuseu = function(){
+
+    var r = window.estadoAcademicoMuseu();
+
+    alert(
+      "🏛️ ESTADO ACADÊMICO DO MUSEU\n\n"+
+      "Total: "+r.total+"\n"+
+      "🔵 Revisados: "+r.revisados+"\n"+
+      "🟡 Em revisão: "+r.pendentes+"\n"+
+      "🟢 Aprovados: "+r.aprovados
+    );
+
+  };
+
+  console.log(
+    "🛡️ CAMADA MESTRE ACADÊMICA ATIVADA."
+  );
+
+})();
+  </script>
   
   
   
