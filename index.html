@@ -7411,6 +7411,79 @@ console.log(
 
 })();
   </script>
+  <script>
+/* =====================================================
+   REVISÃO DOCUMENTAL CONCLUÍDA — TOMÁS DE AQUINO
+   ===================================================== */
+
+(function(){
+
+  if(!window.passaporteAcademicoMuseu){
+    window.passaporteAcademicoMuseu={};
+  }
+
+  var r=window.passaporteAcademicoMuseu["Tomás de Aquino"];
+
+  if(!r){
+    r={
+      status:"em_revisao",
+      data:null,
+      versao:"1.0",
+      revisor:"Museu Virtual dos Pensadores Universais",
+      criterios:{},
+      fontes:[],
+      observacoes:[]
+    };
+
+    window.passaporteAcademicoMuseu["Tomás de Aquino"]=r;
+  }
+
+  [
+    "Dados biográficos",
+    "Cronologia",
+    "Contexto histórico",
+    "Principais ideias",
+    "Obras e autoria",
+    "Influência e legado",
+    "Informações controversas",
+    "Fontes utilizadas"
+  ].forEach(function(c){
+    r.criterios[c]="ok";
+  });
+
+  r.status="revisado";
+  r.data="11/09/2026";
+  r.versao="1.1";
+  r.revisor="Museu Virtual dos Pensadores Universais";
+
+  r.fontes=[
+    "Stanford Encyclopedia of Philosophy — Thomas Aquinas — https://plato.stanford.edu/entries/aquinas/",
+    "Internet Encyclopedia of Philosophy — Thomas Aquinas — https://iep.utm.edu/thomas-aquinas/"
+  ];
+
+  r.observacoes=[
+    "Tomás de Aquino nasceu por volta de 1225 e morreu em 1274.",
+    "Foi filósofo e teólogo dominicano e uma das figuras centrais da escolástica medieval.",
+    "Sua obra dialogou profundamente com Aristóteles e com a tradição cristã.",
+    "Defendeu que razão filosófica e fé possuem campos próprios, podendo cooperar na busca da verdade.",
+    "Entre seus temas estão metafísica, ética, lei natural, conhecimento, Deus e relação entre fé e razão.",
+    "A Suma Teológica e a Suma contra os Gentios estão entre suas obras mais importantes.",
+    "A chamada 'quinta via' integra suas argumentações filosóficas sobre a existência de Deus.",
+    "Sua interpretação de Aristóteles teve enorme influência na filosofia e teologia posteriores.",
+    "Algumas interpretações de sua obra e de sua relação entre filosofia e teologia permanecem objeto de debate acadêmico.",
+    "O registro foi classificado como REVISADO DOCUMENTALMENTE, não como aprovação definitiva."
+  ];
+
+  if(typeof window.salvarMemoriaRevisaoMuseu==="function"){
+    window.salvarMemoriaRevisaoMuseu();
+  }
+
+  console.log(
+    "🔵 Tomás de Aquino: revisão documental concluída — 8/8 critérios."
+  );
+
+})();
+  </script>
   
   
   
