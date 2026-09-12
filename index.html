@@ -7118,6 +7118,78 @@ console.log(
 
 })();
   </script>
+  <script>
+/* =====================================================
+   REVISÃO DOCUMENTAL CONCLUÍDA — PLATÃO
+   ===================================================== */
+
+(function(){
+
+  if(!window.passaporteAcademicoMuseu){
+    window.passaporteAcademicoMuseu={};
+  }
+
+  var r=window.passaporteAcademicoMuseu["Platão"];
+
+  if(!r){
+    r={
+      status:"em_revisao",
+      data:null,
+      versao:"1.0",
+      revisor:"Museu Virtual dos Pensadores Universais",
+      criterios:{},
+      fontes:[],
+      observacoes:[]
+    };
+
+    window.passaporteAcademicoMuseu["Platão"]=r;
+  }
+
+  var criterios=[
+    "Dados biográficos",
+    "Cronologia",
+    "Contexto histórico",
+    "Principais ideias",
+    "Obras e autoria",
+    "Influência e legado",
+    "Informações controversas",
+    "Fontes utilizadas"
+  ];
+
+  criterios.forEach(function(c){
+    r.criterios[c]="ok";
+  });
+
+  r.status="revisado";
+  r.data="11/09/2026";
+  r.versao="1.1";
+  r.revisor="Museu Virtual dos Pensadores Universais";
+
+  r.fontes=[
+    "Stanford Encyclopedia of Philosophy — Plato — https://plato.stanford.edu/entries/plato/",
+    "Stanford Encyclopedia of Philosophy — Plato: Metaphysics and Epistemology — https://plato.stanford.edu/entries/plato-metaphysics/"
+  ];
+
+  r.observacoes=[
+    "As datas de nascimento de Platão são aproximadas; a SEP apresenta 429?–347 a.C.",
+    "Platão escreveu principalmente em forma de diálogos.",
+    "Os diálogos são obras de Platão, mesmo quando Sócrates aparece como personagem e principal interlocutor.",
+    "As falas atribuídas ao personagem Sócrates não devem ser automaticamente tratadas como transcrições literais do Sócrates histórico.",
+    "A distinção entre o Sócrates histórico e o Sócrates representado por Platão é fundamental para a interpretação acadêmica.",
+    "A autenticidade das cartas tradicionalmente incluídas no corpus platônico não é consensual.",
+    "O registro foi classificado como REVISADO DOCUMENTALMENTE, não como aprovação definitiva."
+  ];
+
+  if(typeof window.salvarMemoriaRevisaoMuseu==="function"){
+    window.salvarMemoriaRevisaoMuseu();
+  }
+
+  console.log(
+    "🔵 Platão: revisão documental concluída — 8/8 critérios."
+  );
+
+})();
+  </script>
   
   
   
