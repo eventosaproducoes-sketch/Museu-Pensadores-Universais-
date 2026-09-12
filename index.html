@@ -9124,6 +9124,122 @@ console.log("🔬 Conteúdo Expert 02 ativado.");
 
 })();
   </script>
+    <script>
+/* =========================================================
+   MUSEU — CONTROLADOR EXPERT CENTRAL
+   V1.0
+   Não apaga módulos anteriores.
+   Não altera revisão acadêmica.
+   Não altera linhas do tempo.
+   ========================================================= */
+
+(function(){
+
+  "use strict";
+
+  /* Guarda a função Expert que já existe */
+  var expertAnterior =
+    (typeof window.consultaExpert === "function")
+      ? window.consultaExpert
+      : null;
+
+  /*
+   * Banco central.
+   *
+   * Por enquanto vazio de propósito.
+   * Os conteúdos serão adicionados em módulos separados,
+   * sem substituir o controlador.
+   */
+  window.museuExpertDB =
+    window.museuExpertDB || {};
+
+  /*
+   * Cadastro seguro de conteúdo Expert.
+   */
+  window.registrarExpertMuseu = function(nome, dados){
+
+    if(!nome || !dados) return false;
+
+    window.museuExpertDB[nome] = dados;
+
+    return true;
+  };
+
+  /*
+   * Consulta central.
+   *
+   * Se houver conteúdo no banco novo:
+   * usa o banco novo.
+   *
+   * Caso contrário:
+   * preserva o Expert antigo.
+   */
+  window.consultaExpertCentral = function(nome, pergunta){
+
+    var dados = window.museuExpertDB[nome];
+
+    if(dados){
+
+      var q = String(pergunta || "").toLowerCase();
+
+      if(
+        q.indexOf("controv") >= 0 ||
+        q.indexOf("crític") >= 0 ||
+        q.indexOf("critic") >= 0 ||
+        q.indexOf("problema") >= 0
+      ){
+        return dados.cont || dados.contrib || "";
+      }
+
+      if(
+        q.indexOf("influ") >= 0 ||
+        q.indexOf("legado") >= 0
+      ){
+        return dados.infl || dados.contrib || "";
+      }
+
+      if(
+        q.indexOf("consenso") >= 0 ||
+        q.indexOf("debate") >= 0
+      ){
+        return dados.cons || dados.contrib || "";
+      }
+
+      return dados.contrib || "";
+    }
+
+    /*
+     * Mantém o sistema antigo funcionando.
+     */
+    if(expertAnterior){
+
+      try{
+        return expertAnterior(nome, pergunta);
+      }catch(e){
+        console.warn(
+          "Expert anterior não respondeu:",
+          e
+        );
+      }
+
+    }
+
+    return "Consulta acadêmica disponível para este pensador.";
+  };
+
+  /*
+   * NÃO substituímos imediatamente o sistema visual.
+   *
+   * Apenas disponibilizamos o controlador central.
+   */
+  window.museuExpertCentralAtivo = true;
+
+  console.log(
+    "🔬 CONTROLADOR EXPERT CENTRAL ATIVADO."
+  );
+
+})();
+  </script>
   
   
   
