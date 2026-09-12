@@ -8177,6 +8177,57 @@ console.log("🔬 Consulta Expert instalada.");
 
 })();
   </script>
+  <script>
+(function(){
+
+function adicionarExpert(){
+
+var box=document.getElementById("modalBox");
+if(!box)return;
+
+if(document.getElementById("btnConsultaExpert"))return;
+
+var titulo=box.querySelector("h2");
+if(!titulo)return;
+
+var nome=titulo.textContent
+.replace("🏛️","")
+.replace("📚","")
+.trim();
+
+var b=document.createElement("button");
+
+b.id="btnConsultaExpert";
+b.textContent="🔬 Consulta Expert";
+
+b.style.cssText=
+"margin:12px 5px;padding:12px 18px;border-radius:10px;border:1px solid #d4af37;background:#111;color:#fff;font-weight:bold;";
+
+b.onclick=function(){
+
+if(typeof window.abrirConsultaExpert==="function")
+window.abrirConsultaExpert(nome);
+
+};
+
+var alvo=box.querySelector(".tabs")||box.firstElementChild||box;
+
+alvo.appendChild(b);
+
+}
+
+var obs=new MutationObserver(function(){
+setTimeout(adicionarExpert,100);
+});
+
+obs.observe(document.body,{childList:true,subtree:true});
+
+setTimeout(adicionarExpert,500);
+
+console.log("🔬 Ponte Consulta Expert instalada.");
+
+})();
+  </script>
   
   
   
