@@ -6924,6 +6924,45 @@ console.log(
 
 })();
   </script>
+  <script>
+/* CORREÇÃO — SELO DO PASSAPORTE */
+
+(function(){
+
+  function corrigirSeloAcademico(){
+
+    var textos = document.querySelectorAll("*");
+
+    textos.forEach(function(el){
+
+      if(el.children.length === 0){
+
+        var t = el.textContent.trim();
+
+        if(t === "✓ ACERVO REVISADO"){
+          el.textContent = "🟡 ACERVO EM REVISÃO";
+        }
+
+        if(t === "ACERVO REVISADO"){
+          el.textContent = "ACERVO EM REVISÃO";
+        }
+
+      }
+
+    });
+
+  }
+
+  if(document.readyState === "loading"){
+    document.addEventListener("DOMContentLoaded",corrigirSeloAcademico);
+  }else{
+    corrigirSeloAcademico();
+  }
+
+})();
+
+  </script>
+  
   
   
   
