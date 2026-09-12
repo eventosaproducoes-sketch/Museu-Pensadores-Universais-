@@ -7047,6 +7047,77 @@ console.log(
 
 })();
   </script>
+  <script>
+/* =====================================================
+   REVISÃO DOCUMENTAL CONCLUÍDA — SÓCRATES
+   ===================================================== */
+
+(function(){
+
+  if(!window.passaporteAcademicoMuseu){
+    window.passaporteAcademicoMuseu={};
+  }
+
+  var r=window.passaporteAcademicoMuseu["Sócrates"];
+
+  if(!r){
+    r={
+      status:"em_revisao",
+      data:null,
+      versao:"1.0",
+      revisor:"Museu Virtual dos Pensadores Universais",
+      criterios:{},
+      fontes:[],
+      observacoes:[]
+    };
+    window.passaporteAcademicoMuseu["Sócrates"]=r;
+  }
+
+  var criterios=[
+    "Dados biográficos",
+    "Cronologia",
+    "Contexto histórico",
+    "Principais ideias",
+    "Obras e autoria",
+    "Influência e legado",
+    "Informações controversas",
+    "Fontes utilizadas"
+  ];
+
+  criterios.forEach(function(c){
+    r.criterios[c]="ok";
+  });
+
+  r.status="revisado";
+  r.data="11/09/2026";
+  r.versao="1.1";
+  r.revisor="Museu Virtual dos Pensadores Universais";
+
+  r.fontes=[
+    "Stanford Encyclopedia of Philosophy — Socrates — https://plato.stanford.edu/entries/socrates/",
+    "Internet Encyclopedia of Philosophy — Socrates — https://iep.utm.edu/socrates/",
+    "Internet Encyclopedia of Philosophy — Plato: Phaedo — https://iep.utm.edu/phaedo/"
+  ];
+
+  r.observacoes=[
+    "Sócrates não deixou escritos próprios conhecidos.",
+    "As informações sobre sua vida e pensamento são de segunda mão e envolvem o chamado problema socrático.",
+    "As principais fontes antigas incluem Aristófanes, Xenofonte e Platão.",
+    "Os diálogos de Platão não devem ser apresentados como obras escritas por Sócrates.",
+    "A frase sobre a vida não examinada deve ser atribuída ao Sócrates apresentado na Apologia de Platão, não tratada como gravação literal do Sócrates histórico.",
+    "O registro foi classificado como REVISADO DOCUMENTALMENTE, não como aprovação definitiva."
+  ];
+
+  if(typeof window.salvarMemoriaRevisaoMuseu==="function"){
+    window.salvarMemoriaRevisaoMuseu();
+  }
+
+  console.log(
+    "🔵 Sócrates: revisão documental concluída — 8/8 critérios."
+  );
+
+})();
+  </script>
   
   
   
