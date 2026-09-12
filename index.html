@@ -7729,6 +7729,53 @@ console.log("🔵 BLOCO FINAL concluído: 12 pensadores.");
 
 })();
   </script>
+  <script>
+(function(){
+
+/* CORREÇÕES ACADÊMICAS ESTRUTURAIS — AUDITORIA 01 */
+
+try{
+
+var A=window.thinkers;
+
+if(Array.isArray(A)){
+
+A.forEach(function(t){
+
+if(t[0]==="Agostinho de Hipona"){
+t[1]="Antiguidade Tardia";
+t[2]="354–430";
+}
+
+if(t[0]==="Platão"){
+t[2]="c. 429/428–347 a.C.";
+}
+
+});
+
+}
+
+/* Recupera a história de Freud */
+window.historias=window.historias||{};
+
+window.historias["Sigmund Freud"]={
+bio:"Médico e pensador austríaco, nascido em 1856. Desenvolveu a psicanálise e investigou o inconsciente, os sonhos e a formação da personalidade.",
+contexto:"Viveu entre o final do século XIX e a primeira metade do século XX, período de profundas transformações científicas, culturais e sociais.",
+ideias:"Inconsciente, sonhos, repressão, desejo, conflito psíquico e desenvolvimento da personalidade.",
+obras:"A Interpretação dos Sonhos, Três Ensaios sobre a Teoria da Sexualidade e O Mal-Estar na Civilização.",
+legado:"Exerceu enorme influência sobre a psicologia, psiquiatria, literatura, cultura e pensamento do século XX."
+};
+
+console.log("✅ Auditoria 01 concluída.");
+
+}catch(e){
+
+console.warn("⚠️ Auditoria encontrou erro:",e);
+
+}
+
+})();
+  </script>
   
   
   
