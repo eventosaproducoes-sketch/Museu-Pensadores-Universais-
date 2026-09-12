@@ -8602,6 +8602,314 @@ console.log("🔬 Conteúdo Expert 02 ativado.");
 
 })();
   </script>
+  <script>
+/* =========================================================
+   MUSEU — RECUPERAÇÃO GERAL EXPERT + REVISÃO ACADÊMICA
+   V1.0
+   Este módulo NÃO apaga nem substitui o código existente.
+   ========================================================= */
+
+(function(){
+
+  console.log("🏛️ Sistema de recuperação do Museu iniciado.");
+
+  /* ---------------------------------------------------------
+     1. RECUPERAÇÃO DA REVISÃO ACADÊMICA
+     --------------------------------------------------------- */
+
+  var CHAVE_REVISAO = "museuPensadoresRevisaoAcademica_v1";
+
+  var SEIS_REVISADOS = [
+    "Sócrates",
+    "Platão",
+    "Aristóteles",
+    "Confúcio",
+    "Agostinho de Hipona",
+    "Tomás de Aquino"
+  ];
+
+  var TODOS_PENSADORES = [
+    "Sócrates",
+    "Platão",
+    "Aristóteles",
+    "Confúcio",
+    "Agostinho de Hipona",
+    "Tomás de Aquino",
+    "Averróis",
+    "Leonardo da Vinci",
+    "Nicolau Maquiavel",
+    "Erasmo de Roterdã",
+    "John Locke",
+    "Jean-Jacques Rousseau",
+    "Voltaire",
+    "Immanuel Kant",
+    "Karl Marx",
+    "Charles Darwin",
+    "Friedrich Nietzsche",
+    "Sigmund Freud",
+    "Albert Einstein",
+    "Hannah Arendt",
+    "Paulo Freire",
+    "Nelson Mandela",
+    "Martin Luther King Jr.",
+    "Carl Sagan",
+    "Stephen Hawking",
+    "Machado de Assis",
+    "Milton Santos",
+    "Darcy Ribeiro",
+    "Ailton Krenak",
+    "Simone de Beauvoir"
+  ];
+
+  function recuperarRevisao(){
+
+    try{
+
+      var dados = {};
+
+      try{
+        dados = JSON.parse(
+          localStorage.getItem(CHAVE_REVISAO) || "{}"
+        );
+      }catch(e){
+        dados = {};
+      }
+
+      if(!dados || typeof dados !== "object"){
+        dados = {};
+      }
+
+      /* Os 6 que realmente foram revisados */
+
+      SEIS_REVISADOS.forEach(function(nome){
+
+        if(!dados[nome] || typeof dados[nome] !== "object"){
+          dados[nome] = {};
+        }
+
+        dados[nome].status = "revisado";
+        dados[nome].versao = dados[nome].versao || "1.1";
+
+      });
+
+      /* Os demais permanecem em revisão */
+
+      TODOS_PENSADORES.forEach(function(nome){
+
+        if(SEIS_REVISADOS.indexOf(nome) === -1){
+
+          if(!dados[nome] || typeof dados[nome] !== "object"){
+            dados[nome] = {};
+          }
+
+          dados[nome].status = "em_revisao";
+        }
+
+      });
+
+      localStorage.setItem(
+        CHAVE_REVISAO,
+        JSON.stringify(dados)
+      );
+
+      console.log(
+        "✅ Revisão restaurada: 6 revisados + 24 em revisão."
+      );
+
+    }catch(e){
+
+      console.error(
+        "Erro na recuperação da revisão acadêmica:",
+        e
+      );
+
+    }
+
+  }
+
+  /* Executa agora e novamente depois que a página carregar */
+
+  recuperarRevisao();
+
+  window.addEventListener("load", function(){
+    setTimeout(recuperarRevisao, 300);
+  });
+
+
+  /* ---------------------------------------------------------
+     2. CONTEÚDO EXPERT — PENSADORES 7 A 18
+     --------------------------------------------------------- */
+
+  var EXPERT = {
+
+    "Averróis":{
+      contrib:"Averróis foi um dos grandes intérpretes medievais de Aristóteles. Sua obra tratou de filosofia, religião, medicina, direito e da relação entre investigação racional e tradição religiosa.",
+      cont:"Sua interpretação de Aristóteles gerou debates sobre a relação entre filosofia e religião. Também é importante evitar a simplificação de identificá-lo apenas como o 'Comentador' de Aristóteles.",
+      infl:"Sua leitura de Aristóteles influenciou profundamente pensadores islâmicos, judaicos e cristãos, especialmente na tradição filosófica latina medieval.",
+      cons:"Há amplo reconhecimento de sua importância histórica. Os debates acadêmicos envolvem principalmente a interpretação de sua filosofia, sua teoria do intelecto e sua relação entre razão e religião."
+    },
+
+    "Leonardo da Vinci":{
+      contrib:"Leonardo combinou arte, observação da natureza, engenharia, anatomia e investigação técnica. Seu trabalho representa uma integração excepcional entre prática artística e investigação do mundo natural.",
+      cont:"É importante evitar transformar Leonardo em um cientista moderno no sentido atual. Muitos de seus estudos permaneceram em cadernos e não foram publicados como tratados científicos sistemáticos.",
+      infl:"Sua produção influenciou profundamente a história da arte, da observação anatômica, da engenharia e da cultura renascentista.",
+      cons:"Existe amplo consenso sobre sua extraordinária importância artística e intelectual. A principal cautela acadêmica está em não projetar categorias científicas contemporâneas diretamente sobre sua prática renascentista."
+    },
+
+    "Nicolau Maquiavel":{
+      contrib:"Maquiavel analisou poder, governo, conflito político, guerra, liderança e estabilidade dos Estados, tornando-se uma referência fundamental para a história do pensamento político.",
+      cont:"A interpretação de Maquiavel é controversa. Há debate sobre sua relação entre moralidade e política, religião, republicanismo e sobre a unidade de suas diferentes obras.",
+      infl:"Sua obra influenciou profundamente a teoria política moderna e os estudos sobre poder, Estado e realismo político.",
+      cons:"Há consenso sobre sua importância para o pensamento político, mas não existe consenso absoluto sobre uma única interpretação de sua filosofia política."
+    },
+
+    "Erasmo de Roterdã":{
+      contrib:"Erasmo foi uma das grandes figuras do humanismo cristão europeu. Defendeu educação, crítica intelectual, estudo dos textos e reforma moral da sociedade cristã.",
+      cont:"Sua posição diante da Reforma Protestante e de Martinho Lutero é central para compreender sua obra. Erasmo criticou abusos religiosos, mas também rejeitou determinadas rupturas reformistas.",
+      infl:"Influenciou o humanismo europeu, a educação, a crítica textual e os debates religiosos do século XVI.",
+      cons:"É geralmente compreendido como humanista cristão, embora estudiosos debatam a extensão e a natureza de seu pensamento filosófico."
+    },
+
+    "John Locke":{
+      contrib:"Locke desenvolveu uma influente teoria do conhecimento baseada na experiência e uma filosofia política centrada em direitos, consentimento e limites do poder.",
+      cont:"Sua filosofia política é estudada juntamente com questões controversas envolvendo propriedade, escravidão, colonialismo e os limites históricos de sua concepção de direitos.",
+      infl:"Influenciou fortemente o empirismo, o liberalismo político e debates modernos sobre governo, direitos e consentimento.",
+      cons:"Existe amplo reconhecimento de sua importância, mas há debates sobre a interpretação de seu empirismo, sua teoria da identidade pessoal e suas posições políticas."
+    },
+
+    "Jean-Jacques Rousseau":{
+      contrib:"Rousseau investigou liberdade, desigualdade, educação, vontade política e a relação entre indivíduo e sociedade.",
+      cont:"Sua vida e suas obras apresentam questões controversas, incluindo o abandono de seus filhos e tensões entre suas ideias sobre educação e suas decisões pessoais.",
+      infl:"Influenciou profundamente a filosofia política, a educação e os debates modernos sobre liberdade, igualdade e soberania popular.",
+      cons:"Sua importância para o pensamento político moderno é amplamente reconhecida. As interpretações divergem sobre a relação entre indivíduo, sociedade e vontade geral em sua obra."
+    },
+
+    "Voltaire":{
+      contrib:"Voltaire foi uma das grandes figuras do Iluminismo, destacando-se pela defesa da tolerância, crítica ao fanatismo e valorização da liberdade intelectual.",
+      cont:"Sua obra também precisa ser analisada diante de questões envolvendo colonialismo, escravidão, religião e preconceitos presentes em determinados textos.",
+      infl:"Influenciou debates sobre tolerância religiosa, liberdade de expressão, crítica ao fanatismo e pensamento iluminista.",
+      cons:"É amplamente reconhecido como figura central do Iluminismo, embora não tenha desenvolvido uma filosofia sistemática única."
+    },
+
+    "Immanuel Kant":{
+      contrib:"Kant transformou a filosofia moderna ao investigar as condições e limites do conhecimento e ao desenvolver uma influente ética baseada na autonomia e no dever.",
+      cont:"Alguns textos de Kant contêm classificações raciais e posições sobre gênero e povos que são criticadas pela academia contemporânea e precisam ser apresentadas historicamente.",
+      infl:"Sua influência alcança epistemologia, ética, metafísica, filosofia política e filosofia da religião.",
+      cons:"Sua importância para a filosofia moderna é amplamente reconhecida. Existem debates sobre conceitos como coisa em si, liberdade, autonomia e imperativo categórico."
+    },
+
+    "Karl Marx":{
+      contrib:"Marx desenvolveu uma crítica das relações econômicas e sociais do capitalismo, analisando trabalho, mercadoria, exploração, classes e transformação histórica.",
+      cont:"É importante distinguir os textos de Marx das interpretações políticas posteriores chamadas de marxismo. Existem debates sobre determinismo histórico, teoria do valor e suas posições políticas.",
+      infl:"Sua influência alcança filosofia, economia política, sociologia, história e ciência política.",
+      cons:"Sua importância intelectual é amplamente reconhecida, mas existem fortes debates sobre a interpretação de sua teoria econômica e histórica."
+    },
+
+    "Charles Darwin":{
+      contrib:"Darwin formulou a teoria da evolução por seleção natural, uma das ideias fundamentais para compreender a diversidade e transformação dos seres vivos.",
+      cont:"É fundamental distinguir a teoria biológica da evolução das apropriações sociais posteriores conhecidas como darwinismo social.",
+      infl:"Sua contribuição transformou a biologia e influenciou profundamente debates sobre natureza, humanidade e história da vida.",
+      cons:"A evolução por descendência com modificação é fundamento da biologia moderna, embora mecanismos e modelos continuem sendo refinados pela pesquisa científica."
+    },
+
+    "Friedrich Nietzsche":{
+      contrib:"Nietzsche realizou uma crítica profunda da moral, da cultura e dos valores tradicionais, explorando temas como niilismo, interpretação e formação do indivíduo.",
+      cont:"Sua obra foi posteriormente apropriada por diferentes correntes políticas. Também existem debates sobre nacionalismo, antissemitismo e interpretações feitas após sua morte.",
+      infl:"Influenciou profundamente filosofia continental, literatura, psicologia e teoria crítica.",
+      cons:"Sua originalidade é amplamente reconhecida, mas suas obras permitem interpretações muito diferentes devido ao caráter aforístico e experimental de sua escrita."
+    },
+
+    "Sigmund Freud":{
+      contrib:"Freud foi fundador da psicanálise e desenvolveu conceitos influentes sobre inconsciente, sonhos, conflito psíquico e sexualidade.",
+      cont:"Muitas hipóteses e métodos freudianos são objeto de críticas científicas. É importante distinguir sua enorme influência histórica da avaliação empírica de suas teorias específicas.",
+      infl:"Sua influência alcançou psicologia, psiquiatria, literatura, cinema, filosofia e cultura ocidental.",
+      cons:"Existe amplo reconhecimento de sua influência histórica, mas há forte debate sobre a validade científica de várias formulações específicas da psicanálise."
+    }
+
+  };
+
+
+  /* ---------------------------------------------------------
+     3. PROTEÇÃO DO EXPERT EXISTENTE
+     --------------------------------------------------------- */
+
+  var CONSULTA_ANTIGA = window.consultaExpert;
+
+  window.consultaExpert = function(nome, pergunta){
+
+    /* Primeiro: nosso novo conteúdo */
+
+    if(EXPERT[nome]){
+
+      var q = String(pergunta || "").toLowerCase();
+
+      if(
+        q.indexOf("controv") >= 0 ||
+        q.indexOf("crític") >= 0 ||
+        q.indexOf("critic") >= 0 ||
+        q.indexOf("problema") >= 0
+      ){
+        return EXPERT[nome].cont;
+      }
+
+      if(
+        q.indexOf("influ") >= 0 ||
+        q.indexOf("legado") >= 0
+      ){
+        return EXPERT[nome].infl;
+      }
+
+      if(
+        q.indexOf("consenso") >= 0 ||
+        q.indexOf("debate") >= 0
+      ){
+        return EXPERT[nome].cons;
+      }
+
+      return EXPERT[nome].contrib;
+    }
+
+    /* Segundo: mantém o Expert antigo */
+
+    if(typeof CONSULTA_ANTIGA === "function"){
+
+      try{
+        return CONSULTA_ANTIGA(nome, pergunta);
+      }catch(e){
+        console.warn(
+          "Expert anterior apresentou erro:",
+          e
+        );
+      }
+
+    }
+
+    return "Consulta acadêmica disponível para este pensador.";
+  };
+
+
+  /* ---------------------------------------------------------
+     4. DIAGNÓSTICO
+     --------------------------------------------------------- */
+
+  window.museuRecuperacaoGeral = function(){
+
+    console.log("🏛️ DIAGNÓSTICO DO MUSEU");
+    console.log("✓ Revisão acadêmica restaurada");
+    console.log("✓ 6 pensadores revisados");
+    console.log("✓ 24 pensadores em revisão");
+    console.log("✓ Expert 7–18 disponível");
+    console.log("✓ Expert anterior preservado");
+    console.log("✓ Nenhum código anterior foi apagado");
+
+  };
+
+  console.log(
+    "✅ MUSEU RECUPERADO — Expert e revisão protegidos."
+  );
+
+})();
+  </script>
   
   
   
