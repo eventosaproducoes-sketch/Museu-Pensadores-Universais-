@@ -4158,6 +4158,802 @@ window.relatorioRevisaoAcademica()
 
 })();
   </script>
+  <script>
+(function(){
+
+"use strict";
+
+/* =====================================================
+   🏛️ PASSAPORTE ACADÊMICO DO MUSEU
+   Transparência, fontes e controle de revisão
+   ===================================================== */
+
+window.passaporteAcademicoMuseu =
+window.passaporteAcademicoMuseu || {};
+
+
+/* =====================================================
+   CONFIGURAÇÃO
+   ===================================================== */
+
+const pensadoresMuseu=[
+
+"Sócrates",
+"Platão",
+"Aristóteles",
+"Confúcio",
+"Agostinho de Hipona",
+"Tomás de Aquino",
+"Averróis",
+"Leonardo da Vinci",
+"Nicolau Maquiavel",
+"Erasmo de Roterdã",
+"John Locke",
+"Jean-Jacques Rousseau",
+"Voltaire",
+"Immanuel Kant",
+"Karl Marx",
+"Charles Darwin",
+"Friedrich Nietzsche",
+"Sigmund Freud",
+"Albert Einstein",
+"Hannah Arendt",
+"Paulo Freire",
+"Nelson Mandela",
+"Martin Luther King Jr.",
+"Carl Sagan",
+"Machado de Assis",
+"Milton Santos",
+"Darcy Ribeiro",
+"Ailton Krenak",
+"Simone de Beauvoir",
+"Stephen Hawking"
+
+];
+
+
+/* =====================================================
+   CRITÉRIOS
+   ===================================================== */
+
+const criterios=[
+
+"Dados biográficos",
+"Cronologia",
+"Contexto histórico",
+"Principais ideias",
+"Obras e autoria",
+"Influência e legado",
+"Informações controversas",
+"Fontes utilizadas"
+
+];
+
+
+/* =====================================================
+   BANCO DE REVISÃO
+   ===================================================== */
+
+pensadoresMuseu.forEach(function(nome){
+
+if(!window.passaporteAcademicoMuseu[nome]){
+
+window.passaporteAcademicoMuseu[nome]={
+
+status:"em_revisao",
+
+data:null,
+
+revisor:"Museu Virtual dos Pensadores Universais",
+
+criterios:{},
+
+fontes:[],
+
+observacoes:[]
+
+};
+
+criterios.forEach(function(item){
+
+window.passaporteAcademicoMuseu[nome]
+.criterios[item]="pendente";
+
+});
+
+}
+
+});
+
+
+/* =====================================================
+   FONTES INSTITUCIONAIS BASE
+   ===================================================== */
+
+const fontesBase={
+
+"Stanford Encyclopedia of Philosophy":
+"https://plato.stanford.edu/",
+
+"Academia Brasileira de Letras":
+"https://www.academia.org.br/",
+
+"Encyclopaedia Britannica":
+"https://www.britannica.com/",
+
+"Biblioteca Nacional":
+"https://www.gov.br/bn/pt-br",
+
+"UNESCO":
+"https://www.unesco.org/"
+
+};
+
+
+/* =====================================================
+   CSS
+   ===================================================== */
+
+if(!document.getElementById(
+"cssPassaporteAcademico"
+)){
+
+const style=document.createElement("style");
+
+style.id="cssPassaporteAcademico";
+
+style.textContent=`
+
+.passaporte-academico{
+
+margin:18px 0;
+padding:16px;
+
+border:1px solid rgba(212,175,55,.55);
+border-radius:12px;
+
+background:rgba(0,0,0,.18);
+
+box-shadow:
+0 0 18px rgba(212,175,55,.08);
+
+}
+
+.passaporte-selo{
+
+display:inline-flex;
+align-items:center;
+gap:8px;
+
+padding:8px 14px;
+
+border-radius:30px;
+
+border:1px solid rgba(212,175,55,.7);
+
+color:#d4af37;
+
+font-weight:700;
+
+margin-bottom:12px;
+
+}
+
+.passaporte-botoes{
+
+display:flex;
+flex-wrap:wrap;
+gap:8px;
+
+margin-top:12px;
+
+}
+
+.passaporte-botoes button{
+
+padding:8px 12px;
+
+border-radius:8px;
+
+cursor:pointer;
+
+}
+
+.passaporte-detalhes{
+
+margin-top:12px;
+
+padding-top:12px;
+
+border-top:1px solid rgba(212,175,55,.2);
+
+font-size:.9rem;
+
+}
+
+.passaporte-ok{
+color:#d4af37;
+}
+
+.passaporte-pendente{
+opacity:.75;
+}
+
+`;
+
+document.head.appendChild(style);
+
+}
+
+
+/* =====================================================
+   STATUS VISUAL
+   ===================================================== */
+
+function statusVisual(dados){
+
+if(!dados){
+
+return {
+icone:"🟡",
+texto:"EM REVISÃO"
+};
+
+}
+
+if(dados.status==="aprovado"){
+
+return {
+icone:"🟢",
+texto:"REVISADO E APROVADO"
+};
+
+}
+
+if(dados.status==="revisado"){
+
+return {
+icone:"🔵",
+texto:"REVISADO DOCUMENTALMENTE"
+};
+
+}
+
+return {
+icone:"🟡",
+texto:"EM REVISÃO"
+};
+
+}
+
+
+/* =====================================================
+   CRIA PASSAPORTE
+   ===================================================== */
+
+window.criarPassaporteAcademico=function(nome){
+
+const dados=
+window.passaporteAcademicoMuseu[nome];
+
+if(!dados)return "";
+
+const status=statusVisual(dados);
+
+const total=criterios.length;
+
+let concluidos=0;
+
+criterios.forEach(function(item){
+
+if(
+dados.criterios[item]==="ok"
+){
+
+concluidos++;
+
+}
+
+});
+
+return `
+
+<div class="passaporte-academico">
+
+<div class="passaporte-selo">
+
+${status.icone}
+
+${status.texto}
+
+</div>
+
+<div>
+
+<strong>Passaporte Acadêmico</strong>
+
+</div>
+
+<div class="passaporte-detalhes">
+
+<p>
+<b>Critérios:</b>
+${concluidos}/${total}
+</p>
+
+<p>
+<b>Data da revisão:</b>
+${dados.data||"Ainda não concluída"}
+</p>
+
+<p>
+<b>Responsável pelo registro:</b>
+${dados.revisor}
+</p>
+
+<div class="passaporte-botoes">
+
+<button
+type="button"
+onclick="mostrarPassaporteAcademico('${nome.replace(/'/g,"\\'")}')">
+
+🔎 Ver revisão
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+`;
+
+};
+
+
+/* =====================================================
+   MOSTRA DETALHES
+   ===================================================== */
+
+window.mostrarPassaporteAcademico=function(nome){
+
+const dados=
+window.passaporteAcademicoMuseu[nome];
+
+if(!dados)return;
+
+const modal=document.getElementById("modal");
+const box=document.getElementById("modalBox");
+
+if(!modal||!box)return;
+
+let html=`
+
+<button
+class="close"
+onclick="closeModal()">
+
+×
+</button>
+
+<div class="period">
+PASSAPORTE ACADÊMICO
+</div>
+
+<h2>
+🏛️ ${escapar(nome)}
+</h2>
+
+<div class="content">
+
+<h3>
+Status
+</h3>
+
+<p>
+<b>${statusVisual(dados).icone}
+${statusVisual(dados).texto}</b>
+</p>
+
+<p>
+<b>Data:</b>
+${dados.data||"Ainda não concluída"}
+</p>
+
+<p>
+<b>Responsável pelo registro:</b>
+${escapar(dados.revisor)}
+</p>
+
+<h3>
+Critérios
+</h3>
+
+`;
+
+criterios.forEach(function(item){
+
+const valor=
+dados.criterios[item];
+
+html+=`
+
+<p>
+
+${valor==="ok"?"✓":"○"}
+
+<strong>
+${escapar(item)}
+</strong>
+
+—
+
+${valor==="ok"
+?"Conferido"
+:"Pendente"}
+
+</p>
+
+`;
+
+});
+
+
+html+=`
+
+<h3>
+Fontes consultadas
+</h3>
+
+`;
+
+if(dados.fontes.length){
+
+dados.fontes.forEach(function(fonte){
+
+html+=`
+
+<p>
+📚 ${escapar(fonte)}
+</p>
+
+`;
+
+});
+
+}else{
+
+html+=`
+
+<p>
+Nenhuma fonte registrada ainda.
+</p>
+
+`;
+
+}
+
+
+if(dados.observacoes.length){
+
+html+=`
+
+<h3>
+Observações
+</h3>
+
+`;
+
+dados.observacoes.forEach(function(obs){
+
+html+=`
+
+<p>
+${escapar(obs)}
+</p>
+
+`;
+
+});
+
+}
+
+
+html+=`
+
+<hr>
+
+<p>
+<b>Nota metodológica</b>
+</p>
+
+<p>
+O selo indica o estado da revisão registrada
+pelo Museu. Ele não significa que todas as
+interpretações sobre determinado pensador
+sejam consensuais ou que não existam debates
+acadêmicos.
+</p>
+
+<p>
+Quando houver divergência entre fontes ou
+especialistas, o Museu deverá registrá-la nas
+observações em vez de apresentar uma única
+interpretação como verdade absoluta.
+</p>
+
+</div>
+
+`;
+
+box.innerHTML=html;
+
+modal.classList.add("show");
+
+};
+
+
+/* =====================================================
+   INSERE PASSAPORTE NA EXPOSIÇÃO
+   ===================================================== */
+
+function inserirPassaporte(){
+
+const box=document.getElementById("modalBox");
+
+if(!box)return;
+
+const titulo=box.querySelector("h2");
+
+if(!titulo)return;
+
+let nome=titulo.textContent
+.replace("🏛️","")
+.replace("📜","")
+.trim();
+
+if(!nome)return;
+
+if(
+box.querySelector(".passaporte-academico")
+)return;
+
+const passaporte=
+criarPassaporteAcademico(nome);
+
+if(!passaporte)return;
+
+titulo.insertAdjacentHTML(
+"afterend",
+passaporte
+);
+
+}
+
+
+/* =====================================================
+   OBSERVADOR
+   ===================================================== */
+
+const modal=document.getElementById("modal");
+
+if(modal){
+
+const observer=
+new MutationObserver(function(){
+
+setTimeout(
+inserirPassaporte,
+50
+);
+
+});
+
+observer.observe(modal,{
+
+attributes:true,
+childList:true,
+subtree:true
+
+});
+
+}
+
+
+/* =====================================================
+   FUNÇÃO PARA REGISTRAR REVISÃO
+   ===================================================== */
+
+window.registrarRevisaoAcademica=function(
+nome,
+opcoes
+){
+
+if(!window.passaporteAcademicoMuseu[nome]){
+
+window.passaporteAcademicoMuseu[nome]={
+
+status:"em_revisao",
+data:null,
+revisor:"Museu Virtual dos Pensadores Universais",
+criterios:{},
+fontes:[],
+observacoes:[]
+
+};
+
+}
+
+const dados=
+window.passaporteAcademicoMuseu[nome];
+
+opcoes=opcoes||{};
+
+
+/* Critérios */
+
+if(opcoes.criterios){
+
+Object.keys(opcoes.criterios)
+.forEach(function(item){
+
+if(
+criterios.includes(item)
+){
+
+dados.criterios[item]=
+opcoes.criterios[item];
+
+}
+
+});
+
+}
+
+
+/* Fontes */
+
+if(Array.isArray(opcoes.fontes)){
+
+dados.fontes=
+opcoes.fontes.slice();
+
+}
+
+
+/* Observações */
+
+if(Array.isArray(opcoes.observacoes)){
+
+dados.observacoes=
+opcoes.observacoes.slice();
+
+}
+
+
+/* Data */
+
+if(opcoes.data){
+
+dados.data=opcoes.data;
+
+}
+
+
+/* Status */
+
+if(opcoes.status){
+
+dados.status=opcoes.status;
+
+}
+
+return dados;
+
+};
+
+
+/* =====================================================
+   RELATÓRIO GERAL
+   ===================================================== */
+
+window.relatorioPassaportes=function(){
+
+let emRevisao=0;
+let revisados=0;
+let aprovados=0;
+
+pensadoresMuseu.forEach(function(nome){
+
+const dados=
+window.passaporteAcademicoMuseu[nome];
+
+if(!dados){
+
+emRevisao++;
+
+return;
+
+}
+
+if(dados.status==="aprovado"){
+
+aprovados++;
+
+}else if(dados.status==="revisado"){
+
+revisados++;
+
+}else{
+
+emRevisao++;
+
+}
+
+});
+
+const relatorio={
+
+total:pensadoresMuseu.length,
+
+emRevisao:emRevisao,
+
+revisados:revisados,
+
+aprovados:aprovados
+
+};
+
+console.log(
+"🏛️ PASSAPORTES ACADÊMICOS",
+relatorio
+);
+
+return relatorio;
+
+};
+
+
+/* =====================================================
+   EXPÕE FONTES BASE
+   ===================================================== */
+
+window.fontesBaseMuseu=
+fontesBase;
+
+
+/* =====================================================
+   FUNÇÃO ESC
+   ===================================================== */
+
+function escapar(texto){
+
+return String(texto==null?"":texto)
+
+.replace(/&/g,"&amp;")
+.replace(/</g,"&lt;")
+.replace(/>/g,"&gt;")
+.replace(/"/g,"&quot;")
+.replace(/'/g,"&#039;");
+
+}
+
+
+/* =====================================================
+   INICIALIZAÇÃO
+   ===================================================== */
+
+console.log(
+"🏛️ Passaporte Acadêmico instalado."
+);
+
+console.log(
+window.relatorioPassaportes()
+);
+
+})();
+  </script>
   
   
   
