@@ -8476,6 +8476,47 @@ console.log("🔬 Conteúdo Expert 02 ativado.");
 
 })();
   </script>
+  <script>
+(function(){
+  var revisados = [
+    "Sócrates",
+    "Platão",
+    "Aristóteles",
+    "Confúcio",
+    "Agostinho de Hipona",
+    "Tomás de Aquino"
+  ];
+
+  var chave = "museuPensadoresRevisaoAcademica_v1";
+
+  function protegerRevisaoMuseu(){
+    try{
+      var dados = JSON.parse(localStorage.getItem(chave) || "{}");
+
+      revisados.forEach(function(nome){
+        if(!dados[nome]){
+          dados[nome] = {};
+        }
+
+        dados[nome].status = "revisado";
+        dados[nome].versao = dados[nome].versao || "1.1";
+      });
+
+      localStorage.setItem(chave, JSON.stringify(dados));
+
+      console.log("🛡️ Revisão acadêmica protegida.");
+    }catch(e){
+      console.error("Erro na proteção da revisão:", e);
+    }
+  }
+
+  window.protegerRevisaoMuseu = protegerRevisaoMuseu;
+
+  protegerRevisaoMuseu();
+
+  console.log("🛡️ PROTEÇÃO DA REVISÃO ATIVADA");
+})();
+  </script>
   
   
   
