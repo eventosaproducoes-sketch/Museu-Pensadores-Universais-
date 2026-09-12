@@ -9834,6 +9834,46 @@ console.log("🔬 Conteúdo Expert 02 ativado.");
   console.log("✅ Leonardo da Vinci revisado — 8/8 critérios.");
 })();
   </script>
+  <script>
+(function(){
+  window.passaporteAcademicoMuseu =
+    window.passaporteAcademicoMuseu || {};
+
+  window.passaporteAcademicoMuseu["Nicolau Maquiavel"] = {
+    status: "revisado",
+    data: "12/09/2026",
+    versao: "1.1",
+
+    criterios: {
+      biografia: true,
+      cronologia: true,
+      contexto: true,
+      ideias: true,
+      obras: true,
+      influencia: true,
+      controversias: true,
+      fontes: true
+    },
+
+    fontes: [
+      {
+        titulo: "Stanford Encyclopedia of Philosophy — Niccolò Machiavelli",
+        url: "https://plato.stanford.edu/entries/machiavelli/"
+      }
+    ],
+
+    observacoes:
+      "Revisão documental concluída dos oito critérios do Passaporte Acadêmico. Consideradas sua atuação política, histórica e literária, O Príncipe, os Discursos e as controvérsias sobre moralidade, religião e política."
+  };
+
+  if(typeof window.salvarMemoriaRevisaoMuseu === "function"){
+    window.salvarMemoriaRevisaoMuseu();
+  }
+
+  console.log("✅ Nicolau Maquiavel revisado — 8/8 critérios.");
+})();
+  </script>
+  
   
   
   
