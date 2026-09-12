@@ -9873,6 +9873,45 @@ console.log("🔬 Conteúdo Expert 02 ativado.");
   console.log("✅ Nicolau Maquiavel revisado — 8/8 critérios.");
 })();
   </script>
+ <script>
+(function(){
+  window.passaporteAcademicoMuseu =
+    window.passaporteAcademicoMuseu || {};
+
+  window.passaporteAcademicoMuseu["Erasmo de Roterdã"] = {
+    status: "revisado",
+    data: "12/09/2026",
+    versao: "1.1",
+
+    criterios: {
+      biografia: true,
+      cronologia: true,
+      contexto: true,
+      ideias: true,
+      obras: true,
+      influencia: true,
+      controversias: true,
+      fontes: true
+    },
+
+    fontes: [
+      {
+        titulo: "Stanford Encyclopedia of Philosophy — Desiderius Erasmus",
+        url: "https://plato.stanford.edu/entries/erasmus/"
+      }
+    ],
+
+    observacoes:
+      "Revisão documental concluída dos oito critérios. Erasmo é apresentado no contexto do humanismo cristão e de suas reflexões sobre educação, religião, liberdade e natureza humana."
+  };
+
+  if(typeof window.salvarMemoriaRevisaoMuseu === "function"){
+    window.salvarMemoriaRevisaoMuseu();
+  }
+
+  console.log("✅ Erasmo de Roterdã revisado — 8/8 critérios.");
+})();
+  </script>
   
   
   
