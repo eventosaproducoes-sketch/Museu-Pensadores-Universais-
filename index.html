@@ -5395,6 +5395,687 @@ PRAZO_REVISAO_DIAS;
 
 })();
   </script>
+  <script>
+(function(){
+
+"use strict";
+
+/* =====================================================
+   🏛️ PAINEL DE REVISÃO ACADÊMICA
+   ===================================================== */
+
+const NOMES=[
+"Sócrates","Platão","Aristóteles","Confúcio",
+"Agostinho de Hipona","Tomás de Aquino","Averróis",
+"Leonardo da Vinci","Nicolau Maquiavel","Erasmo de Roterdã",
+"John Locke","Jean-Jacques Rousseau","Voltaire","Immanuel Kant",
+"Karl Marx","Charles Darwin","Friedrich Nietzsche","Sigmund Freud",
+"Albert Einstein","Hannah Arendt","Paulo Freire","Nelson Mandela",
+"Martin Luther King Jr.","Carl Sagan","Machado de Assis","Milton Santos",
+"Darcy Ribeiro","Ailton Krenak","Simone de Beauvoir","Stephen Hawking"
+];
+
+const CRITERIOS=[
+"Dados biográficos",
+"Cronologia",
+"Contexto histórico",
+"Principais ideias",
+"Obras e autoria",
+"Influência e legado",
+"Informações controversas",
+"Fontes utilizadas"
+];
+
+/* =====================================================
+   BANCO
+   ===================================================== */
+
+window.passaporteAcademicoMuseu=
+window.passaporteAcademicoMuseu||{};
+
+NOMES.forEach(function(nome){
+
+if(!window.passaporteAcademicoMuseu[nome]){
+
+window.passaporteAcademicoMuseu[nome]={
+status:"em_revisao",
+data:null,
+versao:"1.0",
+revisor:"Museu Virtual dos Pensadores Universais",
+criterios:{},
+fontes:[],
+observacoes:[]
+};
+
+}
+
+const r=window.passaporteAcademicoMuseu[nome];
+
+CRITERIOS.forEach(function(c){
+
+if(!r.criterios[c]){
+r.criterios[c]="pendente";
+}
+
+});
+
+});
+
+
+/* =====================================================
+   CSS
+   ===================================================== */
+
+if(!document.getElementById("cssPainelRevisao")){
+
+const style=document.createElement("style");
+
+style.id="cssPainelRevisao";
+
+style.textContent=`
+
+#painelRevisaoMuseu{
+position:fixed;
+inset:0;
+z-index:99999;
+display:none;
+background:rgba(0,0,0,.88);
+overflow:auto;
+padding:20px;
+}
+
+#painelRevisaoMuseu .revisao-caixa{
+max-width:900px;
+margin:20px auto;
+padding:22px;
+border:1px solid rgba(212,175,55,.55);
+border-radius:14px;
+background:#111;
+color:#eee;
+}
+
+.revisao-topo{
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:15px;
+margin-bottom:20px;
+}
+
+.revisao-lista{
+display:grid;
+gap:10px;
+}
+
+.revisao-item{
+padding:14px;
+border:1px solid rgba(255,255,255,.12);
+border-radius:10px;
+background:rgba(255,255,255,.03);
+}
+
+.revisao-item button{
+margin-top:8px;
+padding:8px 12px;
+border-radius:7px;
+cursor:pointer;
+}
+
+.revisao-status{
+font-weight:bold;
+margin-left:8px;
+}
+
+.status-pendente{
+color:#d4af37;
+}
+
+.status-revisado{
+color:#8ecae6;
+}
+
+.status-aprovado{
+color:#7bd88f;
+}
+
+.revisao-detalhes{
+margin-top:14px;
+padding:15px;
+border-top:1px solid rgba(255,255,255,.12);
+}
+
+.revisao-criterio{
+display:flex;
+align-items:center;
+gap:10px;
+padding:8px 0;
+}
+
+.revisao-criterio input{
+width:18px;
+height:18px;
+}
+
+.revisao-acoes{
+display:flex;
+flex-wrap:wrap;
+gap:8px;
+margin-top:15px;
+}
+
+.revisao-acoes button{
+padding:9px 13px;
+border-radius:7px;
+cursor:pointer;
+}
+
+.revisao-fechar{
+font-size:25px;
+padding:5px 10px;
+}
+
+.revisao-selo{
+display:inline-block;
+margin-top:7px;
+padding:5px 10px;
+border-radius:20px;
+font-size:.8rem;
+}
+
+`;
+
+document.head.appendChild(style);
+
+}
+
+
+/* =====================================================
+   NORMALIZAÇÃO
+   ===================================================== */
+
+function statusTexto(reg){
+
+if(reg.status==="aprovado")
+return "🟢 REVISADO E APROVADO";
+
+if(reg.status==="revisado")
+return "🔵 REVISADO DOCUMENTALMENTE";
+
+return "🟡 EM REVISÃO";
+
+}
+
+
+/* =====================================================
+   ABRIR PAINEL
+   ===================================================== */
+
+function abrirPainel(){
+
+let painel=document.getElementById(
+"painelRevisaoMuseu"
+);
+
+if(!painel){
+
+painel=document.createElement("div");
+
+painel.id="painelRevisaoMuseu";
+
+document.body.appendChild(painel);
+
+}
+
+renderPainel();
+
+painel.style.display="block";
+
+}
+
+
+/* =====================================================
+   FECHAR
+   ===================================================== */
+
+window.fecharPainelRevisao=function(){
+
+const painel=
+document.getElementById("painelRevisaoMuseu");
+
+if(painel)
+painel.style.display="none";
+
+};
+
+
+/* =====================================================
+   RENDERIZAÇÃO
+   ===================================================== */
+
+function renderPainel(){
+
+const painel=
+document.getElementById("painelRevisaoMuseu");
+
+if(!painel)return;
+
+let aprovados=0;
+let revisados=0;
+let pendentes=0;
+
+NOMES.forEach(function(nome){
+
+const r=
+window.passaporteAcademicoMuseu[nome];
+
+if(r.status==="aprovado")aprovados++;
+else if(r.status==="revisado")revisados++;
+else pendentes++;
+
+});
+
+
+let html=`
+
+<div class="revisao-caixa">
+
+<div class="revisao-topo">
+
+<div>
+
+<h2>🏛️ Revisão Acadêmica do Museu</h2>
+
+<p>
+Controle de qualidade do acervo
+</p>
+
+</div>
+
+<button
+class="revisao-fechar"
+onclick="fecharPainelRevisao()">
+×
+</button>
+
+</div>
+
+<p>
+🟢 Aprovados: <b>${aprovados}</b>
+&nbsp; | &nbsp;
+🔵 Revisados: <b>${revisados}</b>
+&nbsp; | &nbsp;
+🟡 Em revisão: <b>${pendentes}</b>
+</p>
+
+<div class="revisao-lista">
+`;
+
+NOMES.forEach(function(nome){
+
+const r=
+window.passaporteAcademicoMuseu[nome];
+
+html+=`
+
+<div class="revisao-item">
+
+<strong>${escapar(nome)}</strong>
+
+<span class="revisao-status ${
+r.status==="aprovado"
+?"status-aprovado"
+:r.status==="revisado"
+?"status-revisado"
+:"status-pendente"
+}">
+${statusTexto(r)}
+</span>
+
+<br>
+
+<button
+onclick="abrirFichaRevisao('${nome.replace(/'/g,"\\'")}')">
+
+🔎 Abrir revisão
+
+</button>
+
+</div>
+
+`;
+
+});
+
+html+=`
+
+</div>
+
+</div>
+`;
+
+painel.innerHTML=html;
+
+}
+
+
+/* =====================================================
+   FICHA INDIVIDUAL
+   ===================================================== */
+
+window.abrirFichaRevisao=function(nome){
+
+const r=
+window.passaporteAcademicoMuseu[nome];
+
+if(!r)return;
+
+const painel=
+document.getElementById("painelRevisaoMuseu");
+
+if(!painel)return;
+
+let html=`
+
+<div class="revisao-caixa">
+
+<div class="revisao-topo">
+
+<h2>
+📚 ${escapar(nome)}
+</h2>
+
+<button
+class="revisao-fechar"
+onclick="renderPainel()">
+←
+</button>
+
+</div>
+
+<p>
+<b>Status:</b>
+${statusTexto(r)}
+</p>
+
+<p>
+<b>Última revisão:</b>
+${r.data||"Ainda não realizada"}
+</p>
+
+<p>
+<b>Versão:</b>
+${r.versao||"1.0"}
+</p>
+
+<h3>
+Checklist
+</h3>
+
+`;
+
+CRITERIOS.forEach(function(c){
+
+const marcado=
+r.criterios[c]==="ok";
+
+html+=`
+
+<label class="revisao-criterio">
+
+<input
+type="checkbox"
+data-criterio="${escapar(c)}"
+${marcado?"checked":""}>
+
+<span>
+${escapar(c)}
+</span>
+
+</label>
+
+`;
+
+});
+
+
+html+=`
+
+<h3>
+Fontes
+</h3>
+
+<p>
+As fontes devem ser registradas após a
+conferência do conteúdo.
+</p>
+
+<textarea
+id="fontesRevisao"
+style="width:100%;min-height:90px;"
+placeholder="Uma fonte por linha..."
+>${(r.fontes||[]).join("\n")}</textarea>
+
+<h3>
+Observações
+</h3>
+
+<textarea
+id="observacoesRevisao"
+style="width:100%;min-height:90px;"
+placeholder="Registre controvérsias, divergências ou observações..."
+>${(r.observacoes||[]).join("\n")}</>${(r.observacoes||[]).join("\n")}</textarea>
+
+<div class="revisao-acoes">
+
+<button
+onclick="salvarFichaRevisao('${nome.replace(/'/g,"\\'")}')">
+💾 Salvar revisão
+</button>
+
+<button
+onclick="aprovarFichaRevisao('${nome.replace(/'/g,"\\'")}')">
+✓ Marcar como aprovada
+</button>
+
+</div>
+
+</div>
+`;
+
+painel.innerHTML=html;
+
+};
+
+
+/* =====================================================
+   SALVAR REVISÃO
+   ===================================================== */
+
+window.salvarFichaRevisao=function(nome){
+
+const r=window.passaporteAcademicoMuseu[nome];
+
+if(!r)return;
+
+const checks=document.querySelectorAll(
+".revisao-criterio input"
+);
+
+let completos=0;
+
+checks.forEach(function(input){
+
+const criterio=input.getAttribute(
+"data-criterio"
+);
+
+r.criterios[criterio]=
+input.checked?"ok":"pendente";
+
+if(input.checked)completos++;
+
+});
+
+
+const fontes=document.getElementById(
+"fontesRevisao"
+);
+
+const observacoes=document.getElementById(
+"observacoesRevisao"
+);
+
+r.fontes=fontes
+?fontes.value.split("\n").filter(Boolean)
+:[];
+
+r.observacoes=observacoes
+?observacoes.value.split("\n").filter(Boolean)
+:[];
+
+r.data=new Date().toLocaleDateString("pt-BR");
+
+r.versao=r.versao||"1.0";
+
+r.revisor=
+"Museu Virtual dos Pensadores Universais";
+
+if(completos===CRITERIOS.length){
+
+r.status="revisado";
+
+}else{
+
+r.status="em_revisao";
+
+}
+
+alert(
+completos+
+"/"+
+CRITERIOS.length+
+" critérios conferidos."
+);
+
+abrirFichaRevisao(nome);
+
+};
+
+
+/* =====================================================
+   APROVAR
+   ===================================================== */
+
+window.aprovarFichaRevisao=function(nome){
+
+const r=window.passaporteAcademicoMuseu[nome];
+
+if(!r)return;
+
+let completos=true;
+
+CRITERIOS.forEach(function(c){
+
+if(r.criterios[c]!=="ok"){
+completos=false;
+}
+
+});
+
+if(!completos){
+
+alert(
+"⚠️ Não é possível aprovar ainda.\n\n"+
+"Todos os critérios precisam estar conferidos."
+);
+
+return;
+
+}
+
+if(!r.fontes||r.fontes.length===0){
+
+alert(
+"⚠️ Registre pelo menos uma fonte antes da aprovação."
+);
+
+return;
+
+}
+
+r.status="aprovado";
+
+r.data=new Date().toLocaleDateString("pt-BR");
+
+r.versao=r.versao||"1.0";
+
+r.revisor=
+"Museu Virtual dos Pensadores Universais";
+
+alert(
+"🟢 Revisão aprovada para "+nome
+);
+
+renderPainel();
+
+};
+
+
+/* =====================================================
+   BOTÃO DO PAINEL
+   ===================================================== */
+
+function criarBotaoPainel(){
+
+if(document.getElementById(
+"botaoPainelRevisaoMuseu"
+))return;
+
+const botao=document.createElement("button");
+
+botao.id="botaoPainelRevisaoMuseu";
+
+botao.textContent="🏛️ Painel de Revisão";
+
+botao.style.position="fixed";
+botao.style.right="12px";
+botao.style.bottom="12px";
+botao.style.zIndex="9998";
+botao.style.padding="9px 12px";
+botao.style.borderRadius="20px";
+botao.style.cursor="pointer";
+botao.style.opacity=".75";
+
+botao.onclick=abrirPainel;
+
+document.body.appendChild(botao);
+
+}
+
+
+/* =====================================================
+   INICIALIZAÇÃO
+   ===================================================== */
+
+if(document.readyState==="loading"){
+
+document.addEventListener(
+"DOMContentLoaded",
+criarBotaoPainel
+);
+
+}else{
+
+criarBotaoPainel();
+
+}
+
+console.log(
+"🏛️ Painel de Revisão Acadêmica carregado."
+);
+
+})();
+</script>
   
   
   
