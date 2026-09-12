@@ -6782,6 +6782,89 @@ console.log(
 
 })();
   </script>
+  <script>
+/* =========================================================
+   REVISÃO ACADÊMICA — BLOCO 01
+   SÓCRATES • PLATÃO • ARISTÓTELES • CONFÚCIO • AGOSTINHO
+   ========================================================= */
+
+(function(){
+
+  window.correcoesAcademicas01 = {
+
+    "Sócrates":{
+      periodo:"c. 469–399 a.C.",
+      categoria:"Antiguidade",
+      ajuste:
+        "Sócrates não deixou escritos próprios conhecidos. O conhecimento sobre sua vida e pensamento é indireto e provém principalmente de Aristófanes, Xenofonte e Platão. Existe o chamado 'problema socrático', pois essas representações não coincidem integralmente.",
+      nota:
+        "Quando uma ideia aparece em um diálogo de Platão, deve-se distinguir o Sócrates histórico do personagem Sócrates apresentado por Platão.",
+      fonte:"Stanford Encyclopedia of Philosophy — Socrates",
+      url:"https://plato.stanford.edu/entries/socrates/"
+    },
+
+    "Platão":{
+      periodo:"c. 429/428–347 a.C.",
+      categoria:"Antiguidade",
+      ajuste:
+        "A data de nascimento de Platão é aproximada. Seus diálogos são obras de Platão, mesmo quando Sócrates aparece como personagem principal.",
+      nota:
+        "A representação de Sócrates nos diálogos não deve ser automaticamente tratada como registro literal das palavras do Sócrates histórico.",
+      fonte:"Stanford Encyclopedia of Philosophy — Plato",
+      url:"https://plato.stanford.edu/entries/plato/"
+    },
+
+    "Aristóteles":{
+      periodo:"384–322 a.C.",
+      categoria:"Antiguidade",
+      ajuste:
+        "Os dados biográficos fundamentais são bem estabelecidos, mas o corpus aristotélico possui uma história complexa de transmissão, organização e preservação.",
+      nota:
+        "A expressão 'obras de Aristóteles' deve ser entendida considerando a história textual e os debates sobre autenticidade e transmissão de determinados textos.",
+      fonte:"Stanford Encyclopedia of Philosophy — Aristotle",
+      url:"https://plato.stanford.edu/entries/aristotle/"
+    },
+
+    "Confúcio":{
+      periodo:"tradicionalmente 551–479 a.C.",
+      categoria:"Antiguidade",
+      ajuste:
+        "As datas tradicionais são 551–479 a.C., mas as fontes biográficas e textuais foram compiladas posteriormente e apresentam diferentes tradições sobre Confúcio.",
+      nota:
+        "A biografia não deve transformar anedotas didáticas posteriores em fatos históricos absolutamente comprovados.",
+      fonte:"Stanford Encyclopedia of Philosophy — Confucius",
+      url:"https://plato.stanford.edu/entries/confucius/"
+    },
+
+    "Agostinho de Hipona":{
+      periodo:"354–430",
+      categoria:"Antiguidade Tardia",
+      ajuste:
+        "Agostinho deve ser classificado historicamente como pensador da Antiguidade Tardia. Sua influência sobre a filosofia medieval foi enorme, mas ele próprio pertence ao contexto do mundo romano tardio.",
+      nota:
+        "Pode-se mencionar sua importância para a filosofia medieval, mas isso não deve substituir sua classificação histórica como pensador da Antiguidade Tardia.",
+      fonte:"Stanford Encyclopedia of Philosophy — Augustine",
+      url:"https://plato.stanford.edu/entries/augustine/"
+    }
+
+  };
+
+  window.obterCorrecaoAcademica01=function(nome){
+    return window.correcoesAcademicas01[nome] || null;
+  };
+
+  window.listarCorrecoesAcademicas01=function(){
+    return Object.keys(window.correcoesAcademicas01);
+  };
+
+  console.log(
+    "✅ Revisão acadêmica 01 carregada:",
+    Object.keys(window.correcoesAcademicas01).length,
+    "pensadores."
+  );
+
+})();
+  </script>
   
   
   
