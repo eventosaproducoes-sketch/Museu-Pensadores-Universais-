@@ -7484,6 +7484,36 @@ console.log(
 
 })();
   </script>
+  <script>
+(function(){
+var nomes=[
+"Averróis","Leonardo da Vinci","Nicolau Maquiavel","Erasmo de Roterdã",
+"John Locke","Jean-Jacques Rousseau","Voltaire","Immanuel Kant",
+"Karl Marx","Charles Darwin","Friedrich Nietzsche","Sigmund Freud",
+"Albert Einstein","Hannah Arendt","Paulo Freire","Nelson Mandela",
+"Martin Luther King Jr.","Carl Sagan","Stephen Hawking","Machado de Assis",
+"Milton Santos","Darcy Ribeiro","Ailton Krenak","Simone de Beauvoir"
+];
+
+window.passaporteAcademicoMuseu=window.passaporteAcademicoMuseu||{};
+
+nomes.forEach(function(n){
+if(!window.passaporteAcademicoMuseu[n]){
+window.passaporteAcademicoMuseu[n]={
+status:"em_revisao",
+data:null,
+versao:"1.0",
+revisor:"Museu Virtual dos Pensadores Universais",
+criterios:{},
+fontes:[],
+observacoes:["Revisão acadêmica pendente."]
+};
+}
+});
+
+console.log("✅ 24 pensadores preparados para revisão.");
+})();
+  </script>
   
   
   
