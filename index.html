@@ -9748,6 +9748,56 @@ console.log("🔬 Conteúdo Expert 02 ativado.");
 
 })();
   </script>
+  <script>
+/* =========================================================
+   REVISÃO ACADÊMICA — AVERROIS
+   ========================================================= */
+(function(){
+  window.passaporteAcademicoMuseu =
+    window.passaporteAcademicoMuseu || {};
+
+  window.passaporteAcademicoMuseu["Averróis"] = {
+    status: "revisado",
+    data: "12/09/2026",
+    versao: "1.1",
+
+    criterios: {
+      biografia: true,
+      cronologia: true,
+      contexto: true,
+      ideias: true,
+      obras: true,
+      influencia: true,
+      controversias: true,
+      fontes: true
+    },
+
+    fontes: [
+      {
+        titulo: "Stanford Encyclopedia of Philosophy — Ibn Rushd (Averroes)",
+        url: "https://plato.stanford.edu/entries/ibn-rushd/"
+      },
+      {
+        titulo: "Internet Encyclopedia of Philosophy — Ibn Rushd (Averroes)",
+        url: "https://iep.utm.edu/ibn-rushd-averroes/"
+      },
+      {
+        titulo: "Stanford Encyclopedia of Philosophy — Ibn Rushd’s Natural Philosophy",
+        url: "https://plato.stanford.edu/entries/ibn-rushd-natural/"
+      }
+    ],
+
+    observacoes:
+      "Revisão documental concluída. Foram conferidos dados biográficos, cronologia, contexto histórico, ideias, obras, influência, controvérsias e fontes. Evitar reduzir Averróis ao título de Comentador. A chamada dupla verdade não deve ser apresentada como doutrina própria de Averróis."
+  };
+
+  if(typeof window.salvarMemoriaRevisaoMuseu === "function"){
+    window.salvarMemoriaRevisaoMuseu();
+  }
+
+  console.log("✅ Averróis revisado — 8/8 critérios.");
+})();
+</script>
   
   
   
