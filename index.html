@@ -7776,6 +7776,91 @@ console.warn("⚠️ Auditoria encontrou erro:",e);
 
 })();
   </script>
+  <script>
+(function(){
+  window.museuAuditoria02=function(){
+
+    var nomes=[
+      "Sócrates","Platão","Aristóteles","Confúcio",
+      "Agostinho de Hipona","Tomás de Aquino","Averróis",
+      "Leonardo da Vinci","Nicolau Maquiavel","Erasmo de Roterdã",
+      "John Locke","Jean-Jacques Rousseau","Voltaire","Immanuel Kant",
+      "Karl Marx","Charles Darwin","Friedrich Nietzsche","Sigmund Freud",
+      "Albert Einstein","Hannah Arendt","Paulo Freire","Nelson Mandela",
+      "Martin Luther King Jr.","Carl Sagan","Stephen Hawking",
+      "Machado de Assis","Milton Santos","Darcy Ribeiro","Ailton Krenak",
+      "Simone de Beauvoir"
+    ];
+
+    var erros=[];
+    var ok=[];
+
+    if(!Array.isArray(window.thinkers))
+      erros.push("Lista de pensadores não encontrada.");
+    else
+      ok.push("30 pensadores carregados.");
+
+    if(!window.linhasTempoMuseu)
+      erros.push("Banco de linhas do tempo não encontrado.");
+    else{
+      var lt=nomes.filter(function(n){
+        return Array.isArray(window.linhasTempoMuseu[n]);
+      }).length;
+      ok.push(lt+" de 30 linhas do tempo encontradas.");
+      if(lt<30) erros.push((30-lt)+" linhas do tempo ausentes.");
+    }
+
+    [
+      "openThinker","openTimeline","closeModal",
+      "renderPensadores","clearSearch"
+    ].forEach(function(f){
+      if(typeof window[f]==="function")
+        ok.push("Função OK: "+f);
+      else
+        erros.push("Função ausente: "+f);
+    });
+
+    var ids={};
+    document.querySelectorAll("[id]").forEach(function(el){
+      ids[el.id]=(ids[el.id]||0)+1;
+    });
+
+    Object.keys(ids).forEach(function(id){
+      if(ids[id]>1) erros.push("ID duplicado: "+id);
+    });
+
+    var rev=window.passaporteAcademicoMuseu||{};
+    var totalRev=nomes.filter(function(n){
+      return rev[n] && rev[n].status==="revisado";
+    }).length;
+
+    ok.push(totalRev+" de 30 revisões documentais registradas.");
+
+    var relatorio={
+      data:new Date().toLocaleString("pt-BR"),
+      status:erros.length?"⚠️ ATENÇÃO":"✅ SISTEMA OK",
+      pontosOK:ok,
+      problemas:erros
+    };
+
+    console.log("===== AUDITORIA 02 =====");
+    console.log(relatorio);
+
+    alert(
+      relatorio.status+
+      "\n\n"+
+      ok.join("\n")+
+      (erros.length?
+        "\n\nPROBLEMAS:\n"+erros.join("\n"):
+        "\n\nNenhum problema estrutural detectado.")
+    );
+
+    return relatorio;
+  };
+
+  console.log("🔎 Auditoria 02 instalada.");
+})();
+  </script>
   
   
   
