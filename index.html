@@ -8011,6 +8011,41 @@ console.log("🟡 24 fichas retornaram para revisão individual.");
 
 })();
   </script>
+  <script>
+(function(){
+
+function painel(){
+
+var b=document.createElement("button");
+
+b.textContent="🏛️ Painel de Revisão";
+
+b.style.cssText=
+"position:fixed;bottom:70px;right:12px;z-index:99999;padding:12px 16px;border-radius:15px;border:2px solid #d4af37;background:#111;color:#fff;font-weight:bold;";
+
+b.onclick=function(){
+
+if(typeof window.abrirPainelRevisaoMuseu==="function")
+window.abrirPainelRevisaoMuseu();
+
+else if(typeof window.abrirRevisaoSegura==="function")
+window.abrirRevisaoSegura();
+
+else
+alert("Painel de revisão ainda não encontrado.");
+
+};
+
+document.body.appendChild(b);
+
+}
+
+if(document.readyState==="loading")
+document.addEventListener("DOMContentLoaded",painel);
+else painel();
+
+})();
+  </script>
   
   
   
