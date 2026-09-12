@@ -8382,6 +8382,100 @@ console.log("🔬 Conteúdo Expert 01 ativado.");
 
 })();
   </script>
+  <script>
+(function(){
+
+var E={
+
+"Averróis":{
+contrib:"Averróis (Ibn Rushd) defendeu a capacidade da filosofia demonstrativa de alcançar conhecimento e desenvolveu uma leitura sistemática de Aristóteles. Também refletiu sobre a relação entre investigação filosófica e religião.",
+cont:"É importante não reduzir Averróis ao rótulo latino de 'Comentador'. A pesquisa contemporânea procura compreender sua própria filosofia, além de sua enorme recepção na Europa cristã.",
+infl:"Sua leitura de Aristóteles teve impacto profundo na filosofia islâmica e posteriormente na filosofia europeia medieval.",
+cons:"É consenso sua importância como filósofo, médico e jurista andalusino. A interpretação de alguns aspectos de sua psicologia e metafísica permanece debatida."
+},
+
+"Leonardo da Vinci":{
+contrib:"Leonardo uniu arte, observação da natureza, engenharia e investigação anatômica. Seu método de estudo valorizava experiência, desenho, comparação e observação detalhada.",
+cont:"É preciso evitar transformar Leonardo em um 'cientista moderno' no sentido atual. Sua prática intelectual pertence ao Renascimento e combina arte, técnica e investigação natural.",
+infl:"Seus cadernos e desenhos tornaram-se referências extraordinárias para a história da arte, da engenharia e dos estudos sobre natureza e anatomia.",
+cons:"Sua produção artística e seus manuscritos são amplamente documentados. A interpretação de projetos e experimentos não realizados exige cautela."
+},
+
+"Nicolau Maquiavel":{
+contrib:"Maquiavel analisou poder, conflito, instituições, liderança, fortuna e liberdade política a partir da experiência histórica e política.",
+cont:"Uma das grandes controvérsias é saber se sua obra deve ser interpretada principalmente como realismo político, republicanismo, crítica moral ou uma combinação dessas dimensões.",
+infl:"Influenciou profundamente a teoria política, o republicanismo e os estudos sobre poder e Estado.",
+cons:"O sentido de 'maquiavélico' popular não corresponde automaticamente à complexidade de sua obra. A pesquisa acadêmica debate intensamente sua relação entre moralidade e política."
+},
+
+"Erasmo de Roterdã":{
+contrib:"Erasmo foi uma figura central do humanismo cristão. Defendeu educação, formação moral e retorno crítico às fontes clássicas e cristãs.",
+cont:"Não deve ser apresentado simplesmente como filósofo sistemático. A SEP destaca que sua produção é ampla e reflexiva, mas não organizada como um sistema filosófico.",
+infl:"Sua obra circulou amplamente na Europa e influenciou debates religiosos, educacionais e intelectuais.",
+cons:"O humanismo cristão é uma caracterização importante de seu pensamento. Sua relação com a Reforma e com questões teológicas exige contextualização."
+},
+
+"John Locke":{
+contrib:"Locke tornou-se uma das grandes referências do empirismo moderno e investigou os limites do conhecimento humano. Na política, defendeu direitos naturais, consentimento e governo legítimo.",
+cont:"Sua teoria do conhecimento e sua filosofia política possuem interpretações concorrentes. Também é necessário evitar apresentar o liberalismo posterior como simples reprodução de Locke.",
+infl:"Sua obra influenciou fortemente a epistemologia moderna, a filosofia política e debates sobre direitos e governo.",
+cons:"É amplamente reconhecido como figura central do empirismo britânico e da filosofia política moderna. A extensão e interpretação de algumas de suas posições permanecem debatidas."
+},
+
+"Jean-Jacques Rousseau":{
+contrib:"Rousseau investigou liberdade, desigualdade, educação, formação moral e legitimidade política. Sua preocupação central inclui como preservar a liberdade em sociedades de crescente dependência.",
+cont:"Há tensão entre sua crítica da sociedade, sua teoria política e suas propostas educacionais. Sua relação com a ideia de 'bondade natural' também requer leitura cuidadosa.",
+infl:"Influenciou profundamente a filosofia política, a educação, a moral e o romantismo.",
+cons:"É consenso sua importância para a filosofia política e moral. A interpretação de sua relação entre indivíduo, sociedade, liberdade e igualdade permanece amplamente debatida."
+}
+
+};
+
+window.consultaExpert=function(nome,pergunta){
+
+var d=E[nome];
+var r=document.getElementById("respostaExpert");
+
+if(!r)return;
+
+if(!d){
+r.innerHTML="<div style='padding:18px;border:1px solid #b99a45;border-radius:12px'><strong>🔬 Consulta Expert</strong><br><br>Conteúdo especializado deste pensador ainda está sendo preparado.</div>";
+return;
+}
+
+var p=(pergunta||
+(document.getElementById("perguntaExpert")||{}).value||"").toLowerCase();
+
+var titulo="🔬 Análise especializada";
+var texto=d.contrib;
+
+if(p.includes("controv")){
+titulo="⚖️ Controvérsias acadêmicas";
+texto=d.cont;
+}
+else if(p.includes("influ")){
+titulo="🌎 Influência e legado";
+texto=d.infl;
+}
+else if(p.includes("consenso")||p.includes("debate")){
+titulo="📚 Consenso e questões debatidas";
+texto=d.cons;
+}
+
+r.innerHTML=
+"<div style='padding:18px;border:1px solid #b99a45;border-radius:12px'>"+
+"<h3>"+titulo+"</h3>"+
+"<p>"+texto+"</p>"+
+"<hr>"+
+"<small>🔬 Modo Expert — distingue dados históricos, interpretações e questões acadêmicas debatidas.</small>"+
+"</div>";
+
+};
+
+console.log("🔬 Conteúdo Expert 02 ativado.");
+
+})();
+  </script>
   
   
   
