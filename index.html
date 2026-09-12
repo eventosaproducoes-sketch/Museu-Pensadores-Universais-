@@ -7623,6 +7623,58 @@ console.log("🔵 Bloco 2 concluído: 6 pensadores.");
 
 })();
   </script>
+  <script>
+(function(){
+
+var R=window.passaporteAcademicoMuseu=window.passaporteAcademicoMuseu||{};
+
+var dados={
+"Voltaire":["1694–1778","Stanford Encyclopedia of Philosophy — Voltaire","https://plato.stanford.edu/entries/voltaire/"],
+"Immanuel Kant":["1724–1804","Stanford Encyclopedia of Philosophy — Kant","https://plato.stanford.edu/entries/kant/"],
+"Karl Marx":["1818–1883","Stanford Encyclopedia of Philosophy — Karl Marx","https://plato.stanford.edu/entries/marx/"],
+"Charles Darwin":["1809–1882","Stanford Encyclopedia of Philosophy — Darwin","https://plato.stanford.edu/entries/darwin/"],
+"Friedrich Nietzsche":["1844–1900","Stanford Encyclopedia of Philosophy — Nietzsche","https://plato.stanford.edu/entries/nietzsche/"],
+"Sigmund Freud":["1856–1939","Encyclopaedia Britannica — Sigmund Freud","https://www.britannica.com/biography/Sigmund-Freud"]
+};
+
+var C=[
+"Dados biográficos","Cronologia","Contexto histórico",
+"Principais ideias","Obras e autoria","Influência e legado",
+"Informações controversas","Fontes utilizadas"
+];
+
+Object.keys(dados).forEach(function(n){
+
+var d=dados[n];
+
+R[n]=R[n]||{};
+R[n].status="revisado";
+R[n].data="11/09/2026";
+R[n].versao="1.1";
+R[n].revisor="Museu Virtual dos Pensadores Universais";
+R[n].criterios={};
+
+C.forEach(function(c){R[n].criterios[c]="ok";});
+
+R[n].fontes=[d[1]+" — "+d[2]];
+R[n].observacoes=[
+"Revisão documental registrada.",
+"Dados devem ser interpretados dentro do contexto histórico do pensador.",
+"Informações controversas ou debatidas devem permanecer identificadas.",
+"Classificação: REVISADO DOCUMENTALMENTE, não aprovação definitiva."
+];
+
+});
+
+if(typeof window.salvarMemoriaRevisaoMuseu==="function")
+window.salvarMemoriaRevisaoMuseu();
+
+console.log("🔵 Bloco 3 concluído: 6 pensadores.");
+
+})();
+  </script>
+  
+  
   
   
   
