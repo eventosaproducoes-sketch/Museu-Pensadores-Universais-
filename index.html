@@ -7514,6 +7514,64 @@ observacoes:["Revisão acadêmica pendente."]
 console.log("✅ 24 pensadores preparados para revisão.");
 })();
   </script>
+  <script>
+(function(){
+
+var backup={};
+
+function proteger(){
+
+["openThinker","openTimeline","closeModal","renderPensadores",
+"clearSearch","membership"].forEach(function(n){
+if(typeof window[n]==="function" && !backup[n])
+backup[n]=window[n];
+});
+
+if(typeof window.linhasTempoMuseu==="object")
+backup.linhas=window.linhasTempoMuseu;
+
+}
+
+function reparar(){
+
+Object.keys(backup).forEach(function(n){
+if(n!=="linhas" && typeof window[n]!=="function")
+window[n]=backup[n];
+});
+
+if(backup.linhas){
+window.linhasTempoMuseu=window.linhasTempoMuseu||{};
+Object.keys(backup.linhas).forEach(function(n){
+if(!window.linhasTempoMuseu[n])
+window.linhasTempoMuseu[n]=backup.linhas[n];
+});
+}
+
+}
+
+proteger();
+
+window.museuAutoCorrigir=function(){
+reparar();
+console.log("🛡️ Museu protegido e funções verificadas.");
+return true;
+};
+
+setTimeout(reparar,1000);
+setTimeout(reparar,3000);
+
+window.addEventListener("error",function(){
+setTimeout(reparar,100);
+});
+
+window.addEventListener("unhandledrejection",function(){
+setTimeout(reparar,100);
+});
+
+console.log("🛡️ Proteção automática ativada.");
+
+})();
+  </script>
   
   
   
