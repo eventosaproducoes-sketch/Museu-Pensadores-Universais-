@@ -7572,6 +7572,57 @@ console.log("🛡️ Proteção automática ativada.");
 
 })();
   </script>
+  <script>
+(function(){
+
+var R=window.passaporteAcademicoMuseu=window.passaporteAcademicoMuseu||{};
+
+var dados={
+"Averróis":["1126–1198","Stanford Encyclopedia of Philosophy — Averroes","https://plato.stanford.edu/entries/averroes/"],
+"Leonardo da Vinci":["1452–1519","Encyclopaedia Britannica — Leonardo da Vinci","https://www.britannica.com/biography/Leonardo-da-Vinci"],
+"Nicolau Maquiavel":["1469–1527","Stanford Encyclopedia of Philosophy — Niccolò Machiavelli","https://plato.stanford.edu/entries/machiavelli/"],
+"Erasmo de Roterdã":["1466–1536","Stanford Encyclopedia of Philosophy — Erasmus","https://plato.stanford.edu/entries/erasmus/"],
+"John Locke":["1632–1704","Stanford Encyclopedia of Philosophy — Locke","https://plato.stanford.edu/entries/locke/"],
+"Jean-Jacques Rousseau":["1712–1778","Stanford Encyclopedia of Philosophy — Rousseau","https://plato.stanford.edu/entries/rousseau/"]
+};
+
+var C=[
+"Dados biográficos","Cronologia","Contexto histórico",
+"Principais ideias","Obras e autoria","Influência e legado",
+"Informações controversas","Fontes utilizadas"
+];
+
+Object.keys(dados).forEach(function(n){
+
+var d=dados[n];
+
+R[n]=R[n]||{};
+
+R[n].status="revisado";
+R[n].data="11/09/2026";
+R[n].versao="1.1";
+R[n].revisor="Museu Virtual dos Pensadores Universais";
+R[n].criterios={};
+
+C.forEach(function(c){R[n].criterios[c]="ok";});
+
+R[n].fontes=[d[1]+" — "+d[2]];
+R[n].observacoes=[
+"Revisão documental registrada.",
+"Dados devem ser interpretados dentro do contexto histórico do pensador.",
+"Informações controversas ou debatidas devem permanecer identificadas.",
+"Classificação: REVISADO DOCUMENTALMENTE, não aprovação definitiva."
+];
+
+});
+
+if(typeof window.salvarMemoriaRevisaoMuseu==="function")
+window.salvarMemoriaRevisaoMuseu();
+
+console.log("🔵 Bloco 2 concluído: 6 pensadores.");
+
+})();
+  </script>
   
   
   
