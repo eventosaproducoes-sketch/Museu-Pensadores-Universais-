@@ -6400,6 +6400,388 @@ ligar();
 
 })();
   </script>
+  <script>
+(function(){
+
+"use strict";
+
+/* =====================================================
+   🏛️ MEMÓRIA DAS REVISÕES ACADÊMICAS
+   ===================================================== */
+
+const CHAVE=
+"museuPensadoresRevisaoAcademica_v1";
+
+
+/* =====================================================
+   GARANTE O BANCO
+   ===================================================== */
+
+window.passaporteAcademicoMuseu=
+window.passaporteAcademicoMuseu||{};
+
+
+/* =====================================================
+   CARREGAR DADOS SALVOS
+   ===================================================== */
+
+function carregar(){
+
+try{
+
+const salvo=
+localStorage.getItem(CHAVE);
+
+if(!salvo){
+
+console.log(
+"🏛️ Nenhuma revisão anterior encontrada."
+);
+
+return;
+
+}
+
+const dados=
+JSON.parse(salvo);
+
+if(!dados||typeof dados!=="object"){
+
+return;
+
+}
+
+
+/*
+   O conteúdo salvo é incorporado ao banco atual.
+   Não substituímos o banco inteiro.
+*/
+
+Object.keys(dados).forEach(function(nome){
+
+if(!window.passaporteAcademicoMuseu[nome]){
+
+window.passaporteAcademicoMuseu[nome]=dados[nome];
+
+}else{
+
+window.passaporteAcademicoMuseu[nome]=
+Object.assign(
+{},
+window.passaporteAcademicoMuseu[nome],
+dados[nome]
+);
+
+}
+
+});
+
+
+console.log(
+"🏛️ Revisões anteriores carregadas."
+);
+
+}catch(erro){
+
+console.warn(
+"⚠️ Não foi possível carregar as revisões:",
+erro
+);
+
+}
+
+}
+
+
+/* =====================================================
+   SALVAR DADOS
+   ===================================================== */
+
+window.salvarMemoriaRevisaoMuseu=function(){
+
+try{
+
+const copia=
+JSON.parse(
+JSON.stringify(
+window.passaporteAcademicoMuseu||{}
+)
+);
+
+localStorage.setItem(
+CHAVE,
+JSON.stringify(copia)
+);
+
+window.controleRevisaoMuseu=
+window.controleRevisaoMuseu||{};
+
+window.controleRevisaoMuseu
+.ultimaGravacao=
+new Date().toISOString();
+
+console.log(
+"💾 Revisões gravadas no navegador."
+);
+
+return true;
+
+}catch(erro){
+
+console.error(
+"❌ Erro ao salvar revisões:",
+erro
+);
+
+return false;
+
+}
+
+};
+
+
+/* =====================================================
+   BACKUP MANUAL
+   ===================================================== */
+
+window.exportarRevisoesMuseu=function(){
+
+try{
+
+const dados=
+JSON.stringify(
+window.passaporteAcademicoMuseu||{},
+null,
+2
+);
+
+const blob=
+new Blob(
+[dados],
+{type:"application/json"}
+);
+
+const url=
+URL.createObjectURL(blob);
+
+const a=
+document.createElement("a");
+
+a.href=url;
+
+a.download=
+"backup-revisoes-museu.json";
+
+document.body.appendChild(a);
+
+a.click();
+
+a.remove();
+
+URL.revokeObjectURL(url);
+
+console.log(
+"📦 Backup das revisões criado."
+);
+
+}catch(erro){
+
+console.error(
+"❌ Erro ao criar backup:",
+erro
+);
+
+}
+
+};
+
+
+/* =====================================================
+   RESTAURAR BACKUP
+   ===================================================== */
+
+window.importarRevisoesMuseu=function(arquivo){
+
+if(!arquivo)return;
+
+const leitor=
+new FileReader();
+
+leitor.onload=function(){
+
+try{
+
+const dados=
+JSON.parse(leitor.result);
+
+if(!dados||
+typeof dados!=="object"){
+
+throw new Error(
+"Arquivo de revisão inválido."
+);
+
+}
+
+Object.keys(dados).forEach(function(nome){
+
+window.passaporteAcademicoMuseu[nome]=
+dados[nome];
+
+});
+
+window.salvarMemoriaRevisaoMuseu();
+
+alert(
+"✅ Backup restaurado."
+);
+
+location.reload();
+
+}catch(erro){
+
+alert(
+"❌ Não foi possível restaurar o backup."
+);
+
+console.error(erro);
+
+}
+
+};
+
+leitor.readAsText(arquivo);
+
+};
+
+
+/* =====================================================
+   ENVOLVE O BOTÃO SALVAR
+   ===================================================== */
+
+const salvarOriginal=
+window.salvarRevisaoSegura;
+
+if(typeof salvarOriginal==="function"){
+
+window.salvarRevisaoSegura=
+function(nome){
+
+const resultado=
+salvarOriginal(nome);
+
+window.salvarMemoriaRevisaoMuseu();
+
+return resultado;
+
+};
+
+}
+
+
+/* =====================================================
+   ENVOLVE O BOTÃO APROVAR
+   ===================================================== */
+
+const aprovarOriginal=
+window.aprovarFichaRevisao;
+
+if(typeof aprovarOriginal==="function"){
+
+window.aprovarFichaRevisao=
+function(nome){
+
+const resultado=
+aprovarOriginal(nome);
+
+window.salvarMemoriaRevisaoMuseu();
+
+return resultado;
+
+};
+
+}
+
+
+/* =====================================================
+   CARREGA ANTES DE USAR
+   ===================================================== */
+
+carregar();
+
+
+/* =====================================================
+   SALVA AUTOMATICAMENTE
+   ===================================================== */
+
+window.addEventListener(
+"beforeunload",
+function(){
+
+window.salvarMemoriaRevisaoMuseu();
+
+}
+);
+
+
+/* =====================================================
+   RELATÓRIO DA MEMÓRIA
+   ===================================================== */
+
+window.statusMemoriaRevisaoMuseu=function(){
+
+let tamanho=0;
+
+try{
+
+const salvo=
+localStorage.getItem(CHAVE);
+
+if(salvo){
+
+tamanho=
+new Blob([salvo]).size;
+
+}
+
+}catch(e){}
+
+
+const resultado={
+
+armazenamento:
+"localStorage",
+
+chave:CHAVE,
+
+bytes:tamanho,
+
+registros:
+Object.keys(
+window.passaporteAcademicoMuseu||{}
+).length,
+
+status:
+"MEMÓRIA ATIVA"
+
+};
+
+console.log(
+"🏛️ Memória das revisões:",
+resultado
+);
+
+return resultado;
+
+};
+
+
+console.log(
+"🏛️ Memória permanente das revisões instalada."
+);
+
+})();
+  </script>
   
   
   
