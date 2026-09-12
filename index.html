@@ -4954,6 +4954,447 @@ window.relatorioPassaportes()
 
 })();
   </script>
+  <script>
+(function(){
+
+"use strict";
+
+/* =====================================================
+   🏛️ CONTROLE DE ATUALIZAÇÃO DAS REVISÕES
+   ===================================================== */
+
+const PRAZO_REVISAO_DIAS=180;
+
+window.controleRevisaoMuseu=
+window.controleRevisaoMuseu||{};
+
+
+/* =====================================================
+   DATA ATUAL
+   ===================================================== */
+
+function dataHoje(){
+
+const d=new Date();
+
+return d.getFullYear()+"-"+
+String(d.getMonth()+1).padStart(2,"0")+"-"+
+String(d.getDate()).padStart(2,"0");
+
+}
+
+
+/* =====================================================
+   CALCULA DIAS
+   ===================================================== */
+
+function diasDesde(data){
+
+if(!data)return null;
+
+const inicio=new Date(data+"T00:00:00");
+const agora=new Date();
+
+return Math.floor(
+(agora-inicio)/(1000*60*60*24)
+);
+
+}
+
+
+/* =====================================================
+   VERIFICA VALIDADE
+   ===================================================== */
+
+function verificarValidade(){
+
+const banco=
+window.passaporteAcademicoMuseu;
+
+if(!banco)return [];
+
+const vencidos=[];
+
+Object.keys(banco).forEach(function(nome){
+
+const registro=banco[nome];
+
+if(!registro)return;
+
+if(!registro.data)return;
+
+const dias=diasDesde(registro.data);
+
+registro.diasDesdeRevisao=dias;
+
+registro.validadeDias=PRAZO_REVISAO_DIAS;
+
+if(dias!==null && dias>=PRAZO_REVISAO_DIAS){
+
+registro.status="revisao_necessaria";
+
+registro.motivo=
+"Prazo de revisão atingido.";
+
+vencidos.push(nome);
+
+}
+
+});
+
+return vencidos;
+
+}
+
+
+/* =====================================================
+   STATUS VISUAL
+   ===================================================== */
+
+window.statusRevisaoMuseu=function(nome){
+
+const banco=
+window.passaporteAcademicoMuseu;
+
+if(!banco||!banco[nome]){
+
+return {
+status:"em_revisao",
+icone:"🟡",
+texto:"EM REVISÃO"
+};
+
+}
+
+const registro=banco[nome];
+
+if(
+registro.status==="revisao_necessaria"
+){
+
+return {
+status:"revisao_necessaria",
+icone:"🟠",
+texto:"REVISÃO NECESSÁRIA"
+};
+
+}
+
+if(
+registro.status==="aprovado"
+){
+
+return {
+status:"aprovado",
+icone:"🟢",
+texto:"REVISADO E APROVADO"
+};
+
+}
+
+if(
+registro.status==="revisado"
+){
+
+return {
+status:"revisado",
+icone:"🔵",
+texto:"REVISADO DOCUMENTALMENTE"
+};
+
+}
+
+return {
+status:"em_revisao",
+icone:"🟡",
+texto:"EM REVISÃO"
+};
+
+};
+
+
+/* =====================================================
+   REGISTRAR NOVA REVISÃO
+   ===================================================== */
+
+window.concluirRevisaoMuseu=function(
+nome,
+dados
+){
+
+if(!nome)return null;
+
+window.passaporteAcademicoMuseu=
+window.passaporteAcademicoMuseu||{};
+
+const registro=
+window.passaporteAcademicoMuseu[nome]||
+{
+
+status:"em_revisao",
+criterios:{},
+fontes:[],
+observacoes:[]
+
+};
+
+dados=dados||{};
+
+
+/* Data da revisão */
+
+registro.data=
+dados.data||dataHoje();
+
+
+/* Status */
+
+registro.status=
+dados.status||"revisado";
+
+
+/* Fontes */
+
+if(Array.isArray(dados.fontes)){
+
+registro.fontes=
+dados.fontes.slice();
+
+}
+
+
+/* Observações */
+
+if(Array.isArray(dados.observacoes)){
+
+registro.observacoes=
+dados.observacoes.slice();
+
+}
+
+
+/* Critérios */
+
+if(dados.criterios){
+
+registro.criterios=
+Object.assign(
+{},
+registro.criterios||{},
+dados.criterios
+);
+
+}
+
+
+registro.revisor=
+dados.revisor||
+"Museu Virtual dos Pensadores Universais";
+
+registro.diasDesdeRevisao=0;
+
+registro.validadeDias=
+PRAZO_REVISAO_DIAS;
+
+registro.motivo="";
+
+window.passaporteAcademicoMuseu[nome]=
+registro;
+
+return registro;
+
+};
+
+
+/* =====================================================
+   RELATÓRIO DE VALIDADE
+   ===================================================== */
+
+window.relatorioValidadeMuseu=function(){
+
+const banco=
+window.passaporteAcademicoMuseu||{};
+
+const resultado={
+
+dataVerificacao:dataHoje(),
+
+prazoDias:PRAZO_REVISAO_DIAS,
+
+total:0,
+
+validos:0,
+
+vencidos:0,
+
+emRevisao:0,
+
+listaVencidos:[],
+
+listaEmRevisao:[]
+
+};
+
+Object.keys(banco).forEach(function(nome){
+
+resultado.total++;
+
+const registro=banco[nome];
+
+if(!registro){
+
+resultado.emRevisao++;
+
+resultado.listaEmRevisao.push(nome);
+
+return;
+
+}
+
+if(
+registro.status==="revisao_necessaria"
+){
+
+resultado.vencidos++;
+
+resultado.listaVencidos.push(nome);
+
+}else if(
+registro.status==="revisado"||
+registro.status==="aprovado"
+){
+
+resultado.validos++;
+
+}else{
+
+resultado.emRevisao++;
+
+resultado.listaEmRevisao.push(nome);
+
+}
+
+});
+
+console.log(
+"🏛️ CONTROLE DE REVISÃO",
+resultado
+);
+
+return resultado;
+
+};
+
+
+/* =====================================================
+   HISTÓRICO
+   ===================================================== */
+
+window.historicoRevisaoMuseu=
+window.historicoRevisaoMuseu||{};
+
+
+window.registrarHistoricoRevisao=function(
+nome,
+acao
+){
+
+window.historicoRevisaoMuseu[nome]=
+window.historicoRevisaoMuseu[nome]||[];
+
+window.historicoRevisaoMuseu[nome].push({
+
+data:dataHoje(),
+
+acao:acao||
+
+"Revisão registrada"
+
+});
+
+};
+
+
+/* =====================================================
+   VERIFICAÇÃO AUTOMÁTICA
+   ===================================================== */
+
+function executarControle(){
+
+try{
+
+const vencidos=
+verificarValidade();
+
+window.controleRevisaoMuseu.ultimaVerificacao=
+dataHoje();
+
+window.controleRevisaoMuseu.vencidos=
+vencidos;
+
+window.controleRevisaoMuseu.prazoDias=
+PRAZO_REVISAO_DIAS;
+
+console.log(
+"🏛️ Controle de atualização executado."
+);
+
+if(vencidos.length){
+
+console.warn(
+"🟠 Revisões que precisam ser atualizadas:",
+vencidos
+);
+
+}else{
+
+console.log(
+"🟢 Nenhuma revisão ultrapassou o prazo."
+);
+
+}
+
+relatorioValidadeMuseu();
+
+}catch(erro){
+
+console.error(
+"❌ Erro no controle de revisão:",
+erro
+);
+
+}
+
+}
+
+
+/* =====================================================
+   INICIALIZAÇÃO
+   ===================================================== */
+
+if(document.readyState==="loading"){
+
+document.addEventListener(
+"DOMContentLoaded",
+executarControle
+);
+
+}else{
+
+executarControle();
+
+}
+
+
+/* =====================================================
+   DISPONIBILIZAÇÃO
+   ===================================================== */
+
+window.prazoRevisaoMuseu=
+PRAZO_REVISAO_DIAS;
+
+})();
+  </script>
   
   
   
