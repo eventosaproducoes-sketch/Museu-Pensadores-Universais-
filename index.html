@@ -9701,6 +9701,53 @@ console.log("🔬 Conteúdo Expert 02 ativado.");
 
 })();
   </script>
+  <script>
+(function(){
+
+  function removerDuplicadoExpert(){
+
+    var botoes = Array.from(
+      document.querySelectorAll("button")
+    ).filter(function(b){
+      return b.textContent
+        .trim()
+        .includes("Consulta Expert");
+    });
+
+    if(botoes.length > 1){
+
+      /* Mantém o primeiro e oculta os demais */
+      for(var i=1;i<botoes.length;i++){
+        botoes[i].style.display="none";
+      }
+
+      console.log(
+        "🔬 Botão Expert duplicado ocultado."
+      );
+    }
+  }
+
+  removerDuplicadoExpert();
+
+  window.addEventListener(
+    "load",
+    removerDuplicadoExpert
+  );
+
+  var obs=new MutationObserver(
+    removerDuplicadoExpert
+  );
+
+  obs.observe(
+    document.body,
+    {
+      childList:true,
+      subtree:true
+    }
+  );
+
+})();
+  </script>
   
   
   
