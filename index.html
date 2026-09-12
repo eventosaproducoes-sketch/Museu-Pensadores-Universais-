@@ -7264,6 +7264,78 @@ console.log(
 
 })();
   </script>
+  <script>
+/* =====================================================
+   REVISÃO DOCUMENTAL CONCLUÍDA — CONFÚCIO
+   ===================================================== */
+
+(function(){
+
+  if(!window.passaporteAcademicoMuseu){
+    window.passaporteAcademicoMuseu={};
+  }
+
+  var r=window.passaporteAcademicoMuseu["Confúcio"];
+
+  if(!r){
+    r={
+      status:"em_revisao",
+      data:null,
+      versao:"1.0",
+      revisor:"Museu Virtual dos Pensadores Universais",
+      criterios:{},
+      fontes:[],
+      observacoes:[]
+    };
+
+    window.passaporteAcademicoMuseu["Confúcio"]=r;
+  }
+
+  var criterios=[
+    "Dados biográficos",
+    "Cronologia",
+    "Contexto histórico",
+    "Principais ideias",
+    "Obras e autoria",
+    "Influência e legado",
+    "Informações controversas",
+    "Fontes utilizadas"
+  ];
+
+  criterios.forEach(function(c){
+    r.criterios[c]="ok";
+  });
+
+  r.status="revisado";
+  r.data="11/09/2026";
+  r.versao="1.1";
+  r.revisor="Museu Virtual dos Pensadores Universais";
+
+  r.fontes=[
+    "Stanford Encyclopedia of Philosophy — Confucius — https://plato.stanford.edu/entries/confucius/",
+    "Internet Encyclopedia of Philosophy — Confucius — https://iep.utm.edu/confucius/"
+  ];
+
+  r.observacoes=[
+    "As datas tradicionalmente atribuídas a Confúcio são 551–479 a.C.",
+    "A reconstrução histórica de sua vida depende de fontes produzidas ou compiladas posteriormente.",
+    "As fontes antigas apresentam diferentes tradições e algumas informações biográficas não podem ser tratadas como fatos históricos absolutamente comprovados.",
+    "Os Analectos preservam uma tradição de ensinamentos atribuídos a Confúcio, mas sua formação textual ocorreu ao longo do tempo.",
+    "É importante distinguir o Confúcio histórico das interpretações desenvolvidas posteriormente pelas diferentes tradições confucianas.",
+    "Entre os temas associados à tradição confuciana estão educação, cultivo moral, relações sociais, ritual, humanidade e responsabilidade ética.",
+    "O registro foi classificado como REVISADO DOCUMENTALMENTE, não como aprovação definitiva."
+  ];
+
+  if(typeof window.salvarMemoriaRevisaoMuseu==="function"){
+    window.salvarMemoriaRevisaoMuseu();
+  }
+
+  console.log(
+    "🔵 Confúcio: revisão documental concluída — 8/8 critérios."
+  );
+
+})();
+  </script>
   
   
   
