@@ -9389,6 +9389,318 @@ console.log("🔬 Conteúdo Expert 02 ativado.");
 
 })();
   </script>
+  <script>
+/* =========================================================
+   MUSEU — CONSULTA EXPERT FINAL
+   Sistema independente dos módulos antigos.
+   Não apaga nem substitui o código anterior.
+   ========================================================= */
+
+(function(){
+
+  "use strict";
+
+  function abrirExpertFinal(nome){
+
+    var modal = document.getElementById("modal");
+    var box = document.getElementById("modalBox");
+
+    if(!modal || !box){
+      alert("Área da Consulta Expert não foi encontrada.");
+      return;
+    }
+
+    var dados = {
+
+      "Sócrates":
+      "A principal contribuição de Sócrates está na prática do questionamento filosófico. A reconstrução de seu pensamento depende principalmente de Platão, Xenofonte e Aristófanes.",
+
+      "Platão":
+      "Platão investigou conhecimento, realidade, justiça, política, educação e a natureza da alma. Seus diálogos estão entre as obras mais influentes da filosofia ocidental.",
+
+      "Aristóteles":
+      "Aristóteles investigou lógica, metafísica, ética, política, natureza e conhecimento. Sua obra teve influência excepcional na filosofia e na ciência posteriores.",
+
+      "Confúcio":
+      "A tradição associada a Confúcio enfatiza educação, formação moral, relações humanas, responsabilidade social e cultivo do caráter.",
+
+      "Agostinho de Hipona":
+      "Agostinho investigou memória, tempo, vontade, conhecimento, liberdade, graça e a relação entre filosofia e cristianismo.",
+
+      "Tomás de Aquino":
+      "Tomás de Aquino procurou articular a filosofia aristotélica com a teologia cristã, desenvolvendo reflexões sobre metafísica, ética, lei natural e conhecimento.",
+
+      "Averróis":
+      "Averróis foi um dos grandes intérpretes de Aristóteles e investigou profundamente a relação entre filosofia, razão e religião.",
+
+      "Leonardo da Vinci":
+      "Leonardo combinou arte, observação da natureza, anatomia, engenharia e investigação técnica, sendo uma das figuras mais marcantes do Renascimento.",
+
+      "Nicolau Maquiavel":
+      "Maquiavel analisou poder, governo, guerra, liderança e organização política, tornando-se uma referência fundamental da teoria política.",
+
+      "Erasmo de Roterdã":
+      "Erasmo foi uma das grandes figuras do humanismo cristão europeu, destacando educação, crítica intelectual e reforma moral.",
+
+      "John Locke":
+      "Locke desenvolveu uma teoria empirista do conhecimento e uma filosofia política baseada em liberdade, direitos e consentimento.",
+
+      "Jean-Jacques Rousseau":
+      "Rousseau investigou liberdade, desigualdade, educação, sociedade e soberania política, influenciando profundamente a filosofia política moderna.",
+
+      "Voltaire":
+      "Voltaire destacou-se pela defesa da tolerância, crítica ao fanatismo e valorização da liberdade intelectual durante o Iluminismo.",
+
+      "Immanuel Kant":
+      "Kant investigou as condições e limites do conhecimento e desenvolveu uma influente filosofia moral baseada em autonomia, dever e liberdade.",
+
+      "Karl Marx":
+      "Marx desenvolveu uma crítica das relações econômicas e sociais do capitalismo, analisando trabalho, classes, mercadoria e transformação histórica.",
+
+      "Charles Darwin":
+      "Darwin formulou a teoria da evolução por seleção natural, transformando profundamente a compreensão científica da diversidade da vida.",
+
+      "Friedrich Nietzsche":
+      "Nietzsche realizou uma crítica profunda da moral, da cultura e dos valores tradicionais, influenciando decisivamente a filosofia contemporânea.",
+
+      "Sigmund Freud":
+      "Freud fundou a psicanálise e desenvolveu conceitos influentes sobre inconsciente, sonhos, conflito psíquico e sexualidade.",
+
+      "Albert Einstein":
+      "Einstein revolucionou a física moderna e também refletiu sobre questões fundamentais relacionadas ao conhecimento científico e à natureza da realidade.",
+
+      "Hannah Arendt":
+      "Arendt investigou totalitarismo, ação política, liberdade, responsabilidade e as condições da vida pública.",
+
+      "Paulo Freire":
+      "Paulo Freire desenvolveu uma concepção dialógica da educação, valorizando consciência crítica, autonomia e participação dos educandos.",
+
+      "Nelson Mandela":
+      "Mandela tornou-se uma figura central da luta contra o apartheid e posteriormente da construção de uma política de reconciliação na África do Sul.",
+
+      "Martin Luther King Jr.":
+      "Martin Luther King Jr. foi uma das principais lideranças do movimento pelos direitos civis nos Estados Unidos, defendendo igualdade e resistência não violenta.",
+
+      "Carl Sagan":
+      "Sagan aproximou ciência e sociedade, defendendo pensamento crítico, investigação científica e reflexão sobre o lugar da humanidade no cosmos.",
+
+      "Stephen Hawking":
+      "Hawking contribuiu profundamente para a cosmologia e o estudo dos buracos negros, além de popularizar questões científicas complexas.",
+
+      "Machado de Assis":
+      "Machado de Assis explorou ironia, sociedade, relações humanas e psicologia em uma obra central para a literatura brasileira.",
+
+      "Milton Santos":
+      "Milton Santos desenvolveu uma análise crítica do espaço geográfico, território, técnica, globalização e desigualdades socioespaciais.",
+
+      "Darcy Ribeiro":
+      "Darcy Ribeiro investigou a formação cultural e social do Brasil e teve atuação marcante em antropologia, educação e política.",
+
+      "Ailton Krenak":
+      "Ailton Krenak desenvolve uma crítica profunda da relação moderna com a natureza e valoriza perspectivas indígenas sobre humanidade e território.",
+
+      "Simone de Beauvoir":
+      "Simone de Beauvoir investigou liberdade, existência, relações sociais e a condição das mulheres, tornando-se referência fundamental do pensamento feminista."
+    };
+
+    var texto = dados[nome] ||
+      "Este pensador faz parte do acervo do Museu e receberá conteúdo acadêmico especializado individualizado.";
+
+    box.innerHTML =
+      '<button class="close" onclick="closeModal()">×</button>' +
+      '<div class="kicker">Consulta acadêmica</div>' +
+      '<h2>🔬 Consulta Expert</h2>' +
+      '<p class="content"><strong>' +
+      nome +
+      '</strong></p>' +
+
+      '<div style="padding:18px;border:1px solid #b99a45;border-radius:14px;margin:18px 0">' +
+      '<h3>📚 Análise especializada</h3>' +
+      '<p class="content">' +
+      texto +
+      '</p>' +
+      '</div>' +
+
+      '<div style="padding:15px;border:1px solid rgba(216,179,106,.25);border-radius:14px">' +
+      '<h3>🔎 Consulta acadêmica</h3>' +
+
+      '<button class="btn" data-expert-pergunta="contrib">Principal contribuição</button> ' +
+      '<button class="btn" data-expert-pergunta="cont">Controvérsias</button> ' +
+      '<button class="btn" data-expert-pergunta="infl">Influência</button> ' +
+      '<button class="btn" data-expert-pergunta="cons">Consenso e debate</button>' +
+
+      '<textarea id="expertPerguntaFinal" ' +
+      'placeholder="Digite sua consulta acadêmica..." ' +
+      'style="width:100%;min-height:90px;margin-top:15px;padding:12px;box-sizing:border-box;background:#090909;color:white;border:1px solid #555;border-radius:10px"></textarea>' +
+
+      '<button class="gold" id="expertEnviarFinal" style="margin-top:10px">' +
+      '🔬 Consultar' +
+      '</button>' +
+
+      '<div id="expertRespostaFinal" style="margin-top:18px"></div>' +
+
+      '</div>';
+
+    modal.classList.add("show");
+
+    var resposta =
+      document.getElementById("expertRespostaFinal");
+
+    document.querySelectorAll(
+      "[data-expert-pergunta]"
+    ).forEach(function(botao){
+
+      botao.onclick=function(){
+
+        var tipo=botao.getAttribute(
+          "data-expert-pergunta"
+        );
+
+        var respostas={
+          contrib:"A principal contribuição deve ser analisada considerando os conceitos desenvolvidos pelo pensador, o contexto histórico e sua recepção posterior.",
+          cont:"As controvérsias devem ser separadas entre fatos documentados, interpretações acadêmicas e questões que permanecem debatidas.",
+          infl:"A influência deve ser avaliada pela recepção histórica da obra e pela maneira como outros autores, escolas e movimentos incorporaram ou criticaram suas ideias.",
+          cons:"É importante distinguir aquilo que possui amplo respaldo documental daquilo que continua sendo objeto de interpretação ou debate acadêmico."
+        };
+
+        resposta.innerHTML=
+          "<div style='padding:15px;border:1px solid #b99a45;border-radius:12px'>"+
+          "<strong>🔬 Análise Expert</strong><br><br>"+
+          respostas[tipo]+
+          "</div>";
+      };
+
+    });
+
+    var enviar=
+      document.getElementById("expertEnviarFinal");
+
+    if(enviar){
+
+      enviar.onclick=function(){
+
+        var pergunta=
+          document.getElementById(
+            "expertPerguntaFinal"
+          ).value.trim();
+
+        if(!pergunta){
+
+          resposta.innerHTML=
+            "<div style='padding:15px;border:1px solid #b99a45;border-radius:12px'>"+
+            "Digite uma pergunta acadêmica para consultar o Expert."+
+            "</div>";
+
+          return;
+        }
+
+        resposta.innerHTML=
+          "<div style='padding:15px;border:1px solid #b99a45;border-radius:12px'>"+
+          "<strong>🔬 Consulta recebida</strong><br><br>"+
+          "Sua pergunta foi registrada para análise de "+
+          "<strong>"+nome+"</strong>.<br><br>"+
+          "A resposta deve ser confrontada com biografia, contexto histórico, obras, ideias, recepção e fontes acadêmicas."+
+          "</div>";
+
+      };
+
+    }
+
+  }
+
+
+  /*
+   * Botão independente.
+   * Sempre que uma exposição for aberta,
+   * procura o título do pensador e acrescenta
+   * nosso botão sem depender do Expert antigo.
+   */
+
+  function instalarBotao(){
+
+    var box=document.getElementById("modalBox");
+
+    if(!box)return;
+
+    if(
+      box.querySelector(
+        "[data-expert-final-botao]"
+      )
+    )return;
+
+    var titulo=box.querySelector("h2");
+
+    if(!titulo)return;
+
+    var nome=titulo.textContent
+      .replace("🏛️","")
+      .replace("📚","")
+      .replace("📜","")
+      .trim();
+
+    if(!nome)return;
+
+    var botao=document.createElement("button");
+
+    botao.setAttribute(
+      "data-expert-final-botao",
+      "1"
+    );
+
+    botao.className="gold";
+
+    botao.textContent=
+      "🔬 Consulta Expert";
+
+    botao.style.marginTop="12px";
+
+    botao.onclick=function(){
+
+      abrirExpertFinal(nome);
+
+    };
+
+    box.appendChild(botao);
+
+  }
+
+
+  /*
+   * Observa o modal porque ele é reconstruído
+   * sempre que outro pensador é aberto.
+   */
+
+  var observador=
+    new MutationObserver(function(){
+
+      setTimeout(
+        instalarBotao,
+        50
+      );
+
+    });
+
+  var alvo=
+    document.getElementById("modalBox") ||
+    document.body;
+
+  observador.observe(
+    alvo,
+    {
+      childList:true,
+      subtree:true
+    }
+  );
+
+  window.abrirExpertFinal=
+    abrirExpertFinal;
+
+  console.log(
+    "🔬 CONSULTA EXPERT FINAL ATIVADA."
+  );
+
+})();
+  </script>
   
   
   
