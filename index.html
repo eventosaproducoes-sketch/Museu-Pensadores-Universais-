@@ -7895,6 +7895,85 @@ else criarBotao();
 
 })();
   </script>
+  <script>
+(function(){
+
+window.museuAuditoria02=function(){
+
+var nomes=[
+"Sócrates","Platão","Aristóteles","Confúcio",
+"Agostinho de Hipona","Tomás de Aquino","Averróis",
+"Leonardo da Vinci","Nicolau Maquiavel","Erasmo de Roterdã",
+"John Locke","Jean-Jacques Rousseau","Voltaire","Immanuel Kant",
+"Karl Marx","Charles Darwin","Friedrich Nietzsche","Sigmund Freud",
+"Albert Einstein","Hannah Arendt","Paulo Freire","Nelson Mandela",
+"Martin Luther King Jr.","Carl Sagan","Stephen Hawking",
+"Machado de Assis","Milton Santos","Darcy Ribeiro","Ailton Krenak",
+"Simone de Beauvoir"
+];
+
+var erros=[],ok=[];
+
+var botoes=document.querySelectorAll(
+'[onclick*="openThinker"],button'
+);
+
+var encontrados=nomes.filter(function(n){
+return document.body.innerText.indexOf(n)>-1;
+}).length;
+
+if(encontrados===30)
+ok.push("30 de 30 pensadores encontrados na página.");
+else
+erros.push(encontrados+" de 30 pensadores encontrados.");
+
+if(window.linhasTempoMuseu){
+var lt=nomes.filter(function(n){
+return Array.isArray(window.linhasTempoMuseu[n]);
+}).length;
+
+ok.push(lt+" de 30 linhas do tempo encontradas.");
+
+if(lt<30) erros.push((30-lt)+" linhas do tempo ausentes.");
+}
+
+[
+"openThinker","openTimeline","closeModal",
+"renderPensadores","clearSearch"
+].forEach(function(f){
+
+if(typeof window[f]==="function")
+ok.push("Função OK: "+f);
+else
+erros.push("Função ausente: "+f);
+
+});
+
+var rev=window.passaporteAcademicoMuseu||{};
+
+var total=nomes.filter(function(n){
+return rev[n]&&rev[n].status==="revisado";
+}).length;
+
+ok.push(total+" de 30 revisões documentais registradas.");
+
+var msg=(erros.length?
+"⚠️ ATENÇÃO":"✅ MUSEU OK")+
+"\n\n"+ok.join("\n");
+
+if(erros.length)
+msg+="\n\nPROBLEMAS:\n"+erros.join("\n");
+
+console.log(msg);
+alert(msg);
+
+return{ok:ok,problemas:erros};
+
+};
+
+console.log("🛡️ Auditoria corrigida.");
+})();
+  </script>
   
   
   
