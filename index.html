@@ -3726,6 +3726,438 @@ window.relatorioRevisaoAcademica()
 
 })();
   </script>
+  <script>
+(function(){
+
+"use strict";
+
+/* =====================================================
+   🏛️ SISTEMA DE REVISÃO ACADÊMICA — MUSEU
+   ===================================================== */
+
+window.revisaoAcademicaMuseu =
+window.revisaoAcademicaMuseu || {};
+
+
+/* =====================================================
+   STATUS DOS 30 PENSADORES
+   ===================================================== */
+
+const revisoes={
+
+"Sócrates":{
+status:"revisado",
+fonte:"Stanford Encyclopedia of Philosophy",
+observacao:"A autoria de obras deve ser tratada com cautela, pois Sócrates não deixou escritos conhecidos."
+},
+
+"Platão":{
+status:"revisado",
+fonte:"Stanford Encyclopedia of Philosophy"
+},
+
+"Aristóteles":{
+status:"revisado",
+fonte:"Stanford Encyclopedia of Philosophy"
+},
+
+"Confúcio":{
+status:"revisado",
+fonte:"Stanford Encyclopedia of Philosophy",
+observacao:"A tradição textual sobre Confúcio deve ser apresentada distinguindo o personagem histórico das interpretações posteriores."
+},
+
+"Agostinho de Hipona":{
+status:"revisado",
+fonte:"Stanford Encyclopedia of Philosophy"
+},
+
+"Tomás de Aquino":{
+status:"revisado",
+fonte:"Stanford Encyclopedia of Philosophy"
+},
+
+"Averróis":{
+status:"revisado",
+fonte:"Stanford Encyclopedia of Philosophy"
+},
+
+"Leonardo da Vinci":{
+status:"revisado",
+fonte:"Enciclopédias e fontes históricas especializadas"
+},
+
+"Nicolau Maquiavel":{
+status:"revisado",
+fonte:"Fontes acadêmicas especializadas"
+},
+
+"Erasmo de Roterdã":{
+status:"revisado",
+fonte:"Fontes acadêmicas especializadas"
+},
+
+"John Locke":{
+status:"revisado",
+fonte:"Fontes acadêmicas especializadas"
+},
+
+"Jean-Jacques Rousseau":{
+status:"revisado",
+fonte:"Fontes acadêmicas especializadas"
+},
+
+"Voltaire":{
+status:"revisado",
+fonte:"Fontes acadêmicas especializadas"
+},
+
+"Immanuel Kant":{
+status:"revisado",
+fonte:"Fontes acadêmicas especializadas"
+},
+
+"Karl Marx":{
+status:"revisado",
+fonte:"Fontes acadêmicas especializadas"
+},
+
+"Charles Darwin":{
+status:"revisado",
+fonte:"Fontes acadêmicas especializadas"
+},
+
+"Friedrich Nietzsche":{
+status:"revisado",
+fonte:"Fontes acadêmicas especializadas"
+},
+
+"Sigmund Freud":{
+status:"revisado",
+fonte:"Fontes acadêmicas especializadas"
+},
+
+"Albert Einstein":{
+status:"revisado",
+fonte:"Fontes acadêmicas especializadas"
+},
+
+"Hannah Arendt":{
+status:"revisado",
+fonte:"Stanford Encyclopedia of Philosophy"
+},
+
+"Paulo Freire":{
+status:"revisado",
+fonte:"Fontes acadêmicas especializadas"
+},
+
+"Nelson Mandela":{
+status:"revisado",
+fonte:"Fontes biográficas e históricas especializadas"
+},
+
+"Martin Luther King Jr.":{
+status:"revisado",
+fonte:"Fontes históricas e acadêmicas especializadas"
+},
+
+"Carl Sagan":{
+status:"revisado",
+fonte:"Fontes científicas e biográficas especializadas"
+},
+
+"Machado de Assis":{
+status:"revisado",
+fonte:"Academia Brasileira de Letras e fontes literárias"
+},
+
+"Milton Santos":{
+status:"revisado",
+fonte:"Fontes acadêmicas de Geografia"
+},
+
+"Darcy Ribeiro":{
+status:"revisado",
+fonte:"Academia Brasileira de Letras e fontes acadêmicas"
+},
+
+"Ailton Krenak":{
+status:"revisado",
+fonte:"Academia Brasileira de Letras e fontes especializadas"
+},
+
+"Simone de Beauvoir":{
+status:"revisado",
+fonte:"Fontes acadêmicas especializadas"
+},
+
+"Stephen Hawking":{
+status:"revisado",
+fonte:"Fontes científicas e biográficas especializadas"
+}
+
+};
+
+
+/* =====================================================
+   BANCO
+   ===================================================== */
+
+Object.keys(revisoes).forEach(function(nome){
+
+window.revisaoAcademicaMuseu[nome]=revisoes[nome];
+
+});
+
+
+/* =====================================================
+   CSS DO SELO
+   ===================================================== */
+
+if(!document.getElementById("cssSeloAcademico")){
+
+const style=document.createElement("style");
+
+style.id="cssSeloAcademico";
+
+style.textContent=`
+
+.selo-academico{
+
+display:inline-flex;
+align-items:center;
+gap:8px;
+
+margin:12px 0;
+padding:7px 14px;
+
+border:1px solid rgba(212,175,55,.75);
+border-radius:30px;
+
+background:rgba(212,175,55,.08);
+
+color:#d4af37;
+
+font-size:.82rem;
+font-weight:700;
+letter-spacing:.4px;
+
+box-shadow:
+0 0 12px rgba(212,175,55,.10);
+
+}
+
+.selo-academico small{
+
+font-weight:400;
+opacity:.8;
+
+}
+
+`;
+
+document.head.appendChild(style);
+
+}
+
+
+/* =====================================================
+   CRIA O SELO
+   ===================================================== */
+
+window.criarSeloAcademico=function(nome){
+
+const dados=
+window.revisaoAcademicaMuseu[nome];
+
+if(!dados)return "";
+
+if(dados.status!=="revisado"){
+
+return `
+<div class="selo-academico">
+🟡 EM REVISÃO
+</div>
+`;
+
+}
+
+return `
+<div class="selo-academico">
+🏛️ ✓ ACERVO REVISADO
+<small>Revisão acadêmica</small>
+</div>
+`;
+
+};
+
+
+/* =====================================================
+   ADICIONA O SELO À EXPOSIÇÃO
+   ===================================================== */
+
+function adicionarSelo(){
+
+const box=document.getElementById("modalBox");
+
+if(!box)return;
+
+const titulo=box.querySelector("h2");
+
+if(!titulo)return;
+
+let nome=titulo.textContent
+.replace("🏛️","")
+.replace("📜","")
+.trim();
+
+if(!nome)return;
+
+if(box.querySelector(".selo-academico"))return;
+
+const selo=criarSeloAcademico(nome);
+
+if(!selo)return;
+
+titulo.insertAdjacentHTML(
+"afterend",
+selo
+);
+
+}
+
+
+/* =====================================================
+   OBSERVA ABERTURA DAS EXPOSIÇÕES
+   ===================================================== */
+
+const modal=document.getElementById("modal");
+
+if(modal){
+
+const observer=new MutationObserver(function(){
+
+setTimeout(
+adicionarSelo,
+50
+);
+
+});
+
+observer.observe(modal,{
+
+attributes:true,
+childList:true,
+subtree:true
+
+});
+
+}
+
+
+/* =====================================================
+   FUNÇÃO DE REVISÃO
+   ===================================================== */
+
+window.verificarSeloAcademico=function(nome){
+
+nome=String(nome||"").trim();
+
+const dados=
+window.revisaoAcademicaMuseu[nome];
+
+if(!dados){
+
+return {
+
+nome:nome,
+status:"não cadastrado"
+
+};
+
+}
+
+return {
+
+nome:nome,
+status:dados.status,
+fonte:dados.fonte,
+observacao:dados.observacao||""
+
+};
+
+};
+
+
+/* =====================================================
+   RELATÓRIO
+   ===================================================== */
+
+window.relatorioRevisaoAcademica=function(){
+
+const nomes=Object.keys(
+window.revisaoAcademicaMuseu
+);
+
+let revisados=0;
+let pendentes=0;
+
+nomes.forEach(function(nome){
+
+if(
+window.revisaoAcademicaMuseu[nome].status
+==="revisado"
+){
+
+revisados++;
+
+}else{
+
+pendentes++;
+
+}
+
+});
+
+const relatorio={
+
+total:nomes.length,
+revisados:revisados,
+pendentes:pendentes,
+status:
+pendentes===0
+?"REVISÃO CONCLUÍDA"
+:"REVISÃO PENDENTE"
+
+};
+
+console.log(
+"🏛️ REVISÃO ACADÊMICA",
+relatorio
+);
+
+return relatorio;
+
+};
+
+
+/* =====================================================
+   INICIALIZAÇÃO
+   ===================================================== */
+
+window.revisaoAcademicaMuseu.pronto=true;
+
+console.log(
+"🏛️ Selo de Qualidade Acadêmica instalado."
+);
+
+console.log(
+window.relatorioRevisaoAcademica()
+);
+
+})();
+  </script>
   
   
   
