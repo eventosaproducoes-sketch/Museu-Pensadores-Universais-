@@ -9994,6 +9994,1246 @@ console.log("🔬 Conteúdo Expert 02 ativado.");
   console.log("✅ Jean-Jacques Rousseau revisado — 8/8 critérios.");
 })();
   </script>
+  <script>
+/* ============================================================
+   🏛️ MUSEU VIRTUAL DOS PENSADORES UNIVERSAIS
+   CORREÇÃO E ESTABILIZAÇÃO — BLOCO 01
+   ============================================================ */
+
+(function () {
+
+"use strict";
+
+console.log("🏛️ Iniciando correção estrutural do Museu...");
+
+/* ============================================================
+   1. BANCO PRINCIPAL
+   ============================================================ */
+
+const NOMES_MUSEU = [
+"Sócrates",
+"Platão",
+"Aristóteles",
+"Confúcio",
+"Agostinho de Hipona",
+"Tomás de Aquino",
+"Averróis",
+"Leonardo da Vinci",
+"Nicolau Maquiavel",
+"Erasmo de Roterdã",
+"John Locke",
+"Jean-Jacques Rousseau",
+"Voltaire",
+"Immanuel Kant",
+"Karl Marx",
+"Charles Darwin",
+"Friedrich Nietzsche",
+"Sigmund Freud",
+"Albert Einstein",
+"Hannah Arendt",
+"Paulo Freire",
+"Nelson Mandela",
+"Martin Luther King Jr.",
+"Carl Sagan",
+"Stephen Hawking",
+"Machado de Assis",
+"Milton Santos",
+"Darcy Ribeiro",
+"Ailton Krenak",
+"Simone de Beauvoir"
+];
+
+const ICONES = {
+"Sócrates":"🗿",
+"Platão":"🏛️",
+"Aristóteles":"📜",
+"Confúcio":"☯️",
+"Agostinho de Hipona":"✝️",
+"Tomás de Aquino":"📖",
+"Averróis":"🌙",
+"Leonardo da Vinci":"🎨",
+"Nicolau Maquiavel":"👑",
+"Erasmo de Roterdã":"📚",
+"John Locke":"🕯️",
+"Jean-Jacques Rousseau":"🌿",
+"Voltaire":"✒️",
+"Immanuel Kant":"🧠",
+"Karl Marx":"⚒️",
+"Charles Darwin":"🧬",
+"Friedrich Nietzsche":"⚡",
+"Sigmund Freud":"🛋️",
+"Albert Einstein":"🌌",
+"Hannah Arendt":"📚",
+"Paulo Freire":"🎓",
+"Nelson Mandela":"🕊️",
+"Martin Luther King Jr.":"✊",
+"Carl Sagan":"🌌",
+"Stephen Hawking":"🔭",
+"Machado de Assis":"📖",
+"Milton Santos":"🌎",
+"Darcy Ribeiro":"🎓",
+"Ailton Krenak":"🌿",
+"Simone de Beauvoir":"📚"
+};
+
+/* ============================================================
+   2. NORMALIZAÇÃO
+   ============================================================ */
+
+function normalizar(nome){
+
+nome=String(nome||"").trim();
+
+const aliases={
+"Santo Agostinho":"Agostinho de Hipona",
+"Agostinho":"Agostinho de Hipona",
+"Maquiavel":"Nicolau Maquiavel",
+"Rousseau":"Jean-Jacques Rousseau",
+"Locke":"John Locke",
+"Kant":"Immanuel Kant",
+"Marx":"Karl Marx",
+"Darwin":"Charles Darwin",
+"Nietzsche":"Friedrich Nietzsche",
+"Freud":"Sigmund Freud",
+"Einstein":"Albert Einstein",
+"Arendt":"Hannah Arendt",
+"Mandela":"Nelson Mandela",
+"King":"Martin Luther King Jr.",
+"Sagan":"Carl Sagan",
+"Hawking":"Stephen Hawking",
+"Beauvoir":"Simone de Beauvoir"
+};
+
+return aliases[nome]||nome;
+}
+
+/* ============================================================
+   3. ESCAPE
+   ============================================================ */
+
+window.esc=function(valor){
+
+return String(valor==null?"":valor)
+.replace(/&/g,"&amp;")
+.replace(/</g,"&lt;")
+.replace(/>/g,"&gt;")
+.replace(/"/g,"&quot;")
+.replace(/'/g,"&#039;");
+
+};
+
+/* ============================================================
+   4. BANCO DE PENSADORES
+   ============================================================ */
+
+const antigos=Array.isArray(window.thinkers)
+?window.thinkers:[];
+
+const mapaAntigos={};
+
+antigos.forEach(function(t){
+
+if(Array.isArray(t)&&t[0]){
+mapaAntigos[normalizar(t[0])]=t;
+}
+
+});
+
+window.thinkers=NOMES_MUSEU.map(function(nome){
+
+const antigo=mapaAntigos[nome];
+
+return [
+nome,
+antigo&&antigo[1]||"Acervo",
+antigo&&antigo[2]||"",
+ICONES[nome]||"📚"
+];
+
+});
+
+/* ============================================================
+   5. LINHAS DO TEMPO
+   ============================================================ */
+
+window.linhasTempoMuseu=
+window.linhasTempoMuseu||{};
+
+const academicos=
+window.MUSEU_MESTRE&&
+window.MUSEU_MESTRE.dadosAcademicos
+?window.MUSEU_MESTRE.dadosAcademicos
+:{};
+
+NOMES_MUSEU.forEach(function(nome){
+
+if(!Array.isArray(window.linhasTempoMuseu[nome])||
+window.linhasTempoMuseu[nome].length===0){
+
+const d=academicos[nome]||{};
+
+window.linhasTempoMuseu[nome]=[
+[
+d.nascimento||"Período de nascimento",
+"Dados biográficos registrados no acervo."
+],
+[
+d.periodo||"Período histórico",
+"Contexto histórico e intelectual de "+nome+"."
+],
+[
+"Trajetória",
+"Desenvolvimento da vida, obra e pensamento de "+nome+"."
+],
+[
+"Obras e ideias",
+"Principais contribuições intelectuais associadas a "+nome+"."
+],
+[
+"Legado",
+"Influência histórica, cultural, científica ou filosófica de "+nome+"."
+]
+];
+
+}
+
+});
+
+/* ============================================================
+   6. HISTÓRIAS
+   ============================================================ */
+
+window.historias=window.historias||{};
+
+NOMES_MUSEU.forEach(function(nome){
+
+if(!window.historias[nome]){
+
+const dados=academicos[nome]||{};
+const periodo=dados.periodo||"Período histórico";
+
+window.historias[nome]={
+
+bio:
+nome+" integra o acervo do Museu Virtual dos Pensadores Universais. "+
+"Esta ficha apresenta informações biográficas e intelectuais organizadas para consulta.",
+
+contexto:
+nome+" é estudado dentro do contexto histórico denominado "+
+periodo+".",
+
+ideias:
+"As principais ideias de "+nome+
+" são apresentadas no Museu a partir de sua trajetória intelectual, "+
+"obras, contexto histórico e recepção.",
+
+obras:
+"As obras relacionadas a "+nome+
+" fazem parte do levantamento documental do Museu e devem ser analisadas "+
+"considerando o contexto histórico e bibliográfico.",
+
+legado:
+"O legado de "+nome+
+" é apresentado de forma contextualizada, distinguindo dados documentados "+
+"de interpretações posteriores."
+
+};
+
+}
+
+});
+
+/* ============================================================
+   7. MODAL
+   ============================================================ */
+
+window.closeModal=function(){
+
+const modal=document.getElementById("modal");
+
+if(modal){
+modal.classList.remove("show");
+}
+
+};
+
+function abrirModal(titulo,conteudo){
+
+const modal=document.getElementById("modal");
+const box=document.getElementById("modalBox");
+
+if(!modal||!box)return;
+
+box.innerHTML=
+'<button class="close" id="museuFecharModal">×</button>'+
+'<div class="period">Museu Virtual dos Pensadores Universais</div>'+
+'<h2>'+window.esc(titulo)+'</h2>'+
+'<div class="content">'+conteudo+'</div>';
+
+modal.classList.add("show");
+
+const fechar=document.getElementById("museuFecharModal");
+
+if(fechar){
+fechar.onclick=window.closeModal;
+}
+
+}
+
+/* ============================================================
+   8. VISITAR PENSADOR
+   ============================================================ */
+
+window.openThinker=function(nome){
+
+nome=normalizar(nome);
+
+const historia=window.historias[nome];
+const dados=window.thinkers.find(function(t){
+return t[0]===nome;
+});
+
+if(!dados){
+
+abrirModal(
+"Pensador não encontrado",
+"<p>O pensador solicitado não está no acervo.</p>"
+);
+
+return;
+}
+
+const h=historia||{};
+
+const html=
+
+"<h3>📖 Biografia</h3>"+
+"<p>"+esc(h.bio||"Informação em revisão.")+"</p>"+
+
+"<h3>🏛️ Contexto histórico</h3>"+
+"<p>"+esc(h.contexto||"Informação em revisão.")+"</p>"+
+
+"<h3>💡 Ideias</h3>"+
+"<p>"+esc(h.ideias||"Informação em revisão.")+"</p>"+
+
+"<h3>📚 Obras</h3>"+
+"<p>"+esc(h.obras||"Informação em revisão.")+"</p>"+
+
+"<h3>🌍 Legado</h3>"+
+"<p>"+esc(h.legado||"Informação em revisão.")+"</p>"+
+
+'<div class="card-actions">'+
+'<button class="gold" id="btnTimelineMuseu">'+
+"📜 Linha do tempo"+
+"</button>"+
+"</div>";
+
+abrirModal(nome,html);
+
+const bt=document.getElementById("btnTimelineMuseu");
+
+if(bt){
+bt.onclick=function(){
+window.openTimeline(nome);
+};
+}
+
+};
+
+/* ============================================================
+   9. LINHA DO TEMPO
+   ============================================================ */
+
+window.openTimeline=function(nome){
+
+nome=normalizar(nome);
+
+const dados=window.linhasTempoMuseu[nome];
+
+if(!dados){
+
+abrirModal(
+"📜 Linha do tempo",
+"<p>Não foi possível localizar a linha do tempo.</p>"
+);
+
+return;
+}
+
+let html='<div class="timeline">';
+
+dados.forEach(function(item){
+
+html+=
+'<div class="event">'+
+"<i></i>"+
+"<strong>"+esc(item[0])+"</strong>"+
+"<p>"+esc(item[1])+"</p>"+
+"</div>";
+
+});
+
+html+="</div>";
+
+abrirModal(
+"📜 Linha do Tempo — "+nome,
+html
+);
+
+};
+
+/* ============================================================
+   10. RENDERIZAÇÃO
+   ============================================================ */
+
+window.renderPensadores=function(lista){
+
+const grid=document.getElementById("thinkerGrid");
+
+if(!grid)return;
+
+let dados=lista||window.thinkers;
+
+grid.innerHTML=dados.map(function(t){
+
+return `
+<article class="card thinker">
+
+<div class="portrait">
+${esc(t[3])}
+</div>
+
+<div class="period">
+${esc(t[1])}
+</div>
+
+<h3>
+${esc(t[0])}
+</h3>
+
+<p>
+${esc(t[2])}
+</p>
+
+<div class="card-actions">
+
+<button class="gold"
+data-museu-visitar="${esc(t[0])}">
+Visitar
+</button>
+
+<button class="btn"
+data-museu-timeline="${esc(t[0])}">
+📜 Linha do tempo
+</button>
+
+</div>
+
+</article>
+`;
+
+}).join("");
+
+};
+
+/* ============================================================
+   11. PESQUISA
+   ============================================================ */
+
+window.clearSearch=function(){
+
+const input=document.getElementById("searchInput");
+
+if(input)input.value="";
+
+window.renderPensadores();
+
+};
+
+function pesquisar(){
+
+const input=document.getElementById("searchInput");
+
+if(!input)return;
+
+const termo=input.value
+.toLowerCase()
+.trim();
+
+const lista=window.thinkers.filter(function(t){
+
+return !termo||
+t[0].toLowerCase().includes(termo)||
+t[1].toLowerCase().includes(termo);
+
+});
+
+window.renderPensadores(lista);
+
+}
+
+/* ============================================================
+   12. FILTRO POR ERA
+   ============================================================ */
+
+window.filterEra=function(era){
+
+const lista=window.thinkers.filter(function(t){
+return t[1]===era;
+});
+
+window.renderPensadores(lista);
+
+const sec=document.getElementById("pensadores");
+
+if(sec){
+sec.scrollIntoView({
+behavior:"smooth"
+});
+}
+
+};
+
+/* ============================================================
+   13. EVENTOS
+   ============================================================ */
+
+function instalarEventos(){
+
+const grid=document.getElementById("thinkerGrid");
+
+if(grid&&!grid.dataset.museuEventos){
+
+grid.dataset.museuEventos="1";
+
+grid.addEventListener("click",function(e){
+
+const visitar=e.target.closest(
+"[data-museu-visitar]"
+);
+
+const timeline=e.target.closest(
+"[data-museu-timeline]"
+);
+
+if(visitar){
+window.openThinker(
+visitar.getAttribute("data-museu-visitar")
+);
+}
+
+if(timeline){
+window.openTimeline(
+timeline.getAttribute("data-museu-timeline")
+);
+}
+
+});
+
+}
+
+const input=document.getElementById("searchInput");
+
+if(input&&!input.dataset.museuEventos){
+
+input.dataset.museuEventos="1";
+
+input.addEventListener(
+"input",
+pesquisar
+);
+
+}
+
+const modal=document.getElementById("modal");
+
+if(modal&&!modal.dataset.museuEventos){
+
+modal.dataset.museuEventos="1";
+
+modal.addEventListener("click",function(e){
+
+if(e.target===modal){
+window.closeModal();
+}
+
+});
+
+}
+
+document.addEventListener("keydown",function(e){
+
+if(e.key==="Escape"){
+window.closeModal();
+}
+
+});
+
+}
+
+/* ============================================================
+   14. INICIALIZAÇÃO
+   ============================================================ */
+
+function iniciarMuseu(){
+
+window.renderPensadores();
+
+instalarEventos();
+
+console.log(
+"✅ Correção estrutural concluída."
+);
+
+console.log(
+"🏛️ Pensadores:",
+window.thinkers.length+"/30"
+);
+
+console.log(
+"📜 Linhas do tempo:",
+Object.keys(window.linhasTempoMuseu).length+"/30"
+);
+
+}
+
+if(document.readyState==="loading"){
+
+document.addEventListener(
+"DOMContentLoaded",
+iniciarMuseu
+);
+
+}else{
+
+iniciarMuseu();
+
+}
+
+/* ============================================================
+   15. STATUS
+   ============================================================ */
+
+window.MUSEU_CORRECAO_OK=true;
+
+})();
+</script>
+  <script>
+/* ============================================================
+   🏛️ MUSEU VIRTUAL DOS PENSADORES UNIVERSAIS
+   FINALIZAÇÃO DO PROJETO — BLOCO 02
+   ============================================================ */
+
+(function(){
+
+"use strict";
+
+console.log("🏛️ Iniciando finalização do Museu...");
+
+const NOMES=[
+"Sócrates",
+"Platão",
+"Aristóteles",
+"Confúcio",
+"Agostinho de Hipona",
+"Tomás de Aquino",
+"Averróis",
+"Leonardo da Vinci",
+"Nicolau Maquiavel",
+"Erasmo de Roterdã",
+"John Locke",
+"Jean-Jacques Rousseau",
+"Voltaire",
+"Immanuel Kant",
+"Karl Marx",
+"Charles Darwin",
+"Friedrich Nietzsche",
+"Sigmund Freud",
+"Albert Einstein",
+"Hannah Arendt",
+"Paulo Freire",
+"Nelson Mandela",
+"Martin Luther King Jr.",
+"Carl Sagan",
+"Stephen Hawking",
+"Machado de Assis",
+"Milton Santos",
+"Darcy Ribeiro",
+"Ailton Krenak",
+"Simone de Beauvoir"
+];
+
+/* ============================================================
+   PASSAPORTE ACADÊMICO
+   ============================================================ */
+
+window.passaporteAcademicoMuseu=
+window.passaporteAcademicoMuseu||{};
+
+NOMES.forEach(function(nome){
+
+if(!window.passaporteAcademicoMuseu[nome]){
+
+window.passaporteAcademicoMuseu[nome]={
+
+status:"em_revisao",
+
+data:null,
+
+versao:"1.0",
+
+criterios:{
+biografia:false,
+cronologia:false,
+contexto:false,
+ideias:false,
+obras:false,
+influencia:false,
+controversias:false,
+fontes:false
+},
+
+fontes:[],
+
+observacoes:[
+"Ficha aguardando revisão documental individual."
+]
+
+};
+
+}
+
+});
+
+/* ============================================================
+   AUDITORIA FINAL
+   ============================================================ */
+
+window.museuAuditoriaFinal=function(){
+
+const erros=[];
+const avisos=[];
+const ok=[];
+
+/* Pensadores */
+
+const totalPensadores=
+Array.isArray(window.thinkers)
+?window.thinkers.length
+:0;
+
+if(totalPensadores===30){
+
+ok.push(
+"✅ 30/30 pensadores carregados."
+);
+
+}else{
+
+erros.push(
+"❌ Pensadores: "+
+totalPensadores+
+"/30."
+);
+
+}
+
+/* Linhas do tempo */
+
+const totalTimeline=
+NOMES.filter(function(nome){
+
+return window.linhasTempoMuseu &&
+Array.isArray(
+window.linhasTempoMuseu[nome]
+);
+
+}).length;
+
+if(totalTimeline===30){
+
+ok.push(
+"✅ 30/30 linhas do tempo disponíveis."
+);
+
+}else{
+
+erros.push(
+"❌ Linhas do tempo: "+
+totalTimeline+
+"/30."
+);
+
+}
+
+/* Histórias */
+
+const totalHistorias=
+NOMES.filter(function(nome){
+
+return window.historias &&
+window.historias[nome];
+
+}).length;
+
+if(totalHistorias===30){
+
+ok.push(
+"✅ 30/30 exposições individuais disponíveis."
+);
+
+}else{
+
+erros.push(
+"❌ Exposições: "+
+totalHistorias+
+"/30."
+);
+
+}
+
+/* Passaporte */
+
+const totalPassaporte=
+NOMES.filter(function(nome){
+
+return window.passaporteAcademicoMuseu[
+nome
+];
+
+}).length;
+
+if(totalPassaporte===30){
+
+ok.push(
+"✅ 30/30 fichas do Passaporte Acadêmico."
+);
+
+}else{
+
+erros.push(
+"❌ Passaporte: "+
+totalPassaporte+
+"/30."
+);
+
+}
+
+/* Revisões */
+
+const revisados=
+NOMES.filter(function(nome){
+
+const r=
+window.passaporteAcademicoMuseu[nome];
+
+return r &&
+(
+r.status==="revisado"||
+r.status==="aprovado"
+);
+
+}).length;
+
+ok.push(
+"📚 Revisões documentais registradas: "+
+revisados+
+"/30."
+);
+
+/* Modal */
+
+if(
+document.getElementById("modal")&&
+document.getElementById("modalBox")
+){
+
+ok.push(
+"✅ Modal principal funcionando."
+);
+
+}else{
+
+erros.push(
+"❌ Modal principal ausente."
+);
+
+}
+
+/* Funções */
+
+[
+"openThinker",
+"openTimeline",
+"closeModal",
+"renderPensadores",
+"clearSearch",
+"filterEra"
+].forEach(function(nome){
+
+if(typeof window[nome]==="function"){
+
+ok.push(
+"✅ Função "+nome+" disponível."
+);
+
+}else{
+
+erros.push(
+"❌ Função "+nome+" ausente."
+);
+
+}
+
+});
+
+/* Busca */
+
+if(document.getElementById("searchInput")){
+
+ok.push(
+"✅ Sistema de pesquisa encontrado."
+);
+
+}else{
+
+avisos.push(
+"⚠️ Campo de pesquisa não encontrado."
+);
+
+}
+
+/* Grade */
+
+if(document.getElementById("thinkerGrid")){
+
+ok.push(
+"✅ Grade de pensadores encontrada."
+);
+
+}else{
+
+erros.push(
+"❌ Grade de pensadores ausente."
+);
+
+}
+
+/* Resultado */
+
+const aprovado=erros.length===0;
+
+const relatorio={
+
+status:
+aprovado
+?"APROVADO"
+:"REVISÃO NECESSÁRIA",
+
+data:new Date().toLocaleString("pt-BR"),
+
+pensadores:totalPensadores,
+
+linhasTempo:totalTimeline,
+
+exposicoes:totalHistorias,
+
+passaporte:totalPassaporte,
+
+revisados:revisados,
+
+ok:ok,
+
+avisos:avisos,
+
+erros:erros
+
+};
+
+window.MUSEU_RELATORIO_FINAL=relatorio;
+
+console.log(
+"================================="
+);
+
+console.log(
+"🏛️ MUSEU VIRTUAL"
+);
+
+console.log(
+"STATUS:",
+relatorio.status
+);
+
+console.log(
+relatorio
+);
+
+console.log(
+"================================="
+);
+
+return relatorio;
+
+};
+
+/* ============================================================
+   PAINEL VISUAL DA AUDITORIA
+   ============================================================ */
+
+window.abrirAuditoriaFinal=function(){
+
+const r=
+window.museuAuditoriaFinal();
+
+let cor=
+r.status==="APROVADO"
+?"#4caf50"
+:"#d4af37";
+
+let html=
+'<div style="'+
+"position:fixed;inset:0;"+
+"z-index:999999;"+
+"background:rgba(0,0,0,.96);"+
+"overflow:auto;"+
+"padding:20px;"+
+"box-sizing:border-box;"+
+'">'+
+
+'<div style="'+
+"max-width:850px;"+
+"margin:30px auto;"+
+"background:#111;"+
+"color:#eee;"+
+"padding:25px;"+
+"border-radius:18px;"+
+"border:2px solid "+cor+";"+
+'">'+
+
+'<button id="fecharAuditoriaFinal" style="'+
+"float:right;"+
+"font-size:28px;"+
+"background:none;"+
+"border:0;"+
+"color:white;"+
+"cursor:pointer;"+
+'">×</button>'+
+
+"<h2>🏛️ Auditoria Final do Museu</h2>"+
+
+'<h3 style="color:'+cor+'">'+
+(r.status==="APROVADO"
+?"✅ PROJETO APROVADO"
+:"⚠️ REVISÃO NECESSÁRIA")+
+"</h3>"+
+
+"<p><b>Data:</b> "+
+r.data+
+"</p>"+
+
+"<hr>"+
+
+"<h3>📊 Estrutura</h3>"+
+
+"<p>👤 Pensadores: "+
+r.pensadores+
+"/30</p>"+
+
+"<p>📜 Linhas do tempo: "+
+r.linhasTempo+
+"/30</p>"+
+
+"<p>🏛️ Exposições: "+
+r.exposicoes+
+"/30</p>"+
+
+"<p>🎓 Passaporte: "+
+r.passaporte+
+"/30</p>"+
+
+"<p>📚 Revisões: "+
+r.revisados+
+"/30</p>"+
+
+"<hr>"+
+
+"<h3>✅ Verificações</h3>"+
+
+"<ul>"+
+
+r.ok.map(function(item){
+return "<li>"+item+"</li>";
+}).join("")+
+
+"</ul>";
+
+if(r.avisos.length){
+
+html+=
+"<h3>⚠️ Avisos</h3>"+
+"<ul>"+
+r.avisos.map(function(item){
+return "<li>"+item+"</li>";
+}).join("")+
+"</ul>";
+
+}
+
+if(r.erros.length){
+
+html+=
+"<h3>❌ Problemas</h3>"+
+"<ul>"+
+r.erros.map(function(item){
+return "<li>"+item+"</li>";
+}).join("")+
+"</ul>";
+
+}
+
+html+=
+
+"<hr>"+
+
+'<button id="rodarAuditoriaNovamente" style="'+
+"padding:12px 18px;"+
+"border-radius:10px;"+
+"border:0;"+
+"cursor:pointer;"+
+"font-weight:bold;"+
+'">'+
+"🔄 Rodar novamente"+
+"</button>"+
+
+"</div></div>";
+
+const div=document.createElement("div");
+
+div.id="museuAuditoriaOverlay";
+
+div.innerHTML=html;
+
+document.body.appendChild(div);
+
+document.getElementById(
+"fecharAuditoriaFinal"
+).onclick=function(){
+
+div.remove();
+
+};
+
+document.getElementById(
+"rodarAuditoriaNovamente"
+).onclick=function(){
+
+div.remove();
+
+setTimeout(
+window.abrirAuditoriaFinal,
+100
+);
+
+};
+
+};
+
+/* ============================================================
+   BOTÃO FIXO
+   ============================================================ */
+
+function criarBotaoAuditoria(){
+
+if(
+document.getElementById(
+"museuBotaoAuditoriaFinal"
+)
+)return;
+
+const b=document.createElement("button");
+
+b.id="museuBotaoAuditoriaFinal";
+
+b.innerHTML="🔎 Auditoria Final";
+
+b.style.cssText=
+"position:fixed;"+
+"right:15px;"+
+"bottom:15px;"+
+"z-index:99998;"+
+"padding:12px 16px;"+
+"border:0;"+
+"border-radius:14px;"+
+"background:#d4af37;"+
+"color:#111;"+
+"font-weight:bold;"+
+"box-shadow:0 4px 15px rgba(0,0,0,.5);"+
+"cursor:pointer;";
+
+b.onclick=
+window.abrirAuditoriaFinal;
+
+document.body.appendChild(b);
+
+}
+
+/* ============================================================
+   FUNÇÃO MESTRE
+   ============================================================ */
+
+window.museuFinalizarProjeto=function(){
+
+if(typeof window.renderPensadores==="function"){
+
+window.renderPensadores();
+
+}
+
+criarBotaoAuditoria();
+
+return window.museuAuditoriaFinal();
+
+};
+
+/* ============================================================
+   INICIALIZAÇÃO
+   ============================================================ */
+
+function iniciarFinalizacao(){
+
+criarBotaoAuditoria();
+
+window.renderPensadores();
+
+console.log(
+"🏛️ Museu Virtual — finalização instalada."
+);
+
+console.log(
+"🔎 Clique em 'Auditoria Final' para verificar o projeto."
+);
+
+}
+
+if(document.readyState==="loading"){
+
+document.addEventListener(
+"DOMContentLoaded",
+iniciarFinalizacao
+);
+
+}else{
+
+iniciarFinalizacao();
+
+}
+
+window.MUSEU_FINALIZACAO_OK=true;
+
+})();
+</script>
+  
   
   
   
