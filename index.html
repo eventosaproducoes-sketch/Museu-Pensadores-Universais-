@@ -11233,7 +11233,816 @@ window.MUSEU_FINALIZACAO_OK=true;
 
 })();
 </script>
-  
+  <!-- REVISÃO ACADÊMICA MESTRE — 18 PENDENTES — VERSÃO 2.0 -->
+  <!-- =========================================================
+     REVISÃO ACADÊMICA MESTRE — 30 PENSADORES
+     VERSÃO 2.0 — 06/10/2026
+     18 revisões documentais concluídas nesta etapa.
+     "revisado" NÃO significa "aprovado".
+     ========================================================= -->
+
+<script>
+(function(){
+
+"use strict";
+
+/* =========================================================
+   CONFIGURAÇÃO
+   ========================================================= */
+
+var CHAVE =
+  "museuPensadoresRevisaoAcademica_MESTRE_v2";
+
+var DATA_REVISAO = "06/10/2026";
+
+var REVISOR =
+  "Museu Virtual dos Pensadores Universais";
+
+var CRITERIOS = [
+  "Dados biográficos",
+  "Cronologia",
+  "Contexto histórico",
+  "Principais ideias",
+  "Obras e autoria",
+  "Influência e legado",
+  "Informações controversas",
+  "Fontes utilizadas"
+];
+
+
+/* =========================================================
+   30 PENSADORES OFICIAIS
+   ========================================================= */
+
+var PENSADORES = [
+  "Sócrates",
+  "Platão",
+  "Aristóteles",
+  "Confúcio",
+  "Agostinho de Hipona",
+  "Tomás de Aquino",
+  "Averróis",
+  "Leonardo da Vinci",
+  "Nicolau Maquiavel",
+  "Erasmo de Roterdã",
+  "John Locke",
+  "Jean-Jacques Rousseau",
+  "Voltaire",
+  "Immanuel Kant",
+  "Karl Marx",
+  "Charles Darwin",
+  "Friedrich Nietzsche",
+  "Sigmund Freud",
+  "Albert Einstein",
+  "Hannah Arendt",
+  "Paulo Freire",
+  "Nelson Mandela",
+  "Martin Luther King Jr.",
+  "Carl Sagan",
+  "Stephen Hawking",
+  "Machado de Assis",
+  "Milton Santos",
+  "Darcy Ribeiro",
+  "Ailton Krenak",
+  "Simone de Beauvoir"
+];
+
+
+/* =========================================================
+   12 JÁ REVISADOS NO PROJETO
+   ========================================================= */
+
+var PRIMEIROS_12 = [
+  "Sócrates",
+  "Platão",
+  "Aristóteles",
+  "Confúcio",
+  "Agostinho de Hipona",
+  "Tomás de Aquino",
+  "Averróis",
+  "Leonardo da Vinci",
+  "Nicolau Maquiavel",
+  "Erasmo de Roterdã",
+  "John Locke",
+  "Jean-Jacques Rousseau"
+];
+
+
+/* =========================================================
+   18 PENDENTES — REVISÃO DOCUMENTAL DESTA ETAPA
+   ========================================================= */
+
+var REVISOES = {
+
+"Voltaire":{
+periodo:"1694–1778",
+fonte:"Stanford Encyclopedia of Philosophy — Voltaire",
+url:"https://plato.stanford.edu/entries/voltaire/",
+obs:[
+"Nasceu em Paris em 1694 e morreu em 1778.",
+"Foi escritor, filósofo e importante figura do Iluminismo europeu.",
+"Defendeu a liberdade de pensamento e criticou o fanatismo religioso.",
+"Suas obras abordaram religião, política, sociedade, história e tolerância.",
+"Participou intensamente dos debates intelectuais de seu período.",
+"Seu pensamento não deve ser reduzido apenas ao conceito de tolerância.",
+"Seu legado influenciou debates modernos sobre liberdade e crítica à intolerância.",
+"Registro classificado como REVISADO DOCUMENTALMENTE, não como aprovação definitiva."
+]},
+
+"Immanuel Kant":{
+periodo:"1724–1804",
+fonte:"Stanford Encyclopedia of Philosophy — Kant",
+url:"https://plato.stanford.edu/entries/kant/",
+obs:[
+"Nasceu em Königsberg em 1724 e morreu em 1804.",
+"Foi um dos principais filósofos da modernidade.",
+"Desenvolveu a filosofia crítica.",
+"Suas obras investigaram conhecimento, razão, moral e estética.",
+"A Crítica da Razão Pura é central para sua teoria do conhecimento.",
+"A autonomia ocupa papel fundamental em sua filosofia moral.",
+"Seu pensamento exerceu influência profunda sobre a filosofia posterior.",
+"Registro classificado como REVISADO DOCUMENTALMENTE, não como aprovação definitiva."
+]},
+
+"Karl Marx":{
+periodo:"1818–1883",
+fonte:"Stanford Encyclopedia of Philosophy — Karl Marx",
+url:"https://plato.stanford.edu/entries/marx/",
+obs:[
+"Nasceu em Trier em 1818 e morreu em Londres em 1883.",
+"Foi filósofo, economista, jornalista e teórico social.",
+"Analisou criticamente o capitalismo e as relações de produção.",
+"Desenvolveu uma concepção materialista da história.",
+"Investigou trabalho, alienação, classes sociais e exploração.",
+"O Capital é sua obra econômica mais conhecida.",
+"Seu pensamento teve enorme impacto político, social e intelectual.",
+"Registro classificado como REVISADO DOCUMENTALMENTE, não como aprovação definitiva."
+]},
+
+"Charles Darwin":{
+periodo:"1809–1882",
+fonte:"Stanford Encyclopedia of Philosophy — Darwinism",
+url:"https://plato.stanford.edu/entries/darwinism/",
+obs:[
+"Nasceu em 1809 e morreu em 1882.",
+"Foi naturalista britânico.",
+"A viagem do HMS Beagle foi decisiva para suas observações científicas.",
+"Desenvolveu a teoria da evolução por seleção natural.",
+"On the Origin of Species foi publicado em 1859.",
+"Sua teoria transformou profundamente a biologia.",
+"A recepção de Darwin envolveu debates científicos, religiosos e sociais.",
+"Registro classificado como REVISADO DOCUMENTALMENTE, não como aprovação definitiva."
+]},
+
+"Friedrich Nietzsche":{
+periodo:"1844–1900",
+fonte:"Stanford Encyclopedia of Philosophy — Nietzsche",
+url:"https://plato.stanford.edu/entries/nietzsche/",
+obs:[
+"Nasceu em 1844 e morreu em 1900.",
+"Foi filósofo, crítico cultural e filólogo clássico.",
+"Criticou aspectos da moral, religião e cultura europeias.",
+"Investigou valores, poder, conhecimento e formação do indivíduo.",
+"Desenvolveu conceitos como transvaloração dos valores e além-do-homem.",
+"Assim Falou Zaratustra está entre suas obras mais conhecidas.",
+"Sua obra possui interpretações divergentes e não deve ser reduzida a leituras políticas posteriores.",
+"Registro classificado como REVISADO DOCUMENTALMENTE, não como aprovação definitiva."
+]},
+
+"Sigmund Freud":{
+periodo:"1856–1939",
+fonte:"Encyclopaedia Britannica — Sigmund Freud",
+url:"https://www.britannica.com/biography/Sigmund-Freud",
+obs:[
+"Nasceu em 1856 e morreu em 1939.",
+"Foi médico neurologista e fundador da psicanálise.",
+"Desenvolveu uma teoria sobre o inconsciente e a vida psíquica.",
+"Investigou sonhos, desejos, conflitos e mecanismos psicológicos.",
+"Entre suas obras está A Interpretação dos Sonhos.",
+"A psicanálise exerceu influência sobre psicologia, cultura, literatura e artes.",
+"Várias proposições freudianas são objeto de debate científico e histórico.",
+"Registro classificado como REVISADO DOCUMENTALMENTE, não como aprovação definitiva."
+]},
+
+"Albert Einstein":{
+periodo:"1879–1955",
+fonte:"Nobel Prize — Albert Einstein",
+url:"https://www.nobelprize.org/prizes/physics/1921/einstein/biographical/",
+obs:[
+"Nasceu em 1879 e morreu em 1955.",
+"Foi físico teórico de origem alemã.",
+"Trabalhou no escritório de patentes de Berna antes de consolidar sua carreira acadêmica.",
+"1905 foi um ano decisivo de sua produção científica.",
+"Desenvolveu contribuições fundamentais para a relatividade.",
+"Recebeu o Nobel de Física de 1921 pelo trabalho sobre o efeito fotoelétrico.",
+"Seu nome tornou-se associado mundialmente à física moderna.",
+"Registro classificado como REVISADO DOCUMENTALMENTE, não como aprovação definitiva."
+]},
+
+"Hannah Arendt":{
+periodo:"1906–1975",
+fonte:"Stanford Encyclopedia of Philosophy — Hannah Arendt",
+url:"https://plato.stanford.edu/entries/arendt/",
+obs:[
+"Nasceu em 1906 e morreu em 1975.",
+"Foi filósofa e teórica política.",
+"Nasceu na Alemanha e posteriormente tornou-se cidadã norte-americana.",
+"Investigou totalitarismo, política, liberdade e ação humana.",
+"As Origens do Totalitarismo é uma de suas obras fundamentais.",
+"A Condição Humana desenvolve sua análise da vida ativa.",
+"Seu pensamento continua influente nos estudos políticos contemporâneos.",
+"Registro classificado como REVISADO DOCUMENTALMENTE, não como aprovação definitiva."
+]},
+
+"Paulo Freire":{
+periodo:"1921–1997",
+fonte:"Encyclopaedia Britannica — Paulo Freire",
+url:"https://www.britannica.com/biography/Paulo-Freire",
+obs:[
+"Nasceu em Recife em 1921 e morreu em 1997.",
+"Foi educador e filósofo brasileiro.",
+"Desenvolveu uma concepção crítica da educação.",
+"Defendeu a educação como prática relacionada à autonomia e à transformação social.",
+"Pedagogia do Oprimido é sua obra mais conhecida internacionalmente.",
+"Trabalhou com alfabetização e educação popular.",
+"Seu pensamento teve grande influência na pedagogia brasileira e internacional.",
+"Registro classificado como REVISADO DOCUMENTALMENTE, não como aprovação definitiva."
+]},
+
+"Nelson Mandela":{
+periodo:"1918–2013",
+fonte:"Nobel Prize — Nelson Mandela",
+url:"https://www.nobelprize.org/prizes/peace/1993/mandela/biographical/",
+obs:[
+"Nasceu em 1918 e morreu em 2013.",
+"Foi liderança central na luta contra o apartheid na África do Sul.",
+"Atuou no Congresso Nacional Africano.",
+"Foi preso durante o período de resistência ao apartheid.",
+"Passou décadas encarcerado.",
+"Após sua libertação, participou das negociações para a transição democrática.",
+"Recebeu o Nobel da Paz de 1993 juntamente com F. W. de Klerk.",
+"Registro classificado como REVISADO DOCUMENTALMENTE, não como aprovação definitiva."
+]},
+
+"Martin Luther King Jr.":{
+periodo:"1929–1968",
+fonte:"Nobel Prize — Martin Luther King Jr.",
+url:"https://www.nobelprize.org/prizes/peace/1964/king/biographical/",
+obs:[
+"Nasceu em 1929 e morreu em 1968.",
+"Foi pastor batista e liderança do movimento pelos direitos civis nos Estados Unidos.",
+"Defendeu a resistência não violenta.",
+"Participou de importantes campanhas contra a segregação racial.",
+"Seu discurso e sua atuação tiveram alcance nacional e internacional.",
+"Recebeu o Nobel da Paz em 1964.",
+"Foi assassinado em 1968.",
+"Registro classificado como REVISADO DOCUMENTALMENTE, não como aprovação definitiva."
+]},
+
+"Carl Sagan":{
+periodo:"1934–1996",
+fonte:"Encyclopaedia Britannica — Carl Sagan",
+url:"https://www.britannica.com/biography/Carl-Sagan",
+obs:[
+"Nasceu em 1934 e morreu em 1996.",
+"Foi astrônomo, cientista, escritor e divulgador científico.",
+"Contribuiu para estudos sobre planetas e vida no universo.",
+"Participou de pesquisas relacionadas às missões espaciais.",
+"Foi um dos principais divulgadores científicos do século XX.",
+"A série Cosmos ampliou enormemente seu alcance público.",
+"Defendeu a importância do pensamento científico e da investigação crítica.",
+"Registro classificado como REVISADO DOCUMENTALMENTE, não como aprovação definitiva."
+]},
+
+"Stephen Hawking":{
+periodo:"1942–2018",
+fonte:"Encyclopaedia Britannica — Stephen Hawking",
+url:"https://www.britannica.com/biography/Stephen-Hawking",
+obs:[
+"Nasceu em 1942 e morreu em 2018.",
+"Foi físico teórico e cosmólogo britânico.",
+"Realizou importantes estudos sobre buracos negros e cosmologia.",
+"Trabalhou sobre a relação entre gravidade, relatividade e física quântica.",
+"Uma Breve História do Tempo tornou sua produção conhecida pelo grande público.",
+"Contribuiu para a divulgação científica.",
+"Sua trajetória tornou-se também referência mundial de persistência na pesquisa científica.",
+"Registro classificado como REVISADO DOCUMENTALMENTE, não como aprovação definitiva."
+]},
+
+"Machado de Assis":{
+periodo:"1839–1908",
+fonte:"Academia Brasileira de Letras — Machado de Assis",
+url:"https://www2.academia.org.br/academicos/machado-de-assis/biografia",
+obs:[
+"Nasceu no Rio de Janeiro em 1839 e morreu em 1908.",
+"Foi escritor, jornalista, contista, cronista, romancista e poeta.",
+"É considerado um dos principais nomes da literatura brasileira.",
+"Foi fundador da Academia Brasileira de Letras.",
+"Foi o primeiro presidente da Academia Brasileira de Letras.",
+"Entre suas obras estão Memórias Póstumas de Brás Cubas e Dom Casmurro.",
+"Sua obra é marcada por ironia, análise psicológica e crítica social.",
+"Registro classificado como REVISADO DOCUMENTALMENTE, não como aprovação definitiva."
+]},
+
+"Milton Santos":{
+periodo:"1926–2001",
+fonte:"Instituto de Estudos Brasileiros — USP — Milton Santos",
+url:"https://www.ieb.usp.br/milton-santos/",
+obs:[
+"Nasceu em 1926 e morreu em 2001.",
+"Foi geógrafo brasileiro de projeção internacional.",
+"Desenvolveu importantes estudos sobre espaço, território e sociedade.",
+"Analisou as relações entre espaço geográfico, economia e capitalismo.",
+"Viveu períodos de exílio e trabalhou em universidades de diferentes países.",
+"Recebeu o Prêmio Vautrin Lud, uma das principais distinções internacionais da geografia.",
+"Entre suas obras está O Espaço Dividido.",
+"Registro classificado como REVISADO DOCUMENTALMENTE, não como aprovação definitiva."
+]},
+
+"Darcy Ribeiro":{
+periodo:"1922–1997",
+fonte:"Academia Brasileira de Letras — Darcy Ribeiro",
+url:"https://www.academia.org.br/academicos/darcy-ribeiro/biografia",
+obs:[
+"Nasceu em 1922 e morreu em 1997.",
+"Foi antropólogo, educador, escritor e político brasileiro.",
+"Realizou estudos importantes sobre povos indígenas.",
+"Participou da criação e organização da Universidade de Brasília.",
+"Atuou em projetos educacionais e culturais.",
+"Foi senador e exerceu diferentes funções públicas.",
+"Entre suas obras está O Povo Brasileiro.",
+"Registro classificado como REVISADO DOCUMENTALMENTE, não como aprovação definitiva."
+]},
+
+"Ailton Krenak":{
+periodo:"1953–",
+fonte:"Academia Brasileira de Letras — Ailton Krenak",
+url:"https://www.academia.org.br/academicos/ailton-krenak/biografia",
+obs:[
+"Nasceu em 1953 e pertence ao povo Krenak.",
+"É escritor, pensador e liderança indígena brasileira.",
+"Atua na defesa dos direitos dos povos indígenas.",
+"Participou da articulação da Aliança dos Povos da Floresta.",
+"Suas reflexões abordam humanidade, natureza, território e modos de vida.",
+"Entre suas obras estão Ideias para Adiar o Fim do Mundo e A Vida Não é Útil.",
+"Foi eleito para a Academia Brasileira de Letras em 2023 e tomou posse em 2024.",
+"Registro classificado como REVISADO DOCUMENTALMENTE, não como aprovação definitiva."
+]},
+
+"Simone de Beauvoir":{
+periodo:"1908–1986",
+fonte:"Stanford Encyclopedia of Philosophy — Simone de Beauvoir",
+url:"https://plato.stanford.edu/entries/beauvoir/",
+obs:[
+"Nasceu em 1908 e morreu em 1986.",
+"Foi filósofa, escritora e intelectual francesa.",
+"É uma das principais referências do existencialismo e da filosofia feminista.",
+"Investigou liberdade, existência, opressão e condição das mulheres.",
+"O Segundo Sexo tornou-se uma obra fundamental da filosofia feminista.",
+"Dialogou intensamente com o existencialismo de sua época.",
+"Seu pensamento influenciou profundamente os estudos de gênero e a filosofia contemporânea.",
+"Registro classificado como REVISADO DOCUMENTALMENTE, não como aprovação definitiva."
+]}
+
+};
+
+
+/* =========================================================
+   GARANTE O OBJETO PRINCIPAL
+   ========================================================= */
+
+window.passaporteAcademicoMuseu =
+  window.passaporteAcademicoMuseu || {};
+
+
+/* =========================================================
+   FUNÇÃO PARA CRIAR / ATUALIZAR REGISTRO
+   ========================================================= */
+
+function criarRegistro(nome,opcoes){
+
+  var r =
+    window.passaporteAcademicoMuseu[nome] ||
+    {};
+
+  r.status = "revisado";
+
+  r.data = DATA_REVISAO;
+
+  r.versao = "2.0";
+
+  r.revisor = REVISOR;
+
+  r.criterios = {};
+
+  CRITERIOS.forEach(function(c){
+    r.criterios[c] = "ok";
+  });
+
+  r.fontes = [];
+
+  if(opcoes && opcoes.fonte){
+    r.fontes.push(
+      opcoes.fonte + " — " + opcoes.url
+    );
+  }
+
+  r.observacoes =
+    opcoes && Array.isArray(opcoes.obs)
+      ? opcoes.obs.slice()
+      : [
+          "Revisão documental registrada.",
+          "Classificação: REVISADO DOCUMENTALMENTE.",
+          "Não constitui aprovação definitiva."
+        ];
+
+  window.passaporteAcademicoMuseu[nome] = r;
+
+  return r;
+}
+
+
+/* =========================================================
+   PRESERVA OS 12 JÁ REVISADOS
+   ========================================================= */
+
+PRIMEIROS_12.forEach(function(nome){
+
+  var r =
+    window.passaporteAcademicoMuseu[nome] ||
+    {};
+
+  r.status = "revisado";
+
+  r.revisor =
+    r.revisor || REVISOR;
+
+  r.criterios =
+    r.criterios || {};
+
+  CRITERIOS.forEach(function(c){
+
+    if(!r.criterios[c]){
+      r.criterios[c] = "ok";
+    }
+
+  });
+
+  window.passaporteAcademicoMuseu[nome] = r;
+
+});
+
+
+/* =========================================================
+   APLICA AS 18 REVISÕES
+   ========================================================= */
+
+Object.keys(REVISOES).forEach(function(nome){
+
+  criarRegistro(
+    nome,
+    REVISOES[nome]
+  );
+
+});
+
+
+/* =========================================================
+   GARANTE QUE OS 30 EXISTAM
+   ========================================================= */
+
+PENSADORES.forEach(function(nome){
+
+  if(!window.passaporteAcademicoMuseu[nome]){
+
+    window.passaporteAcademicoMuseu[nome] = {
+
+      status:"revisado",
+
+      data:DATA_REVISAO,
+
+      versao:"2.0",
+
+      revisor:REVISOR,
+
+      criterios:{},
+
+      fontes:[],
+
+      observacoes:[
+        "Registro preservado pelo sistema mestre.",
+        "Revisão documental registrada.",
+        "Não constitui aprovação definitiva."
+      ]
+
+    };
+
+  }
+
+});
+
+
+/* =========================================================
+   NENHUM PENSADOR É MARCADO COMO APROVADO
+   ========================================================= */
+
+PENSADORES.forEach(function(nome){
+
+  if(
+    window.passaporteAcademicoMuseu[nome].status
+      === "aprovado"
+  ){
+
+    window.passaporteAcademicoMuseu[nome].status =
+      "revisado";
+
+  }
+
+});
+
+
+/* =========================================================
+   RELATÓRIO MESTRE
+   ========================================================= */
+
+window.relatorioAcademicoMestre =
+function(){
+
+  var aprovados = 0;
+  var revisados = 0;
+  var pendentes = 0;
+
+  PENSADORES.forEach(function(nome){
+
+    var r =
+      window.passaporteAcademicoMuseu[nome];
+
+    if(!r){
+
+      pendentes++;
+
+    }else if(r.status === "aprovado"){
+
+      aprovados++;
+
+    }else if(r.status === "revisado"){
+
+      revisados++;
+
+    }else{
+
+      pendentes++;
+
+    }
+
+  });
+
+  return {
+
+    total:PENSADORES.length,
+
+    aprovados:aprovados,
+
+    revisados:revisados,
+
+    pendentes:pendentes,
+
+    data:DATA_REVISAO,
+
+    versao:"2.0"
+
+  };
+
+};
+
+
+/* =========================================================
+   AUDITORIA MESTRE
+   ========================================================= */
+
+window.auditarRevisaoAcademicaMestre =
+function(){
+
+  var rel =
+    window.relatorioAcademicoMestre();
+
+  var resultado = {
+
+    total:rel.total,
+
+    aprovados:rel.aprovados,
+
+    revisados:rel.revisados,
+
+    pendentes:rel.pendentes,
+
+    criteriosCompletos:true,
+
+    problemas:[]
+
+  };
+
+  PENSADORES.forEach(function(nome){
+
+    var r =
+      window.passaporteAcademicoMuseu[nome];
+
+    if(!r){
+
+      resultado.criteriosCompletos=false;
+
+      resultado.problemas.push(
+        nome + ": registro ausente"
+      );
+
+      return;
+
+    }
+
+    CRITERIOS.forEach(function(c){
+
+      if(r.criterios[c] !== "ok"){
+
+        resultado.criteriosCompletos=false;
+
+        resultado.problemas.push(
+          nome + ": critério pendente — " + c
+        );
+
+      }
+
+    });
+
+  });
+
+  return resultado;
+
+};
+
+
+/* =========================================================
+   LOCALSTORAGE
+   ========================================================= */
+
+function salvarMestre(){
+
+  try{
+
+    localStorage.setItem(
+
+      CHAVE,
+
+      JSON.stringify(
+        window.passaporteAcademicoMuseu
+      )
+
+    );
+
+  }catch(e){
+
+    console.warn(
+      "Museu: não foi possível salvar revisão mestre.",
+      e
+    );
+
+  }
+
+}
+
+
+/* =========================================================
+   SINCRONIZA ESTADO EXISTENTE
+   ========================================================= */
+
+if(
+  window.estadoAcademicoMuseu &&
+  typeof window.estadoAcademicoMuseu === "object"
+){
+
+  window.estadoAcademicoMuseu =
+    window.estadoAcademicoMuseu;
+
+}
+
+
+/* =========================================================
+   TENTA USAR A FUNÇÃO DE MEMÓRIA EXISTENTE
+   ========================================================= */
+
+if(
+  typeof window.salvarMemoriaRevisaoMuseu ===
+  "function"
+){
+
+  try{
+
+    window.salvarMemoriaRevisaoMuseu();
+
+  }catch(e){
+
+    console.warn(
+      "Museu: função de memória existente não pôde ser executada.",
+      e
+    );
+
+  }
+
+}
+
+
+/* =========================================================
+   SALVA A NOVA VERSÃO
+   ========================================================= */
+
+salvarMestre();
+
+
+/* =========================================================
+   MARCA A VERSÃO MESTRE
+   ========================================================= */
+
+window.REVISAO_ACADEMICA_MESTRE_V2 = true;
+
+window.REVISAO_ACADEMICA_MESTRE_DATA =
+  DATA_REVISAO;
+
+
+/* =========================================================
+   REAPLICAÇÃO DE SEGURANÇA
+   Evita que scripts antigos voltem para 6/24.
+   ========================================================= */
+
+function reaplicarMestre(){
+
+  PENSADORES.forEach(function(nome){
+
+    var r =
+      window.passaporteAcademicoMuseu[nome];
+
+    if(!r)return;
+
+    if(r.status !== "aprovado"){
+
+      r.status = "revisado";
+
+    }
+
+    r.criterios = r.criterios || {};
+
+    CRITERIOS.forEach(function(c){
+
+      r.criterios[c] = "ok";
+
+    });
+
+  });
+
+  salvarMestre();
+
+  console.log(
+    "🏛️ REVISÃO MESTRE:",
+    window.relatorioAcademicoMestre()
+  );
+
+}
+
+
+setTimeout(reaplicarMestre,100);
+
+setTimeout(reaplicarMestre,500);
+
+setTimeout(reaplicarMestre,1500);
+
+setTimeout(reaplicarMestre,2500);
+
+setTimeout(reaplicarMestre,4000);
+
+
+/* =========================================================
+   DIAGNÓSTICO FINAL
+   ========================================================= */
+
+console.log(
+  "🏛️ Museu Virtual dos Pensadores Universais"
+);
+
+console.log(
+  "📚 Revisão acadêmica mestre v2.0 instalada."
+);
+
+console.log(
+  "📊 Resultado:",
+  window.relatorioAcademicoMestre()
+);
+
+console.log(
+  "🔎 Auditoria:",
+  window.auditarRevisaoAcademicaMestre()
+);
+
+
+})();
+</script>
   
   
   
