@@ -1,0 +1,1709 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Máquina do Tempo dos Pensadores</title>
+
+<style>
+*{box-sizing:border-box}
+
+body{
+    margin:0;
+    font-family:Arial,Helvetica,sans-serif;
+    background:
+      radial-gradient(circle at 50% 20%,#34205c 0%,#171027 45%,#080611 100%);
+    color:#fff;
+    min-height:100vh;
+}
+
+.container{
+    width:min(900px,94%);
+    margin:auto;
+    padding:25px 0 50px;
+}
+
+header{
+    text-align:center;
+    padding:20px 10px;
+}
+
+.logo{
+    font-size:58px;
+    margin-bottom:5px;
+}
+
+h1{
+    margin:0;
+    font-size:clamp(28px,6vw,48px);
+    color:#ffd86b;
+}
+
+.subtitle{
+    color:#d8cfee;
+    font-size:17px;
+    margin-top:10px;
+}
+
+.card{
+    background:rgba(24,18,43,.94);
+    border:1px solid rgba(255,216,107,.25);
+    border-radius:24px;
+    padding:28px;
+    box-shadow:0 15px 50px rgba(0,0,0,.35);
+}
+
+.hidden{
+    display:none!important;
+}
+
+.intro{
+    text-align:center;
+}
+
+.intro-icon{
+    font-size:70px;
+    margin:10px;
+}
+
+button{
+    border:0;
+    cursor:pointer;
+    font-weight:bold;
+    transition:.2s;
+}
+
+.main-btn{
+    background:#ffd86b;
+    color:#21172f;
+    padding:16px 30px;
+    border-radius:14px;
+    font-size:18px;
+    margin-top:20px;
+}
+
+.main-btn:hover{
+    transform:translateY(-2px);
+    filter:brightness(1.08);
+}
+
+.info{
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    flex-wrap:wrap;
+    margin:20px 0;
+}
+
+.badge{
+    background:#2d2350;
+    border:1px solid #49386e;
+    padding:8px 14px;
+    border-radius:50px;
+    color:#eee;
+}
+
+.topbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:10px;
+    margin-bottom:15px;
+    flex-wrap:wrap;
+}
+
+.progress-area{
+    flex:1;
+    min-width:220px;
+}
+
+.progress-text{
+    color:#cfc4e7;
+    font-size:14px;
+    margin-bottom:7px;
+}
+
+.progress{
+    width:100%;
+    height:10px;
+    background:#100c1c;
+    border-radius:20px;
+    overflow:hidden;
+}
+
+.progress-bar{
+    height:100%;
+    width:0%;
+    background:#ffd86b;
+    transition:.3s;
+}
+
+.score{
+    color:#ffd86b;
+    font-weight:bold;
+    font-size:18px;
+}
+
+.lives{
+    font-size:20px;
+    white-space:nowrap;
+}
+
+.thinker-tag{
+    display:inline-block;
+    background:#473269;
+    color:#ffd86b;
+    padding:8px 14px;
+    border-radius:50px;
+    font-weight:bold;
+    margin:12px 0;
+}
+
+.question{
+    font-size:clamp(22px,4vw,31px);
+    line-height:1.3;
+    margin:12px 0 25px;
+}
+
+.answers{
+    display:grid;
+    gap:12px;
+}
+
+.answer{
+    width:100%;
+    text-align:left;
+    padding:17px;
+    border-radius:14px;
+    background:#2a2142;
+    color:#fff;
+    border:2px solid transparent;
+    font-size:17px;
+}
+
+.answer:hover:not(:disabled){
+    border-color:#ffd86b;
+    background:#332750;
+}
+
+.answer.correct{
+    background:#174d38;
+    border-color:#4de19a;
+}
+
+.answer.wrong{
+    background:#572536;
+    border-color:#ff718e;
+}
+
+.answer:disabled{
+    cursor:default;
+}
+
+.explanation{
+    margin-top:20px;
+    padding:18px;
+    border-radius:15px;
+    background:#171128;
+    border-left:4px solid #ffd86b;
+    line-height:1.6;
+    color:#e7dff5;
+}
+
+.next-btn{
+    background:#ffd86b;
+    color:#21172f;
+    padding:14px 24px;
+    border-radius:12px;
+    margin-top:16px;
+    font-size:16px;
+}
+
+.result{
+    text-align:center;
+}
+
+.result-score{
+    font-size:64px;
+    color:#ffd86b;
+    font-weight:bold;
+    margin:10px 0;
+}
+
+.result-message{
+    font-size:21px;
+    margin:10px 0 25px;
+}
+
+.visited{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    justify-content:center;
+    margin:20px 0;
+}
+
+.visited span{
+    background:#2d2350;
+    border:1px solid #514070;
+    padding:8px 12px;
+    border-radius:20px;
+    font-size:14px;
+}
+
+.small{
+    color:#a99fbd;
+    font-size:13px;
+    margin-top:20px;
+}
+
+@media(max-width:600px){
+    .card{
+        padding:20px 15px;
+        border-radius:18px;
+    }
+
+    .logo{
+        font-size:45px;
+    }
+
+    .question{
+        font-size:22px;
+    }
+
+    .answer{
+        font-size:16px;
+        padding:15px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<header>
+    <div class="logo">⏳🧠</div>
+    <h1>Máquina do Tempo</h1>
+    <div class="subtitle">
+        Uma viagem divertida pelo Museu Virtual dos Pensadores Universais
+    </div>
+</header>
+
+<!-- INÍCIO -->
+<section id="inicio" class="card intro">
+    <div class="intro-icon">🚀</div>
+
+    <h2>Pronto para viajar no tempo?</h2>
+
+    <p>
+        A cada partida você terá apenas <strong>3 perguntas</strong>.
+        As perguntas são sorteadas entre os 30 pensadores do Museu.
+    </p>
+
+    <div class="info">
+        <span class="badge">🧠 30 pensadores</span>
+        <span class="badge">❓ 3 perguntas</span>
+        <span class="badge">❤️ 3 vidas</span>
+        <span class="badge">⭐ Pontos</span>
+    </div>
+
+    <p>
+        As perguntas podem envolver <strong>marcos, obras, ideias,
+        descobertas e legado</strong> dos pensadores.
+    </p>
+
+    <button class="main-btn" onclick="iniciarJogo()">
+        🎮 COMEÇAR JOGO
+    </button>
+
+    <div class="small">
+        As perguntas recentes ficam registradas neste dispositivo para diminuir repetições.
+    </div>
+</section>
+
+<!-- JOGO -->
+<section id="jogo" class="card hidden">
+
+    <div class="topbar">
+
+        <div class="progress-area">
+            <div class="progress-text" id="progressText">
+                Pergunta 1 de 3
+            </div>
+
+            <div class="progress">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+        </div>
+
+        <div class="score">
+            ⭐ <span id="score">0</span>
+        </div>
+
+        <div class="lives" id="lives">
+            ❤️❤️❤️
+        </div>
+
+    </div>
+
+    <div class="thinker-tag" id="thinkerTag"></div>
+
+    <div class="question" id="question"></div>
+
+    <div class="answers" id="answers"></div>
+
+    <div id="explanationBox" class="explanation hidden"></div>
+
+    <button
+        id="nextButton"
+        class="next-btn hidden"
+        onclick="proximaPergunta()">
+        PRÓXIMA ➜
+    </button>
+
+</section>
+
+<!-- RESULTADO -->
+<section id="resultado" class="card result hidden">
+
+    <div class="logo">🏆</div>
+
+    <h2>Viagem concluída!</h2>
+
+    <div class="result-score">
+        <span id="finalScore">0</span>
+    </div>
+
+    <div class="result-message" id="resultMessage"></div>
+
+    <h3>📚 Pensadores visitados</h3>
+
+    <div class="visited" id="visited"></div>
+
+    <button class="main-btn" onclick="iniciarJogo()">
+        🔄 JOGAR NOVAMENTE
+    </button>
+
+</section>
+
+</div>
+
+<script>
+
+/* =========================================================
+   MUSEU VIRTUAL DOS PENSADORES UNIVERSAIS
+   MÁQUINA DO TEMPO
+   3 PERGUNTAS POR PARTIDA
+   ========================================================= */
+
+const bancoPensadores = [
+
+{
+    nome:"Sócrates",
+    era:"Antiguidade",
+    perguntas:[
+
+        {
+            q:"Qual era uma das principais características do método de Sócrates?",
+            a:["Fazer perguntas para estimular o pensamento","Construir máquinas","Estudar somente astronomia","Escrever romances"],
+            c:0,
+            e:"Sócrates ficou conhecido pelo uso do diálogo e das perguntas para estimular as pessoas a examinar suas próprias ideias."
+        },
+
+        {
+            q:"Sócrates é lembrado principalmente por qual atividade?",
+            a:["Ensinar por meio do diálogo e da investigação","Pintar a Capela Sistina","Criar a teoria da evolução","Inventar o telefone"],
+            c:0,
+            e:"Sócrates fazia perguntas e conversava com as pessoas sobre temas como conhecimento, justiça e virtude."
+        },
+
+        {
+            q:"Qual filósofo ficou famoso por buscar o conhecimento por meio de perguntas?",
+            a:["Sócrates","Darwin","Einstein","Freud"],
+            c:0,
+            e:"O diálogo socrático tornou-se uma das marcas mais conhecidas da filosofia de Sócrates."
+        }
+
+    ]
+},
+
+{
+    nome:"Platão",
+    era:"Antiguidade",
+    perguntas:[
+
+        {
+            q:"Qual instituição Platão é tradicionalmente associado a ter fundado em Atenas?",
+            a:["A Academia","A Universidade de Paris","O Museu do Louvre","A Royal Society"],
+            c:0,
+            e:"Platão fundou a Academia em Atenas, uma importante escola filosófica da Antiguidade."
+        },
+
+        {
+            q:"Platão foi discípulo de qual pensador?",
+            a:["Sócrates","Darwin","Kant","Marx"],
+            c:0,
+            e:"Platão foi discípulo de Sócrates e registrou muitos diálogos filosóficos envolvendo seu mestre."
+        },
+
+        {
+            q:"Qual obra de Platão apresenta uma famosa discussão sobre justiça e organização da cidade?",
+            a:["A República","O Capital","A Origem das Espécies","O Príncipe"],
+            c:0,
+            e:"A República é uma das obras mais conhecidas de Platão e discute justiça, educação e organização política."
+        }
+
+    ]
+},
+
+{
+    nome:"Aristóteles",
+    era:"Antiguidade",
+    perguntas:[
+
+        {
+            q:"Aristóteles foi professor de qual famoso personagem histórico?",
+            a:["Alexandre, o Grande","Napoleão","Einstein","Mandela"],
+            c:0,
+            e:"Aristóteles foi associado à educação de Alexandre da Macedônia, que ficou conhecido como Alexandre, o Grande."
+        },
+
+        {
+            q:"Qual área Aristóteles estudou de maneira ampla?",
+            a:["Filosofia, natureza, lógica e política","Somente pintura","Somente música","Somente engenharia"],
+            c:0,
+            e:"Aristóteles investigou muitos campos, incluindo lógica, ética, política, biologia e filosofia natural."
+        },
+
+        {
+            q:"Qual filósofo escreveu uma obra chamada Política?",
+            a:["Aristóteles","Freud","Einstein","Krenak"],
+            c:0,
+            e:"A Política é uma obra importante de Aristóteles dedicada à reflexão sobre a vida em comunidade e as formas de governo."
+        }
+
+    ]
+},
+
+{
+    nome:"Confúcio",
+    era:"Antiguidade",
+    perguntas:[
+
+        {
+            q:"Confúcio ficou especialmente conhecido por refletir sobre quê?",
+            a:["Educação, ética e relações humanas","Física quântica","Evolução biológica","Psicanálise"],
+            c:0,
+            e:"Os ensinamentos associados a Confúcio destacam educação, virtude, respeito e responsabilidade nas relações humanas."
+        },
+
+        {
+            q:"Confúcio viveu em qual região histórica?",
+            a:["China","Brasil","Grécia","Inglaterra"],
+            c:0,
+            e:"Confúcio foi um pensador chinês da Antiguidade."
+        },
+
+        {
+            q:"Uma ideia importante associada a Confúcio é a valorização de qual atitude?",
+            a:["Cultivar a virtude e o respeito nas relações","Evitar qualquer forma de educação","Rejeitar a família","Abandonar a vida em sociedade"],
+            c:0,
+            e:"A tradição confucionista valoriza o cultivo da virtude e das responsabilidades nas relações sociais."
+        }
+
+    ]
+},
+
+{
+    nome:"Agostinho de Hipona",
+    era:"Antiguidade Tardia",
+    perguntas:[
+
+        {
+            q:"Agostinho de Hipona foi um importante pensador de qual tradição?",
+            a:["Cristã","Budista","Industrial","Astronômica"],
+            c:0,
+            e:"Agostinho foi uma das figuras mais influentes da filosofia e teologia cristãs da Antiguidade Tardia."
+        },
+
+        {
+            q:"Qual obra é uma das mais famosas de Agostinho?",
+            a:["Confissões","O Capital","A República","O Príncipe"],
+            c:0,
+            e:"Confissões é uma das obras mais conhecidas de Agostinho de Hipona."
+        },
+
+        {
+            q:"Agostinho nasceu no norte da África romana?",
+            a:["Sim","Não, nasceu no Japão","Não, nasceu no Brasil","Não, nasceu na Inglaterra"],
+            c:0,
+            e:"Agostinho nasceu em Tagaste, no norte da África, região do Império Romano."
+        }
+
+    ]
+},
+
+{
+    nome:"Tomás de Aquino",
+    era:"Idade Média",
+    perguntas:[
+
+        {
+            q:"Tomás de Aquino é conhecido por aproximar filosofia e qual tradição?",
+            a:["Teologia cristã","Cinema","Aviação","Fotografia"],
+            c:0,
+            e:"Tomás de Aquino buscou integrar a filosofia, especialmente Aristóteles, à teologia cristã."
+        },
+
+        {
+            q:"Qual filósofo antigo teve grande influência no pensamento de Tomás de Aquino?",
+            a:["Aristóteles","Darwin","Freud","Sagan"],
+            c:0,
+            e:"A filosofia de Aristóteles teve enorme influência na obra de Tomás de Aquino."
+        },
+
+        {
+            q:"Qual é uma obra importante de Tomás de Aquino?",
+            a:["Suma Teológica","O Capital","A República","Cosmos"],
+            c:0,
+            e:"A Suma Teológica é uma das obras centrais de Tomás de Aquino."
+        }
+
+    ]
+},
+
+{
+    nome:"Averróis",
+    era:"Idade Média",
+    perguntas:[
+
+        {
+            q:"Averróis ficou especialmente conhecido por seus comentários sobre qual filósofo?",
+            a:["Aristóteles","Nietzsche","Marx","Darwin"],
+            c:0,
+            e:"Averróis foi um importante comentarista de Aristóteles e exerceu influência sobre a filosofia medieval."
+        },
+
+        {
+            q:"Averróis viveu principalmente em qual contexto cultural?",
+            a:["Mundo islâmico medieval","Europa industrial","Brasil colonial","Estados Unidos do século XX"],
+            c:0,
+            e:"Averróis foi um filósofo, jurista e médico muçulmano do século XII."
+        },
+
+        {
+            q:"Além da filosofia, Averróis também atuou em qual área?",
+            a:["Medicina e direito","Cinema","Astronáutica","Fotografia"],
+            c:0,
+            e:"Averróis também foi médico e jurista, além de filósofo."
+        }
+
+    ]
+},
+
+{
+    nome:"Leonardo da Vinci",
+    era:"Renascimento",
+    perguntas:[
+
+        {
+            q:"Leonardo da Vinci é conhecido por atuar em várias áreas. Qual combinação combina com sua trajetória?",
+            a:["Arte, engenharia e estudos da natureza","Somente política","Somente música","Somente literatura"],
+            c:0,
+            e:"Leonardo foi pintor, desenhista, inventor e estudioso da natureza, entre muitas outras atividades."
+        },
+
+        {
+            q:"Qual famosa pintura é associada a Leonardo da Vinci?",
+            a:["Mona Lisa","Guernica","O Grito","A Persistência da Memória"],
+            c:0,
+            e:"A Mona Lisa é uma das obras mais famosas associadas a Leonardo."
+        },
+
+        {
+            q:"Leonardo ficou conhecido por combinar arte com o estudo de quê?",
+            a:["Natureza, anatomia e engenharia","Somente poesia","Somente política","Somente culinária"],
+            c:0,
+            e:"Leonardo realizou estudos detalhados de anatomia, natureza, máquinas e engenharia."
+        }
+
+    ]
+},
+
+{
+    nome:"Nicolau Maquiavel",
+    era:"Renascimento",
+    perguntas:[
+
+        {
+            q:"Qual obra tornou Maquiavel famoso por suas reflexões sobre política?",
+            a:["O Príncipe","A República","Confissões","O Capital"],
+            c:0,
+            e:"O Príncipe é a obra mais conhecida de Maquiavel sobre poder e política."
+        },
+
+        {
+            q:"Maquiavel estudou principalmente questões relacionadas a quê?",
+            a:["Política e poder","Psicanálise","Biologia","Astronomia"],
+            c:0,
+            e:"Maquiavel analisou o poder, os governos e as estratégias políticas."
+        },
+
+        {
+            q:"Maquiavel viveu principalmente em qual região?",
+            a:["Itália","China","Brasil","Estados Unidos"],
+            c:0,
+            e:"Maquiavel nasceu em Florença, na península Itálica."
+        }
+
+    ]
+},
+
+{
+    nome:"Erasmo de Roterdã",
+    era:"Renascimento",
+    perguntas:[
+
+        {
+            q:"Erasmo ficou associado a qual movimento cultural europeu?",
+            a:["Humanismo renascentista","Romantismo brasileiro","Futurismo","Surrealismo"],
+            c:0,
+            e:"Erasmo foi uma das grandes figuras do humanismo renascentista europeu."
+        },
+
+        {
+            q:"Qual obra é associada a Erasmo?",
+            a:["Elogio da Loucura","O Príncipe","O Capital","Cosmos"],
+            c:0,
+            e:"Elogio da Loucura é uma das obras mais conhecidas de Erasmo de Roterdã."
+        },
+
+        {
+            q:"Erasmo defendia grande valorização de quê?",
+            a:["Educação e reflexão crítica","Ignorância","Guerra permanente","Isolamento"],
+            c:0,
+            e:"O humanismo de Erasmo valorizava educação, estudo e reflexão crítica."
+        }
+
+    ]
+},
+
+{
+    nome:"John Locke",
+    era:"Idade Moderna",
+    perguntas:[
+
+        {
+            q:"John Locke ficou conhecido por defender qual ideia sobre o conhecimento?",
+            a:["A experiência tem papel fundamental na formação do conhecimento","Todo conhecimento nasce pronto","Conhecimento não pode ser estudado","Somente reis possuem conhecimento"],
+            c:0,
+            e:"Locke é associado ao empirismo e à ideia de que a experiência desempenha papel fundamental na formação do conhecimento."
+        },
+
+        {
+            q:"Locke teve grande influência em qual área?",
+            a:["Filosofia política e teoria do conhecimento","Astronomia apenas","Pintura apenas","Medicina apenas"],
+            c:0,
+            e:"Locke escreveu sobre conhecimento, governo, direitos e liberdade."
+        },
+
+        {
+            q:"Qual ideia política está ligada a Locke?",
+            a:["Direitos naturais e governo limitado","Poder absoluto sem limites","Fim da educação","Fim da sociedade"],
+            c:0,
+            e:"Locke defendeu ideias sobre direitos naturais e limites ao poder político."
+        }
+
+    ]
+},
+
+{
+    nome:"Jean-Jacques Rousseau",
+    era:"Iluminismo",
+    perguntas:[
+
+        {
+            q:"Rousseau escreveu qual obra importante sobre política?",
+            a:["O Contrato Social","O Capital","A Origem das Espécies","Cosmos"],
+            c:0,
+            e:"O Contrato Social é uma das obras políticas mais conhecidas de Rousseau."
+        },
+
+        {
+            q:"Rousseau refletiu bastante sobre qual tema?",
+            a:["Sociedade, educação e política","Somente astronomia","Somente química","Somente engenharia"],
+            c:0,
+            e:"Rousseau escreveu sobre educação, sociedade, liberdade e organização política."
+        },
+
+        {
+            q:"Qual conceito político está fortemente associado a Rousseau?",
+            a:["Vontade geral","Seleção natural","Inconsciente","Relatividade"],
+            c:0,
+            e:"A ideia de vontade geral ocupa posição importante no pensamento político de Rousseau."
+        }
+
+    ]
+},
+
+{
+    nome:"Voltaire",
+    era:"Iluminismo",
+    perguntas:[
+
+        {
+            q:"Voltaire ficou conhecido por defender fortemente qual valor?",
+            a:["Liberdade de pensamento e tolerância","Censura total","Fim da educação","Guerra permanente"],
+            c:0,
+            e:"Voltaire foi uma figura importante do Iluminismo e criticou o fanatismo e a intolerância."
+        },
+
+        {
+            q:"Qual obra é associada a Voltaire?",
+            a:["Cândido","O Capital","O Príncipe","Cosmos"],
+            c:0,
+            e:"Cândido é uma das obras literárias mais conhecidas de Voltaire."
+        },
+
+        {
+            q:"Voltaire pertenceu a qual movimento intelectual?",
+            a:["Iluminismo","Romantismo","Modernismo brasileiro","Surrealismo"],
+            c:0,
+            e:"Voltaire foi um dos grandes nomes do Iluminismo europeu."
+        }
+
+    ]
+},
+
+{
+    nome:"Immanuel Kant",
+    era:"Iluminismo",
+    perguntas:[
+
+        {
+            q:"Kant é um dos grandes nomes de qual movimento intelectual?",
+            a:["Iluminismo","Renascimento italiano","Surrealismo","Modernismo"],
+            c:0,
+            e:"Kant foi uma das figuras centrais do Iluminismo e da filosofia moderna."
+        },
+
+        {
+            q:"Qual obra é uma das principais de Kant?",
+            a:["Crítica da Razão Pura","O Príncipe","O Capital","Confissões"],
+            c:0,
+            e:"A Crítica da Razão Pura é uma das obras fundamentais da filosofia de Kant."
+        },
+
+        {
+            q:"Kant investigou profundamente qual questão?",
+            a:["Os limites e as condições do conhecimento","Somente pintura","Somente agricultura","Somente futebol"],
+            c:0,
+            e:"Kant investigou como o conhecimento é possível e quais são seus limites."
+        }
+
+    ]
+},
+
+{
+    nome:"Karl Marx",
+    era:"Século XIX",
+    perguntas:[
+
+        {
+            q:"Qual obra é associada a Karl Marx?",
+            a:["O Capital","A República","Cosmos","Cândido"],
+            c:0,
+            e:"O Capital é uma das principais obras de Marx, dedicada à análise crítica da economia política."
+        },
+
+        {
+            q:"Marx estudou profundamente qual tema?",
+            a:["Sociedade, economia e relações de classe","Somente astronomia","Somente pintura","Somente medicina"],
+            c:0,
+            e:"Marx analisou a economia, as relações sociais e os conflitos entre classes."
+        },
+
+        {
+            q:"Karl Marx é uma figura central em qual tradição de pensamento?",
+            a:["Marxismo","Psicanálise","Existencialismo apenas","Empirismo clássico"],
+            c:0,
+            e:"O pensamento de Marx deu origem a uma ampla tradição conhecida como marxismo."
+        }
+
+    ]
+},
+
+{
+    nome:"Charles Darwin",
+    era:"Século XIX",
+    perguntas:[
+
+        {
+            q:"Qual ideia ficou especialmente associada a Darwin?",
+            a:["Evolução por seleção natural","Relatividade","Inconsciente","Vontade geral"],
+            c:0,
+            e:"Darwin desenvolveu uma explicação da evolução das espécies baseada, entre outros mecanismos, na seleção natural."
+        },
+
+        {
+            q:"Qual livro Darwin publicou em 1859?",
+            a:["A Origem das Espécies","O Capital","Cosmos","O Príncipe"],
+            c:0,
+            e:"A Origem das Espécies foi publicada em 1859 e apresentou sua teoria da evolução por seleção natural."
+        },
+
+        {
+            q:"Darwin realizou uma famosa viagem a bordo de qual navio?",
+            a:["HMS Beagle","Titanic","Santa Maria","Endurance"],
+            c:0,
+            e:"Darwin participou da viagem do HMS Beagle, que foi muito importante para suas observações sobre a natureza."
+        }
+
+    ]
+},
+
+{
+    nome:"Friedrich Nietzsche",
+    era:"Século XIX",
+    perguntas:[
+
+        {
+            q:"Nietzsche é conhecido por questionar profundamente quais valores?",
+            a:["Valores morais e culturais","Somente valores monetários","Somente esportivos","Somente matemáticos"],
+            c:0,
+            e:"Nietzsche realizou uma crítica profunda da moral, da cultura e de valores estabelecidos."
+        },
+
+        {
+            q:"Qual conceito aparece de forma importante no pensamento de Nietzsche?",
+            a:["Vontade de potência","Seleção natural","Relatividade","Contrato social"],
+            c:0,
+            e:"A vontade de potência é um dos conceitos importantes associados à filosofia de Nietzsche."
+        },
+
+        {
+            q:"Qual obra é de Nietzsche?",
+            a:["Assim Falou Zaratustra","O Capital","A Origem das Espécies","O Contrato Social"],
+            c:0,
+            e:"Assim Falou Zaratustra é uma das obras mais conhecidas de Nietzsche."
+        }
+
+    ]
+},
+
+{
+    nome:"Sigmund Freud",
+    era:"Séculos XIX–XX",
+    perguntas:[
+
+        {
+            q:"Freud é considerado uma figura central no desenvolvimento de qual área?",
+            a:["Psicanálise","Astronomia","Evolução","Economia"],
+            c:0,
+            e:"Sigmund Freud é uma das figuras fundadoras da tradição psicanalítica."
+        },
+
+        {
+            q:"Freud deu grande importância a qual conceito?",
+            a:["Inconsciente","Seleção natural","Relatividade","Vontade geral"],
+            c:0,
+            e:"O conceito de inconsciente ocupa papel central na teoria psicanalítica de Freud."
+        },
+
+        {
+            q:"Freud desenvolveu suas teorias principalmente a partir de estudos sobre o quê?",
+            a:["Mente, comportamento e conflitos psíquicos","Planetas","Oceanos","Máquinas"],
+            c:0,
+            e:"Freud estudou a vida psíquica e os conflitos que podem influenciar pensamentos e comportamentos."
+        }
+
+    ]
+},
+
+{
+    nome:"Albert Einstein",
+    era:"Século XX",
+    perguntas:[
+
+        {
+            q:"Qual teoria tornou Einstein mundialmente famoso?",
+            a:["Teoria da relatividade","Teoria da evolução","Psicanálise","Contrato social"],
+            c:0,
+            e:"Einstein desenvolveu a teoria da relatividade, uma das grandes transformações da física moderna."
+        },
+
+        {
+            q:"Einstein recebeu o Prêmio Nobel de Física principalmente por seu trabalho sobre quê?",
+            a:["Efeito fotoelétrico","Seleção natural","Psicanálise","Economia"],
+            c:0,
+            e:"Einstein recebeu o Nobel de Física de 1921, principalmente pelo trabalho sobre o efeito fotoelétrico."
+        },
+
+        {
+            q:"Em qual área Einstein realizou suas principais contribuições?",
+            a:["Física","Literatura","Sociologia","Pintura"],
+            c:0,
+            e:"Einstein foi um dos físicos mais influentes do século XX."
+        }
+
+    ]
+},
+
+{
+    nome:"Hannah Arendt",
+    era:"Século XX",
+    perguntas:[
+
+        {
+            q:"Hannah Arendt estudou profundamente qual tema?",
+            a:["Política e totalitarismo","Seleção natural","Astronomia","Pintura"],
+            c:0,
+            e:"Arendt analisou temas políticos como totalitarismo, poder, autoridade e ação."
+        },
+
+        {
+            q:"Qual obra de Hannah Arendt trata do fenômeno do totalitarismo?",
+            a:["As Origens do Totalitarismo","O Capital","Cosmos","O Príncipe"],
+            c:0,
+            e:"As Origens do Totalitarismo é uma de suas obras mais importantes."
+        },
+
+        {
+            q:"Arendt refletiu sobre a importância de quê na vida política?",
+            a:["Ação e participação no espaço público","Isolamento total","Ignorância","Fim do diálogo"],
+            c:0,
+            e:"A ação e a participação pública são temas importantes no pensamento político de Arendt."
+        }
+
+    ]
+},
+
+{
+    nome:"Paulo Freire",
+    era:"Século XX",
+    perguntas:[
+
+        {
+            q:"Paulo Freire ficou mundialmente conhecido por suas ideias sobre quê?",
+            a:["Educação","Astronomia","Física","Pintura"],
+            c:0,
+            e:"Paulo Freire foi um dos educadores brasileiros mais influentes internacionalmente."
+        },
+
+        {
+            q:"Qual obra é uma das mais conhecidas de Paulo Freire?",
+            a:["Pedagogia do Oprimido","O Capital","Cosmos","O Príncipe"],
+            c:0,
+            e:"Pedagogia do Oprimido é uma das obras mais conhecidas de Paulo Freire."
+        },
+
+        {
+            q:"Qual ideia aparece com força na pedagogia de Paulo Freire?",
+            a:["Educação como diálogo e transformação","Educação baseada somente em memorização","Fim do diálogo","Separação entre educação e realidade"],
+            c:0,
+            e:"Freire valorizava o diálogo e uma educação relacionada à realidade e à transformação social."
+        }
+
+    ]
+},
+
+{
+    nome:"Nelson Mandela",
+    era:"Século XX",
+    perguntas:[
+
+        {
+            q:"Nelson Mandela lutou contra qual sistema de segregação racial?",
+            a:["Apartheid","Feudalismo","Mercantilismo","Absolutismo"],
+            c:0,
+            e:"Mandela foi uma das principais figuras da luta contra o apartheid na África do Sul."
+        },
+
+        {
+            q:"Em qual país Mandela se tornou uma figura política central?",
+            a:["África do Sul","Brasil","Índia","França"],
+            c:0,
+            e:"Nelson Mandela foi líder político sul-africano e tornou-se presidente da África do Sul."
+        },
+
+        {
+            q:"Mandela recebeu o Prêmio Nobel da Paz em qual ano?",
+            a:["1993","1964","1980","2001"],
+            c:0,
+            e:"Nelson Mandela recebeu o Nobel da Paz em 1993, juntamente com F. W. de Klerk."
+        }
+
+    ]
+},
+
+{
+    nome:"Martin Luther King Jr.",
+    era:"Século XX",
+    perguntas:[
+
+        {
+            q:"Martin Luther King Jr. ficou conhecido principalmente por lutar por quê?",
+            a:["Direitos civis e igualdade racial","Expansão territorial","Astronomia","Economia"],
+            c:0,
+            e:"King foi uma das principais lideranças do movimento pelos direitos civis nos Estados Unidos."
+        },
+
+        {
+            q:"Qual método de luta King defendia?",
+            a:["Não violência","Guerra permanente","Isolamento","Censura"],
+            c:0,
+            e:"King defendia a ação não violenta como instrumento de transformação social."
+        },
+
+        {
+            q:"King recebeu o Prêmio Nobel da Paz em qual década?",
+            a:["Década de 1960","Década de 1920","Década de 1980","Década de 2000"],
+            c:0,
+            e:"Martin Luther King Jr. recebeu o Nobel da Paz em 1964."
+        }
+
+    ]
+},
+
+{
+    nome:"Carl Sagan",
+    era:"Século XX",
+    perguntas:[
+
+        {
+            q:"Carl Sagan ficou famoso por ajudar a popularizar qual área?",
+            a:["Astronomia e ciência","Direito","Pintura","Economia"],
+            c:0,
+            e:"Sagan foi astrônomo e um dos grandes divulgadores científicos do século XX."
+        },
+
+        {
+            q:"Qual série de televisão ajudou a tornar Sagan conhecido mundialmente?",
+            a:["Cosmos","Friends","Sherlock","Planet Earth"],
+            c:0,
+            e:"Cosmos foi apresentada por Carl Sagan e ajudou a aproximar a ciência do grande público."
+        },
+
+        {
+            q:"Sagan defendia a importância de quê?",
+            a:["Pensamento crítico e conhecimento científico","Superstição sem questionamento","Ignorância","Rejeição da ciência"],
+            c:0,
+            e:"Sagan valorizava o pensamento crítico, a ciência e a investigação racional."
+        }
+
+    ]
+},
+
+{
+    nome:"Stephen Hawking",
+    era:"Século XX",
+    perguntas:[
+
+        {
+            q:"Stephen Hawking ficou especialmente conhecido por estudar o quê?",
+            a:["Buracos negros e cosmologia","Pintura","Direito","Política eleitoral"],
+            c:0,
+            e:"Hawking realizou importantes trabalhos teóricos em cosmologia e sobre buracos negros."
+        },
+
+        {
+            q:"Qual livro ajudou a popularizar as ideias de Hawking?",
+            a:["Uma Breve História do Tempo","O Capital","A República","Cândido"],
+            c:0,
+            e:"Uma Breve História do Tempo tornou temas de cosmologia conhecidos por milhões de leitores."
+        },
+
+        {
+            q:"Hawking foi um importante cientista de qual área?",
+            a:["Física teórica e cosmologia","Literatura","Sociologia","Pintura"],
+            c:0,
+            e:"Stephen Hawking foi físico teórico e cosmólogo."
+        }
+
+    ]
+},
+
+{
+    nome:"Machado de Assis",
+    era:"Século XIX–XX",
+    perguntas:[
+
+        {
+            q:"Machado de Assis é considerado um dos maiores nomes de qual área no Brasil?",
+            a:["Literatura","Astronomia","Física","Engenharia"],
+            c:0,
+            e:"Machado de Assis é considerado um dos maiores escritores da literatura brasileira."
+        },
+
+        {
+            q:"Qual romance famoso foi escrito por Machado de Assis?",
+            a:["Memórias Póstumas de Brás Cubas","O Capital","Cosmos","O Príncipe"],
+            c:0,
+            e:"Memórias Póstumas de Brás Cubas é uma de suas obras mais importantes."
+        },
+
+        {
+            q:"Machado de Assis foi um dos fundadores de qual instituição?",
+            a:["Academia Brasileira de Letras","Academia de Atenas","ONU","Royal Society"],
+            c:0,
+            e:"Machado de Assis foi um dos fundadores da Academia Brasileira de Letras e seu primeiro presidente."
+        }
+
+    ]
+},
+
+{
+    nome:"Milton Santos",
+    era:"Século XX–XXI",
+    perguntas:[
+
+        {
+            q:"Milton Santos foi um dos grandes nomes brasileiros de qual área?",
+            a:["Geografia","Astronomia","Psicanálise","Pintura"],
+            c:0,
+            e:"Milton Santos foi um dos mais importantes geógrafos brasileiros."
+        },
+
+        {
+            q:"Milton Santos estudou profundamente qual tema?",
+            a:["Espaço geográfico e globalização","Somente literatura","Somente astronomia","Somente música"],
+            c:0,
+            e:"Sua obra analisou o espaço geográfico, a globalização, as cidades e as desigualdades."
+        },
+
+        {
+            q:"Milton Santos recebeu qual importante prêmio internacional?",
+            a:["Prêmio Vautrin Lud","Nobel de Física","Oscar","Prêmio Pulitzer"],
+            c:0,
+            e:"Milton Santos recebeu o Prêmio Vautrin Lud em 1994, uma das maiores distinções da geografia."
+        }
+
+    ]
+},
+
+{
+    nome:"Darcy Ribeiro",
+    era:"Século XX",
+    perguntas:[
+
+        {
+            q:"Darcy Ribeiro ficou conhecido por seus estudos sobre quê?",
+            a:["Brasil, educação e povos indígenas","Astronomia","Física","Psicanálise"],
+            c:0,
+            e:"Darcy Ribeiro foi antropólogo, educador, escritor e político, com forte atuação na reflexão sobre o Brasil."
+        },
+
+        {
+            q:"Darcy Ribeiro teve importante atuação em qual área?",
+            a:["Educação","Astronomia","Física quântica","Cinema"],
+            c:0,
+            e:"A educação brasileira foi um dos grandes campos de atuação de Darcy Ribeiro."
+        },
+
+        {
+            q:"Darcy Ribeiro também foi conhecido por estudar qual população?",
+            a:["Povos indígenas","Somente populações europeias","Somente astronautas","Somente artistas"],
+            c:0,
+            e:"Darcy Ribeiro realizou estudos antropológicos importantes sobre povos indígenas do Brasil."
+        }
+
+    ]
+},
+
+{
+    nome:"Ailton Krenak",
+    era:"Séculos XX–XXI",
+    perguntas:[
+
+        {
+            q:"Ailton Krenak é uma importante voz sobre quais temas?",
+            a:["Povos indígenas, natureza e sociedade","Astronomia","Física","Economia bancária"],
+            c:0,
+            e:"Krenak é escritor, pensador e liderança indígena, com forte atuação em temas ligados aos povos indígenas e à relação com a natureza."
+        },
+
+        {
+            q:"Ailton Krenak pertence a qual povo indígena?",
+            a:["Krenak","Guarani Kaiowá","Yanomami","Xavante"],
+            c:0,
+            e:"Ailton Krenak pertence ao povo Krenak."
+        },
+
+        {
+            q:"Qual livro de Ailton Krenak se tornou muito conhecido?",
+            a:["Ideias para Adiar o Fim do Mundo","O Capital","Cosmos","A República"],
+            c:0,
+            e:"Ideias para Adiar o Fim do Mundo é uma das obras mais conhecidas de Ailton Krenak."
+        }
+
+    ]
+},
+
+{
+    nome:"Simone de Beauvoir",
+    era:"Século XX",
+    perguntas:[
+
+        {
+            q:"Simone de Beauvoir é uma referência importante para qual área de pensamento?",
+            a:["Filosofia e estudos sobre a condição das mulheres","Astronomia","Física","Geografia física"],
+            c:0,
+            e:"Beauvoir foi filósofa e escritora e teve enorme influência no pensamento sobre gênero e condição das mulheres."
+        },
+
+        {
+            q:"Qual obra é uma das mais famosas de Simone de Beauvoir?",
+            a:["O Segundo Sexo","O Capital","Cosmos","O Príncipe"],
+            c:0,
+            e:"O Segundo Sexo é uma de suas obras mais influentes."
+        },
+
+        {
+            q:"Simone de Beauvoir esteve ligada a qual corrente filosófica?",
+            a:["Existencialismo","Empirismo medieval","Escolástica","Positivismo lógico apenas"],
+            c:0,
+            e:"Beauvoir é frequentemente associada ao existencialismo e desenvolveu uma reflexão própria sobre liberdade, situação e condição humana."
+        }
+
+    ]
+}
+
+];
+
+
+/* =========================================================
+   CONFIGURAÇÃO
+   ========================================================= */
+
+const TOTAL_PERGUNTAS = 3;
+const TOTAL_VIDAS = 3;
+const PONTOS_ACERTO = 10;
+
+let partida = [];
+let perguntaAtual = 0;
+let score = 0;
+let vidas = TOTAL_VIDAS;
+let respondeu = false;
+
+const STORAGE_HISTORICO =
+    "museuJogoPerguntasUsadas_v2";
+
+const LIMITE_HISTORICO = 18;
+
+
+/* =========================================================
+   UTILIDADES
+   ========================================================= */
+
+function embaralhar(array){
+
+    const copia = [...array];
+
+    for(let i = copia.length - 1; i > 0; i--){
+
+        const j = Math.floor(Math.random() * (i + 1));
+
+        [copia[i],copia[j]] =
+        [copia[j],copia[i]];
+    }
+
+    return copia;
+}
+
+
+function obterHistorico(){
+
+    try{
+
+        const salvo =
+            localStorage.getItem(STORAGE_HISTORICO);
+
+        return salvo ? JSON.parse(salvo) : [];
+
+    }catch(e){
+
+        return [];
+    }
+}
+
+
+function salvarHistorico(id){
+
+    let historico = obterHistorico();
+
+    historico.push(id);
+
+    historico =
+        [...new Set(historico)]
+        .slice(-LIMITE_HISTORICO);
+
+    try{
+
+        localStorage.setItem(
+            STORAGE_HISTORICO,
+            JSON.stringify(historico)
+        );
+
+    }catch(e){}
+}
+
+
+function atualizarVidas(){
+
+    let texto = "";
+
+    for(let i=0;i<TOTAL_VIDAS;i++){
+
+        texto += i < vidas ? "❤️" : "🖤";
+    }
+
+    document.getElementById("lives").textContent = texto;
+}
+
+
+/* =========================================================
+   CRIA UMA PARTIDA
+   ========================================================= */
+
+function criarPartida(){
+
+    const historico = obterHistorico();
+
+    let candidatos = [];
+
+    /*
+      Primeiro embaralhamos os 30 pensadores.
+      Depois escolhemos somente 3.
+      Assim nenhum pensador se repete dentro da partida.
+    */
+
+    const pensadores =
+        embaralhar(bancoPensadores);
+
+    for(const pensador of pensadores){
+
+        const disponiveis =
+            pensador.perguntas.filter((_,indice)=>{
+
+                const id =
+                    pensador.nome + "_" + indice;
+
+                return !historico.includes(id);
+
+            });
+
+        let pool =
+            disponiveis.length
+            ? disponiveis
+            : pensador.perguntas;
+
+        const indice =
+            Math.floor(Math.random()*pool.length);
+
+        const pergunta =
+            pool[indice];
+
+        const indiceReal =
+            pensador.perguntas.indexOf(pergunta);
+
+        partida.push({
+
+            pensador,
+            pergunta,
+            id:
+                pensador.nome + "_" + indiceReal
+
+        });
+
+        if(partida.length === TOTAL_PERGUNTAS){
+
+            break;
+        }
+    }
+}
+
+
+/* =========================================================
+   INICIAR
+   ========================================================= */
+
+function iniciarJogo(){
+
+    perguntaAtual = 0;
+    score = 0;
+    vidas = TOTAL_VIDAS;
+    respondeu = false;
+
+    partida = [];
+
+    criarPartida();
+
+    document.getElementById("inicio")
+        .classList.add("hidden");
+
+    document.getElementById("resultado")
+        .classList.add("hidden");
+
+    document.getElementById("jogo")
+        .classList.remove("hidden");
+
+    document.getElementById("score")
+        .textContent = score;
+
+    atualizarVidas();
+
+    mostrarPergunta();
+}
+
+
+/* =========================================================
+   MOSTRAR PERGUNTA
+   ========================================================= */
+
+function mostrarPergunta(){
+
+    respondeu = false;
+
+    const item =
+        partida[perguntaAtual];
+
+    const p =
+        item.pergunta;
+
+    document.getElementById("progressText")
+        .textContent =
+        `Pergunta ${perguntaAtual + 1} de ${TOTAL_PERGUNTAS}`;
+
+    document.getElementById("progressBar")
+        .style.width =
+        `${((perguntaAtual + 1)/TOTAL_PERGUNTAS)*100}%`;
+
+    document.getElementById("thinkerTag")
+        .textContent =
+        `🧠 ${item.pensador.nome} • ${item.pensador.era}`;
+
+    document.getElementById("question")
+        .textContent =
+        p.q;
+
+    const answers =
+        document.getElementById("answers");
+
+    answers.innerHTML = "";
+
+    document.getElementById("explanationBox")
+        .classList.add("hidden");
+
+    document.getElementById("nextButton")
+        .classList.add("hidden");
+
+    const opcoes =
+        embaralhar(
+            p.a.map((texto,index)=>({
+                texto,
+                original:index
+            }))
+        );
+
+    opcoes.forEach(opcao=>{
+
+        const button =
+            document.createElement("button");
+
+        button.className = "answer";
+
+        button.textContent =
+            opcao.texto;
+
+        button.onclick = () =>
+            responder(button,opcao.original);
+
+        answers.appendChild(button);
+
+    });
+
+}
+
+
+/* =========================================================
+   RESPONDER
+   ========================================================= */
+
+function responder(botao, indice){
+
+    if(respondeu){
+        return;
+    }
+
+    respondeu = true;
+
+    const item =
+        partida[perguntaAtual];
+
+    const p =
+        item.pergunta;
+
+    const botoes =
+        document.querySelectorAll(".answer");
+
+    botoes.forEach(btn=>{
+        btn.disabled = true;
+    });
+
+    /*
+      Descobre qual alternativa correta
+      sem depender da posição visual.
+    */
+
+    botoes.forEach(btn=>{
+
+        const texto =
+            btn.textContent;
+
+        const indiceOriginal =
+            p.a.indexOf(texto);
+
+        if(indiceOriginal === p.c){
+
+            btn.classList.add("correct");
+
+        }
+
+    });
+
+
+    if(indice === p.c){
+
+        botao.classList.add("correct");
+
+        score += PONTOS_ACERTO;
+
+        document.getElementById("score")
+            .textContent = score;
+
+    }else{
+
+        botao.classList.add("wrong");
+
+        vidas--;
+
+        atualizarVidas();
+
+    }
+
+
+    salvarHistorico(item.id);
+
+    const explicacao =
+        document.getElementById("explanationBox");
+
+    explicacao.innerHTML =
+        `<strong>${indice === p.c ? "🎉 Muito bem!" : "💡 Vamos aprender!"}</strong><br><br>
+        ${p.e}`;
+
+    explicacao.classList.remove("hidden");
+
+    document.getElementById("nextButton")
+        .classList.remove("hidden");
+
+}
+
+
+/* =========================================================
+   PRÓXIMA
+   ========================================================= */
+
+function proximaPergunta(){
+
+    perguntaAtual++;
+
+    if(
+        perguntaAtual >= TOTAL_PERGUNTAS ||
+        vidas <= 0
+    ){
+
+        finalizarJogo();
+
+        return;
+    }
+
+    mostrarPergunta();
+}
+
+
+/* =========================================================
+   FINALIZAR
+   ========================================================= */
+
+function finalizarJogo(){
+
+    document.getElementById("jogo")
+        .classList.add("hidden");
+
+    document.getElementById("resultado")
+        .classList.remove("hidden");
+
+    document.getElementById("finalScore")
+        .textContent = score;
+
+
+    let mensagem;
+
+    if(score === 30){
+
+        mensagem =
+        "🏆 Incrível! Você acertou tudo!";
+
+    }else if(score >= 20){
+
+        mensagem =
+        "🌟 Muito bom! Você conhece bastante os pensadores!";
+
+    }else if(score >= 10){
+
+        mensagem =
+        "👏 Muito bem! Continue viajando pelo Museu!";
+
+    }else{
+
+        mensagem =
+        "🚀 Toda viagem começa com uma descoberta. Tente novamente!";
+
+    }
+
+    document.getElementById("resultMessage")
+        .textContent = mensagem;
+
+
+    const visited =
+        document.getElementById("visited");
+
+    visited.innerHTML = "";
+
+    partida.forEach(item=>{
+
+        const span =
+            document.createElement("span");
+
+        span.textContent =
+            "🧠 " + item.pensador.nome;
+
+        visited.appendChild(span);
+
+    });
+
+}
+
+
+/* =========================================================
+   INÍCIO
+   ========================================================= */
+
+atualizarVidas();
+
+</script>
+
+</body>
+</html>
