@@ -59,6 +59,103 @@ h1 em{color:var(--g2);font-style:normal}
 .footer{padding:40px 0;border-top:1px solid var(--l);font:13px Arial;color:#999}
 @media(max-width:800px){.links{display:none}.cols,.exhibit{grid-template-columns:1fr}.grid{grid-template-columns:1fr 1fr}}
 @media(max-width:550px){.grid{grid-template-columns:1fr}h1{font-size:48px}}
+  /* ===== MUSEU RESPONSIVO — CELULAR E COMPUTADOR ===== */
+
+@media (max-width: 800px){
+  body{
+    overflow-x:hidden;
+  }
+
+  .container{
+    width:calc(100% - 32px);
+    max-width:none;
+  }
+
+  .nav{
+    height:auto;
+    min-height:58px;
+    padding:8px 16px;
+    gap:10px;
+  }
+
+  .brand{
+    font-size:13px;
+  }
+
+  .links{
+    gap:10px;
+    font-size:12px;
+  }
+
+  .hero{
+    min-height:auto;
+    padding:70px 0 45px;
+  }
+
+  .cols{
+    grid-template-columns:1fr;
+    gap:25px;
+  }
+
+  h1{
+    font-size:clamp(38px,12vw,58px);
+    line-height:.98;
+  }
+
+  .lead{
+    font-size:16px;
+    line-height:1.6;
+  }
+
+  .hero-card{
+    min-height:300px;
+    height:300px;
+  }
+
+  .hero-card img{
+    max-width:100%;
+    max-height:100%;
+    object-fit:contain;
+  }
+
+  .btn,
+  .gold{
+    font-size:14px;
+    padding:11px 16px;
+  }
+}
+
+@media (max-width: 480px){
+  .nav{
+    flex-wrap:wrap;
+    justify-content:center;
+  }
+
+  .brand{
+    width:100%;
+    text-align:center;
+  }
+
+  .links{
+    width:100%;
+    justify-content:center;
+  }
+
+  .hero{
+    padding-top:45px;
+  }
+
+  h1{
+    font-size:42px;
+  }
+
+  .hero-card{
+    min-height:270px;
+    height:270px;
+  }
+}
+
+/* ===== FIM DO MODO RESPONSIVO ===== */
 </style>
 </head>
 <body>
