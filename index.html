@@ -8,6 +8,15 @@
 :root{--bg:#070707;--p:#111;--g:#d8b36a;--g2:#f1d79b;--t:#f6f0e5;--m:#aaa19a;--l:rgba(216,179,106,.25)}
 *{box-sizing:border-box}html{scroll-behavior:smooth}
 body{margin:0;background:radial-gradient(circle at 50% -10%,#292117,#080808 45%,#050505);color:var(--t);font-family:Georgia,serif}
+  body::before{
+content:"";
+position:fixed;
+inset:0;
+z-index:-1;
+background:url('Nelson_Mandela_1994.jpg') center top/cover no-repeat;
+opacity:.18;
+pointer-events:none;
+}
 button,input{font:inherit}button{cursor:pointer}a{color:inherit;text-decoration:none}
 .container{width:min(1150px,92%);margin:auto}
 .top{position:fixed;top:0;left:0;right:0;z-index:20;background:#080808ee;border-bottom:1px solid var(--l)}
