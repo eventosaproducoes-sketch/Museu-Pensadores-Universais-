@@ -667,16 +667,21 @@ function abrirFilmesPensador(nome){
 
      html+=
      '<div class="content">'+
-     '<h3>'+esc(filme.titulo)+'</h3>'+
-     '<p><strong>Ano:</strong> '+esc(filme.ano)+'</p>'+
-     '<p><strong>Direção:</strong> '+esc(filme.diretor)+'</p>'+
-     '<p><strong>Tipo:</strong> '+esc(filme.tipo)+'</p>'+
-     '<p>'+esc(filme.descricao)+'</p>'+
-     (filme.url?
-'<a class="gold" href="'+filme.url+'" target="_blank" rel="noopener noreferrer">▶ ASSISTIR AGORA</a>':
-'<p><em>Link de exibição ainda não cadastrado.</em></p>')+
+'<h3>'+esc(filme.titulo)+'</h3>'+
+'<p><strong>Ano:</strong> '+esc(filme.ano)+'</p>'+
+'<p><strong>Direção:</strong> '+esc(filme.diretor)+'</p>'+
+'<p><strong>Tipo:</strong> '+esc(filme.tipo)+'</p>'+
+'<p>'+esc(filme.descricao)+'</p>'+
+'<div style="margin-top:18px;">'+
+(
+  filme.url
+  ?
+  '<a class="gold" href="'+filme.url+'" target="_blank" rel="noopener noreferrer">▶ ASSISTIR AGORA</a>'
+  :
+  '<button class="gold" onclick="alert(\'O link de exibição deste filme ainda está sendo cadastrado.\')">▶ ASSISTIR AGORA</button>'
+)+
+'</div>'+
 '</div>';
-
    });
 
  }
