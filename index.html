@@ -277,6 +277,20 @@ h1 em{color:var(--g2);font-style:normal}
 <div><div class="kicker">Exposição em destaque</div><h2>Sócrates</h2><div class="quote">“Uma vida não examinada não vale a pena ser vivida.”</div><button class="gold" onclick="openThinker('Sócrates')">Visitar exposição</button></div>
 </div>
 </section>
+  <section class="cinema-home">
+  <div class="container">
+    <div class="kicker">Acervo audiovisual</div>
+    <h2>🎬 Filmes e Documentários</h2>
+    <p>
+      Explore filmes e documentários relacionados aos grandes pensadores
+      do nosso acervo.
+    </p>
+
+    <button class="gold" onclick="abrirFilmesMuseu()">
+      🎬 Filmes e Documentários
+    </button>
+  </div>
+</section>
 </main>
 
 <footer class="footer"><div class="container">Museu Virtual dos Pensadores Universais • Acervo em expansão</div></footer>
@@ -401,11 +415,117 @@ function membership(){
  alert("Passe Anual — R$120 por 12 meses.\n\nA área premium será liberada quando o sistema de acesso estiver concluído.");
 }
 
+/* =========================================================
+   🎬 FILMES E DOCUMENTÁRIOS
+   ========================================================= */
+
+function abrirFilmesMuseu(){
+
+ const modal=document.getElementById("modal");
+ const box=document.getElementById("modalBox");
+
+ if(!modal||!box)return;
+
+ let html=
+ '<button class="close" onclick="closeModal()">×</button>'+
+ '<div class="period">ACERVO AUDIOVISUAL</div>'+
+ '<h2>🎬 Filmes e Documentários</h2>'+
+ '<p>Selecione um pensador para consultar os filmes e documentários disponíveis.</p>'+
+ '<div class="content">';
+
+ thinkers.forEach(function(t){
+
+   html+=
+   '<button class="btn" style="margin:6px 4px;" onclick="abrirFilmesPensador(\''+
+   esc(t[0])+
+   '\')">'+
+   '🎬 '+esc(t[0])+
+   '</button>';
+
+ });
+
+ html+='</div>';
+
+ box.innerHTML=html;
+
+ modal.classList.add("show");
+}
+
 function closeModal(){
  const modal=document.getElementById("modal");
  if(modal)modal.classList.remove("show");
+
 }
 
+    /* =========================================================
+   🎬 FILMES DO PENSADOR SELECIONADO
+   ========================================================= */
+
+function abrirFilmesPensador(nome){
+
+ const modal=document.getElementById("modal");
+ const box=document.getElementById("modalBox");
+
+ if(!modal||!box)return;
+
+ const filmes={
+
+   "Sócrates":[
+     {
+       titulo:"Sócrates",
+       ano:"1971",
+       diretor:"Roberto Rossellini",
+       tipo:"Filme",
+       descricao:"Dramatização da vida, do julgamento e da condenação de Sócrates.",
+       url:"https://www.imdb.com/title/tt0210296/"
+     }
+   ]
+
+ };
+
+ const lista=filmes[nome]||[];
+
+ let html=
+ '<button class="close" onclick="closeModal()">×</button>'+
+ '<div class="period">ACERVO AUDIOVISUAL</div>'+
+ '<h2>🎬 '+esc(nome)+'</h2>';
+
+ if(lista.length===0){
+
+   html+=
+   '<div class="content">'+
+   '<p>🎬 Nenhum filme ou documentário identificado no acervo para este pensador no momento.</p>'+
+   '</div>';
+
+ }else{
+
+   lista.forEach(function(filme){
+
+     html+=
+     '<div class="content">'+
+     '<h3>'+esc(filme.titulo)+'</h3>'+
+     '<p><strong>Ano:</strong> '+esc(filme.ano)+'</p>'+
+     '<p><strong>Direção:</strong> '+esc(filme.diretor)+'</p>'+
+     '<p><strong>Tipo:</strong> '+esc(filme.tipo)+'</p>'+
+     '<p>'+esc(filme.descricao)+'</p>'+
+     '<a class="gold" href="'+filme.url+'" target="_blank" rel="noopener">'+
+     '▶ Acessar filme'+
+     '</a>'+
+     '</div>';
+
+   });
+
+ }
+
+ html+=
+ '<div style="margin-top:20px;">'+
+ '<button class="btn" onclick="abrirFilmesMuseu()">← Voltar aos pensadores</button>'+
+ '</div>';
+
+ box.innerHTML=html;
+
+ modal.classList.add("show");
+}
 document.getElementById("modal")?.addEventListener("click",e=>{
  if(e.target.id==="modal")closeModal();
 });
