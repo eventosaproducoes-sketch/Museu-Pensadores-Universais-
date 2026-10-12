@@ -1,0 +1,313 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A Jornada dos Pensadores</title>
+<style>
+:root {
+  --gold:#e6bd65;
+  --dark:#100f0d;
+  --panel:#1b1915;
+  --text:#f7f0e2;
+  --muted:#c2b9a8;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;background:radial-gradient(ellipse at top,#382b18,var(--dark) 65%);
+  color:var(--text);font-family:Arial,sans-serif;min-height:100vh
+}
+header{
+  padding:22px 5%;border-bottom:1px solid #574527;
+  display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap
+}
+.brand{color:var(--gold);font-weight:bold;font-size:20px}
+a{color:var(--gold)}
+button{
+  cursor:pointer;border:1px solid var(--gold);border-radius:10px;
+  padding:12px 16px;font-weight:bold;background:var(--gold);color:#17120a
+}
+button:disabled{opacity:.4;cursor:not-allowed}
+.secondary{background:transparent;color:var(--gold)}
+main{max-width:1050px;margin:auto;padding:28px 18px 60px}
+.hero{text-align:center;padding:28px 0}
+.kicker{color:var(--gold);letter-spacing:3px;font-size:12px}
+h1{font-size:clamp(32px,6vw,55px);margin:14px 0}
+p{line-height:1.65;color:var(--muted)}
+.stats{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin:22px 0}
+.stat{border:1px solid #574527;background:#191610;border-radius:12px;padding:12px 18px}
+.stat strong{color:var(--gold)}
+.map{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px
+}
+.phase{
+  text-align:left;background:linear-gradient(145deg,#252117,#15130f);
+  color:var(--text);border:1px solid #574527;padding:18px;
+  min-height:165px;border-radius:16px
+}
+.phase .number{color:var(--gold);font-size:12px;letter-spacing:2px}
+.phase h3{margin:10px 0}
+.phase p{font-size:14px;margin-bottom:0}
+.phase.unlocked{border-color:var(--gold)}
+.phase.completed{border-color:#8ac59b}
+.phase.completed .number{color:#8ac59b}
+.phase:disabled{filter:grayscale(.6)}
+.panel{
+  margin-top:24px;padding:24px;border:1px solid #574527;
+  background:var(--panel);border-radius:18px
+}
+.panel h2{color:var(--gold)}
+.options{display:grid;gap:10px;margin:20px 0}
+.option{
+  background:#242117;color:var(--text);border:1px solid #625337;
+  text-align:left;width:100%
+}
+.option:hover:not(:disabled){background:#39301e}
+.option.correct{border-color:#8ac59b;background:#183323;color:#fff}
+.option.wrong{border-color:#d77e72;background:#40201d;color:#fff}
+.feedback{padding:14px;border-radius:10px;background:#29251b;margin:16px 0}
+footer{text-align:center;padding:25px;color:var(--muted);font-size:13px}
+.hidden{display:none}
+.progress{height:8px;background:#393329;border-radius:20px;overflow:hidden;margin:14px 0}
+.progress span{display:block;height:100%;width:0;background:var(--gold);transition:width .3s}
+@media(max-width:520px){header{justify-content:center}main{padding-top:14px}.panel{padding:17px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand">✦ Museu dos Pensadores</div>
+  <a href="index.html">← Voltar ao Museu</a>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="kicker">UMA AVENTURA PELO CONHECIMENTO</div>
+    <h1>⏳ A Jornada dos Pensadores</h1>
+    <p>Explore dez mundos filosóficos. Resolva enigmas, aprenda grandes ideias e desbloqueie sua próxima missão.</p>
+    <div class="stats">
+      <div class="stat">Fases: <strong id="count">0/10</strong></div>
+      <div class="stat">Pontos: <strong id="points">0</strong></div>
+      <div class="stat">Medalhas: <strong id="medals">0</strong></div>
+    </div>
+    <div class="progress"><span id="progress"></span></div>
+    <button class="secondary" onclick="resetGame()">Reiniciar jornada</button>
+  </section>
+
+  <section id="map" class="map" aria-label="Mapa das dez fases"></section>
+
+  <section id="challenge" class="panel hidden" aria-live="polite">
+    <div class="kicker" id="phaseLabel"></div>
+    <h2 id="questionTitle"></h2>
+    <p id="story"></p>
+    <h3 id="question"></h3>
+    <div id="options" class="options"></div>
+    <div id="feedback" class="feedback hidden"></div>
+    <button id="continue" class="hidden" onclick="nextStep()">Continuar →</button>
+    <button class="secondary" onclick="showMap()">Voltar ao mapa</button>
+  </section>
+
+  <section id="ending" class="panel hidden">
+    <h2>🏆 Jornada concluída!</h2>
+    <p>Você percorreu os dez mundos e conheceu ideias que transformaram a história do pensamento.</p>
+    <p id="finalScore"></p>
+    <button onclick="showMap()">Rever o mapa</button>
+  </section>
+</main>
+
+<footer>Museu Virtual dos Pensadores Universais · A educação abre caminhos.</footer>
+
+<script>
+const phases = [
+ {
+  name:"Platão",title:"A Caverna",icon:"🕯️",level:"Fácil",
+  story:"Você desperta numa caverna. Pessoas observam sombras na parede e acreditam que elas são toda a realidade. Uma passagem leva para fora.",
+  question:"Na alegoria de Platão, sair da caverna representa principalmente:",
+  options:["Acumular riquezas","Buscar conhecimento e questionar aparências","Conquistar um reino"],
+  answer:1,
+  explanation:"A alegoria representa a passagem da ignorância para o conhecimento e a investigação do que consideramos real."
+ },
+ {
+  name:"Sócrates",title:"O Enigma das Perguntas",icon:"❓",level:"Fácil",
+  story:"Um guardião afirma saber tudo sobre a justiça. Você precisa descobrir como investigar essa afirmação.",
+  question:"Qual atitude combina melhor com o método de Sócrates?",
+  options:["Aceitar toda afirmação sem questionar","Impor uma resposta pela força","Fazer perguntas e examinar as próprias ideias"],
+  answer:2,
+  explanation:"Sócrates usava o diálogo e perguntas para examinar crenças, revelar contradições e estimular a reflexão."
+ },
+ {
+  name:"Aristóteles",title:"A Trilha da Lógica",icon:"🔎",level:"Fácil+",
+  story:"Três placas apresentam argumentos. Só uma conclusão decorre das premissas fornecidas.",
+  question:"Todos os seres humanos são mortais. Sócrates é humano. O que se conclui?",
+  options:["Sócrates é mortal","Sócrates é imortal","Não é possível concluir nada"],
+  answer:0,
+  explanation:"A conclusão decorre logicamente das duas premissas. Aristóteles contribuiu decisivamente para o estudo sistemático da lógica."
+ },
+ {
+  name:"Confúcio",title:"O Caminho da Virtude",icon:"🏮",level:"Intermediária",
+  story:"Uma aldeia enfrenta um conflito. Você pode ouvir as pessoas, considerar suas responsabilidades e procurar uma solução respeitosa.",
+  question:"Qual escolha se aproxima dos ensinamentos éticos de Confúcio?",
+  options:["Ignorar os outros para vencer","Agir com respeito, responsabilidade e consideração","Resolver tudo com vingança"],
+  answer:1,
+  explanation:"Confúcio valorizava a formação moral, o respeito nas relações e a responsabilidade social."
+ },
+ {
+  name:"Agostinho de Hipona",title:"O Labirinto Interior",icon:"🕊️",level:"Intermediária",
+  story:"No labirinto, cada porta mostra uma lembrança e uma decisão. Para seguir, você precisa refletir sobre suas escolhas.",
+  question:"Qual tema é central no pensamento de Agostinho?",
+  options:["Apenas a conquista militar","A fabricação de máquinas","A interioridade, a memória e a relação entre fé e razão"],
+  answer:2,
+  explanation:"Agostinho refletiu profundamente sobre memória, vontade, interioridade, fé e busca da verdade."
+ },
+ {
+  name:"Leonardo da Vinci",title:"A Máquina Impossível",icon:"⚙️",level:"Intermediária",
+  story:"Uma ponte está quebrada. Há desenhos, observações e materiais. Você precisa investigar antes de construir.",
+  question:"Qual abordagem combina melhor com o trabalho de Leonardo?",
+  options:["Observar, desenhar, experimentar e relacionar arte e ciência","Rejeitar toda observação","Escolher sem examinar as evidências"],
+  answer:0,
+  explanation:"Leonardo uniu observação da natureza, investigação técnica, desenho e criatividade artística."
+ },
+ {
+  name:"Immanuel Kant",title:"O Tribunal da Razão",icon:"⚖️",level:"Avançada",
+  story:"Você encontra uma regra que beneficia uma pessoa, mas prejudica todos os demais quando aplicada de maneira geral.",
+  question:"Uma pergunta importante na ética de Kant seria:",
+  options:["Essa decisão me dá vantagem imediata?","Eu poderia querer racionalmente que a regra valesse para todos?","Quantas pessoas posso enganar?"],
+  answer:1,
+  explanation:"O imperativo categórico convida a examinar se a máxima de uma ação pode valer como princípio universal."
+ },
+ {
+  name:"Charles Darwin",title:"O Enigma da Evolução",icon:"🦜",level:"Avançada",
+  story:"Em uma ilha, aves da mesma população apresentam bicos diferentes. Alimentos e condições ambientais variam.",
+  question:"Como a seleção natural pode favorecer certas características?",
+  options:["Todos os indivíduos mudam porque desejam","As características surgem sempre para atender a uma necessidade","Variações hereditárias que favorecem a reprodução podem tornar-se mais comuns"],
+  answer:2,
+  explanation:"Na seleção natural, variações hereditárias que influenciam o sucesso reprodutivo podem tornar-se mais frequentes ao longo das gerações."
+ },
+ {
+  name:"Karl Marx",title:"A Cidade do Trabalho",icon:"🏭",level:"Avançada",
+  story:"Você investiga uma cidade industrial e encontra trabalhadores, proprietários, fábricas e diferentes condições de vida.",
+  question:"Qual tema ocupa lugar central na análise social de Marx?",
+  options:["As relações de produção, o trabalho e os conflitos entre classes sociais","A astrologia como explicação da economia","A ideia de que a história não sofre transformações"],
+  answer:0,
+  explanation:"Marx analisou as relações de produção, as classes sociais e os conflitos ligados à organização econômica da sociedade."
+ },
+ {
+  name:"Paulo Freire",title:"A Libertação pelo Conhecimento",icon:"📚",level:"Desafio final",
+  story:"A última porta só se abre quando você transforma a sala em um espaço de diálogo, perguntas e aprendizagem coletiva.",
+  question:"Qual prática se aproxima da proposta educativa de Paulo Freire?",
+  options:["Memorizar sem compreender e proibir perguntas","Dialogar, problematizar a realidade e construir conhecimento criticamente","Tratar estudantes como incapazes de pensar"],
+  answer:1,
+  explanation:"Paulo Freire defendia uma educação dialógica e crítica, na qual as pessoas refletem sobre a realidade e participam da construção do conhecimento."
+ }
+];
+
+const KEY="jornadaPensadoresV1";
+function fresh(){return {unlocked:0,completed:[],points:0,medals:0}}
+function load(){
+ try{
+  const data=JSON.parse(localStorage.getItem(KEY));
+  if(data && Number.isInteger(data.unlocked) && Array.isArray(data.completed)) return data;
+ }catch(e){}
+ return fresh();
+}
+let state=load();
+let current=0;
+let answered=false;
+
+function save(){
+ localStorage.setItem(KEY,JSON.stringify(state));
+ renderMap();
+}
+function renderMap(){
+ const map=document.getElementById("map");
+ map.innerHTML="";
+ phases.forEach((p,i)=>{
+  const done=state.completed.includes(i);
+  const open=i<=state.unlocked;
+  const b=document.createElement("button");
+  b.className="phase"+(done?" completed":open?" unlocked":"");
+  b.disabled=!open;
+  b.innerHTML=`<div class="number">FASE ${i+1} · ${done?"✓ CONCLUÍDA":open?"🔓 DISPONÍVEL":"🔒 BLOQUEADA"}</div>
+  <h3>${p.icon} ${p.name}</h3><strong>${p.title}</strong><p>Dificuldade: ${p.level}</p>`;
+  b.onclick=()=>startPhase(i);
+  map.appendChild(b);
+ });
+ document.getElementById("count").textContent=state.completed.length+"/10";
+ document.getElementById("points").textContent=state.points;
+ document.getElementById("medals").textContent=state.medals;
+ document.getElementById("progress").style.width=(state.completed.length*10)+"%";
+}
+function startPhase(i){
+ if(i>state.unlocked)return;
+ current=i;answered=false;
+ document.getElementById("ending").classList.add("hidden");
+ document.getElementById("map").classList.add("hidden");
+ document.getElementById("challenge").classList.remove("hidden");
+ document.getElementById("phaseLabel").textContent="FASE "+(i+1)+" · "+phases[i].level.toUpperCase();
+ document.getElementById("questionTitle").textContent=phases[i].icon+" "+phases[i].name+": "+phases[i].title;
+ document.getElementById("story").textContent=phases[i].story;
+ document.getElementById("question").textContent=phases[i].question;
+ document.getElementById("feedback").classList.add("hidden");
+ document.getElementById("continue").classList.add("hidden");
+ const box=document.getElementById("options");box.innerHTML="";
+ phases[i].options.forEach((label,j)=>{
+  const b=document.createElement("button");
+  b.className="option";b.textContent=String.fromCharCode(65+j)+") "+label;
+  b.onclick=()=>choose(j,b);box.appendChild(b);
+ });
+ document.getElementById("challenge").scrollIntoView({behavior:"smooth"});
+}
+function choose(j,button){
+ if(answered)return;
+ answered=true;
+ const p=phases[current];
+ const correct=j===p.answer;
+ document.querySelectorAll(".option").forEach((b,i)=>{
+  b.disabled=true;
+  if(i===p.answer)b.classList.add("correct");
+ });
+ if(!correct)button.classList.add("wrong");
+ const feedback=document.getElementById("feedback");
+ feedback.classList.remove("hidden");
+ feedback.innerHTML=(correct?"<strong>✨ Resposta correta!</strong>":"<strong>Vamos aprender!</strong>")+
+ "<p>"+p.explanation+"</p>";
+ if(correct){
+  if(!state.completed.includes(current)){
+   state.completed.push(current);
+   state.points+=100+(current*20);
+   state.medals++;
+   if(current===state.unlocked && state.unlocked<9)state.unlocked++;
+  }
+ }else{
+  feedback.innerHTML+="<p>Leia a explicação e continue. Você pode tentar esta fase novamente no mapa.</p>";
+  // A fase só é concluída após uma resposta correta.
+ }
+ save();
+ document.getElementById("continue").classList.remove("hidden");
+ document.getElementById("continue").textContent=current===9?"Concluir jornada →":"Continuar →";
+}
+function nextStep(){
+ document.getElementById("challenge").classList.add("hidden");
+ if(state.completed.length===10){
+  document.getElementById("ending").classList.remove("hidden");
+  document.getElementById("finalScore").textContent="Pontuação final: "+state.points+" pontos · Medalhas: "+state.medals+"/10";
+ }else{
+  showMap();
+  if(state.unlocked>current)startPhase(state.unlocked);
+ }
+}
+function showMap(){
+ document.getElementById("challenge").classList.add("hidden");
+ document.getElementById("ending").classList.add("hidden");
+ document.getElementById("map").classList.remove("hidden");
+ renderMap();
+ window.scrollTo({top:0,behavior:"smooth"});
+}
+function resetGame(){
+ if(!confirm("Deseja apagar o progresso desta jornada neste navegador?"))return;
+ state=fresh();save();showMap();
+}
+renderMap();
+</script>
+</body>
+</html>
